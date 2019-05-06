@@ -3,14 +3,18 @@ en:
     sidebar-menu:
       keppler-staff: Staff
       keppler-staff-submenu:
+        chef: Chefs
         waiter: Waiters
     permissions:
     models:
       singularize:
+        chef: chef
         waiter: waiter
       pluralize:
+        chefs: chefs
         waiters: waiters
     modules:
+      admin/chef: Chef
       admin/waiter: Waiter
     messages:
     actions:

@@ -1,4 +1,11 @@
 modules:
+  chefs:
+    name: Chef
+    model: KepplerStaffChef
+    actions: [
+      'index', 'create', 'update', 'destroy', 'download', 'upload', 'clone'
+    ]
+
   waiters:
     name: Waiter
     model: KepplerStaffWaiter

@@ -8,6 +8,13 @@ menu:
     environment: all
     position: 4
     submenu:
+      - chef:
+          name: chef
+          url_path: /admin/staff/chefs
+          icon: layers
+          current: ['/admin/staff/chefs']
+          model: KepplerStaff::Chef
+
       - waiter:
           name: waiter
           url_path: /admin/staff/waiters
