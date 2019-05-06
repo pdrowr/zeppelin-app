@@ -1,0 +1,7 @@
+modules:
+  waiters:
+    name: Waiter
+    model: KepplerStaffWaiter
+    actions: [
+      'index', 'create', 'update', 'destroy', 'download', 'upload', 'clone'
+    ]

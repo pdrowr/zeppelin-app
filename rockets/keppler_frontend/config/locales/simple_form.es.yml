@@ -96,5 +96,5 @@ es:
           email: 'Correo.'
     hints:
       defaults:
-        username: 'Usuario para acceder.'
+        # username: 'Usuario para acceder.'
         password: 'Al menos 8 catacteres.'

@@ -1,0 +1,22 @@
+en:
+  keppler:
+    sidebar-menu:
+      keppler-staff: Staff
+      keppler-staff-submenu:
+        waiter: Waiters
+    permissions:
+    models:
+      singularize:
+        waiter: waiter
+      pluralize:
+        waiters: waiters
+    modules:
+      admin/waiter: Waiter
+    messages:
+    actions:
+  activerecord:
+    attributes:
+    errors:
+      messages:
+  errors:
+  helpers:

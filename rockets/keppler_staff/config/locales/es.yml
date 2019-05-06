@@ -1,0 +1,22 @@
+es:
+  keppler:
+    sidebar-menu:
+      keppler-staff: Personal
+      keppler-staff-submenu:
+        waiter: Meseros
+    permissions:
+    models:
+      singularize:
+        waiter: mesero
+      pluralize:
+        waiters: meseros
+    modules:
+      admin/waiter: Mesero
+    messages:
+    actions:
+  activerecord:
+    attributes:
+    errors:
+      messages:
+  errors:
+  helpers:

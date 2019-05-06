@@ -1,0 +1,23 @@
+menu:
+  keppler_staff:
+    name: Keppler Staff
+    current: ['/']
+    url_path: /
+    icon: user-group
+    model: User
+    environment: all
+    position: 4
+    submenu:
+      - waiter:
+          name: waiter
+          url_path: /admin/staff/waiters
+          icon: layers
+          current: ['/admin/staff/waiters']
+          model: KepplerStaff::Waiter
+
+      # - new:
+      #     name: + Add new module
+      #     url_path: /url_path
+      #     current: ['/current_path']
+      #     enviroment: development
+      #     model: User

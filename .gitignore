@@ -34,7 +34,6 @@ db/schema.rb
 /app/assets/javascripts/guard_javascript/*
 /app/assets/stylesheets/frontend/native_stylesheets/guard_stylesheets/*
 /config/application.yml
-/config/secrets.yml
 /config/secrets.yml.example
 /coverage.data
 /coverage/
@@ -84,5 +83,5 @@ pickle-email-*.html
 **.swp
 
 # Environment files that may contain sensitive data
-.env
+/.env
 .powenv

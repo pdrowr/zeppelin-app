@@ -19,6 +19,9 @@ gem 'vuejs-rails', '2.5.13' # VueJS library
 # Server
 gem 'puma', '~> 3.11', '>= 3.11.3'
 
+#dotenv gem
+gem 'dotenv'
+
 # Documentation
 gem 'sdoc', '1.0.0'
 
@@ -149,3 +152,5 @@ gem 'keppler_ga_dashboard', path: 'rockets/keppler_ga_dashboard'
 gem 'keppler_frontend', path: 'rockets/keppler_frontend'
 gem 'keppler_languages', path: 'rockets/keppler_languages'
 gem 'keppler_capsules', path: 'rockets/keppler_capsules'
+
+gem 'keppler_staff', path: 'rockets/keppler_staff'
