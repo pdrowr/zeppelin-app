@@ -4,5 +4,8 @@ module KepplerFrontend
   class App::FrontendController < App::AppController
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
+
+    def index
+    end
   end
 end

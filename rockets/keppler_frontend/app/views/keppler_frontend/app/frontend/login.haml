@@ -1,0 +1,22 @@
+!!!
+%html
+  %header
+    = render 'app/layouts/head'
+  %body
+    .login_container
+      .login_mask
+        .login_box
+       
+          .login_logo
+            = image_tag '/assets/app/logo_white'
+          %form.new_user
+            .form-group
+              %label.label_custom{for:""} Código
+              %input.form-control.input_custom{placeholder:""}
+            .login_button.d-flex.justify-content-center
+              %button.btn.btn_custom.btn--medium.btn--filled.btn-text-transform.ripple
+                Iniciar
+            .login_company
+              %span.powered_by
+                Desarrollado por
+                %a{ href: 'https://slicegroup.co' } Slice Group

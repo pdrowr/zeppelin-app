@@ -1,6 +1,6 @@
 KepplerFrontend::Engine.routes.draw do
-  root to: 'app/frontend#keppler', as: :keppler
-
+  root to: 'app/frontend#index'
+  get '/login', to: 'app/frontend#login', as: :login
   namespace :admin do
     scope :frontend, as: :frontend do
       resources :themes do
