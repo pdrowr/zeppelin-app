@@ -1,0 +1,9 @@
+menu:
+  keppler_languages:
+    name: Keppler Languages
+    current: ['/admin/locales/languages']
+    url_path: /admin/locales/languages
+    icon: globe
+    model: KepplerLanguages::Language
+    position: 6
+    # environment: development

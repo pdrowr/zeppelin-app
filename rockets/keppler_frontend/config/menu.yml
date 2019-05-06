@@ -1,0 +1,24 @@
+menu:
+  keppler_frontend:
+    name: Keppler Frontend
+    current: ['']
+    icon: layout
+    model: KepplerFrontend::Theme
+    environment: development
+    position: 4
+    submenu:
+      - keppler_frontend_theme:
+          name: Themes
+          url_path: /admin/frontend/themes
+          current: ['current']
+          model: KepplerFrontend::Theme
+      - keppler_frontend_asset:
+          name: Views
+          url_path: /admin/frontend/views
+          current: ['current']
+          model: KepplerFrontend::Theme
+      - keppler_frontend_asset:
+          name: Assets
+          url_path: /admin/frontend/assets
+          current: ['current']
+          model: KepplerFrontend::Theme
