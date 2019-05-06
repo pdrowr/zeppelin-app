@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-
 source 'https://rubygems.org'
+gem 'dotenv'
 ruby '2.5.1'
 gem 'rails', '5.2.0'
 # gem 'keppler'
