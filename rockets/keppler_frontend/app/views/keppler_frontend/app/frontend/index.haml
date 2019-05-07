@@ -3,4 +3,50 @@
   %header
     = render 'app/layouts/head'
   %body
-    
+    .container-custom
+      %aside
+        %ul
+          %li
+            = image_tag '/assets/app/zeppelin', class: 'isologo_white'
+          %li
+            .icons
+              %i.icofont-dining-table
+          %li
+            .icons
+              %i.icofont-restaurant
+          %li
+            .icons
+              %i.icofont-soft-drinks
+          %li
+            .icons
+              %i.icofont-beer
+      .workspace
+        .workspace_top
+          .workspace_search
+            .form-group
+              %input.form-control.input_custom
+          .workspace_avatar
+            .avatar-content
+              .avatar
+                = image_tag 'https://tinyfac.es/data/avatars/26CFEFB3-21C8-49FC-8C19-8E6A62B6D2E0-200w.jpeg'
+              %strong Pedro G
+              -# .avatar_icon
+              -#   %i.icofont-close
+          .workspace_button
+            %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper
+              Cerrar
+        .workspace_center
+          .container-fluid
+            .row
+              .col-lg-4
+                .areas
+                  %h4.text-center Terraza
+              .col-lg-8
+                .row
+                  .col-lg-12
+                    .areas
+                      %h4.text-center Barra
+                  .col-lg-12{style: 'margin-top:10px;'}
+                    .areas
+                      %h4.text-center Interior
+              
