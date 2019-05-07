@@ -1,5 +1,5 @@
 .form-control {
-  color: #999;
+  color: $black !important;
 }
 
 .input_custom, .textarea_custom, .select2-selection--single {
@@ -8,38 +8,47 @@
   font-size: 1.5rem;
   height: 34px;
   border: 1px solid transparent !important;
-  background-color:#ffffff70 !important;
+  // background-color:#ffffff70 !important;
+  // background-color: #ffffff59 !important;
+  background-color: rgba(221, 221, 221, 0.66) !important;
 
-  &:focus {
+  &:focus{
     border-top: 0;
     border-left: 0;
     border-right: 0;
     border-radius: 5px;
     box-shadow: 0 0 0 0.2rem transparent !important;
+    color: $white !important;
+    outline: none !important;
+    
   }
 }
 
 .label_custom {
   color: $white;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 300;
   font-size: 14px;
 }
 
-
-// .form-control::-webkit-input-placeholder {
-//   color: #ddd !important;
-//   font-weight: 600;
-// }
-// .form-control::-moz-placeholder {
-//   color: #ddd !important;
-//   font-weight: 600;
-// }
-// .form-control:-ms-input-placeholder {
-//   color: #ddd !important;
-//   font-weight: 600;
-// }
-// .form-control:-moz-placeholder {
-//   color: #ddd !important;
-//   font-weight: 600;
-// }
+//*** Placeholder **//
+.form-control::-webkit-input-placeholder {
+  color: $black !important;
+  font-weight: 300;
+  text-align: center;
+}
+.form-control::-moz-placeholder {
+  color: $black !important;
+  font-weight: 300;
+  text-align: center;
+}
+.form-control:-ms-input-placeholder {
+  color: $black !important;
+  font-weight: 300;
+  text-align: center;
+}
+.form-control:-moz-placeholder {
+  color: $black !important;
+  font-weight: 300;
+  text-align: center;
+}

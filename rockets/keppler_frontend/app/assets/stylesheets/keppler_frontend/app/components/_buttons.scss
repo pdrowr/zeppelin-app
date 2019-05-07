@@ -24,32 +24,25 @@
 }
 
 .btn--filled {
-  background-color: $primary !important;
-  color: $black;
+  background-color: #795739 !important;
+  // background-color: #434343 !important;
+  color: $white;
   transition: all ease-in-out .3s;
 
   &:hover {
-    background-color: transparent;
-    border: 1px solid $primary;
-    color: $primary;
-    transition: all ease-in-out .3s;
+    // background-color: transparent;
+    // border: 1px solid $primary;
+    // color: $primary;
+    // transition: all ease-in-out .3s;
+    background-color: #434343 !important;
+    letter-spacing: 1px;
+    color: $white !important;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
   }
 }
-
-/* Ripple effect */
-.ripple {
-  background-position: center;
-  transition: background 0.8s;
-}
-.ripple:hover {
-  background: #D0BDBD radial-gradient(circle, transparent 1%, #D0BDBD 1%) center/15000%;
-}
-.ripple:active {
-  background-color: #6eb9f7;
-  background-size: 100%;
-  transition: background 0s;
-}
-
 
 .btn-text-upper {
   text-transform: uppercase;
