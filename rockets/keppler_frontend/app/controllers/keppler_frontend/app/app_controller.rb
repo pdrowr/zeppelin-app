@@ -7,14 +7,12 @@ module KepplerFrontend
     before_action :set_locale
     before_action :set_metas
     before_action :set_analytics
+    helper_method :current_member
 
     include KepplerCapsules::Concerns::Lib
+
     def set_metas
       @theme_color = nil
-      # Descomentar el modelo que exista depende del proyecto
-      # @post = KepplerBlog::Post.find(params[:id])
-      # @product = Product.find(params[:id])
-      # @setting = Setting.includes(:social_account).first
       @meta = MetaTag.get_by_url(request.url)
       @social = @setting.social_account
       @meta_title = MetaTag.title(@post, @product, @setting)
@@ -25,7 +23,20 @@ module KepplerFrontend
       @country_code = @locale.eql?('es') ? 'VE' : 'US'
     end
 
+    def current_member
+      if session[:member_id]
+        @current_user ||= KepplerStaff::Member.find(session[:member_id])
+      else
+        @current_user = nil
+      end
+    end
+
     private
+
+    def authenticate_member
+      return unless current_member.nil?
+      redirect_to app_new_session_path
+    end
 
     def capsule(model)
       model = model.singularize.downcase.camelize
