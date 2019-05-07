@@ -1,30 +1,37 @@
 menu:
   keppler_staff:
     name: Keppler Staff
-    current: ['/']
-    url_path: /
+    current: ['/admin/staff/members']
+    url_path: /admin/staff/members
     icon: user-group
-    model: User
+    model: KepplerStaff::Member
     environment: all
     position: 4
-    submenu:
-      - chef:
-          name: chef
-          url_path: /admin/staff/chefs
-          icon: layers
-          current: ['/admin/staff/chefs']
-          model: KepplerStaff::Chef
-
-      - waiter:
-          name: waiter
-          url_path: /admin/staff/waiters
-          icon: layers
-          current: ['/admin/staff/waiters']
-          model: KepplerStaff::Waiter
-
-      # - new:
-      #     name: + Add new module
-      #     url_path: /url_path
-      #     current: ['/current_path']
-      #     enviroment: development
-      #     model: User
+    # submenu:
+    #   - member:
+    #       name: member
+    #       url_path: /admin/staff/members
+    #       icon: layers
+    #       current: ['/admin/staff/members']
+    #       model: KepplerStaff::Member
+    #
+    #   - chef:
+    #       name: chef
+    #       url_path: /admin/staff/chefs
+    #       icon: layers
+    #       current: ['/admin/staff/chefs']
+    #       model: KepplerStaff::Chef
+    #
+    #   - waiter:
+    #       name: waiter
+    #       url_path: /admin/staff/waiters
+    #       icon: layers
+    #       current: ['/admin/staff/waiters']
+    #       model: KepplerStaff::Waiter
+    #
+    #   # - new:
+    #   #     name: + Add new module
+    #   #     url_path: /url_path
+    #   #     current: ['/current_path']
+    #   #     enviroment: development
+    #   #     model: User

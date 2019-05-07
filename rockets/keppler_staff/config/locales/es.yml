@@ -3,17 +3,21 @@ es:
     sidebar-menu:
       keppler-staff: Personal
       keppler-staff-submenu:
+        member: Miembros
         chef: Cocineros
         waiter: Meseros
     permissions:
     models:
       singularize:
+        member: miembro
         chef: cocinero
         waiter: mesero
       pluralize:
+        members: miembros
         chefs: cocineros
         waiters: meseros
     modules:
+      admin/member: Miembro
       admin/chef: Cocinero
       admin/waiter: Mesero
     messages:

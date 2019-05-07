@@ -4,16 +4,16 @@
 require_dependency "keppler_staff/application_controller"
 module KepplerStaff
   module Admin
-    # ChefsController
-    class ChefsController < ::Admin::AdminController
+    # MembersController
+    class MembersController < ::Admin::AdminController
       layout 'keppler_staff/admin/layouts/application'
-      before_action :set_chef, only: %i[show edit update destroy]
+      before_action :set_member, only: %i[show edit update destroy]
       before_action :index_variables
       include ObjectQuery
 
       # GET /staffs
       def index
-        respond_to_formats(@chefs)
+        respond_to_formats(@members)
         redirect_to_index(@objects)
       end
 
@@ -22,7 +22,7 @@ module KepplerStaff
 
       # GET /staffs/new
       def new
-        @chef = Chef.new
+        @member = Member.new
       end
 
       # GET /staffs/1/edit
@@ -30,10 +30,10 @@ module KepplerStaff
 
       # POST /staffs
       def create
-        @chef = Chef.new(chef_params)
+        @member = Member.new(member_params)
 
-        if @chef.save
-          redirect(@chef, params)
+        if @member.save
+          redirect(@member, params)
         else
           render :new
         end
@@ -41,60 +41,60 @@ module KepplerStaff
 
       # PATCH/PUT /staffs/1
       def update
-        if @chef.update(chef_params)
-          redirect(@chef, params)
+        if @member.update(member_params)
+          redirect(@member, params)
         else
           render :edit
         end
       end
 
       def clone
-        @chef = Chef.clone_record params[:chef_id]
-        @chef.save
+        @member = Member.clone_record params[:member_id]
+        @member.save
         redirect_to_index(@objects)
       end
 
       # DELETE /staffs/1
       def destroy
-        @chef.destroy
+        @member.destroy
         redirect_to_index(@objects)
       end
 
       def destroy_multiple
-        Chef.destroy redefine_ids(params[:multiple_ids])
+        Member.destroy redefine_ids(params[:multiple_ids])
         redirect_to_index(@objects)
       end
 
       def upload
-        Chef.upload(params[:file])
+        Member.upload(params[:file])
         redirect_to_index(@objects)
       end
 
       def reload; end
 
       def sort
-        Chef.sorter(params[:row])
+        Member.sorter(params[:row])
       end
 
       private
 
       def index_variables
-        @q = Chef.ransack(params[:q])
-        @chefs = @q.result(distinct: true)
-        @objects = @chefs.page(@current_page).order(position: :asc)
-        @total = @chefs.size
-        @attributes = Chef.index_attributes
+        @q = Member.ransack(params[:q])
+        @members = @q.result(distinct: true)
+        @objects = @members.page(@current_page).order(position: :asc)
+        @total = @members.size
+        @attributes = Member.index_attributes
       end
 
       # Use callbacks to share common setup or constraints between actions.
-      def set_chef
-        @chef = Chef.find(params[:id])
+      def set_member
+        @member = Member.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
-      def chef_params
-        params.require(:chef).permit(
-          :avatar, :name, :username, :email, :code
+      def member_params
+        params.require(:member).permit(
+          :picture, :name, :alias, :email, :member_code, :type
         )
       end
     end

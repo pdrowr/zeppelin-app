@@ -353,7 +353,7 @@
     width: 60%;
     margin: 30px auto;
   }
-  
+
   .modal-title {
     width: 50%;
     float: left;
@@ -371,13 +371,13 @@
       width: 100%;
     }
   }
-} 
+}
 
 .new-view {
   .modal-content {
     border-radius: 10px;
   }
-  
+
   .modal-title {
     width: 50%;
     float: left;
@@ -386,4 +386,8 @@
 
 #error-message {
   color: red;
+}
+
+.keppler-badge {
+  background-color: #f44336 !important;
 }

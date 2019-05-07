@@ -1,6 +1,6 @@
 module KepplerStaff
-  # Policy for Waiter model
-  class WaiterPolicy < ControllerPolicy
+  # Policy for Member model
+  class MemberPolicy < ControllerPolicy
     attr_reader :user, :objects
 
     def initialize(user, objects)

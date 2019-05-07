@@ -3,19 +3,15 @@ en:
     sidebar-menu:
       keppler-staff: Staff
       keppler-staff-submenu:
-        chef: Chefs
-        waiter: Waiters
+        member: Memberss
     permissions:
     models:
       singularize:
-        chef: chef
-        waiter: waiter
+        member: member
       pluralize:
-        chefs: chefs
-        waiters: waiters
+        members: members
     modules:
-      admin/chef: Chef
-      admin/waiter: Waiter
+      admin/member: Member
     messages:
     actions:
   activerecord:

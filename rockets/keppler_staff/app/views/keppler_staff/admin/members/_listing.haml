@@ -7,21 +7,30 @@
             %input{ type: 'checkbox', id: "checkbox-#{object.id}", 'checklist-model' => 'check', 'checklist-value' => "#{object.id}", '@click' => "listDelete(#{object.id})"}
             %span.cr
               %i.cr-icon.glyphicon.glyphicon-ok
+
     %td
       = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
-        = image_tag object.waiter_avatar
+        = image_tag object.avatar
+
     %td
       = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
         %span= object.name
+
     %td
       = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
-        %span= object.username
+        %span.badge.keppler-badge @#{object.alias}
+
     %td
       = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
         %span= object.email
+
     %td
       = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
-        %span.badge= object.waiter_code
+        %span= object.member_code
+
+    %td
+      = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
+        %span.badge.keppler-badge= object.member_type
 
     %td.dropdown{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{object.id}", 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown' }
@@ -39,7 +48,7 @@
               = t('keppler.actions.edit')
         - if can?(model).clone?
           %li
-            = link_to(admin_staff_waiter_clone_path(object), {title: t('keppler.actions.clone')}) do
+            = link_to(admin_staff_member_clone_path(object), {title: t('keppler.actions.clone')}) do
               %i.icon-docs
               = t('keppler.actions.clone')
         - if can?(model).destroy?
