@@ -1,0 +1,22 @@
+es:
+  keppler:
+    sidebar-menu:
+      keppler-environments: Secciones
+      keppler-environments-submenu:
+        section: Secciones
+    permissions:
+    models:
+      singularize:
+        section: sección
+      pluralize:
+        sections: secciones
+    modules:
+      admin/section: Sección
+    messages:
+    actions:
+  activerecord:
+    attributes:
+    errors:
+      messages:
+  errors:
+  helpers:

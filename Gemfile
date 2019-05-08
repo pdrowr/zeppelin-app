@@ -154,3 +154,4 @@ gem 'keppler_languages', path: 'rockets/keppler_languages'
 gem 'keppler_capsules', path: 'rockets/keppler_capsules'
 
 gem 'keppler_staff', path: 'rockets/keppler_staff'
+gem 'keppler_environments', path: 'rockets/keppler_environments'

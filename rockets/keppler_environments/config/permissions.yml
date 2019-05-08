@@ -1,0 +1,7 @@
+modules:
+  sections:
+    name: Section
+    model: KepplerEnvironmentsSection
+    actions: [
+      'index', 'create', 'update', 'destroy', 'download', 'upload', 'clone'
+    ]

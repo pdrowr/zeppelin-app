@@ -4,7 +4,7 @@ menu:
     current: ['']
     icon: layout
     model: KepplerFrontend::Theme
-    environment: development
+    environment: test
     position: 4
     submenu:
       - keppler_frontend_theme:

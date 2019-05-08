@@ -1,8 +1,5 @@
 KepplerFrontend::Engine.routes.draw do
   root to: 'app/frontend#index'
-  # get '/login', to: 'app/frontend#login', as: :login
-
-  # resources :sessions, only: [:new, :create, :destroy]
 
   post '/sessions', to: 'app/sessions#create', as: :app_create_session
   get 'login', to: 'app/sessions#new', as: :app_new_session

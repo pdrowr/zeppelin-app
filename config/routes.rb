@@ -199,6 +199,9 @@ Rails.application.routes.draw do
   # Ckeditor routes engine
   mount Ckeditor::Engine => '/ckeditor'
 
+  # Environments routes engine
+  mount KepplerEnvironments::Engine, at: '/', as: 'environments'
+
   # Staff routes engine
   mount KepplerStaff::Engine, at: '/', as: 'staff' 
 end

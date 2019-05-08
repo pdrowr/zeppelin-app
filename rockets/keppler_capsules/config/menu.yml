@@ -4,7 +4,7 @@ menu:
     current: ['']
     icon: cube
     model: KepplerCapsules::Capsule
-    environment: development
+    environment: test
     position: 5
     submenu:
       - keppler_capsules_capsule:
