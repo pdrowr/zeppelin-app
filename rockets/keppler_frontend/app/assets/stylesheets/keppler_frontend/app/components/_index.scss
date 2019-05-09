@@ -31,7 +31,8 @@
   h1 {
     margin: 0px !important;
     color: $white;
-    font-weight: 900;
+    @include font(36px, $bold);
+    font-family: $quicksand;
   }
 }
 .workspace_search {
@@ -81,11 +82,24 @@
   padding: 20px;
 }
 
-/* background: linear-gradient(-40deg, hsla(14, 84%, 32%, 1) 0%,#fec163 100%); */
 
-// background: linear-gradient(-40deg, hsla(21, 69%, 50%, 1) 0%,#fec163 100%);
+/*** Card Mesas ***/
 
-// background: linear-gradient(-40deg, #d76528 0%,#fec163 100%);
+.grid-wrapper{
+  margin: 0 auto;
+  width:100%;
+}
 
-// background: linear-gradient(-40deg, #eb4614 0%,#fec163 100%);
+.card-wrapper{
+  width:235px;
+  float:left;
+  margin: 10px;
+}
+
+.card-content{
+  padding: 25px 25px 10px 25px;
+  background-color: #16161d;
+  border-radius: 5px;
+  border: 1px solid;
+}
 

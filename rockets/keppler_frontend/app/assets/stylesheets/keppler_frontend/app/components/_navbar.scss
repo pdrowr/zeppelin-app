@@ -23,22 +23,20 @@ ul{
 .isologo_white {
   width: 60%;
   margin-top: 10px;
-  // padding: 5px;
+  padding: 5px;
 }
 
 
 
 ul.tabs li{
   background: none;
-  color: #222;
   display: inline-block;
   padding: 10px 15px;
   cursor: pointer;
   &.current{
     background: transparent;
-    color: #222;
     .icons {
-      background: linear-gradient(-40deg, #eb4614 0%,#fec163 100%) !important;
+      background: $gradient !important;
       i {
         color: $white;
       }
@@ -55,7 +53,7 @@ ul.tabs li{
   transition: .3s ease-in-out;
 
   &:hover {
-    background: linear-gradient(-40deg, #eb4614 0%,#fec163 100%) !important;
+    background: $gradient !important;
     transition: .3s ease-in-out;
     i {
       color: $white;
@@ -81,9 +79,12 @@ ul.tabs li{
   display: flex;
   li {
     color: $white;
+    @include font(16px, $normal);
+    font-family: $quicksand;
     &.current{
-      background: linear-gradient(-40deg, #eb4614 0%,#fec163 100%);
+      background: $gradient;
       color: $white;
+      @include font(16px, $semibold);
       border-radius: 5px;
     }
   }
@@ -125,7 +126,7 @@ ul.tabs li{
 //   background-color: transparent;
 //   color: $white;
 //   &.active {
-//     background: linear-gradient(-40deg, #eb4614 0%,#fec163 100%) !important;
+//     background: $gradient !important;
 //   }
 // }
 
