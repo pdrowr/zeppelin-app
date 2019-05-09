@@ -26,19 +26,22 @@
               %i.icofont-restaurant
       .workspace
         .workspace_top
-          .workspace_search
-            .form-group
-              %input.form-control.input_custom
-          .workspace_avatar
-            .avatar-content.dropdown
-              %a#out.dropdown-toggle.d-flex.align-items-center{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                .avatar
-                  = image_tag 'https://tinyfac.es/data/avatars/26CFEFB3-21C8-49FC-8C19-8E6A62B6D2E0-200w.jpeg'
-                %strong Pedro G
-              .dropdown-menu{"aria-labelledby" => "out"}
-                %a.dropdown-item{:href => "#"} Cerrar Sesion
+          .workspace_top-container
+            .workspace_title
+              %h1 Mesas
+            .workspace_search
+              .form-group.mb-0
+                %input.form-control.input_custom
+            .workspace_avatar
+              .avatar-content.dropdown
+                %a#out.dropdown-toggle.d-flex.align-items-center{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                  .avatar
+                    = image_tag 'https://tinyfac.es/data/avatars/26CFEFB3-21C8-49FC-8C19-8E6A62B6D2E0-200w.jpeg'
+                  %strong Pedro G
+                .dropdown-menu{"aria-labelledby" => "out"}
+                  %a.dropdown-item{:href => "#"} Cerrar Sesion
         .workspace_center
-          .container-fluid
+          .container-fluid.p-0
             #tab-1.tab-content.current
               %ul.sub-tabs#sub-tabs
                 %li.tab-link.current{"data-tab" => "sub-tab-1"} Terraza
