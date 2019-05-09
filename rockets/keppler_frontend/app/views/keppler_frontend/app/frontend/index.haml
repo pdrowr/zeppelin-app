@@ -5,48 +5,85 @@
   %body
     .container-custom
       %aside
-        %ul
+        %ul.tabs
           %li
-            = image_tag '/assets/app/zeppelin', class: 'isologo_white'
-          %li
+            = image_tag '/assets/app/z', class: 'isologo_white'
+          %li.has-menu.tab-link.current{"data-tab" => "tab-1"}
             .icons
               %i.icofont-dining-table
-          %li
+          // %ul.sub-menu.tabs
+          //   %li.tab-link.current{"data-tab" => "tab-1"}
+          //     .icons.sub-menu-icons.active
+          //       %i.icofont-dining-table
+          //   %li.tab-link{"data-tab" => "tab-2"}
+          //     .icons.sub-menu-icons
+          //       %i.icofont-dining-table
+          //   %li.tab-link{"data-tab" => "tab-3"}
+          //     .icons.sub-menu-icons
+          //       %i.icofont-dining-table
+          %li.has-menu.tab-link{"data-tab" => "tab-2"}
             .icons
               %i.icofont-restaurant
-          %li
-            .icons
-              %i.icofont-soft-drinks
-          %li
-            .icons
-              %i.icofont-beer
       .workspace
         .workspace_top
           .workspace_search
             .form-group
               %input.form-control.input_custom
           .workspace_avatar
-            .avatar-content
-              .avatar
-                = image_tag 'https://tinyfac.es/data/avatars/26CFEFB3-21C8-49FC-8C19-8E6A62B6D2E0-200w.jpeg'
-              %strong Pedro G
-              -# .avatar_icon
-              -#   %i.icofont-close
-          .workspace_button
-            %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper
-              Cerrar
+            .avatar-content.dropdown
+              %a#out.dropdown-toggle.d-flex.align-items-center{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                .avatar
+                  = image_tag 'https://tinyfac.es/data/avatars/26CFEFB3-21C8-49FC-8C19-8E6A62B6D2E0-200w.jpeg'
+                %strong Pedro G
+              .dropdown-menu{"aria-labelledby" => "out"}
+                %a.dropdown-item{:href => "#"} Cerrar Sesion
         .workspace_center
           .container-fluid
-            .row
-              .col-lg-4
-                .areas
-                  %h4.text-center Terraza
-              .col-lg-8
-                .row
-                  .col-lg-12
-                    .areas
-                      %h4.text-center Barra
-                  .col-lg-12{style: 'margin-top:10px;'}
-                    .areas
-                      %h4.text-center Interior
-              
+            #tab-1.tab-content.current
+              %ul.sub-tabs#sub-tabs
+                %li.tab-link.current{"data-tab" => "sub-tab-1"} Terraza
+                %li.tab-link{"data-tab" => "sub-tab-2"} Interior
+                %li.tab-link{"data-tab" => "sub-tab-3"} Barra
+              #sub-tab-1.tab-content-sub.current
+                
+              #sub-tab-2.tab-content-sub
+                
+              #sub-tab-3.tab-content-sub
+
+            #tab-2.tab-content
+              -# %ul.sub-tabs
+              -#   %li.tab-link.current{"data-tab" => "sub-tab-4"} Terraza
+              -#   %li.tab-link{"data-tab" => "sub-tab-5"} Interior
+              -#   %li.tab-link{"data-tab" => "sub-tab-6"} Barra
+              -# #sub-tab-4.tab-content-sub.current
+              -#   %p
+              -#     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              -# #sub-tab-5.tab-content-sub
+              -#   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              -# #sub-tab-6.tab-content-sub
+              -#   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+:javascript
+  $('.dropdown-toggle').dropdown()
+  $(document).ready(function(){
+	
+    $('ul.tabs li').click(function(){
+      var tab_id = $(this).attr('data-tab');
+
+      $('ul.tabs li').removeClass('current');
+      $('.tab-content').removeClass('current');
+
+      $(this).addClass('current');
+      $("#"+tab_id).addClass('current');
+    })
+
+    $('ul#sub-tabs li').click(function(){
+      var sub_tab_id = $(this).attr('data-tab');
+
+      $('ul#sub-tabs li').removeClass('current');
+      $('.tab-content-sub').removeClass('current');
+
+      $(this).addClass('current');
+      $("#"+sub_tab_id).addClass('current');
+    })
+  })
