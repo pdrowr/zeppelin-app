@@ -45,7 +45,7 @@ ul.tabs li{
 }
 
 .icons {
-  background: transparent !important;
+  background: $colorlight !important;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -62,7 +62,7 @@ ul.tabs li{
 
   i {
     font-size: 30px;
-    color: $dark-e;
+    color: $white;
   }
 }
 
@@ -93,7 +93,6 @@ ul.tabs li{
 
 .tab-content-sub{
   display: none;
-  padding: 15px;
 }
 
 .tab-content-sub.current{

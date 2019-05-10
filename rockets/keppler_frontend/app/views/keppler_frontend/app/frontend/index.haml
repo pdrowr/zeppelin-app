@@ -43,31 +43,64 @@
         .workspace_center
           .container-fluid.p-0
             #tab-1.tab-content.current
+              
               %ul.sub-tabs#sub-tabs
-                %li.tab-link.current{"data-tab" => "sub-tab-1"} Terraza
-                %li.tab-link{"data-tab" => "sub-tab-2"} Interior
-                %li.tab-link{"data-tab" => "sub-tab-3"} Barra
+                %li.tab-link.current{"data-tab" => "sub-tab-1"} Interior
+                %li.tab-link{"data-tab" => "sub-tab-2"} Barra
+                %li.tab-link{"data-tab" => "sub-tab-3"} Terraza
               #sub-tab-1.tab-content-sub.current
-                .grid-wrapper
-                  .card-wrapper
-                    .card-content
-                      
-              #sub-tab-2.tab-content-sub
-                
-              #sub-tab-3.tab-content-sub
+                .d-flex
+                  .grid-wrapper
+                    - 12.times do |index|
+                      .card-wrapper{"data-tab" => "space_one-#{index}"}
+                        .card-content
+                          .card-circle
+                          %h2= index + 1
+                          .card-icons
+                            %i.icofont-dining-table
+  
+                  .grid-order
+                    - 12.times do |index|
+                      .order-content.tab-content{ id: "space_one-#{index}"}
+                        .order-header
+                          %h4 Mis ordenes #{index+ 1} 
+                          %i.icofont-close.close-order
 
+              #sub-tab-2.tab-content-sub
+                .d-flex
+                  .grid-wrapper
+                    - 9.times do |index|
+                      .card-wrapper{"data-tab" => "space_two-#{index}"}
+                        .card-content
+                          .card-circle
+                          %h2= index + 1
+                          .card-icons
+                            %i.icofont-dining-table
+  
+                  .grid-order
+                    - 9.times do |index|
+                      .order-content.tab-content{ id: "space_two-#{index}"}
+                        .order-header
+                          %h4 Mis ordenes #{index+ 1} 
+                          %i.icofont-close.close-order
+              #sub-tab-3.tab-content-sub
+                .d-flex
+                  .grid-wrapper
+                    - 9.times do |index|
+                      .card-wrapper{"data-tab" => "space_three-#{index}"}
+                        .card-content
+                          .card-circle
+                          %h2= index + 1
+                          .card-icons
+                            %i.icofont-dining-table
+  
+                  .grid-order
+                    - 9.times do |index|
+                      .order-content.tab-content{ id: "space_three-#{index}"}
+                        .order-header
+                          %h4 Mis ordenes #{index+ 1} 
+                          %i.icofont-close.close-order
             #tab-2.tab-content
-              -# %ul.sub-tabs
-              -#   %li.tab-link.current{"data-tab" => "sub-tab-4"} Terraza
-              -#   %li.tab-link{"data-tab" => "sub-tab-5"} Interior
-              -#   %li.tab-link{"data-tab" => "sub-tab-6"} Barra
-              -# #sub-tab-4.tab-content-sub.current
-              -#   %p
-              -#     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              -# #sub-tab-5.tab-content-sub
-              -#   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              -# #sub-tab-6.tab-content-sub
-              -#   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 :javascript
   $('.dropdown-toggle').dropdown()
@@ -83,6 +116,7 @@
       $("#"+tab_id).addClass('current');
     })
 
+    /** spaces **/
     $('ul#sub-tabs li').click(function(){
       var sub_tab_id = $(this).attr('data-tab');
 
@@ -91,5 +125,21 @@
 
       $(this).addClass('current');
       $("#"+sub_tab_id).addClass('current');
+    })
+
+
+    /* Tables*/
+    $('.card-wrapper').click(function(){
+      var index = $(this).attr('data-tab');
+      
+      $(this).addClass('current');
+      $('.order-content').removeClass('current')
+      $("#"+index).addClass('current');
+      
+    })
+
+    /** close order**/
+    $('.close-order').click(function(){
+      $('.order-content').removeClass('current')
     })
   })
