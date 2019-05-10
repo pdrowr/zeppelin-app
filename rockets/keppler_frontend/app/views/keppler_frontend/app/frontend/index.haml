@@ -43,7 +43,6 @@
         .workspace_center
           .container-fluid.p-0
             #tab-1.tab-content.current
-              
               %ul.sub-tabs#sub-tabs
                 %li.tab-link.current{"data-tab" => "sub-tab-1"} Interior
                 %li.tab-link{"data-tab" => "sub-tab-2"} Barra
@@ -54,7 +53,7 @@
                     - 12.times do |index|
                       .card-wrapper{"data-tab" => "space_one-#{index}"}
                         .card-content
-                          .card-circle
+                          .card-check
                           %h2= index + 1
                           .card-icons
                             %i.icofont-dining-table
@@ -72,7 +71,7 @@
                     - 9.times do |index|
                       .card-wrapper{"data-tab" => "space_two-#{index}"}
                         .card-content
-                          .card-circle
+                          .card-check
                           %h2= index + 1
                           .card-icons
                             %i.icofont-dining-table
@@ -89,7 +88,7 @@
                     - 9.times do |index|
                       .card-wrapper{"data-tab" => "space_three-#{index}"}
                         .card-content
-                          .card-circle
+                          .card-check
                           %h2= index + 1
                           .card-icons
                             %i.icofont-dining-table
