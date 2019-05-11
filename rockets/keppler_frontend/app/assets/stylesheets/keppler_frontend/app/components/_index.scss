@@ -13,7 +13,7 @@
   align-items: center;
   box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   background-color: #16161d;
   border-radius: 5px;
   padding: 20px;
@@ -24,6 +24,7 @@
   padding: 20px 20px 0 20px;
   position: fixed;
   width: 94%;
+  z-index: 2;
 }
 
 .workspace_title {
@@ -31,7 +32,7 @@
   h1 {
     margin: 0px !important;
     color: $white;
-    @include font(36px, $bold);
+    @include font(32px, $bold);
     font-family: $quicksand;
   }
 }
@@ -57,6 +58,8 @@
     color: $dark;
     text-decoration: none !important;
     transition: all 0.3s ease-in-out;
+    @include font(15px, $normal);
+    font-family: $quicksand;
     &:hover, &:focus, &:link {
       color: $dark-e;
       text-decoration: none;
@@ -93,6 +96,7 @@
 .card-wrapper{
   float:left;
   margin: 10px 20px 10px 0px;
+  cursor: pointer;
 }
 
 .card-content{
@@ -101,9 +105,20 @@
   border-radius: 5px;
   border: 1px solid $colorlight;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   position: relative;
+
+  &.card-table{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &.card-counts{
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 300px;
+  }
+
   h2 {
     margin: 0px;
     font-family: $quicksand;
@@ -113,38 +128,14 @@
     font-size: 50px;
     color: $dark-e;
   }
+
 }
 
-.grid-order {
-  width: 30%;
+.disabled{
+  cursor: not-allowed;
+  opacity: 0.4;
 }
 
-.order-content {
-  width: 100%;
-  min-height: 400px;
-  background-color: $dark-aside;
-  border-radius: 5px;
-}
-
-.order-header {
-  align-items: center;
-  background: $gradient;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 20%;
-  padding: 10px;
-  h4 {
-    color: $white;
-    font-family: $quicksand;
-    text-transform: capitalize;
-  }
-
-  i {
-    color: $white;
-  }
-}
 
 .card-check{
   position: absolute;
@@ -164,15 +155,100 @@
     margin-right: 5px;
   }
   &:after{
+    border: solid $primary;
+    border-width: 0 2px 2px 0;
     content: '';
     display: block;
     position: absolute;
-    top: 2px;
     left: 9px;
+    top: 2px;
     width: 6px;
     height: 14px;
-    border: solid $primary;
-    border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }
 }
+
+.grid-order {
+  width: 30%;
+}
+
+.order-wrapper {
+  background-color: $dark-aside;
+  border-radius: 5px;
+  width: 100%;
+  min-height: 400px;
+}
+
+.order-header {
+  align-items: center;
+  background: $gradient;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 20%;
+  padding: 10px;
+  h4 {
+    color: $white;
+    font-family: $quicksand;
+    text-transform: capitalize;
+  }
+
+  i {
+    color: $white;
+  }
+}
+
+.order-content{
+  padding: 20px;
+}
+
+.order-card-counts {
+  width: 100%;
+  h4, p {
+    margin: 0px;
+    color: $white;
+    font-family: $quicksand;
+    @include font(18px, $normal);
+  }
+
+  p{
+    @include font(14px, $normal);
+  }
+
+  span {
+    color: $dark-e;
+    @include font(12px, $normal);
+  }
+}
+
+.list {
+  width: 80%;
+  margin-top: 3px;
+}
+
+dl {
+  margin-bottom: 0px;
+  font-family: $quicksand;
+}
+dt {
+  float: left;
+  margin-right: 0% !important;
+  @include font(16px, $light);
+}
+
+dd {
+  color: $primary;
+  margin-left: 100% !important;
+  margin-bottom: 0px;
+  @include font(16px, $bold);
+}
+
+dd::after {
+  content: " ";
+  display: block;
+  clear: left;
+}  
