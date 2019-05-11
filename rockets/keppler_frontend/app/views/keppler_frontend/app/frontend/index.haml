@@ -52,8 +52,8 @@
                       .order-wrapper.tab-content{ id: "space_one-#{index}"}
                         .order-header
                           %h4 Mesa número #{index+ 1} 
-                          %i.icofont-close.close-order
-                        .order-content.d-flex
+                          %i.icofont-close.icon_custom.icon--medium.close-order
+                        .order-content.order-content--fixed.d-flex
                           - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
                           .order-counts
                             -counts.each_with_index do |count|
@@ -68,9 +68,10 @@
                                       %dd #{count[:products]}
                                       %dt Cuenta total
                                       %dd $#{count[:count]}
-                          -# .card-button
-                          -#   %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper
-                          -#     crear cuenta
+                        .order-footer.sticky-footer
+                          %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper{'data-target': "#create_counts", 'data-toggle': 'modal'}
+                            %i.icofont-plus
+                            Agregar cuenta
 
 
               #sub-tab-2.tab-content-sub
@@ -87,8 +88,27 @@
                     - 9.times do |index|
                       .order-wrapper.tab-content{ id: "space_two-#{index}"}
                         .order-header
-                          %h4 Mis ordenes #{index+ 1} 
-                          %i.icofont-close.close-order
+                          %h4 Mesa Número #{index+ 1} 
+                          %i.icofont-close.icon_custom.icon--medium.close-order
+                        .order-content.d-flex
+                          - counts =[{name: 'Pedro Guerra',products: '3', count: '60'}]
+                          .order-counts
+                            -counts.each_with_index do |count|
+                              .card-content.card-counts
+                                .order-card-counts
+                                  .description-user.d-flex.justify-content-between
+                                    %h4= count[:name]
+                                    %p 10 min
+                                  .list
+                                    %dl
+                                      %dt Productos
+                                      %dd #{count[:products]}
+                                      %dt Cuenta total
+                                      %dd $#{count[:count]}
+                        .order-footer
+                          %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper{'data-target': "#create_counts", 'data-toggle': 'modal'}
+                            %i.icofont-plus
+                            Agregar cuenta
 
               #sub-tab-3.tab-content-sub
                 .d-flex
@@ -107,6 +127,27 @@
                           %h4 Mis ordenes #{index+ 1} 
                           %i.icofont-close.close-order
             #tab-2.tab-content
+
+
+  .modal.fade{ id: "create_counts", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog" }
+    .modal-dialog{role: "document"}
+      .modal-content
+        .modal-header
+          %h2.m-0 Crear cuenta
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+            %i.icofont-close.icon_custom.icon--large
+        .modal-body
+          %form
+            .form-group
+              %label.label_custom{for:""} Nombres y apellido
+              %input.form-control.input_custom{ placeholder: ''}
+            .form-group
+              %label.label_custom{for:""} Teléfono
+              %input.form-control.input_custom{ placeholder: '',type:'phone'}
+            .float-right.mt-2
+              %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper
+                Crear
+        
 
 :javascript
   $('.dropdown-toggle').dropdown()

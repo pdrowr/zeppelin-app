@@ -1,0 +1,17 @@
+.modal-content {
+  background-color: $dark-aside !important;
+  padding: 5px;
+}
+
+.modal-header {
+  border-bottom: 1px solid transparent !important;
+  h2 {
+    color: $white;
+
+  }
+
+  .close {
+    padding: 0 !important;
+    margin: -0.5rem 0rem 1rem auto !important;
+  }
+}

@@ -177,6 +177,8 @@
   border-radius: 5px;
   width: 100%;
   min-height: 400px;
+  width: 350px;
+  position: relative;
 }
 
 .order-header {
@@ -196,14 +198,32 @@
     font-family: $quicksand;
     text-transform: capitalize;
   }
+}
 
-  i {
-    color: $white;
-  }
+.order-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .order-content{
   padding: 20px;
+
+  &.order-content--fixed {
+    max-height: 250px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    transition: all .6s ease-in-out;
+
+    &:hover {
+      overflow-y: auto;
+      transition: .6s ease-in-out;
+    }
+  }
 }
 
 .order-card-counts {
@@ -224,31 +244,3 @@
     @include font(12px, $normal);
   }
 }
-
-.list {
-  width: 80%;
-  margin-top: 3px;
-}
-
-dl {
-  margin-bottom: 0px;
-  font-family: $quicksand;
-}
-dt {
-  float: left;
-  margin-right: 0% !important;
-  @include font(16px, $light);
-}
-
-dd {
-  color: $primary;
-  margin-left: 100% !important;
-  margin-bottom: 0px;
-  @include font(16px, $bold);
-}
-
-dd::after {
-  content: " ";
-  display: block;
-  clear: left;
-}  

@@ -8,8 +8,6 @@
   font-size: 1.5rem;
   height: 34px;
   border: 1px solid transparent !important;
-  // background-color:#ffffff70 !important;
-  // background-color: #ffffff59 !important;
   background-color: rgba(221, 221, 221, 0.66) !important;
 
   &:focus{
@@ -26,8 +24,8 @@
 
 .label_custom {
   color: $white;
-  text-transform: uppercase;
-  font-weight: 300;
+  text-transform: capitalize;
+  font-weight: 600;
   font-size: 14px;
 }
 

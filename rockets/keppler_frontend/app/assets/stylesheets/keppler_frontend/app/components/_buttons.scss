@@ -24,14 +24,12 @@
 }
 
 .btn--filled {
-  background-color: #795739 !important;
-  color: $white;
+  background-color: $primary !important;
+  color: $white !important;
   transition: 0.3s ease-in-out;
   &:hover {
-    // background-color: #434343 !important;
     background-color: transparent !important;
-    border: 1px solid #795739;
-    // letter-spacing: 1px;
+    border: 1px solid $primary;
     color: $white !important;
     -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
@@ -44,3 +42,17 @@
   text-transform: uppercase;
 }
 
+
+.icon_custom {
+  color:$white;
+}
+
+.icon--small {
+  font-size: 16px;
+}
+.icon--medium {
+  font-size: 18px;
+}
+.icon--large {
+  font-size: 20px;
+}
