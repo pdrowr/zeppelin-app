@@ -66,39 +66,6 @@ ul.tabs li{
   }
 }
 
-.tab-content{
-  display: none;
-}
-
-.tab-content.current{
-  display: inherit;
-}
-
-/**** sub tabs****/
-.sub-tabs {
-  display: flex;
-  li {
-    color: $white;
-    @include font(16px, $normal);
-    font-family: $quicksand;
-    &.current{
-      background: $gradient;
-      color: $white;
-      @include font(16px, $semibold);
-      border-radius: 5px;
-    }
-  }
-  
-}
-
-.tab-content-sub{
-  display: none;
-}
-
-.tab-content-sub.current{
-  display: inherit;
-}
-
 
 
 

@@ -127,6 +127,37 @@
                           %h4 Mis ordenes #{index+ 1} 
                           %i.icofont-close.close-order
             #tab-2.tab-content
+              %ul.sub-tabs#categories
+                %li.tab-link.current{ 'data-tab' => 'category-1' } Comida
+                %li.tab-link{ 'data-tab' => 'category-2' } Bebidas
+              #category-1.category-content.current
+                .d-flex.flex-wrap
+                  - categories = [{name: 'Pizzas', number: '15'},{name: 'Hamburguesas', number:'9'},{name: 'Tortas', number: '3'}]
+                  - categories.each_with_index do |category|
+                    .card-category
+                      = image_tag '/assets/app/1'
+                      .mask
+                        .card-category-content
+                          .category-title
+                            %h4= category[:name]
+                          .card-cantida
+                            %span= category[:number]
+              #category-2.category-content
+                .d-flex.flex-wrap
+                  - categories = [{name: 'Cerveza', number: '15'},{name: 'Mojito', number:'9'},{name: 'Refresco', number: '3'}]
+                  - categories.each_with_index do |category|
+                    .card-category
+                      = image_tag '/assets/app/1'
+                      .mask
+                        .card-category-content
+                          .category-title
+                            %h4= category[:name]
+                          .card-cantida
+                            %span= category[:number]
+
+                      
+                
+              
 
 
   .modal.fade{ id: "create_counts", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog" }
@@ -151,42 +182,4 @@
 
 :javascript
   $('.dropdown-toggle').dropdown()
-  $(document).ready(function(){
-	
-    $('ul.tabs li').click(function(){
-      var tab_id = $(this).attr('data-tab');
-
-      $('ul.tabs li').removeClass('current');
-      $('.tab-content').removeClass('current');
-
-      $(this).addClass('current');
-      $("#"+tab_id).addClass('current');
-    })
-
-    /** spaces **/
-    $('ul#sub-tabs li').click(function(){
-      var sub_tab_id = $(this).attr('data-tab');
-
-      $('ul#sub-tabs li').removeClass('current');
-      $('.tab-content-sub').removeClass('current');
-
-      $(this).addClass('current');
-      $("#"+sub_tab_id).addClass('current');
-    })
-
-
-    /* Tables*/
-    $('.card-wrapper').not('.disabled').click(function(){
-      var index = $(this).attr('data-tab');
-      
-      $(this).addClass('current');
-      $('.order-wrapper').removeClass('current')
-      $("#"+index).addClass('current');
-      
-    })
-
-    /** close order**/
-    $('.close-order').click(function(){
-      $('.order-wrapper').removeClass('current')
-    })
-  })
+  
