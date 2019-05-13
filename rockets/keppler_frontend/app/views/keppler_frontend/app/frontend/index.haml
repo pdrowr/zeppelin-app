@@ -14,6 +14,9 @@
           %li.has-menu.tab-link{ 'data-tab' => 'tab-2' }
             .icons
               %i.icofont-restaurant
+          %li.has-menu.tab-link{ 'data-tab' => 'tab-3' }
+            .icons
+              %i.icofont-restaurant
       .workspace
         .workspace_top
           .workspace_top-container
@@ -32,7 +35,7 @@
                   %a.dropdown-item{:href => "#"} Cerrar Sesion
         .workspace_center
           .container-fluid.p-0
-            #tab-1.tab-content.current
+            #tab-1.tab-content
               %ul.sub-tabs#sub-tabs
                 %li.tab-link.current{ 'data-tab' => 'sub-tab-1' } Interior
                 %li.tab-link{ 'data-tab' => 'sub-tab-2' } Barra
@@ -132,34 +135,81 @@
                 %li.tab-link{ 'data-tab' => 'category-2' } Bebidas
               #category-1.category-content.current
                 .d-flex.flex-wrap
-                  - categories = [{name: 'Pizzas', number: '15'},{name: 'Hamburguesas', number:'9'},{name: 'Tortas', number: '3'}]
+                  - categories = [{name: 'Pizzas', number: '5', image:"/assets/app/pizza.jpg"},{name: 'Hamburguesas', number:'9',image:"/assets/app/hamburguer.jpg"},{name: 'Tortas', number: '3', image: "/assets/app/cake.jpg"}]
                   - categories.each_with_index do |category|
                     .card-category
-                      = image_tag '/assets/app/1'
+                      %img{ src: "#{category[:image]}"}
                       .mask
                         .card-category-content
                           .category-title
                             %h4= category[:name]
-                          .card-cantida
+                          .card-cantidad
                             %span= category[:number]
               #category-2.category-content
                 .d-flex.flex-wrap
-                  - categories = [{name: 'Cerveza', number: '15'},{name: 'Mojito', number:'9'},{name: 'Refresco', number: '3'}]
+                  - categories = [{name: 'Cervezas', number: '15',image:"/assets/app/beer.jpg"},{name: 'Cócteles', number:'9',image:"/assets/app/coctel.jpg"}]
                   - categories.each_with_index do |category|
                     .card-category
-                      = image_tag '/assets/app/1'
+                      %img{ src: "#{category[:image]}"}
                       .mask
                         .card-category-content
                           .category-title
                             %h4= category[:name]
-                          .card-cantida
+                          .card-cantidad
                             %span= category[:number]
+            #tab-3.tab-content.current
+              .d-flex
+                .grid-wrapper.d-flex.flex-wrap
+                  - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg"},{name: 'Cóctel', price:'9',image:"/assets/app/coctel.jpg"}]
+                  - products.each_with_index do |product|
+                    .card-wrapper
+                      .card-content.card-product
+                        .card-product-image
+                          .product-image
+                            %img{ src: "#{product[:image]}"}
+                        .card-product-description
+                          .card-product-title
+                            %h4.m-0= product[:name]
+                          .card-product-detail
+                            .card-price
+                              %span $ #{product[:price]}
+                            .quantity
+                              %a.inc.qty-button +
+                              %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "0", :pattern => "[0-9]*", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1"}/
+                              %a.dec.qty-button -
+                        .card-product-btn
+                          %a{ href:'' } Agregar
+
+
+                .grid-order
+                  - 12.times do |index|
+                    .order-wrapper.tab-content{ id: "space_one-#{index}"}
+                      .order-header
+                        %h4 Mesa número #{index+ 1} 
+                        %i.icofont-close.icon_custom.icon--medium.close-order
+                      .order-content.order-content--fixed.d-flex
+                        - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
+                        .order-counts
+                          -counts.each_with_index do |count|
+                            .card-content.card-counts
+                              .order-card-counts
+                                .description-user.d-flex.justify-content-between
+                                  %h4= count[:name]
+                                  %p 10 min
+                                .list
+                                  %dl
+                                    %dt Productos
+                                    %dd #{count[:products]}
+                                    %dt Cuenta total
+                                    %dd $#{count[:count]}
+                      .order-footer.sticky-footer
+                        %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper{'data-target': "#create_counts", 'data-toggle': 'modal'}
+                          %i.icofont-plus
+                          Agregar cuenta
 
                       
                 
-              
-
-
+            
   .modal.fade{ id: "create_counts", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog" }
     .modal-dialog{role: "document"}
       .modal-content
@@ -182,4 +232,4 @@
 
 :javascript
   $('.dropdown-toggle').dropdown()
-  
+

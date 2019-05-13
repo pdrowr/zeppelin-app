@@ -3,6 +3,24 @@ body {
   margin: 0 !important;
 }
 
+
+a {
+  text-decoration: none !important;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+button{
+  outline: none !important;
+
+  &:hover, &:focus {
+    outline: none !important;
+  }
+}
+
+
 ::-webkit-scrollbar {
   width: 6px;
   background-color: $dark !important;
