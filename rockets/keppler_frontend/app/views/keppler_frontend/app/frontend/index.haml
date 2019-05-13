@@ -206,9 +206,7 @@
                         %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper{'data-target': "#create_counts", 'data-toggle': 'modal'}
                           %i.icofont-plus
                           Agregar cuenta
-
-                      
-                
+          
             
   .modal.fade{ id: "create_counts", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog" }
     .modal-dialog{role: "document"}
@@ -223,8 +221,11 @@
               %label.label_custom{for:""} Nombres y apellido
               %input.form-control.input_custom{ placeholder: ''}
             .form-group
-              %label.label_custom{for:""} Teléfono
-              %input.form-control.input_custom{ placeholder: '',type:'phone'}
+              %label.label_custom{for:""} Cédula
+              %input.form-control.input_custom{ placeholder: '',type:'number'}
+            .form-group
+              %label.label_custom{for:""} Dirección
+              %input.form-control.input_custom{ placeholder: '',type:'number'}
             .float-right.mt-2
               %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper
                 Crear
