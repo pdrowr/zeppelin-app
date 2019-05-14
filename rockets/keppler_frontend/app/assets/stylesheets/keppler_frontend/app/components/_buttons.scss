@@ -3,6 +3,8 @@
   border-radius: 5px;
   padding: 0.5rem 1rem;
   line-height: 1.1;
+  font-family: $quicksand;
+  @include font(16px, $bold);
 }
 
 .btn--small {
@@ -31,6 +33,21 @@
     background-color: transparent !important;
     border: 1px solid $primary;
     color: $white !important;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: 0.3s ease-in-out;
+  }
+}
+
+.btn-default {
+  background-color: transparent !important;
+  border-color: $dark-e !important;
+
+  &:hover {
+    background-color: #e7e7e7 !important;
+    border: 1px solid $primary;
+    color: $primary !important;
     -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     box-shadow: 5px 40px -10px rgba(0,0,0,0.57);

@@ -72,7 +72,7 @@
                                       %dt Cuenta total
                                       %dd $#{count[:count]}
                         .order-footer.sticky-footer
-                          %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper{'data-target': "#create_counts", 'data-toggle': 'modal'}
+                          %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
                             %i.icofont-plus
                             Agregar cuenta
 
@@ -109,7 +109,7 @@
                                       %dt Cuenta total
                                       %dd $#{count[:count]}
                         .order-footer
-                          %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper{'data-target': "#create_counts", 'data-toggle': 'modal'}
+                          %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
                             %i.icofont-plus
                             Agregar cuenta
 
@@ -130,6 +130,7 @@
                           %h4 Mis ordenes #{index+ 1} 
                           %i.icofont-close.close-order
             #tab-2.tab-content
+            
               %ul.sub-tabs#categories
                 %li.tab-link.current{ 'data-tab' => 'category-1' } Comida
                 %li.tab-link{ 'data-tab' => 'category-2' } Bebidas
@@ -143,11 +144,11 @@
                         .card-category-content
                           .category-title
                             %h4= category[:name]
-                          .card-cantidad
+                          .card-quantity
                             %span= category[:number]
               #category-2.category-content
                 .d-flex.flex-wrap
-                  - categories = [{name: 'Cervezas', number: '15',image:"/assets/app/beer.jpg"},{name: 'Cócteles', number:'9',image:"/assets/app/coctel.jpg"}]
+                  - categories = [{name: 'Cervezas', number: '15',image:"/assets/app/beer.jpeg"},{name: 'Cócteles', number:'9',image:"/assets/app/cocktail2.jpg"},{name: 'Cócteles',number:'2', image:"/assets/app/cocktail.jpg"}]
                   - categories.each_with_index do |category|
                     .card-category
                       %img{ src: "#{category[:image]}"}
@@ -155,59 +156,62 @@
                         .card-category-content
                           .category-title
                             %h4= category[:name]
-                          .card-cantidad
+                          .card-quantity
                             %span= category[:number]
             #tab-3.tab-content.current
+              .back
+                %i.icofont-arrow-left
+                %span Volver
               .d-flex
                 .grid-wrapper.d-flex.flex-wrap
-                  - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg"},{name: 'Cóctel', price:'9',image:"/assets/app/coctel.jpg"}]
-                  - products.each_with_index do |product|
+                  - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg"},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg"},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg"}]
+                  - products.each_with_index do |product,x|
                     .card-wrapper
                       .card-content.card-product
                         .card-product-image
                           .product-image
                             %img{ src: "#{product[:image]}"}
-                        .card-product-description
+                        .card-product-description.pl-4
                           .card-product-title
                             %h4.m-0= product[:name]
                           .card-product-detail
                             .card-price
-                              %span $ #{product[:price]}
-                            .quantity
+                              %span $ #{product[:price]} 
+                            .card-product-quantity
                               %a.inc.qty-button +
                               %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "0", :pattern => "[0-9]*", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1"}/
                               %a.dec.qty-button -
                         .card-product-btn
-                          %a{ href:'' } Agregar
+                          %a{ 'data-target': ".add_product-#{x}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false } Agregar
 
 
                 .grid-order
-                  - 12.times do |index|
-                    .order-wrapper.tab-content{ id: "space_one-#{index}"}
-                      .order-header
-                        %h4 Mesa número #{index+ 1} 
-                        %i.icofont-close.icon_custom.icon--medium.close-order
-                      .order-content.order-content--fixed.d-flex
-                        - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
-                        .order-counts
-                          -counts.each_with_index do |count|
-                            .card-content.card-counts
-                              .order-card-counts
-                                .description-user.d-flex.justify-content-between
-                                  %h4= count[:name]
-                                  %p 10 min
-                                .list
-                                  %dl
-                                    %dt Productos
-                                    %dd #{count[:products]}
-                                    %dt Cuenta total
-                                    %dd $#{count[:count]}
-                      .order-footer.sticky-footer
-                        %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper{'data-target': "#create_counts", 'data-toggle': 'modal'}
-                          %i.icofont-plus
-                          Agregar cuenta
-          
-            
+                  .order-wrapper
+                    .order-header
+                      %h4 Mis ordenes 
+                      %i.icofont-close.icon_custom.icon--medium.close-order
+                    .order-content.order-content--fixed.d-flex.flex-wrap
+                      - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
+                      - products.each_with_index do |product|
+                        .card-wrapper
+                          .card-content.card-counts
+                            .card-product-image
+                              .product-image.product-image-order
+                                %img{ src: "#{product[:image]}"}
+                            .card-product-description.pl-4
+                              .card-product-title
+                                %h4.m-0= product[:name]
+                              .card-product-detail.card-detail-order
+                                .card-price
+                                  %span $ #{product[:price]} X
+                                  %span.box-quantity= product[:quantity]
+                                .card-product-delete
+                                  %i.icofont-ui-delete 
+                    .order-footer.order-footer-product
+                      %span Total: 
+                      %span $ 60
+                          
+  -# MODAL CREATE COUNT       
   .modal.fade{ id: "create_counts", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog" }
     .modal-dialog{role: "document"}
       .modal-content
@@ -227,10 +231,54 @@
               %label.label_custom{for:""} Dirección
               %input.form-control.input_custom{ placeholder: '',type:'number'}
             .float-right.mt-2
-              %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper
-                Crear
-        
+              %button.btn.btn_custom.btn--medium.btn--filled
+                Guardar
+            .float-right.mt-2.mr-2
+              %button.btn.btn_custom.btn--medium.btn-default
+                Guardar y crear
+                
+
+  -# ADD PRODUCT
+  - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg"},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg"},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg"}]
+  - products.each_with_index do |product,x|
+    .modal.fade{ class: "add_product-#{x}", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog" }
+      .modal-dialog{role: "document"}
+        .modal-content.p-0
+          .modal-header.p-0.modal-header-details
+            .modal-image
+              %img{ src: "#{product[:image]}"}
+            .mask
+              .modal-product-title
+                %h4= product[:name]
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+              %i.icofont-close.icon_custom.icon--large
+          .modal-body
+            .d-flex
+              .product-detail
+                %p Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias.
+              .product-description
+                .card-product-detail.modal-body-details
+                  .card-price
+                    %span $ #{product[:price]} 
+                  .card-product-quantity
+                    %a.inc.qty-button +
+                    %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "0", :pattern => "[0-9]*", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1"}/
+                    %a.dec.qty-button -
+            %form.mt-4
+              .form-group
+                %label.label_custom{for:""} Observaciones
+                %textarea.form-control.textarea_custom
+              .float-right.mt-2
+                %button.btn.btn_custom.btn--medium.btn--filled
+                  Agregar
+          
 
 :javascript
   $('.dropdown-toggle').dropdown()
-
+  $('.modal').on('shown.bs.modal', function () {  
+    $('body').addClass('overflow')
+    $('.close').click(function(){
+      $('body').removeClass('overflow')
+      $('.modal').removeClass('in')
+    }) 
+  }); 

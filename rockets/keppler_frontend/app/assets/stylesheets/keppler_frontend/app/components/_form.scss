@@ -9,6 +9,7 @@
   height: 34px;
   border: 1px solid transparent !important;
   background-color: rgba(221, 221, 221, 0.66) !important;
+  resize: none;
 
   &:focus{
     border-top: 0;
@@ -27,6 +28,7 @@
   text-transform: capitalize;
   font-weight: 600;
   font-size: 14px;
+  font-family: $quicksand;
 }
 
 //*** Placeholder **//
