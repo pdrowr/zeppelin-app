@@ -42,8 +42,8 @@ gem 'turbolinks', '5.1.0'
 gem 'uglifier', '4.1.8'
 
 # Database
+gem 'mysql2'
 gem 'pg', '1.0.0'
-# gem 'mysql2', '~> 0.3.18'
 
 # SEO
 gem 'sitemap_generator', '6.0.1'

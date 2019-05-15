@@ -17,7 +17,7 @@ module KepplerEnvironments
     validates_uniqueness_of :name
 
     def self.index_attributes
-      %i[name cover]
+      %i[name]
     end
   end
 end

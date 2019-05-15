@@ -6,4 +6,4 @@ menu:
     icon: globe
     model: KepplerLanguages::Language
     position: 6
-    # environment: development
+    environment: test

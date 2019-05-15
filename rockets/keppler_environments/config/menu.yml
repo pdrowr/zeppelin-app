@@ -7,10 +7,3 @@ menu:
     model: KepplerEnvironments::Section
     environment: all
     position: 4
-
-      # - new:
-      #     name: + Add new module
-      #     url_path: /url_path
-      #     current: ['/current_path']
-      #     enviroment: development
-      #     model: User

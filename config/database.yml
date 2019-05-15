@@ -23,3 +23,22 @@ test:
 
 production:
   <<: *default
+
+premium_database_development:
+  adapter: mysql2
+  host: 192.168.88.3
+  username: sliceadmin
+  encoding: utf8
+  pool: 5
+  password: +12345678+
+  database: adminguayoy
+  port: 3306
+
+# premiumpremium_database_development:
+  # adapter: mysql2
+  # host: 192.168.1.190
+  # username: root
+  # encoding: utf8
+  # pool:     5
+  # password: +SliceRoot+
+  # database: adminguayoy
