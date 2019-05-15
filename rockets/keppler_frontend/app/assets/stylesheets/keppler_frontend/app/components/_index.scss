@@ -463,11 +463,11 @@
     line-height: 20px;
     text-align: center;
     border-bottom: none;
-    color: white;
+    color: $white !important;
     margin-right: 3px;
 
     &:hover, &:active, &:focus {
-      color: white;
+      color: $white !important;
     }
 
 
