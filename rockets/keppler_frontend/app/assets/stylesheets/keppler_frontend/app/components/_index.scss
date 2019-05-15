@@ -48,7 +48,7 @@
 
 .avatar-content {
   width: 150px;
-  background-color: rgba(221, 221, 221, 0.66) !important;
+  background-color: $gray !important;
   border-radius: 5px;
   height: 35px;
   display: flex;
@@ -399,7 +399,7 @@
       margin-top: 10px;
 
       span {
-        color:rgba(221, 221, 221, 0.66);
+        color:$gray;
       }
       .box-quantity {
         background-color: $primary;
@@ -477,7 +477,7 @@
     width: 20px;
     height: 20px;
     text-align: center;
-    background-color: rgba(221, 221, 221, 0.66) !important;
+    background-color: $gray !important;
     border: none;
     border-radius: 5px;
     font-family: $quicksand;
