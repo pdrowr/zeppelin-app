@@ -104,3 +104,8 @@ if defined?(KepplerLanguages) && KepplerLanguages.is_a?(Module)
   end
   puts 'Languages has been created'
 end
+
+# create default sections
+['Interior', 'Barra', 'Terraza'].each do |section|
+  KepplerEnvironments::Section.create(name: section)
+end

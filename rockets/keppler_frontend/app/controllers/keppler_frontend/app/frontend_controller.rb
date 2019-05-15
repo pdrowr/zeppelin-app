@@ -7,6 +7,7 @@ module KepplerFrontend
     layout 'layouts/keppler_frontend/app/layouts/application'
 
     def index
+      @sections = KepplerEnvironments::Section.all
     end
   end
 end

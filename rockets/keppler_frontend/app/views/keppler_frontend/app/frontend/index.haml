@@ -22,113 +22,60 @@
           .workspace_top-container
             .workspace_title
               %h1 Mesas
-            -# .workspace_search
-            -#   .form-group.mb-0
-            -#     %input.form-control.input_custom
             .workspace_avatar
               .avatar-content.dropdown
                 %a#out.dropdown-toggle.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
                   .avatar
-                    = image_tag 'https://tinyfac.es/data/avatars/26CFEFB3-21C8-49FC-8C19-8E6A62B6D2E0-200w.jpeg'
-                  %strong Pedro G
+                    = image_tag current_member.avatar
+                  %strong=current_member.alias
                 .dropdown-menu{"aria-labelledby" => "out"}
-                  %a.dropdown-item{:href => "#"} Cerrar Sesion
+                  = link_to app_destroy_session_path, class: 'dropdown-item' do
+                    Cerrar Sesion
+
         .workspace_center
           .container-fluid.p-0
-            #tab-1.tab-content
+            #tab-1.tab-content.current
               %ul.sub-tabs#sub-tabs
-                %li.tab-link.current{ 'data-tab' => 'sub-tab-1' } Interior
-                %li.tab-link{ 'data-tab' => 'sub-tab-2' } Barra
-                %li.tab-link{ 'data-tab' => 'sub-tab-3' } Terraza
-              #sub-tab-1.tab-content-sub.current
-                .d-flex
-                  .grid-wrapper
-                    - 12.times do |index|
-                      .card-wrapper{ "data-tab" => "space_one-#{index}", class: ('disabled' if index.even?)  }
-                        .card-content.card-table
-                          %h2= index + 1
-                          .card-icons
-                            %i.icofont-dining-table
+                - @sections.each_with_index do |section, index|
+                  %li.tab-link{ 'data-tab': "sub-tab-#{index}", class: ('current' if index.zero?) }= section.name.capitalize
 
-                  .grid-order
-                    - 12.times do |index|
-                      .order-wrapper.tab-content{ id: "space_one-#{index}"}
-                        .order-header
-                          %h4 Mesa número #{index+ 1}
-                          %i.icofont-close.icon_custom.icon--medium.close-order
-                        .order-content.order-content--fixed.d-flex
-                          - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
-                          .order-counts
-                            -counts.each_with_index do |count|
-                              .card-content.card-counts
-                                .order-card-counts
-                                  .description-user.d-flex.justify-content-between
-                                    %h4= count[:name]
-                                    %p 10 min
-                                  .list
-                                    %dl
-                                      %dt Productos
-                                      %dd #{count[:products]}
-                                      %dt Cuenta total
-                                      %dd $#{count[:count]}
-                        .order-footer.sticky-footer
-                          %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-                            %i.icofont-plus
-                            Agregar cuenta
+              - @sections.each_with_index do |section, index|
+                .tab-content-sub{ id: "sub-tab-#{index}", class: ('current' if index.zero?) }
+                  .d-flex
+                    .grid-wrapper
+                      - (10).times do |index|
+                        .card-wrapper{ "data-tab" => "space_one-#{index}", class: ('disabled' if index.even?)  }
+                          .card-content.card-table
+                            %h2= index + 1
+                            .card-icons
+                              %i.icofont-dining-table
 
+                    .grid-order
+                      - (10).times do |index|
+                        .order-wrapper.tab-content{ id: "space_one-#{index}"}
+                          .order-header
+                            %h4 Mesa número #{index+ 1}
+                            %i.icofont-close.icon_custom.icon--medium.close-order
+                          .order-content.order-content--fixed.d-flex
+                            - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
+                            .order-counts
+                              -counts.each_with_index do |count|
+                                .card-content.card-counts
+                                  .order-card-counts
+                                    .description-user.d-flex.justify-content-between
+                                      %h4= count[:name]
+                                      %p 10 min
+                                    .list
+                                      %dl
+                                        %dt Productos
+                                        %dd #{count[:products]}
+                                        %dt Cuenta total
+                                        %dd $#{count[:count]}
+                          .order-footer.sticky-footer
+                            %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                              %i.icofont-plus
+                              Agregar cuenta
 
-              #sub-tab-2.tab-content-sub
-                .d-flex
-                  .grid-wrapper
-                    - 9.times do |index|
-                      .card-wrapper{ "data-tab" => "space_two-#{index}"}
-                        .card-content.card-table
-                          %h2= index + 1
-                          .card-icons
-                            %i.icofont-dining-table
-
-                  .grid-order
-                    - 9.times do |index|
-                      .order-wrapper.tab-content{ id: "space_two-#{index}"}
-                        .order-header
-                          %h4 Mesa Número #{index+ 1}
-                          %i.icofont-close.icon_custom.icon--medium.close-order
-                        .order-content.d-flex
-                          - counts =[{name: 'Pedro Guerra',products: '3', count: '60'}]
-                          .order-counts
-                            -counts.each_with_index do |count|
-                              .card-content.card-counts
-                                .order-card-counts
-                                  .description-user.d-flex.justify-content-between
-                                    %h4= count[:name]
-                                    %p 10 min
-                                  .list
-                                    %dl
-                                      %dt Productos
-                                      %dd #{count[:products]}
-                                      %dt Cuenta total
-                                      %dd $#{count[:count]}
-                        .order-footer
-                          %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-                            %i.icofont-plus
-                            Agregar cuenta
-
-              #sub-tab-3.tab-content-sub
-                .d-flex
-                  .grid-wrapper
-                    - 9.times do |index|
-                      .card-wrapper{ "data-tab" => "space_three-#{index}"}
-                        .card-content.card-table
-                          %h2= index + 1
-                          .card-icons
-                            %i.icofont-dining-table
-
-                  .grid-order
-                    - 9.times do |index|
-                      .order-wrapper.tab-content{ id: "space_three-#{index}"}
-                        .order-header
-                          %h4 Mis ordenes #{index+ 1}
-                          %i.icofont-close.close-order
             #tab-2.tab-content
 
               %ul.sub-tabs#categories
@@ -158,7 +105,7 @@
                             %h4= category[:name]
                           .card-quantity
                             %span= category[:number]
-            #tab-3.tab-content.current
+            #tab-3.tab-content
               .back
                 %i.icofont-arrow-left
                 %span Volver
