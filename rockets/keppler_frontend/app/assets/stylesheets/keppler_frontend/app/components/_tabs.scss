@@ -1,0 +1,40 @@
+.tab-content{
+  display: none;
+}
+
+.tab-content.current{
+  display: inherit;
+}
+
+.tab-content-sub{
+  display: none;
+}
+
+.tab-content-sub.current{
+  display: inherit;
+}
+.category-content{
+  display: none;
+}
+
+.category-content.current{
+  display: inherit;
+}
+
+/**** sub tabs****/
+.sub-tabs {
+  display: flex;
+  li {
+    color: $white;
+    @include font(16px, $normal);
+    font-family: $quicksand;
+    &.current{
+      background: $gradient;
+      color: $white;
+      @include font(16px, $semibold);
+      border-radius: 5px;
+    }
+  }
+  
+}
+

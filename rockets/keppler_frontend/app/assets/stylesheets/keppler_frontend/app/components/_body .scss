@@ -1,0 +1,37 @@
+body {
+  width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: auto;
+  &.overflow {
+    overflow: hidden;
+  }
+}
+
+
+a {
+  text-decoration: none !important;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+button{
+  outline: none !important;
+
+  &:hover, &:focus {
+    outline: none !important;
+  }
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: $dark !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #d2d2d2;
+}

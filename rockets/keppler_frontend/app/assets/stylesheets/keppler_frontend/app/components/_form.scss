@@ -8,9 +8,10 @@
   font-size: 1.5rem;
   height: 34px;
   border: 1px solid transparent !important;
-  // background-color:#ffffff70 !important;
-  // background-color: #ffffff59 !important;
-  background-color: rgba(221, 221, 221, 0.66) !important;
+  background-color: $white !important;
+  color: $black;
+  // background-color: rgba(221, 221, 221, 0.66) !important;
+  resize: none;
 
   &:focus{
     border-top: 0;
@@ -18,17 +19,18 @@
     border-right: 0;
     border-radius: 5px;
     box-shadow: 0 0 0 0.2rem transparent !important;
-    color: $white !important;
-    outline: none !important;
+    color: $black !important;
+    outline: 0 !important;
     
   }
 }
 
 .label_custom {
   color: $white;
-  text-transform: uppercase;
-  font-weight: 300;
+  text-transform: capitalize;
+  font-weight: 600;
   font-size: 14px;
+  font-family: $quicksand;
 }
 
 //*** Placeholder **//
