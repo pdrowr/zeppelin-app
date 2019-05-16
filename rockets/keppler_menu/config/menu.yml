@@ -1,0 +1,23 @@
+menu:
+  keppler_menu:
+    name: Keppler Menu
+    current: ['/']
+    url_path: /
+    icon: coffee
+    model: User
+    environment: all
+    position: 4
+    submenu:
+      - category:
+          name: category
+          url_path: /admin/menu/categories
+          icon: layers
+          current: ['/admin/menu/categories']
+          model: KepplerMenu::Category
+
+      # - new:
+      #     name: + Add new module
+      #     url_path: /url_path
+      #     current: ['/current_path']
+      #     enviroment: development
+      #     model: User
