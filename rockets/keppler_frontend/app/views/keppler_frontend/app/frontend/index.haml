@@ -26,7 +26,7 @@
               .avatar-content.dropdown
                 %a#out.dropdown-toggle.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
                   .avatar
-                    = image_tag current_member.avatar
+                    = image_tag '/assets/app/profile'
                   %strong=current_member.alias
                 .dropdown-menu{"aria-labelledby" => "out"}
                   = link_to app_destroy_session_path, class: 'dropdown-item' do
@@ -80,7 +80,6 @@
 
               %ul.sub-tabs#categories
                 %li.tab-link.current{ 'data-tab' => 'category-1' } Comida
-                %li.tab-link{ 'data-tab' => 'category-2' } Bebidas
               #category-1.category-content.current
                 .d-flex.flex-wrap
                   -# - categories = [{name: 'Pizzas', number: '5', image:"/assets/app/pizza.jpg"},{name: 'Hamburguesas', number:'9',image:"/assets/app/hamburguer.jpg"},{name: 'Tortas', number: '3', image: "/assets/app/cake.jpg"}]
@@ -91,18 +90,6 @@
                         .card-category-content
                           .category-title
                             %h4= category.name
-                          .card-quantity
-                            %span= category[:number]
-              #category-2.category-content
-                .d-flex.flex-wrap
-                  - categories = [{name: 'Cervezas', number: '15',image:"/assets/app/beer.jpeg"},{name: 'Cócteles', number:'9',image:"/assets/app/cocktail2.jpg"},{name: 'Cócteles',number:'2', image:"/assets/app/cocktail.jpg"}]
-                  - categories.each_with_index do |category|
-                    .card-category
-                      %img{ src: "#{category[:image]}"}
-                      .mask
-                        .card-category-content
-                          .category-title
-                            %h4= category[:name]
                           .card-quantity
                             %span= category[:number]
             #tab-3.tab-content

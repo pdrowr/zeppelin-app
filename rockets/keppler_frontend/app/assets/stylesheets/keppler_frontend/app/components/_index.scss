@@ -5,7 +5,8 @@
 .workspace {
   width: 94%;
   background-color: $dark;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   margin-left: 6%;
 }
 
@@ -55,17 +56,25 @@
   align-items: center;
 
   a {
-    color: $dark;
+    color: $white;
     text-decoration: none !important;
     transition: all 0.3s ease-in-out;
     @include font(15px, $normal);
     font-family: $quicksand;
     &:hover, &:focus, &:link {
-      color: $dark-e;
+      color: $white;
       text-decoration: none;
     }
   }
 
+}
+
+
+.dropdown-menu {
+  min-width: 150px !important;
+}
+.dropdown-item {
+  color: $dark !important;
 }
 
 .avatar {
@@ -73,6 +82,7 @@
   padding: 5px;
   img {
     border-radius: 50%;
+    width: 70%;
   }
 }
 
