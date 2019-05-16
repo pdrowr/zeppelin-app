@@ -7,7 +7,7 @@ module KepplerMenu
     # CategoriesController
     class CategoriesController < ::Admin::AdminController
       layout 'keppler_menu/admin/layouts/application'
-      before_action :set_category, only: %i[show edit update destroy]
+      before_action :set_category, only: %i[show edit update destroy pictures]
       before_action :index_variables
       include ObjectQuery
 

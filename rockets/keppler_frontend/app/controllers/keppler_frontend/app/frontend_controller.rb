@@ -8,6 +8,7 @@ module KepplerFrontend
 
     def index
       @sections = KepplerEnvironments::Section.all
+      @categories = KepplerMenu::Category.all
     end
   end
 end

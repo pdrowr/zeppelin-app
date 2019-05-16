@@ -83,14 +83,14 @@
                 %li.tab-link{ 'data-tab' => 'category-2' } Bebidas
               #category-1.category-content.current
                 .d-flex.flex-wrap
-                  - categories = [{name: 'Pizzas', number: '5', image:"/assets/app/pizza.jpg"},{name: 'Hamburguesas', number:'9',image:"/assets/app/hamburguer.jpg"},{name: 'Tortas', number: '3', image: "/assets/app/cake.jpg"}]
-                  - categories.each_with_index do |category|
+                  -# - categories = [{name: 'Pizzas', number: '5', image:"/assets/app/pizza.jpg"},{name: 'Hamburguesas', number:'9',image:"/assets/app/hamburguer.jpg"},{name: 'Tortas', number: '3', image: "/assets/app/cake.jpg"}]
+                  - @categories.each_with_index do |category|
                     .card-category
-                      %img{ src: "#{category[:image]}"}
+                      %img{ src: category&.pictures&.first&.picture&.url }
                       .mask
                         .card-category-content
                           .category-title
-                            %h4= category[:name]
+                            %h4= category.name
                           .card-quantity
                             %span= category[:number]
               #category-2.category-content

@@ -13,6 +13,8 @@ module KepplerMenu
     include Downloadable
     include Searchable
 
+    has_many :pictures, as: :picturable
+
     def self.index_attributes
       %i[code name]
     end
@@ -25,5 +27,8 @@ module KepplerMenu
       self.nombre.strip
     end
 
+    def category_id
+      self.id.strip
+    end
   end
 end
