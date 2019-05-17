@@ -3,14 +3,18 @@ es:
     sidebar-menu:
       keppler-menu: Menú
       keppler-menu-submenu:
+        dish: Dish
         category: Categorías
     permissions:
     models:
       singularize:
+        dish: dish
         category: categoría
       pluralize:
+        dishes: dishes
         categories: categorías
     modules:
+      admin/dish: Dish
       admin/category: Categoría
     messages:
     actions:

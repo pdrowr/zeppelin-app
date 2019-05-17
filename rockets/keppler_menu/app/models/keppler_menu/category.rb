@@ -6,6 +6,7 @@ module KepplerMenu
 
     establish_connection :premium_database_development
     self.table_name = 'grupos'
+    has_many :dishes, foreign_key: 'grupo', class_name: 'KepplerMenu::Dish'
 
     include ActivityHistory
     include CloneRecord
@@ -20,15 +21,19 @@ module KepplerMenu
     end
 
     def code
-      self.codigo.strip
+      codigo.strip
     end
 
     def name
-      self.nombre.strip
+      nombre.strip
+    end
+
+    def dishes_count
+      dishes.count
     end
 
     def category_id
-      self.id.strip
+      id.strip
     end
   end
 end

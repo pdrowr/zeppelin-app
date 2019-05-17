@@ -1,0 +1,50 @@
+- objects.each do |object|
+  %tr{ id: "row-#{object.dish_id}" }
+    %td{ style: 'width: 20%' }
+      = link_to({ action: :show, id: object.dish_id, search: @query }, { class: 'show-row' }) do
+        %span
+          = image_tag object&.pictures&.first&.picture&.url || ''
+    %td{ style: 'width: 30%' }
+      = link_to({ action: :show, id: object.dish_id, search: @query }, { class: 'show-row' }) do
+        %span= object.name
+    %td{ style: 'width: 30%' }
+      = link_to({ action: :show, id: object.dish_id, search: @query }, { class: 'show-row' }) do
+        %span= object.category_name
+    %td{ style: 'width: 30%' }
+      = link_to({ action: :show, id: object.dish_id, search: @query }, { class: 'show-row' }) do
+        %span.badge.keppler-badge
+          %i.bx.bx-dollar
+          = object.precio1
+
+    %td.dropdown{ style: 'width: 15px;padding-right:15px;' }
+      %a.action-btn.pull-right{:id => "menu-#{object.dish_id}", 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown' }
+        %i.icon-options-vertical
+      %ul.actions.dropdown-menu{ 'aria-labelledby': "menu-#{object.dish_id}" }
+        - if can?(model).index?
+          %li
+            = link_to({action: :show, id: object.dish_id}, {title: t('keppler.actions.show')}) do
+              %i.icon-eye
+              = t('keppler.actions.show')
+        %li
+          = link_to admin_menu_pictures_path(object.dish_id, model: object.class) do
+            %i.icon-picture
+            Fotos
+        - if can?(model).update?
+          %li
+            = link_to({action: :edit, id: object.dish_id}, {title: t('keppler.actions.edit')}) do
+              %i.icon-pencil
+              = t('keppler.actions.edit')
+        - if can?(model).clone?
+          %li
+            = link_to(admin_menu_dish_clone_path(object), {title: t('keppler.actions.clone')}) do
+              %i.icon-docs
+              = t('keppler.actions.clone')
+        - if can?(model).destroy?
+          %li
+            = link_to({action: :destroy, id: object.dish_id}, {title: t('keppler.actions.delete'), method: :delete, data: { confirm: t('keppler.messages.data_confirm') }}) do
+              %i.icon-trash
+              = t('keppler.actions.delete')
+
+    %td{ style: 'width: 5%;'}
+      %a.drop{ href: '#' }
+        %i.icon-cursor-move

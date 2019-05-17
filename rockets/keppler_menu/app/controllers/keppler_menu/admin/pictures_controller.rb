@@ -33,7 +33,8 @@ module KepplerMenu
       end
 
       def set_object
-        @object = KepplerMenu::Category.find(params[:picturable_id])
+        object = params[:model].constantize
+        @object = object.find(params[:picturable_id])
       end
 
     end
