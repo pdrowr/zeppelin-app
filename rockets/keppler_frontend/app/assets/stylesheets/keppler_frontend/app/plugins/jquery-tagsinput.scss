@@ -1,16 +1,17 @@
 .tags-container {
-  padding-left: 0;
-  height: unset;
+  padding-left: 0 !important;
+  min-height: 60px;
+  height: auto !important;
   line-height: 1.75;
 
-  input {
+  input, textarea {
     background-color: transparent;
     border: none;
     box-shadow: none;
     margin: 0;
     max-width: inherit;
     outline: none;
-    padding: 0 6px;
+    padding: 0 2px !important;
     width: auto;
   }
 
@@ -30,7 +31,6 @@
     cursor: pointer;
     padding-left: 6px;
     font-style: normal;
-    font-family: Dejavu Sans;
   }
 
   &.disabled {
@@ -39,6 +39,10 @@
 
     .tag {
       padding-right: 0.4em;
+
+      span {
+        padding: 5px !important;
+      }
     }
   }
 }

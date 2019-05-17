@@ -108,6 +108,7 @@
   padding: 10px;
   width: 100px;
   font-family: $quicksand;
+  cursor: pointer;
 
   &:hover {
     background-color: $dark-aside;
@@ -244,6 +245,9 @@
     color: $white;
     font-family: $quicksand;
     text-transform: capitalize;
+  }
+  i {
+    cursor: pointer;
   }
 }
 
@@ -469,7 +473,7 @@
     display: inline-block;
     height: 20px;
     width: 20px;
-    font-size: 15px;
+    font-size: 18px;
     line-height: 20px;
     text-align: center;
     border-bottom: none;
@@ -484,13 +488,14 @@
   }
 
   .input_quantity {
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 25px !important;
     text-align: center;
     background-color: $gray !important;
     border: none;
     border-radius: 5px;
     font-family: $quicksand;
+    @include font(15px, $light)
   }
 
   input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
@@ -507,6 +512,10 @@
   position: absolute;
   left: 3%;
   font-family: $quicksand;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 93%;
 }
 
 .product-detail {
