@@ -8,15 +8,20 @@
         %ul.tabs
           %li
             = image_tag '/assets/app/z', class: 'isologo_white'
-          %li.has-menu.tab-link.current{ 'data-tab' => 'tab-1' }
+          %li.tab-link.current{ 'data-tab' => 'tab-1' }
             .icons
               %i.icofont-dining-table
-          %li.has-menu.tab-link{ 'data-tab' => 'tab-2' }
+          %li.tab-link{ 'data-tab' => 'tab-2' }
             .icons
               %i.icofont-restaurant
-          %li.has-menu.tab-link{ 'data-tab' => 'tab-3' }
+          %li.tab-link{ 'data-tab' => 'tab-3' }
             .icons
               %i.icofont-restaurant
+        .footer
+          %ul
+            %li.tab-link{ 'data-tab' => 'tab-3' }
+              .icons
+                %i.icofont-power
       .workspace
         .workspace_top
           .workspace_top-container
