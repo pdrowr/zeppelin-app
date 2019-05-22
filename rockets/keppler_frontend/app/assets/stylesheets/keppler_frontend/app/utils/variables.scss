@@ -15,8 +15,20 @@ $raleway: 'Raleway', sans-serif;
 $base-font-size: 10px;
 
 // Fonts Weight
+@font-face {
+    font-family: 'Bebas';
+    src: url('../fonts/keppler_frontend/fonts/Bebas.eot');
+    src: url('../fonts/keppler_frontend/fonts/Bebas.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/keppler_frontend/fonts/Bebas.woff2') format('woff2'),
+        url('../fonts/keppler_frontend/fonts/Bebas.woff') format('woff'),
+        url('../fonts/keppler_frontend/fonts/Bebas.ttf') format('truetype'),
+        url('../fonts/keppler_frontend/fonts/Bebas.svg#Bebas') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 $quicksand: 'Quicksand', sans-serif;
-$montserat: 'Montserrat', sans-serif;
+$bebas: 'Bebas', sans-serif;
 $light: 300;
 $normal: 400;
 $semibold: 500;

@@ -331,13 +331,16 @@
     object-fit: cover;
   }
 
-
   .category-title {
     color: $white;
     bottom: 5%;
     position: absolute;
     left: 5%;
-    font-family: $quicksand;
+    
+    h4 {
+      font-family: $quicksand;
+      @include font(18px, $bold);
+    }
   }
 
   .card-quantity {
