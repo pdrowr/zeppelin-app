@@ -474,13 +474,13 @@
 
   .qty-button {
     display: inline-block;
-    height: 20px;
-    width: 20px;
-    font-size: 18px;
+    height: 30px;
+    width: 30px;
+    font-size: 25px;
     line-height: 20px;
     text-align: center;
     border-bottom: none;
-    color: $white !important;
+    color: #ffffff !important;
     margin-right: 3px;
 
     &:hover, &:active, &:focus {
@@ -491,8 +491,8 @@
   }
 
   .input_quantity {
-    width: 20px !important;
-    height: 25px !important;
+    width: 30px !important;
+    height: 30px !important;
     text-align: center;
     background-color: $gray !important;
     border: none;
