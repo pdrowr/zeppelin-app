@@ -20,136 +20,187 @@
         .footer
           %ul
             %li.tab-link{ 'data-tab' => 'tab-3' }
-              .icons
-                %i.icofont-power
+              = link_to app_destroy_session_path do
+                .icons
+                  %i.icofont-power
       .workspace
-        .workspace_top
-          .workspace_top-container
-            .workspace_title
-              %h1 Mesas
-            .workspace_avatar
-              .avatar-content.dropdown
-                %a#out.dropdown-toggle.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
-                  .avatar
-                    = image_tag '/assets/app/profile'
-                  %strong=current_member.alias
-                .dropdown-menu{"aria-labelledby" => "out"}
-                  = link_to app_destroy_session_path, class: 'dropdown-item' do
-                    Cerrar Sesion
+        .d-flex
+          .workspace-left
+            .workspace_top
+              .workspace_top-container
+                .workspace_title
+                  %h1 Mesas
+                .workspace_avatar
+                  .avatar-content.dropdown
+                    %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
+                      .avatar
+                        = image_tag '/assets/app/profile'
+                      %strong=current_member.alias
+                    // .dropdown-menu{"aria-labelledby" => "out"}
+                    //   = link_to app_destroy_session_path, class: 'dropdown-item' do
+                    //     Cerrar Sesion
 
-        .workspace_center
-          .container-fluid.p-0
-            #tab-1.tab-content.current
-              %ul.sub-tabs#sub-tabs
-                - @sections.each_with_index do |section, index|
-                  %li.tab-link{ 'data-tab': "sub-tab-#{index}", class: ('current' if index.zero?) }= section.name.capitalize
+            .workspace_center
+              .container-fluid.p-0
+                #tab-1.tab-content.current
+                  %ul.sub-tabs#sub-tabs
+                    - @sections.each_with_index do |section, index|
+                      %li.tab-link{ 'data-tab': "sub-tab-#{index}", class: ('current' if index.zero?) }= section.name.capitalize
 
-              - @sections.each_with_index do |section, index|
-                .tab-content-sub{ id: "sub-tab-#{index}", class: ('current' if index.zero?) }
+                  - @sections.each_with_index do |section, index|
+                    .tab-content-sub{ id: "sub-tab-#{index}", class: ('current' if index.zero?) }
+                      .d-flex
+                        .grid-wrapper
+                          - (30).times do |index|
+                            .card-wrapper{ "data-tab" => "space_one-#{index}", class: ('disabled' if index.even?)  }
+                              .card-content.card-table
+                                %h2= index + 1
+                                .card-icons
+                                  %i.icofont-dining-table
+
+                        -#.grid-order
+                          - (10).times do |index|
+                            .order-wrapper.tab-content{ id: "space_one-#{index}"}
+                              .order-header
+                                %h4 Mesa número #{index+ 1}
+                                %i.icofont-close.icon_custom.icon--medium.close-order
+                              .order-content.order-content--fixed.d-flex
+                                - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
+                                .order-counts
+                                  -counts.each_with_index do |count|
+                                    .card-content.card-counts.mb-4
+                                      .order-card-counts
+                                        .description-user.d-flex.justify-content-between
+                                          %h4= count[:name]
+                                          %p 10 min
+                                        .list
+                                          %dl
+                                            %dt Productos
+                                            %dd #{count[:products]}
+                                            %dt Cuenta total
+                                            %dd $#{count[:count]}
+                              .order-footer.sticky-footer
+                                %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                  %i.icofont-plus
+                                  Agregar cuenta
+
+                #tab-2.tab-content
+                  %ul.sub-tabs#categories
+                    %li.tab-link.current{ 'data-tab' => 'category-1' } Comida
+                  #category-1.category-content.current
+                    .grid-wrapper.d-flex.flex-wrap
+                      - @categories.each_with_index do |category|
+                        .card-category
+                          %img{ src: '/assets/app/category' }
+                          -# category&.pictures&.first&.picture&.url
+                          .mask
+                            .card-category-content
+                              .category-title
+                                %h4= category.name
+                              .card-quantity
+                                %span= category.dishes_count
+
+                #tab-3.tab-content
+                  .back
+                    %i.icofont-arrow-left
+                    %span Volver
                   .d-flex
-                    .grid-wrapper
-                      - (10).times do |index|
-                        .card-wrapper{ "data-tab" => "space_one-#{index}", class: ('disabled' if index.even?)  }
-                          .card-content.card-table
-                            %h2= index + 1
-                            .card-icons
-                              %i.icofont-dining-table
-
-                    .grid-order
-                      - (10).times do |index|
-                        .order-wrapper.tab-content{ id: "space_one-#{index}"}
-                          .order-header
-                            %h4 Mesa número #{index+ 1}
-                            %i.icofont-close.icon_custom.icon--medium.close-order
-                          .order-content.order-content--fixed.d-flex
-                            - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
-                            .order-counts
-                              -counts.each_with_index do |count|
-                                .card-content.card-counts
-                                  .order-card-counts
-                                    .description-user.d-flex.justify-content-between
-                                      %h4= count[:name]
-                                      %p 10 min
-                                    .list
-                                      %dl
-                                        %dt Productos
-                                        %dd #{count[:products]}
-                                        %dt Cuenta total
-                                        %dd $#{count[:count]}
-                          .order-footer.sticky-footer
-                            %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-                              %i.icofont-plus
-                              Agregar cuenta
-
-            #tab-2.tab-content
-
-              %ul.sub-tabs#categories
-                %li.tab-link.current{ 'data-tab' => 'category-1' } Comida
-              #category-1.category-content.current
-                .d-flex.flex-wrap
-                  - @categories.each_with_index do |category|
-                    .card-category
-                      %img{ src: '/assets/app/category' }
-                      -# category&.pictures&.first&.picture&.url
-                      .mask
-                        .card-category-content
-                          .category-title
-                            %h4= category.name
-                          .card-quantity
-                            %span= category.dishes_count
-
-            #tab-3.tab-content
-              .back
-                %i.icofont-arrow-left
-                %span Volver
-              .d-flex
-                .grid-wrapper.d-flex.flex-wrap
-                  - @dishes.each_with_index do |dish, index|
-                    .card-wrapper
-                      .card-content.card-product
-                        .card-product-image
-                          .product-image
-                            %img{ src: "/assets/app/product" }
-                        .card-product-description.pl-4
-                          .card-product-title
-                            %h4.m-0= dish.name
-                          .card-product-detail
-                            .card-price
-                              %span $ #{dish.precio1}
-                            -# .card-product-quantity
-                              %a.inc.qty-button +
-                              %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "0", :pattern => "[0-9]*", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1"}/
-                              %a.dec.qty-button -
-                        .card-product-btn
-                          %a{ 'data-target': ".add_product-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false } Agregar
-
-
-                .grid-order
-                  .order-wrapper
-                    .order-header
-                      %h4 Mis ordenes
-                      %i.icofont-close.icon_custom.icon--medium.close-order
-                    .order-content.order-content--fixed.d-flex.flex-wrap
-                      - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
-                      - products.each_with_index do |product|
-                        .card-wrapper
-                          .card-content.card-counts
+                    .grid-wrapper.d-flex.flex-wrap
+                      - @dishes.each_with_index do |dish, index|
+                        .card-wrapper.card-wrapper-products
+                          .card-content.card-product
                             .card-product-image
-                              .product-image.product-image-order
-                                %img{ src: "#{product[:image]}"}
+                              .product-image
+                                %img{ src: "/assets/app/product" }
                             .card-product-description.pl-4
                               .card-product-title
-                                %h4.m-0= product[:name]
-                              .card-product-detail.card-detail-order
+                                %h4.m-0= dish.name
+                              .card-product-detail
                                 .card-price
-                                  %span $ #{product[:price]} X
-                                  %span.box-quantity= product[:quantity]
-                                .card-product-delete
-                                  %i.icofont-ui-delete
-                    .order-footer.order-footer-product
-                      %span Total:
-                      %span $ 60
+                                  %span $ #{dish.precio1}
+                                -# .card-product-quantity
+                                  %a.inc.qty-button +
+                                  %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "0", :pattern => "[0-9]*", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1"}/
+                                  %a.dec.qty-button -
+                            .card-product-btn
+                              %a{ 'data-target': ".add_product-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false } Agregar
 
+
+                    -#.grid-order
+                      .order-wrapper
+                        .order-header
+                          %h4 Mis ordenes
+                          %i.icofont-close.icon_custom.icon--medium.close-order
+                        .order-content.order-content--fixed.d-flex.flex-wrap
+                          - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
+                          - products.each_with_index do |product|
+                            .card-wrapper
+                              .card-content.card-counts
+                                .card-product-image
+                                  .product-image.product-image-order
+                                    %img{ src: "#{product[:image]}"}
+                                .card-product-description.pl-4
+                                  .card-product-title
+                                    %h4.m-0= product[:name]
+                                  .card-product-detail.card-detail-order
+                                    .card-price
+                                      %span $ #{product[:price]} X
+                                      %span.box-quantity= product[:quantity]
+                                    .card-product-delete
+                                      %i.icofont-ui-delete
+                        .order-footer.order-footer-product
+                          %span Total:
+                          %span $ 60
+
+          .workspace-right
+            .grid-order{ style: "position: fixed;"}
+              .order-wrapper
+                .order-header
+                  %h4 Mis ordenes
+                  %i.icofont-close.icon_custom.icon--medium.close-order
+                .order-content.order-content--fixed.d-flex.flex-wrap
+                  - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
+                  - products.each_with_index do |product|
+                    .card-wrapper
+                      .card-content.card-counts
+                        -# .card-product-image
+                          .product-image.product-image-order
+                            %img{ src: "#{product[:image]}"}
+                        .card-product-description.pl-4
+                          .card-product-title
+                            %h4.m-0= product[:name]
+                          .card-product-detail.card-detail-order
+                            .card-price
+                              %span $ #{product[:price]} X
+                              %span.box-quantity= product[:quantity]
+                            -# .card-product-delete
+                            -#   %i.icofont-ui-delete
+            .grid-order
+              - (10).times do |index|
+                .order-wrapper.tab-content{ id: "space_one-#{index}"}
+                  .order-header
+                    %h4 Mesa número #{index+ 1}
+                    %i.icofont-close.icon_custom.icon--medium.close-order
+                  .order-content.order-content--fixed.d-flex
+                    - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
+                    .order-counts
+                      -counts.each_with_index do |count|
+                        .card-content.card-counts.mb-4
+                          .order-card-counts
+                            .description-user.d-flex.justify-content-between
+                              %h4= count[:name]
+                              %p 10 min
+                            .list
+                              %dl
+                                %dt Productos
+                                %dd #{count[:products]}
+                                %dt Cuenta total
+                                %dd $#{count[:count]}
+                  .order-footer.sticky-footer
+                    %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                      %i.icofont-plus
+                      Agregar cuenta
+            
   -# MODAL CREATE COUNT
   .modal.fade#create_counts{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog" }
     .modal-dialog{role: "document"}
