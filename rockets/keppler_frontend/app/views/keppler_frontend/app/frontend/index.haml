@@ -159,22 +159,33 @@
                   %h4 Mis ordenes
                   %i.icofont-close.icon_custom.icon--medium.close-order
                 .order-content.order-content--fixed.d-flex.flex-wrap
-                  - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
-                  - products.each_with_index do |product|
-                    .card-wrapper
-                      .card-content.card-counts
-                        -# .card-product-image
-                          .product-image.product-image-order
-                            %img{ src: "#{product[:image]}"}
-                        .card-product-description.pl-4
-                          .card-product-title
-                            %h4.m-0= product[:name]
-                          .card-product-detail.card-detail-order
-                            .card-price
-                              %span $ #{product[:price]} X
-                              %span.box-quantity= product[:quantity]
-                            -# .card-product-delete
-                            -#   %i.icofont-ui-delete
+                  - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anaritza Lopez',products: '3', count: '30', product: "Cerveza", price: '30'}]
+                  .order-counts
+                    -counts.each_with_index do |count|
+                      .card-content.card-counts.mb-4
+                        .order-card-counts
+                          .description-user.d-flex.justify-content-between
+                            %h4= count[:name]
+                            %p.notification
+                          .details-table.mt-4
+                            .stat.d-flex.justify-content-center.flex-column.align-items-center
+                              %p Mesa
+                              %p 10 
+                            .stat.d-flex.justify-content-center.flex-column.align-items-center
+                              %p Tiempo
+                              %p 10 min
+                            .stat.d-flex.justify-content-center.flex-column.align-items-center
+                              %p N° de orden
+                              %p 37
+                          .list-product.d-flex.justify-content-between.align-items-baseline
+                            .card-product-title
+                              %p.m-0= count[:product]
+                            .card-product-detail.card-detail-order
+                              .card-price
+                                %span $ #{count[:price]} X
+                                %span.box-quantity= count[:count]
+                            
+
             .grid-order
               - (10).times do |index|
                 .order-wrapper.tab-content{ id: "space_one-#{index}"}
