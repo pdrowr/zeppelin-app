@@ -29,7 +29,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = true
+  config.assets.compile = false
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -102,8 +102,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.assets.precompile += %w( 
-    keppler_frontend/app/grapes/grapes-editor.js keppler_frontend/app/grapes/font-awesome.css 
+  config.assets.precompile += %w(
+    keppler_frontend/app/grapes/grapes-editor.js keppler_frontend/app/grapes/font-awesome.css
     keppler_frontend/app/grapes/grapes-editor.js keppler_frontend/app/grapes/grapes-custom.scss
   )
 end
