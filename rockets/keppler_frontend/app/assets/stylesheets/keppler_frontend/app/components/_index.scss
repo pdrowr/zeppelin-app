@@ -44,6 +44,9 @@
   @include respond-to(xs) {
     width: 100%;
   }
+  &.workspace-chef {
+    width: 100%;
+  }
 }
 
 .workspace-right {
@@ -97,6 +100,20 @@
   @include respond-to(xs) {
     width: 85%;
     padding: 0px;
+  }
+
+  &.workspace_top-chef {
+    width: 89%;
+    @include respond-to(md) {
+      width: 85%;
+    }
+    @include respond-to(sm) {
+      width: 83%;
+    }
+    @include respond-to(xs) {
+      width: 85%;
+      padding: 0px;
+    }
   }
 }
 
@@ -295,6 +312,11 @@
     }
   }
 
+  &.card-chef {
+    width: 190px;
+    margin-right: 13px;
+  }
+
   &.card-product {
     width: 265px;
     padding: 10px !important;
@@ -453,7 +475,12 @@
       transition: .6s ease-in-out;
     }
   }
+  &.order-content-chef {
+    padding: 0;
+  }
 }
+
+
 
 .order-card-counts {
   width: 100%;
@@ -750,7 +777,7 @@
   }
   
   @media (min-width: 0px) and (max-width: 340px){
-    right: 53% !important;
+    right: 58% !important;
   }
 
   @media (min-width: 341px) and (max-width: 350px){
@@ -778,4 +805,19 @@
 }
 .active-menu {
   left: 0 !important;
+}
+
+
+
+
+//*** chef **/
+
+.details-table-chef {
+  i {
+    font-size: 25px;
+  }
+
+  p {
+    font-size: 20px;
+  }
 }

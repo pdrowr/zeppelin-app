@@ -20,5 +20,10 @@ module KepplerFrontend
       @category = KepplerMenu::Category.find(params[:category_id])
       @dishes = @category.dishes
     end
+    def chef
+      @sections = KepplerEnvironments::Section.all
+      @categories = KepplerMenu::Category.all
+      @dishes = KepplerMenu::Dish.all
+    end
   end
 end
