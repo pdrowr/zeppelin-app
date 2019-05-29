@@ -4,25 +4,8 @@
     = render 'app/layouts/head'
   %body
     .container-custom
-      %aside
-        %ul.tabs
-          %li
-            = image_tag '/assets/app/z', class: 'isologo_white'
-          %li.tab-link.current{ 'data-tab' => 'tab-1' }
-            .icons
-              %i.icofont-dining-table
-          %li.tab-link{ 'data-tab' => 'tab-2' }
-            .icons
-              %i.icofont-restaurant
-          %li.tab-link{ 'data-tab' => 'tab-3' }
-            .icons
-              %i.icofont-restaurant
-        .footer
-          %ul
-            %li.tab-link{ 'data-tab' => 'tab-3' }
-              = link_to app_destroy_session_path do
-                .icons
-                  %i.icofont-power
+      = render '/keppler_frontend/app/frontend/partials/navbar'
+    
       .workspace
         .d-flex
           .workspace-left
@@ -57,107 +40,13 @@
                                 %h2= index + 1
                                 .card-icons
                                   %i.icofont-dining-table
-
-                        -#.grid-order
-                          - (10).times do |index|
-                            .order-wrapper.tab-content{ id: "space_one-#{index}"}
-                              .order-header
-                                %h4 Mesa número #{index+ 1}
-                                %i.icofont-close.icon_custom.icon--medium.close-order
-                              .order-content.order-content--fixed.d-flex
-                                - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
-                                .order-counts
-                                  -counts.each_with_index do |count|
-                                    .card-content.card-counts.mb-4
-                                      .order-card-counts
-                                        .description-user.d-flex.justify-content-between
-                                          %h4= count[:name]
-                                          %p 10 min
-                                        .list
-                                          %dl
-                                            %dt Productos
-                                            %dd #{count[:products]}
-                                            %dt Cuenta total
-                                            %dd $#{count[:count]}
-                              .order-footer.sticky-footer
-                                %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-                                  %i.icofont-plus
-                                  Agregar cuenta
-
-                #tab-2.tab-content
-                  %ul.sub-tabs#categories
-                    %li.tab-link.current{ 'data-tab' => 'category-1' } Comida
-                  #category-1.category-content.current
-                    .grid-wrapper.d-flex.flex-wrap
-                      - @categories.each_with_index do |category|
-                        .card-category
-                          %img{ src: '/assets/app/category' }
-                          -# category&.pictures&.first&.picture&.url
-                          .mask
-                            .card-category-content
-                              .category-title
-                                %h4= category.name
-                              .card-quantity
-                                %span= category.dishes_count
-
-                #tab-3.tab-content
-                  .back
-                    %i.icofont-arrow-left
-                    %span Volver
-                  .d-flex
-                    .grid-wrapper.d-flex.flex-wrap
-                      - @dishes.each_with_index do |dish, index|
-                        .card-wrapper.card-wrapper-products
-                          .card-content.card-product
-                            .card-product-image
-                              .product-image
-                                %img{ src: "/assets/app/product" }
-                            .card-product-description.pl-4
-                              .card-product-title
-                                %h4.m-0= dish.name
-                              .card-product-detail
-                                .card-price
-                                  %span $ #{dish.precio1}
-                                -# .card-product-quantity
-                                  %a.inc.qty-button +
-                                  %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "0", :pattern => "[0-9]*", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1"}/
-                                  %a.dec.qty-button -
-                            .card-product-btn
-                              %a{ 'data-target': ".add_product-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false } Agregar
-
-
-                    -#.grid-order
-                      .order-wrapper
-                        .order-header
-                          %h4 Mis ordenes
-                          %i.icofont-close.icon_custom.icon--medium.close-order
-                        .order-content.order-content--fixed.d-flex.flex-wrap
-                          - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
-                          - products.each_with_index do |product|
-                            .card-wrapper
-                              .card-content.card-counts
-                                .card-product-image
-                                  .product-image.product-image-order
-                                    %img{ src: "#{product[:image]}"}
-                                .card-product-description.pl-4
-                                  .card-product-title
-                                    %h4.m-0= product[:name]
-                                  .card-product-detail.card-detail-order
-                                    .card-price
-                                      %span $ #{product[:price]} X
-                                      %span.box-quantity= product[:quantity]
-                                    .card-product-delete
-                                      %i.icofont-ui-delete
-                        .order-footer.order-footer-product
-                          %span Total:
-                          %span $ 60
-
-          .workspace-right
+                                  
+          .workspace-right.sidebar
             .grid-order{ style: "position: fixed;"}
               .order-wrapper
                 .order-header
                   %h4 Mis ordenes
-                  %i.icofont-close.icon_custom.icon--medium.close-order
+                  %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                 .order-content.order-content--fixed.d-flex.flex-wrap
                   - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anaritza Lopez',products: '3', count: '30', product: "Cerveza", price: '30'}]
                   .order-counts
@@ -211,6 +100,9 @@
                     %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
                       %i.icofont-plus
                       Agregar cuenta
+    .btn-float.d-lg-none.d-block
+      %button.btn.btn_custom.btn--filled.btn-sidebar
+        %i.icofont-plus
             
   -# MODAL CREATE COUNT
   .modal.fade#create_counts{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog" }
@@ -274,8 +166,18 @@
                 %button.btn.btn_custom.btn--medium.btn--filled
                   Agregar
 
-
+:scss
+  .active-sidebar {
+    right: 14% !important;
+  }
 :javascript
+  $('.btn-sidebar').click(function(){
+    $('.sidebar').toggleClass('active-sidebar');
+  })
+  $('.close-order').click(function(){
+     $('.sidebar').removeClass('active-sidebar');
+  })
+  
   $('.dropdown-toggle').dropdown()
   $('.modal').on('shown.bs.modal', function () {
     $('body').addClass('overflow')

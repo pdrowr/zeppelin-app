@@ -4,6 +4,8 @@ KepplerFrontend::Engine.routes.draw do
   post '/sessions', to: 'app/sessions#create', as: :app_create_session
   get 'login', to: 'app/sessions#new', as: :app_new_session
   get 'logout', to: 'app/sessions#destroy', as: :app_destroy_session
+  get '/categories', to: 'app/frontend#categories', as: :app_categories
+  get '/category/:category_id/dishes', to: 'app/frontend#dishes', as: :app_category_dishes
 
   namespace :admin do
     scope :frontend, as: :frontend do

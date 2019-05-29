@@ -10,7 +10,7 @@
     %td{ style: 'width: 20%' }
       = link_to({ action: :show, id: object.category_id, search: @query }, { class: 'show-row' }) do
         %span
-          = image_tag object&.pictures&.first&.picture&.url || ''
+          = image_tag object.picture
     - attributes.each do |attribute|
       - if @attachments.dig('images', 'names').include?(attribute.to_s)
         %td{ style: 'width: 20%' }
@@ -42,7 +42,7 @@
               %i.icon-eye
               = t('keppler.actions.show')
         %li
-          = link_to admin_menu_pictures_path(object.category_id) do
+          = link_to admin_menu_pictures_path(object.category_id, model: object.class) do
             %i.icon-picture
             Fotos
         - if can?(model).update?

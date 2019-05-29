@@ -1,5 +1,12 @@
 .container-custom{
   display: flex;
+  position: relative;
+  @include respond-to(sm){
+    overflow: hidden;
+  }
+  @include respond-to(xs){
+    overflow: hidden;
+  }
 }
 
 .workspace {
@@ -9,16 +16,48 @@
   min-height: 100vh;
   height: auto;
   margin-left: 6%;
+
+  @include respond-to(md) {
+    margin-left: 7%;
+  }
+
+  @include respond-to(sm) {
+    margin-left: 8%;
+  }
 }
 
 
 .workspace-left {
   width: 70%;
   padding: 20px 25px 0px 35px;
+
+  @include respond-to(md) {
+    width: 65%;
+  }
+  @include respond-to(sm) {
+    width: 100%;
+  }
+  @include respond-to(xs) {
+    width: 100%;
+  }
 }
 
 .workspace-right {
   width: 30%;
+  
+  &.sidebar {
+    transition: 0.3s ease-in-out;
+    @include respond-to(sm) {
+      position: absolute;
+      right: -30%;
+      top: 22%;
+    }
+    @include respond-to(xs) {
+      position: absolute;
+      right: -30%;
+      top: 22%;
+    }
+  }
 }
 
 .workspace_top-container {
@@ -38,6 +77,14 @@
   position: fixed;
   width: 60%;
   z-index: 2;
+
+  @include respond-to(md) {
+    width: 50%;
+  }
+
+  @include respond-to(sm) {
+    width: 83%;
+  }
 }
 
 .workspace_title {
@@ -124,14 +171,19 @@
 
 .back {
   background-color: transparent;
-  color: $white;
   box-shadow: 0 0 0 transparent;
   transition: 0.3s ease-in-out;
   padding: 10px;
   width: 100px;
   font-family: $quicksand;
   cursor: pointer;
-
+  a {
+    color: $white;
+    text-decoration: none;
+    &:hover {
+      color: $white;
+    }
+  }
   &:hover {
     background-color: $dark-aside;
     box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
@@ -151,6 +203,14 @@
   margin: 10px 25px 10px 0px;
   cursor: pointer;
 
+  @include respond-to(md){
+    margin: 10px 15px 10px 0px;
+  }
+
+  @include respond-to(sm){
+    margin: 10px 15px 10px 0px;
+  }
+
   &.card-wrapper-products {
     margin: 10px 10px 10px 0px;
   }
@@ -165,6 +225,10 @@
   padding: 10px 20px;
   position: relative;
 
+  @include respond-to(sm) {
+    padding: 10px 15px;
+  }
+
   &.card-table{
     flex-direction: column;
     align-items: center;
@@ -175,6 +239,13 @@
     align-items: center;
     width: 320px;
     padding: 10px;
+
+    @include respond-to(md) {
+      width: 255px;
+    }
+    @include respond-to(sm) {
+      width: 255px;
+    }
   }
 
   &.card-product {
@@ -257,6 +328,15 @@
   min-height: 575px;
   width: 360px;
   position: relative;
+
+  @include respond-to(md) {
+    width: 300px;
+  }
+  @include respond-to(sm) {
+    width: 300px;
+    min-height: 410px;
+    z-index: 99;
+  }
 }
 
 .order-header {
@@ -327,6 +407,10 @@
     color: $white;
     font-family: $quicksand;
     @include font(18px, $normal);
+
+    @include respond-to(sm) {
+      @include font(15px, $normal);
+    }
   }
 
   p{
@@ -351,6 +435,15 @@
   position: relative;
   height: 220px;
 
+  @include respond-to(md) {
+    width: 45%;
+  }
+
+  @include respond-to(sm) {
+    width: 47%;
+    z-index: 0;
+  }
+
   img {
     border-radius: 5px;
     width: 100%;
@@ -365,8 +458,8 @@
     left: 5%;
     
     h4 {
-      font-family: $quicksand;
-      @include font(18px, $bold);
+      font-family: $bebas;
+      @include font(20px, $bold);
     }
   }
 
@@ -573,4 +666,13 @@
 
 .list-product {
   width: 100%;
+}
+
+
+
+.btn-float {
+  position: absolute;
+  bottom: 5%;
+  right: 4%;
+  z-index: 99;
 }

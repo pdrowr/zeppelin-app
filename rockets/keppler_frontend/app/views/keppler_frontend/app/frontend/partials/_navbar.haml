@@ -1,0 +1,22 @@
+%aside
+  %ul.tabs
+    %li
+      = link_to root_path do
+        = image_tag '/assets/app/z', class: 'isologo_white'
+    %li.tab-link.current
+      = link_to root_path do
+        .icons
+          %i.icofont-dining-table
+    %li.tab-link{  }
+      = link_to app_categories_path do
+        .icons
+          %i.icofont-restaurant
+    -# %li.tab-link{  }
+    -#   .icons
+    -#     %i.icofont-restaurant
+  .footer
+    %ul
+      %li.tab-link{  }
+        = link_to app_destroy_session_path do
+          .icons
+            %i.icofont-power

@@ -35,5 +35,9 @@ module KepplerMenu
     def category_id
       id.strip
     end
+
+    def picture
+      pictures.first.present? ? pictures.first.picture.url : '/assets/app/category'
+    end
   end
 end
