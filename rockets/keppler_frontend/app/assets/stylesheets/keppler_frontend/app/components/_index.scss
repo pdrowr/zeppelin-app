@@ -315,6 +315,14 @@
   &.card-chef {
     width: 190px;
     margin-right: 13px;
+
+    @include respond-to(sm) {
+      width: 200px;
+    }
+
+    @include respond-to(xs) {
+      width: 250px;
+    }
   }
 
   &.card-product {
