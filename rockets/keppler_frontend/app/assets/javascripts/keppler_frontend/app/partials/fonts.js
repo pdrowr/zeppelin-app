@@ -2,7 +2,7 @@
 $(document).ready(function () {
   WebFontConfig = {
     google: {
-      families: ['Quicksand:300,400,500,700', 'Montserrat: 400,500,600,700,800,900']
+      families: ['Quicksand:300,400,500,700']
     }
   };
   (function () {

@@ -11,5 +11,14 @@ module KepplerFrontend
       @categories = KepplerMenu::Category.all
       @dishes = KepplerMenu::Dish.all
     end
+
+    def categories
+      @categories = KepplerMenu::Category.all
+    end
+
+    def dishes
+      @category = KepplerMenu::Category.find(params[:category_id])
+      @dishes = @category.dishes
+    end
   end
 end

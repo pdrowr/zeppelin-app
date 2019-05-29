@@ -32,5 +32,9 @@ module KepplerMenu
     def self.index_attributes
       %i[]
     end
+
+    def picture
+      pictures.first.present? ? pictures.first.picture.url : '/assets/app/product"'
+    end
   end
 end

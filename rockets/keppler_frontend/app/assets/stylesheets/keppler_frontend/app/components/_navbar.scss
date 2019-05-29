@@ -6,6 +6,13 @@ aside{
   position: fixed;
   height: 100vh;
   width: 6%;
+
+  @include respond-to(md) {
+    width: 7%;
+  }
+  @include respond-to(sm) {
+    width: 9%;
+  }
 }
 
 ul{
@@ -52,6 +59,10 @@ ul.tabs li{
   padding: 15px;
   transition: .3s ease-in-out;
 
+  @include respond-to(sm){
+    padding: 10px;
+  }
+
   &:hover {
     background: $gradient !important;
     transition: .3s ease-in-out;
@@ -66,7 +77,11 @@ ul.tabs li{
   }
 }
 
-
+.sub-tabs {
+  li {
+    margin-right: 10px;
+  }
+}
 
 
 // .has-menu {

@@ -1,0 +1,77 @@
+!!!
+%html
+  %header
+    = render 'app/layouts/head'
+  %body
+    .container-custom
+      = render '/keppler_frontend/app/frontend/partials/navbar'
+      .workspace
+        .d-flex
+          .workspace-left
+            .workspace_top
+              .workspace_top-container
+                .workspace_title
+                  %h1 Platos
+                .workspace_avatar
+                  .avatar-content.dropdown
+                    %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
+                      .avatar
+                        = image_tag '/assets/app/profile'
+                      %strong=current_member.alias
+                    // .dropdown-menu{"aria-labelledby" => "out"}
+                    //   = link_to app_destroy_session_path, class: 'dropdown-item' do
+                    //     Cerrar Sesion
+
+            .workspace_center
+              .container-fluid.p-0
+                #tab-3
+                  .back
+                    = link_to app_categories_path do
+                      %i.icofont-arrow-left
+                      %span Volver
+                  .d-flex
+                    .grid-wrapper.d-flex.flex-wrap
+                      - @dishes.each_with_index do |dish, index|
+                        .card-wrapper.card-wrapper-products
+                          .card-content.card-product
+                            .card-product-image
+                              .product-image
+                                %img{ src: dishe.picture }
+                            .card-product-description.pl-4
+                              .card-product-title
+                                %h4.m-0= dish.name
+                              .card-product-detail
+                                .card-price
+                                  %span $ #{dish.precio1}
+                                -# .card-product-quantity
+                                  %a.inc.qty-button +
+                                  %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "0", :pattern => "[0-9]*", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1"}/
+                                  %a.dec.qty-button -
+                            .card-product-btn
+                              %a{ 'data-target': ".add_product-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false } Agregar
+          .workspace-right.sidebar
+            .grid-order{ style: "position: fixed;"}
+              .order-wrapper
+                .order-header
+                  %h4 Mis ordenes
+                  %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
+                .order-content.order-content--fixed.d-flex.flex-wrap
+                  - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
+                  - products.each_with_index do |product|
+                    .card-wrapper
+                      .card-content.card-counts
+                        .card-product-image
+                          .product-image.product-image-order
+                            %img{ src: "#{product[:image]}"}
+                        .card-product-description.pl-4
+                          .card-product-title
+                            %h4.m-0= product[:name]
+                          .card-product-detail.card-detail-order
+                            .card-price
+                              %span $ #{product[:price]} X
+                              %span.box-quantity= product[:quantity]
+                            .card-product-delete
+                              %i.icofont-ui-delete
+                .order-footer.order-footer-product
+                  %span Total:
+                  %span $ 60
