@@ -10,7 +10,7 @@
           .workspace-left
             .workspace_top
               .workspace_top-container
-                .workspace_title
+                .workspace_title.d-lg-block.d-sm-block.d-none
                   %h1 Platos
                 .workspace_avatar
                   .avatar-content.dropdown
@@ -23,6 +23,8 @@
                     //     Cerrar Sesion
 
             .workspace_center
+              .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
+                %h1 Platos
               .container-fluid.p-0
                 #tab-3
                   .back
@@ -36,7 +38,7 @@
                           .card-content.card-product
                             .card-product-image
                               .product-image
-                                %img{ src: dishe.picture }
+                                %img{ src: dish.picture }
                             .card-product-description.pl-4
                               .card-product-title
                                 %h4.m-0= dish.name
@@ -75,3 +77,17 @@
                 .order-footer.order-footer-product
                   %span Total:
                   %span $ 60
+    .btn-float.d-lg-none.d-block
+      %button.btn.btn_custom.btn--filled.btn-sidebar
+        %i.icofont-plus
+:javascript
+  $('.btn-sidebar').click(function(){
+    $('.sidebar').toggleClass('active-sidebar');
+  })
+
+  $('.menu-toggle').click(function(){
+    $('aside').toggleClass('active-menu');
+  })
+  $('.close-order').click(function(){
+     $('.sidebar').removeClass('active-sidebar');
+  })

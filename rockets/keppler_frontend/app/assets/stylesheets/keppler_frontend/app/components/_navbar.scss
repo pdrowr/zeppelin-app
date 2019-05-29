@@ -13,6 +13,18 @@ aside{
   @include respond-to(sm) {
     width: 9%;
   }
+
+  @include respond-to(xs) {
+    width: 20%;
+    z-index: 99;
+    position: absolute;
+    left: -26%;
+    transition: 0.3s ease-in-out;
+  }
+  @media (min-width: 651px) and (max-width: 767px){
+    width: 10%;
+  }
+
 }
 
 ul{
@@ -31,6 +43,10 @@ ul{
   width: 70%;
   margin-top: 20px;
   padding: 5px;
+
+  @include respond-to(xs) {
+    margin-top: 35px;
+  }
 }
 
 
@@ -63,6 +79,10 @@ ul.tabs li{
     padding: 10px;
   }
 
+  @include respond-to(xs){
+    padding: 10px;
+  }
+
   &:hover {
     background: $gradient !important;
     transition: .3s ease-in-out;
@@ -84,84 +104,16 @@ ul.tabs li{
 }
 
 
-// .has-menu {
-  //   position: relative;
-  //   &:hover, &:active {
-    //     a {
-      //       text-decoration: none;
-      //     }
-      //     .sub-menu {
-        //       display: block;
-        //       transition: 0s;
-        //     }
-        //   }
-        //   &.active {
-          //     .sub-menu {
-//       display: block;
-//       transition: 0s;
-//     }
-//   }
-// }
-
-// .sub-menu-icons {
-//   background-color: transparent;
-//   color: $white;
-//   &.active {
-//     background: $gradient !important;
-//   }
-// }
-
-
-// .sub-menu {
-//   position: absolute;
-//   left: 310px;
-//   top: 0;
-//   display: none;
-//   transition: 0s .03s;
-//   border-radius: 2px;
-//   -webkit-box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-//   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-// }
-
-// ul.sub-menu {
-//   position: absolute;
-//   left: 110%;
-//   top: 0;
-//   display: none;
-//   transition: 0s .03s;
-// }
-// @media all and (max-width: 600px) {
-  // aside{
-// width:60px;
-// padding:0px 10px;
-// }
-
-// ul li{
-// overflow:hidden;
-// padding:0px 10px;
-// }
-
-// .linktitle{
-  // position: absolute;
-  // z-index: -1;
-// left: -50px;
-// padding: 29px 15px;
-// line-height:0px;
-// background:#222527;
-// }
-
-// ul li:hover .linktitle{
-// left:80px;
-// }
-// .icons{
-// padding: 20px 10px;
-// }
-
-// ul li:hover .icons{
-// -webkit-transform:rotate(360deg);
-// -moz-transform:rotate(360deg);
-// -ms-transform:rotate(360deg);
-// -o-transform:rotate(360deg);
-// transform:rotate(360deg);
-// }
-// }
+.menu-movil {
+  position: absolute;
+  top: 4%;
+  left: 5%;
+  z-index: 999;
+  font-size: 25px;
+  i {
+    color: #fff;
+  }
+  @media (min-width: 651px) and (max-width: 767px){
+   left: 3%;
+  }
+}

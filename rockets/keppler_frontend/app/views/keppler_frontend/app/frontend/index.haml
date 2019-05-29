@@ -11,7 +11,7 @@
           .workspace-left
             .workspace_top
               .workspace_top-container
-                .workspace_title
+                .workspace_title.d-lg-block.d-sm-block.d-none
                   %h1 Mesas
                 .workspace_avatar
                   .avatar-content.dropdown
@@ -24,6 +24,8 @@
                     //     Cerrar Sesion
 
             .workspace_center
+              .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
+                %h1 Mesas
               .container-fluid.p-0
                 #tab-1.tab-content.current
                   %ul.sub-tabs#sub-tabs
@@ -40,7 +42,7 @@
                                 %h2= index + 1
                                 .card-icons
                                   %i.icofont-dining-table
-                                  
+
           .workspace-right.sidebar
             .grid-order{ style: "position: fixed;"}
               .order-wrapper
@@ -166,13 +168,13 @@
                 %button.btn.btn_custom.btn--medium.btn--filled
                   Agregar
 
-:scss
-  .active-sidebar {
-    right: 14% !important;
-  }
 :javascript
   $('.btn-sidebar').click(function(){
     $('.sidebar').toggleClass('active-sidebar');
+  })
+
+  $('.menu-toggle').click(function(){
+    $('aside').toggleClass('active-menu');
   })
   $('.close-order').click(function(){
      $('.sidebar').removeClass('active-sidebar');

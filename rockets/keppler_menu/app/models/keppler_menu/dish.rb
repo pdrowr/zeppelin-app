@@ -34,7 +34,7 @@ module KepplerMenu
     end
 
     def picture
-      pictures.first.present? ? pictures.first.picture.url : '/assets/app/product"'
+      pictures.first.present? ? pictures.first.picture.url : '/assets/app/product'
     end
   end
 end
