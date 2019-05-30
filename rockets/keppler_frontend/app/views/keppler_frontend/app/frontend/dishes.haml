@@ -80,6 +80,40 @@
     .btn-float.d-lg-none.d-block
       %button.btn.btn_custom.btn--filled.btn-sidebar
         %i.icofont-plus
+  -# ADD PRODUCT
+  - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg"},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg"},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg"}]
+  - products.each_with_index do |product,x|
+    .modal.fade{ class: "add_product-#{x}", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog" }
+      .modal-dialog{role: "document"}
+        .modal-content.p-0
+          .modal-header.p-0.modal-header-details
+            .modal-image
+              %img{ src: "#{product[:image]}"}
+            .mask
+              .modal-product-title
+                %h4= product[:name]
+                %span $ #{product[:price]}
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+              %i.icofont-close.icon_custom.icon--large
+          .modal-body
+            .d-flex
+              .product-detail
+                %p Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias.
+              .product-description
+                .card-product-detail.modal-body-details
+                  .card-price
+                    -# %span $ #{product[:price]}
+                  .card-product-quantity
+                    %a.inc.qty-button +
+                    %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "0", :pattern => "[0-9]*", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1"}/
+                    %a.dec.qty-button -
+            %form.mt-4
+              .form-group
+                %label.label_custom{for:""} Observaciones
+                %textarea.form-control.textarea_custom{ 'data-role'=> "tags-input" }
+              .float-right.mt-2
+                %button.btn.btn_custom.btn--medium.btn--filled
+                  Agregar
 :javascript
   $('.btn-sidebar').click(function(){
     $('.sidebar').toggleClass('active-sidebar');
