@@ -44,6 +44,9 @@
                                   %i.icofont-dining-table
 
           .workspace-right.sidebar
+            .float-right.right-btn-order
+              %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
+                Ver ordenes
             .grid-order{ style: "position: fixed;"}
               .order-wrapper
                 .order-header
@@ -82,7 +85,7 @@
                 .order-wrapper.tab-content{ id: "space_one-#{index}"}
                   .order-header
                     %h4 Mesa número #{index+ 1}
-                    %i.icofont-close.icon_custom.icon--medium.close-order
+                    %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                   .order-content.order-content--fixed.d-flex
                     - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
                     .order-counts
@@ -169,6 +172,10 @@
                   Agregar
 
 :javascript
+  $('.js-btn-order').click(function(){
+    $('.order-wrapper').removeClass('current')
+  })
+
   $('.btn-sidebar').click(function(){
     $('.sidebar').toggleClass('active-sidebar');
   })

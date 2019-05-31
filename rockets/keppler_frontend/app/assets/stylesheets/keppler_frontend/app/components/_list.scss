@@ -10,11 +10,13 @@ dl {
 dt {
   float: left;
   margin-right: 0% !important;
-  @include font(16px, $light);
+  font-size: 16px;
+  font-weight: 200 !important;
+  color: $white;
 }
 
 dd {
-  color: $primary;
+  color: $white;
   margin-left: 100% !important;
   margin-bottom: 0px;
   @include font(16px, $bold);
