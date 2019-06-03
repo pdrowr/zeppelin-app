@@ -14,7 +14,7 @@ module KepplerStaff
     acts_as_paranoid
 
     validates_presence_of :name, :email, :member_code, :type
-    validates_uniqueness_of :member_code, :alias
+    validates_uniqueness_of :member_code, :alias, :email
 
     def self.index_attributes
       %i[picture name alias email member_code type]

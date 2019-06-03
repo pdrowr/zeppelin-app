@@ -8,6 +8,7 @@ KepplerFrontend::Engine.routes.draw do
   get '/chef', to: 'app/frontend#chef', as: :app_chef
   get '/category/:category_id/dishes', to: 'app/frontend#dishes', as: :app_category_dishes
 
+  post '/client', to: 'app/frontend#manage_client', as: :app_manage_client
   namespace :admin do
     scope :frontend, as: :frontend do
       resources :themes do

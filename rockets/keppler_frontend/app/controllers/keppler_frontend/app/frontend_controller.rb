@@ -10,6 +10,14 @@ module KepplerFrontend
       @sections = KepplerEnvironments::Section.all
       @categories = KepplerMenu::Category.all
       @dishes = KepplerMenu::Dish.all
+      @client = KepplerClients::Client.new
+    end
+
+    def manage_client
+      @client = KepplerClients::Client.where(email: params[:client][:email])
+                                      .first_or_create(client_params)
+
+      redirect_to root_path(section: params[:section], table: params[:table])
     end
 
     def categories
@@ -20,10 +28,18 @@ module KepplerFrontend
       @category = KepplerMenu::Category.find(params[:category_id])
       @dishes = @category.dishes
     end
+
     def chef
       @sections = KepplerEnvironments::Section.all
       @categories = KepplerMenu::Category.all
       @dishes = KepplerMenu::Dish.all
     end
+
+    private
+
+    def client_params
+      params.require(:client).permit(:name, :email, :identification, :address)
+    end
+
   end
 end
