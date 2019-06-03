@@ -24,7 +24,7 @@ module KepplerEnvironments
     end
 
     def tables
-      Table.where(id_consumo: table_ids).map(&:id_consumo)
+      Table.where(id_consumo: table_ids)
     end
 
   end

@@ -7,7 +7,7 @@ module KepplerFrontend
     layout 'layouts/keppler_frontend/app/layouts/application'
 
     def index
-      @sections = KepplerEnvironments::Section.all
+      @sections = KepplerEnvironments::Section.order(position: :asc)
       @categories = KepplerMenu::Category.all
       @dishes = KepplerMenu::Dish.all
       @client = KepplerClients::Client.new
@@ -17,6 +17,7 @@ module KepplerFrontend
       @client = KepplerClients::Client.where(email: params[:client][:email])
                                       .first_or_create(client_params)
 
+      @client.create_order(params[:table], current_member.id)
       redirect_to root_path(section: params[:section], table: params[:table])
     end
 
@@ -30,7 +31,7 @@ module KepplerFrontend
     end
 
     def chef
-      @sections = KepplerEnvironments::Section.all
+      # @sections = KepplerEnvironments::Section.all
       @categories = KepplerMenu::Category.all
       @dishes = KepplerMenu::Dish.all
     end
