@@ -4,6 +4,7 @@
     = render 'app/layouts/head'
   %body
     .container-custom
+    .workspace-chef
       = sidebar
       .workspace
         .d-flex
@@ -11,45 +12,93 @@
             .workspace_top.workspace_top-chef
               .workspace_top-container
                 .workspace_title.d-lg-block.d-sm-block.d-none
-                  %h1 Cocina
+                  %h1 Cuenta
                 .workspace_avatar
                   .avatar-content.dropdown
                     %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
                       .avatar
                         = image_tag '/assets/app/profile'
                       %strong=current_member.alias
-
             .workspace_center.workspace-center-chef
               .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
-                %h1 Cocina
+                %h1 Cuenta
               .container-fluid.p-0
                 #tab-4
                   .grid-wrapper.grid-wrapper-chef
-                    - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Pedro Guerra',products: '3', count: '30', product: "Cerveza", price: '30'}, {name: 'Paola Vargas',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anyelo Petit',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Patricia Álvarez',products: '3', count: '30', product: "Cerveza", price: '30'}]
+                    .content-account.d-flex
+                      .data-account
+                        .avatar-client
+                          = image_tag '/assets/app/profile'
+                        .name-client
+                          %h2 Gladibeth Franco
+                        .description-client
+                          %h2 Información de contacto
+                          .data-client
+                            %p Email
+                            %span Gladibethdelosa@gmail.com
+                          .data-client
+                            %p Teléfono
+                            %span 4120684410
+                          .data-client
+                            %p Dirección
+                            %span Cl 83 A #48-177 a 48-1, Itagüi, Medellín, Antioquia
+                      .listing
+                       
+                        .grid-order.grid-order-account
+                          .order-wrapper.order-wrapper-account
+                            .order-header
+                              %h4 Mis ordenes mesa 
+                              %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
+                            .order-content.order-content--fixed.d-flex.flex-column
+                              .float-right.right-btn-order.d-flex.justify-content-end
+                                %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
+                                  Ver ordenes
+                              - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
+                              .d-flex.flex-column
+                                - products.each_with_index do |product|
+                                  .card-wrapper.card-account
+                                    .card-content.card-product-account
+                                      .card-product-image.account-product-image
+                                        .product-image.product-image-order
+                                          %img{ src: "#{product[:image]}"}
+                                      .card-product-description.pl-4.account-product-description
+                                        .card-product-title
+                                          %h4.m-0= product[:name]
+                                        .card-product-detail.card-detail-order
+                                          .card-price
+                                            %span $ #{product[:price]} X
+                                            %span.box-quantity= product[:quantity]
+                                          .card-product-delete
+                                            %i.icofont-ui-delete
+                              .order-footer.order-footer-product.order-footer-account
+                                %span Total:
+                                %span $ 60
+                        
+                    -# - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Pedro Guerra',products: '3', count: '30', product: "Cerveza", price: '30'}, {name: 'Paola Vargas',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anyelo Petit',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Patricia Álvarez',products: '3', count: '30', product: "Cerveza", price: '30'}]
                   
-                    -counts.each_with_index do |count|
-                      .card-content.card-counts.mb-4.card-chef
-                        .order-card-counts.list-content
-                          .description-user.d-flex.justify-content-between.list-header
-                            %h4= count[:name]
-                            %p Mesa 10
-                          - counts =[{name: 'Pizza Margarita',products: '3', count: '30'}, {name: 'Hamburguesas',products: '1',count: '10'},{name: 'Hamburguesas',products: '1',count: '10'}, {name: 'Cafe',products: '1',count: '10'}]
-                          .list-cards
-                            -counts.each_with_index do |count|
-                              .list-card
-                                .description-user.d-flex.justify-content-between.name-dishes
-                                  %h4= count[:name]
-                                  -# %p 10 min
-                                .list
-                                  %dl
-                                    %dt Cantidad de platos
-                                    %dd #{count[:products]}
-                                    .div.observations
-                                      %p Observaciones:
-                                      .tags
-                                        %span.tag Queso
-                                        %span.tag Vegetales
-                                        %span.tag Amor
+                    -# -counts.each_with_index do |count|
+                    -#   .card-content.card-counts.mb-4.card-chef
+                    -#     .order-card-counts.list-content
+                    -#       .description-user.d-flex.justify-content-between.list-header
+                    -#         %h4= count[:name]
+                    -#         %p Mesa 10
+                    -#       - counts =[{name: 'Pizza Margarita',products: '3', count: '30'}, {name: 'Hamburguesas',products: '1',count: '10'},{name: 'Hamburguesas',products: '1',count: '10'}, {name: 'Cafe',products: '1',count: '10'}]
+                    -#       .list-cards
+                    -#         -counts.each_with_index do |count|
+                    -#           .list-card
+                    -#             .description-user.d-flex.justify-content-between.name-dishes
+                    -#               %h4= count[:name]
+                    -#               -# %p 10 min
+                    -#             .list
+                    -#               %dl
+                    -#                 %dt Cantidad de platos
+                    -#                 %dd #{count[:products]}
+                    -#                 .div.observations
+                    -#                   %p Observaciones:
+                    -#                   .tags
+                    -#                     %span.tag Queso
+                    -#                     %span.tag Vegetales
+                    -#                     %span.tag Amor
                           .list-bottom
 
 

@@ -36,11 +36,22 @@ module KepplerFrontend
       @dishes = KepplerMenu::Dish.all
     end
 
+    def runner
+      @sections = KepplerEnvironments::Section.all
+      @categories = KepplerMenu::Category.all
+      @dishes = KepplerMenu::Dish.all
+    end
+
+    def account
+      @sections = KepplerEnvironments::Section.all
+      @categories = KepplerMenu::Category.all
+      @dishes = KepplerMenu::Dish.all
+    end
+
     private
 
     def client_params
       params.require(:client).permit(:name, :email, :identification, :address)
     end
-
   end
 end

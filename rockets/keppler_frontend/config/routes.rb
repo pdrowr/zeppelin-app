@@ -6,6 +6,8 @@ KepplerFrontend::Engine.routes.draw do
   get 'logout', to: 'app/sessions#destroy', as: :app_destroy_session
   get '/categories', to: 'app/frontend#categories', as: :app_categories
   get '/chef', to: 'app/frontend#chef', as: :app_chef
+  get '/runner', to: 'app/frontend#runner', as: :app_runner
+  get '/account', to: 'app/frontend#account', as: :app_account
   get '/category/:category_id/dishes', to: 'app/frontend#dishes', as: :app_category_dishes
 
   post '/client', to: 'app/frontend#manage_client', as: :app_manage_client

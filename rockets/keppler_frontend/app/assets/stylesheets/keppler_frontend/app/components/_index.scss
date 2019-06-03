@@ -49,6 +49,9 @@
   &.workspace-chef {
     width: 100%;
   }
+  &.workspace-left-runner{
+    width: 50%;
+  }
 }
 
 .workspace-right {
@@ -70,6 +73,10 @@
       right: -30%;
       top: 15%;
     }
+  }
+  &.workspace-right-runner {
+    width: 50%;
+    padding: 20px 25px 0px 35px;
   }
 }
 
@@ -120,6 +127,10 @@
       width: 85%;
       padding: 0px;
     }
+  }
+
+  &.workspace_top-runner {
+    width: 42%;
   }
 }
 
@@ -219,6 +230,11 @@
       overflow-y: hidden;
     }
   }
+
+  &.workspace_center-runner {
+    margin-top: 40px;
+    max-height: 90vh;
+  }
 }
 
 
@@ -281,6 +297,9 @@
     }
 
   }
+  &.grid-wrapper-runner {
+    height: 77vh;
+  }
 
 }
 
@@ -305,6 +324,10 @@
 
   &.card-wrapper-products {
     margin: 10px 10px 10px 0px;
+  }
+
+  &.card-account {
+    margin: 10px 0px 10px 0px;
   }
 }
 
@@ -380,6 +403,11 @@
     }
   }
 
+  &.card-product-account {
+    width: 100%;
+
+  }
+
 
   h2 {
     margin: 0px;
@@ -446,6 +474,11 @@
 .grid-order {
   width: 30%;
   margin-top: 125px;
+  &.grid-order-account {
+    margin-top: 0px;
+    width: 100%;
+  }
+
 }
 
 .order-wrapper {
@@ -455,6 +488,11 @@
   min-height: 490px;
   width: 360px;
   position: relative;
+
+  &.order-wrapper-account {
+    width: 100%;
+    min-height: 580px;
+  }
 
   @include respond-to(md) {
     width: 300px;
@@ -513,6 +551,10 @@
     span {
       margin: 0 5px;
     }
+  }
+  &.order-footer-account {
+    height: 20%;
+    background-color: $dark-aside
   }
 }
 
@@ -626,6 +668,10 @@
     border-radius: 5px;
     padding: 2px 10px;
     color: #fff;
+
+    &.listo {
+      background-color: green;
+    }
   }
 }
 
@@ -729,6 +775,10 @@
       height: 100%;
     }
   }
+
+  &.account-product-image{
+    width: 10%;
+  }
 }
 
 .card-product-description{
@@ -740,6 +790,9 @@
       font-family: $quicksand;
 
     }
+  }
+  &.account-product-description {
+    width: 90%;
   }
 }
 
@@ -946,4 +999,58 @@
   p {
     font-size: 20px;
   }
+}
+
+/** runner*/
+.status-runner {
+  color: $white;
+  @include font(20px, $light);
+  margin-top: 30px;
+
+  &.listo {
+    color: green;
+  }
+  &.pending {
+    color: $primary;
+  }
+}
+
+/** account*/
+.data-account {
+  width: 40%;
+  background-color: $dark-cards;
+  padding: 25px 15px;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+.name-client {
+  display: flex;
+  justify-content: center;
+  h2 {
+    color: $white;
+    @include font(20px, $light);
+    font-family: $quicksand;
+  }
+}
+.description-client {
+  h2 {
+    color: $white;
+    @include font(20px, $light);
+    font-family: $quicksand;
+  }
+}
+
+.data-client {
+  color: $white;
+  font-family: $quicksand;
+  margin: 20px 0;
+  p {
+    margin: 0;
+    @include font(16px, $bold);
+  }
+}
+
+.listing {
+  width: 60%;
+  // background-color: red;
 }
