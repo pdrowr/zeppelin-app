@@ -35,13 +35,16 @@
                           %h2 Información de contacto
                           .data-client
                             %p Email
-                            %span Gladibethdelosa@gmail.com
+                            %span
+                              Gladibethdelosa@gmail.com
                           .data-client
                             %p Teléfono
-                            %span 4120684410
+                            %span
+                              4120684410
                           .data-client
                             %p Dirección
-                            %span Cl 83 A #48-177 a 48-1, Itagüi, Medellín, Antioquia
+                            %span
+                              Cl 83 A #48-177 a 48-1, Itagüi, Medellín, Antioquia
                       .listing
                        
                         .grid-order.grid-order-account
@@ -51,8 +54,8 @@
                               %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                             .order-content.order-content--fixed.d-flex.flex-column
                               .float-right.right-btn-order.d-flex.justify-content-end
-                                %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
-                                  Ver ordenes
+                                %button.btn.btn_custom.btn--medium.btn--filled
+                                  Agregar
                               - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
                               .d-flex.flex-column
                                 - products.each_with_index do |product|
@@ -71,8 +74,12 @@
                                           .card-product-delete
                                             %i.icofont-ui-delete
                               .order-footer.order-footer-product.order-footer-account
-                                %span Total:
-                                %span $ 60
+                                .total-quantity
+                                  %span Cantidad de productos:
+                                  %span 8
+                                .total-quantity
+                                  %span Total:
+                                  %span $ 60
                         
                     -# - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Pedro Guerra',products: '3', count: '30', product: "Cerveza", price: '30'}, {name: 'Paola Vargas',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anyelo Petit',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Patricia Álvarez',products: '3', count: '30', product: "Cerveza", price: '30'}]
                   
