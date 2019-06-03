@@ -49,6 +49,9 @@
   &.workspace-chef {
     width: 100%;
   }
+  &.workspace-left-runner{
+    width: 50%;
+  }
 }
 
 .workspace-right {
@@ -70,6 +73,10 @@
       right: -30%;
       top: 15%;
     }
+  }
+  &.workspace-right-runner {
+    width: 50%;
+    padding: 20px 25px 0px 35px;
   }
 }
 
@@ -120,6 +127,10 @@
       width: 85%;
       padding: 0px;
     }
+  }
+
+  &.workspace_top-runner {
+    width: 42%;
   }
 }
 
@@ -219,6 +230,11 @@
       overflow-y: hidden;
     }
   }
+
+  &.workspace_center-runner {
+    margin-top: 40px;
+    max-height: 90vh;
+  }
 }
 
 
@@ -280,6 +296,9 @@
       height: 75vh;
     }
 
+  }
+  &.grid-wrapper-runner {
+    height: 77vh;
   }
 
 }
@@ -626,6 +645,10 @@
     border-radius: 5px;
     padding: 2px 10px;
     color: #fff;
+
+    &.listo {
+      background-color: green;
+    }
   }
 }
 
@@ -946,4 +969,46 @@
   p {
     font-size: 20px;
   }
+}
+
+/** runner*/
+.status-runner {
+  color: $white;
+  @include font(20px, $light);
+  margin-top: 30px;
+
+  &.listo {
+    color: green;
+  }
+  &.pending {
+    color: $primary;
+  }
+}
+
+/** account*/
+.data-account {
+  width: 40%;
+  background-color: $dark-cards;
+  padding: 15px;
+  border-radius: 5px;
+}
+.name-client {
+  display: flex;
+  justify-content: center;
+  h2 {
+    color: $white;
+    @include font(20px, $light);
+    font-family: $quicksand;
+  }
+}
+.description-client {
+  h2 {
+    color: $white;
+    @include font(20px, $light);
+    font-family: $quicksand;
+  }
+}
+
+.data-client {
+  color: $white;
 }

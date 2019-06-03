@@ -1,0 +1,163 @@
+!!!
+%html
+  %header
+    = render 'app/layouts/head'
+  %body
+    .container-custom
+      = render '/keppler_frontend/app/frontend/partials/navbar'
+    
+      .workspace
+        .d-flex
+          .workspace-left.workspace-chef
+            .workspace_top.workspace_top-chef
+              .workspace_top-container
+                .workspace_title.d-lg-block.d-sm-block.d-none
+                  %h1 Cuenta
+                .workspace_avatar
+                  .avatar-content.dropdown
+                    %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
+                      .avatar
+                        = image_tag '/assets/app/profile'
+                      %strong=current_member.alias
+                    // .dropdown-menu{"aria-labelledby" => "out"}
+                    //   = link_to app_destroy_session_path, class: 'dropdown-item' do
+                    //     Cerrar Sesion
+
+            .workspace_center.workspace-center-chef
+              .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
+                %h1 Cuenta
+              .container-fluid.p-0
+                #tab-4
+                  .grid-wrapper.grid-wrapper-chef
+                    .data-account
+                      .avatar-client
+                        = image_tag '/assets/app/profile'
+                      .name-client
+                        %h2 Gladibeth Franco
+                      .description-client
+                        %h2 Información de contacto
+                        .data-client
+                          %p Email
+                          %span Gladibethdelosa@gmail.com
+                        .data-client
+                          %p Teléfono
+                          %span 4120684410
+                        .data-client
+                          %p Dirección
+                          %span Cl 83 A #48-177 a 48-1, Itagüi, Medellín, Antioquia
+
+                        
+                    -# - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Pedro Guerra',products: '3', count: '30', product: "Cerveza", price: '30'}, {name: 'Paola Vargas',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anyelo Petit',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Patricia Álvarez',products: '3', count: '30', product: "Cerveza", price: '30'}]
+                  
+                    -# -counts.each_with_index do |count|
+                    -#   .card-content.card-counts.mb-4.card-chef
+                    -#     .order-card-counts.list-content
+                    -#       .description-user.d-flex.justify-content-between.list-header
+                    -#         %h4= count[:name]
+                    -#         %p Mesa 10
+                    -#       - counts =[{name: 'Pizza Margarita',products: '3', count: '30'}, {name: 'Hamburguesas',products: '1',count: '10'},{name: 'Hamburguesas',products: '1',count: '10'}, {name: 'Cafe',products: '1',count: '10'}]
+                    -#       .list-cards
+                    -#         -counts.each_with_index do |count|
+                    -#           .list-card
+                    -#             .description-user.d-flex.justify-content-between.name-dishes
+                    -#               %h4= count[:name]
+                    -#               -# %p 10 min
+                    -#             .list
+                    -#               %dl
+                    -#                 %dt Cantidad de platos
+                    -#                 %dd #{count[:products]}
+                    -#                 .div.observations
+                    -#                   %p Observaciones:
+                    -#                   .tags
+                    -#                     %span.tag Queso
+                    -#                     %span.tag Vegetales
+                    -#                     %span.tag Amor
+                          .list-bottom
+
+
+
+    -#       .workspace-right.sidebar
+    -#         .grid-order{ style: "position: fixed;"}
+    -#           .order-wrapper
+    -#             .order-header
+    -#               %h4 Mis ordenes
+    -#               %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
+    -#             .order-content.order-content--fixed.d-flex.flex-wrap
+    -#               - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anaritza Lopez',products: '3', count: '30', product: "Cerveza", price: '30'}]
+    -#               .order-counts
+    -#                 -counts.each_with_index do |count|
+    -#                   .card-content.card-counts.mb-4
+    -#                     .order-card-counts
+    -#                       .description-user.d-flex.justify-content-between
+    -#                         %h4= count[:name]
+    -#                         %p.notification
+    -#                       .details-table.mt-4
+    -#                         .stat.d-flex.justify-content-center.flex-column.align-items-center
+    -#                           %p Mesa
+    -#                           %p 10 
+    -#                         .stat.d-flex.justify-content-center.flex-column.align-items-center
+    -#                           %p Tiempo
+    -#                           %p 10 min
+    -#                         .stat.d-flex.justify-content-center.flex-column.align-items-center
+    -#                           %p N° de orden
+    -#                           %p 37
+    -#                       .list-product.d-flex.justify-content-between.align-items-baseline
+    -#                         .card-product-title
+    -#                           %p.m-0= count[:product]
+    -#                         .card-product-detail.card-detail-order
+    -#                           .card-price
+    -#                             %span $ #{count[:price]} X
+    -#                             %span.box-quantity= count[:count]
+                            
+
+    -#         .grid-order
+    -#           - (10).times do |index|
+    -#             .order-wrapper.tab-content{ id: "space_one-#{index}"}
+    -#               .order-header
+    -#                 %h4 Mesa número #{index+ 1}
+    -#                 %i.icofont-close.icon_custom.icon--medium.close-order
+    -#               .order-content.order-content--fixed.d-flex
+    -#                 - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
+    -#                 .order-counts
+    -#                   -counts.each_with_index do |count|
+    -#                     .card-content.card-counts.mb-4
+    -#                       .order-card-counts
+    -#                         .description-user.d-flex.justify-content-between
+    -#                           %h4= count[:name]
+    -#                           %p 10 min
+    -#                         .list
+    -#                           %dl
+    -#                             %dt Productos
+    -#                             %dd #{count[:products]}
+    -#                             %dt Cuenta total
+    -#                             %dd $#{count[:count]}
+    -#               .order-footer.sticky-footer
+    -#                 %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+    -#                   %i.icofont-plus
+    -#                   Agregar cuenta
+    -# .btn-float.d-lg-none.d-block
+    -#   %button.btn.btn_custom.btn--filled.btn-sidebar
+    -#     %i.icofont-plus
+            
+
+
+:javascript
+  $('.btn-sidebar').click(function(){
+    $('.sidebar').toggleClass('active-sidebar');
+  })
+
+  $('.menu-toggle').click(function(){
+    $('aside').toggleClass('active-menu');
+  })
+  $('.close-order').click(function(){
+     $('.sidebar').removeClass('active-sidebar');
+  })
+  
+  $('.dropdown-toggle').dropdown()
+  $('.modal').on('shown.bs.modal', function () {
+    $('body').addClass('overflow')
+    $('.close').click(function(){
+      $('body').removeClass('overflow')
+      $('.modal').removeClass('in')
+    })
+  });

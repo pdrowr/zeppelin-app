@@ -25,5 +25,17 @@ module KepplerFrontend
       @categories = KepplerMenu::Category.all
       @dishes = KepplerMenu::Dish.all
     end
+
+    def runner
+      @sections = KepplerEnvironments::Section.all
+      @categories = KepplerMenu::Category.all
+      @dishes = KepplerMenu::Dish.all
+    end
+
+    def account
+      @sections = KepplerEnvironments::Section.all
+      @categories = KepplerMenu::Category.all
+      @dishes = KepplerMenu::Dish.all
+    end
   end
 end
