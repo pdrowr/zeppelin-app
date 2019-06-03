@@ -29,23 +29,54 @@
               .container-fluid.p-0
                 #tab-4
                   .grid-wrapper.grid-wrapper-chef
-                    .data-account
-                      .avatar-client
-                        = image_tag '/assets/app/profile'
-                      .name-client
-                        %h2 Gladibeth Franco
-                      .description-client
-                        %h2 Información de contacto
-                        .data-client
-                          %p Email
-                          %span Gladibethdelosa@gmail.com
-                        .data-client
-                          %p Teléfono
-                          %span 4120684410
-                        .data-client
-                          %p Dirección
-                          %span Cl 83 A #48-177 a 48-1, Itagüi, Medellín, Antioquia
-
+                    .content-account.d-flex
+                      .data-account
+                        .avatar-client
+                          = image_tag '/assets/app/profile'
+                        .name-client
+                          %h2 Gladibeth Franco
+                        .description-client
+                          %h2 Información de contacto
+                          .data-client
+                            %p Email
+                            %span Gladibethdelosa@gmail.com
+                          .data-client
+                            %p Teléfono
+                            %span 4120684410
+                          .data-client
+                            %p Dirección
+                            %span Cl 83 A #48-177 a 48-1, Itagüi, Medellín, Antioquia
+                      .listing
+                       
+                        .grid-order.grid-order-account
+                          .order-wrapper.order-wrapper-account
+                            .order-header
+                              %h4 Mis ordenes mesa 
+                              %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
+                            .order-content.order-content--fixed.d-flex.flex-column
+                              .float-right.right-btn-order
+                                %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
+                                  Ver ordenes
+                              - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
+                              .d-flex.flex-column
+                                - products.each_with_index do |product|
+                                  .card-wrapper
+                                    .card-content.card-counts
+                                      .card-product-image
+                                        .product-image.product-image-order
+                                          %img{ src: "#{product[:image]}"}
+                                      .card-product-description.pl-4
+                                        .card-product-title
+                                          %h4.m-0= product[:name]
+                                        .card-product-detail.card-detail-order
+                                          .card-price
+                                            %span $ #{product[:price]} X
+                                            %span.box-quantity= product[:quantity]
+                                          .card-product-delete
+                                            %i.icofont-ui-delete
+                              .order-footer.order-footer-product
+                                %span Total:
+                                %span $ 60
                         
                     -# - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Pedro Guerra',products: '3', count: '30', product: "Cerveza", price: '30'}, {name: 'Paola Vargas',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anyelo Petit',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Patricia Álvarez',products: '3', count: '30', product: "Cerveza", price: '30'}]
                   

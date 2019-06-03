@@ -465,6 +465,11 @@
 .grid-order {
   width: 30%;
   margin-top: 125px;
+  &.grid-order-account {
+    margin-top: 0px;
+    width: 100%;
+  }
+
 }
 
 .order-wrapper {
@@ -474,6 +479,10 @@
   min-height: 490px;
   width: 360px;
   position: relative;
+
+  &.order-wrapper-account {
+    width: 100%;
+  }
 
   @include respond-to(md) {
     width: 300px;
@@ -989,8 +998,9 @@
 .data-account {
   width: 40%;
   background-color: $dark-cards;
-  padding: 15px;
+  padding: 25px 15px;
   border-radius: 5px;
+  margin-right: 20px;
 }
 .name-client {
   display: flex;
@@ -1011,4 +1021,15 @@
 
 .data-client {
   color: $white;
+  font-family: $quicksand;
+  margin: 20px 0;
+  p {
+    margin: 0;
+    @include font(16px, $bold);
+  }
+}
+
+.listing {
+  width: 60%;
+  // background-color: red;
 }
