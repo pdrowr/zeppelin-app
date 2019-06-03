@@ -1,0 +1,34 @@
+.float-right.right-btn-order
+  %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
+    Ver ordenes
+.grid-order{ style: "position: fixed;"}
+  .order-wrapper
+    .order-header
+      %h4 Mis ordenes
+      %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
+    .order-content.order-content--fixed.d-flex.flex-wrap
+      -# - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anaritza Lopez',products: '3', count: '30', product: "Cerveza", price: '30'}]
+      -# .order-counts
+      -#   - counts.each_with_index do |count|
+      -#     .card-content.card-counts.mb-4
+      -#       .order-card-counts
+      -#         .description-user.d-flex.justify-content-between
+      -#           %h4= count[:name]
+      -#           %p.notification
+      -#         .details-table.mt-4
+      -#           .stat.d-flex.justify-content-center.flex-column.align-items-center
+      -#             %p Mesa
+      -#             %p 10
+      -#           .stat.d-flex.justify-content-center.flex-column.align-items-center
+      -#             %p Tiempo
+      -#             %p 10 min
+      -#           .stat.d-flex.justify-content-center.flex-column.align-items-center
+      -#             %p N° de orden
+      -#             %p 37
+      -#         .list-product.d-flex.justify-content-between.align-items-baseline
+      -#           .card-product-title
+      -#             %p.m-0= count[:product]
+      -#           .card-product-detail.card-detail-order
+      -#             .card-price
+      -#               %span $ #{count[:price]} X
+      -#               %span.box-quantity= count[:count]

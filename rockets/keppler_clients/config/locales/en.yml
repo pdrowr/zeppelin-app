@@ -1,0 +1,22 @@
+en:
+  keppler:
+    sidebar-menu:
+      keppler-clients: Clients
+      keppler-clients-submenu:
+        client: Client
+    permissions:
+    models:
+      singularize:
+        client: client
+      pluralize:
+        clients: clients
+    modules:
+      admin/client: Client
+    messages:
+    actions:
+  activerecord:
+    attributes:
+    errors:
+      messages:
+  errors:
+  helpers:

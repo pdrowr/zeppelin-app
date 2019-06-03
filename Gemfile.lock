@@ -9,6 +9,15 @@ PATH
       simple_form
 
 PATH
+  remote: rockets/keppler_clients
+  specs:
+    keppler_clients (0.1.0)
+      haml_rails
+      pundit
+      rails (= 5.2.0)
+      simple_form
+
+PATH
   remote: rockets/keppler_environments
   specs:
     keppler_environments (0.1.0)
@@ -46,6 +55,15 @@ PATH
   remote: rockets/keppler_menu
   specs:
     keppler_menu (0.1.0)
+      haml_rails
+      pundit
+      rails (= 5.2.0)
+      simple_form
+
+PATH
+  remote: rockets/keppler_orders
+  specs:
+    keppler_orders (0.1.0)
       haml_rails
       pundit
       rails (= 5.2.0)
@@ -629,11 +647,13 @@ DEPENDENCIES
   kaminari (~> 1.1, >= 1.1.1)
   kaminari-i18n (= 0.5.0)
   keppler_capsules!
+  keppler_clients!
   keppler_environments!
   keppler_frontend!
   keppler_ga_dashboard!
   keppler_languages!
   keppler_menu!
+  keppler_orders!
   keppler_staff!
   loofah (>= 2.2.3)
   mini_magick (= 4.8.0)
