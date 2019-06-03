@@ -10,7 +10,7 @@
           .workspace-left
             .workspace_top
               .workspace_top-container
-                .workspace_title
+                .workspace_title.d-lg-block.d-sm-block.d-none
                   %h1 Categorías
                 .workspace_avatar
                   .avatar-content.dropdown
@@ -20,6 +20,8 @@
                       %strong=current_member.alias
 
             .workspace_center
+              .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
+                %h1 Categorías
               .container-fluid.p-0
                 #tab-2
                   %ul.sub-tabs#categories
@@ -62,3 +64,17 @@
                 .order-footer.order-footer-product
                   %span Total:
                   %span $ 60
+    .btn-float.d-lg-none.d-block
+      %button.btn.btn_custom.btn--filled.btn-sidebar
+        %i.icofont-plus
+:javascript
+  $('.btn-sidebar').click(function(){
+    $('.sidebar').toggleClass('active-sidebar');
+  })
+
+  $('.menu-toggle').click(function(){
+    $('aside').toggleClass('active-menu');
+  })
+  $('.close-order').click(function(){
+     $('.sidebar').removeClass('active-sidebar');
+  })

@@ -18,11 +18,15 @@
   margin-left: 6%;
 
   @include respond-to(md) {
-    margin-left: 7%;
+    margin-left: 6%;
   }
 
   @include respond-to(sm) {
     margin-left: 8%;
+  }
+  @include respond-to(xs) {
+    margin-left: 0%;
+    width: 100%;
   }
 }
 
@@ -36,8 +40,13 @@
   }
   @include respond-to(sm) {
     width: 100%;
+    padding: 20px 40px 0px 35px;
   }
   @include respond-to(xs) {
+    width: 100%;
+    padding: 20px 15px 0px 35px;
+  }
+  &.workspace-chef {
     width: 100%;
   }
 }
@@ -45,6 +54,10 @@
 .workspace-right {
   width: 30%;
   
+  .right-btn-order {
+    padding: 45px 25px;
+  }
+
   &.sidebar {
     transition: 0.3s ease-in-out;
     @include respond-to(sm) {
@@ -55,7 +68,7 @@
     @include respond-to(xs) {
       position: absolute;
       right: -30%;
-      top: 22%;
+      top: 15%;
     }
   }
 }
@@ -68,6 +81,10 @@
   // background-color: #16161d;
   border-radius: 5px;
   padding: 20px 0px;
+
+  @include respond-to(xs) {
+    padding: 0;
+  }
 }
 
 
@@ -85,15 +102,40 @@
   @include respond-to(sm) {
     width: 83%;
   }
+
+  @include respond-to(xs) {
+    width: 85%;
+    padding: 0px;
+  }
+
+  &.workspace_top-chef {
+    width: 89%;
+    @include respond-to(md) {
+      width: 85%;
+    }
+    @include respond-to(sm) {
+      width: 83%;
+    }
+    @include respond-to(xs) {
+      width: 85%;
+      padding: 0px;
+    }
+  }
 }
 
 .workspace_title {
   width: 30%;
+
   h1 {
     margin: 0px !important;
     color: $white;
     @include font(32px, $bold);
     font-family: $quicksand;
+
+    @include respond-to(xs) {
+      @include font(30px, $bold);
+      // display: none;
+    }
   }
 }
 .workspace_search {
@@ -104,6 +146,10 @@
   width: 30%;
   display: flex;
   justify-content: flex-end;
+
+  @include respond-to(xs){
+    width: 100%;
+  }
 }
 
 .avatar-content {
@@ -158,9 +204,20 @@
   overflow-y: hidden;
   transition: all .6s ease-in-out;
 
+  @include respond-to(xs) {
+    margin-top: 60px;
+  }
+
   &:hover {
     overflow-y: auto;
     transition: .6s ease-in-out;
+  }
+
+  &.workspace-center-chef {
+    max-height: 90%;
+    &:hover {
+      overflow-y: hidden;
+    }
   }
 }
 
@@ -175,15 +232,21 @@
   transition: 0.3s ease-in-out;
   padding: 10px;
   width: 100px;
-  font-family: $quicksand;
   cursor: pointer;
   a {
     color: $white;
     text-decoration: none;
+    font-family: $quicksand;
+    @include font(15px, $normal);
+
+    @include respond-to(xs) {
+      @include font(15px, $normal);
+    }
     &:hover {
       color: $white;
     }
   }
+
   &:hover {
     background-color: $dark-aside;
     box-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0.2), 0px 7px 10px 1px rgba(0, 0, 0, 0.14), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
@@ -196,6 +259,29 @@
 .grid-wrapper{
   margin: 0 auto;
   width:100%;
+  &.grid-wrapper-chef {
+    // display: flex;
+    user-select: none;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    // padding-bottom: 8px;
+    height: 80vh;
+
+    @include respond-to(md) {
+      height: 77vh;
+    }
+
+    @include respond-to(sm) {
+      height: 75vh;
+    }
+
+    @include respond-to(xs) {
+      height: 75vh;
+    }
+
+  }
+
 }
 
 .card-wrapper{
@@ -210,6 +296,12 @@
   @include respond-to(sm){
     margin: 10px 15px 10px 0px;
   }
+
+  @include respond-to(xs){
+    margin: 5px 12px 10px 0px;
+  }
+  
+
 
   &.card-wrapper-products {
     margin: 10px 10px 10px 0px;
@@ -229,6 +321,10 @@
     padding: 10px 15px;
   }
 
+  @include respond-to(xs) {
+    padding: 5px 10px;
+  }
+
   &.card-table{
     flex-direction: column;
     align-items: center;
@@ -246,11 +342,42 @@
     @include respond-to(sm) {
       width: 255px;
     }
+
+    @include respond-to(xs) {
+      width: 230px;
+    }
+  }
+
+  &.card-chef {
+    background-color: transparent;
+    box-shadow: 0px 0px 0px transparent;
+    margin: 0 4px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+    padding: 0;
+    height: 70vh;
+    margin-bottom: 40px !important;
+    width: 300px;
+
+    @include respond-to(sm) {
+      width: 250px;
+      height: 65vh;
+    }
+
+    @include respond-to(xs) {
+      width: 250px;
+      height: 70vh;
+    }
   }
 
   &.card-product {
     width: 265px;
-    padding: 10px !important
+    padding: 10px !important;
+    @include respond-to(xs) {
+      width: 250px;
+    }
   }
 
 
@@ -268,12 +395,12 @@
 
 .disabled{
   cursor: not-allowed;
-  
+  opacity: 0.4;
 
   .card-content {
     .card-icons {
       i {
-        color: $gray;
+        // color: $gray;
       }
     }
   }
@@ -318,14 +445,14 @@
    ------------------------- */
 .grid-order {
   width: 30%;
-  margin-top: 30px;
+  margin-top: 125px;
 }
 
 .order-wrapper {
-  background-color: #16161d;
+  background-color: $dark-aside;
   border-radius: 5px;
   width: 100%;
-  min-height: 575px;
+  min-height: 490px;
   width: 360px;
   position: relative;
 
@@ -334,6 +461,11 @@
   }
   @include respond-to(sm) {
     width: 300px;
+    min-height: 410px;
+    z-index: 99;
+  }
+  @include respond-to(xs) {
+    width: 270px;
     min-height: 410px;
     z-index: 99;
   }
@@ -398,7 +530,12 @@
       transition: .6s ease-in-out;
     }
   }
+  &.order-content-chef {
+    padding: 0;
+  }
 }
+
+
 
 .order-card-counts {
   width: 100%;
@@ -423,7 +560,78 @@
   }
 }
 
+/* -------------------------
+   ----- List card -----
+   ------------------------- */
+.list-content{
+  background-color: $dark-cards;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 100%;
+  // max-height: 470px;
+  position: relative;
+  white-space: normal;
+}
+.list-header {
+  flex: 0 0 auto;
+  padding: 10px 8px 8px;
+  position: relative;
+  min-height: 20px;
+}
+.list-cards {
+  flex: 1 1 auto;
+  margin-bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0 4px;
+  padding: 0 4px;
+  z-index: 1;
+  min-height: 0;
+  margin-top: 10px;
+  transition: 0.3s ease-in-out;
+}
+.list-card {
+  background-color: $dark;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(9,30,66,.25);
+  cursor: pointer;
+  display: block;
+  margin-bottom: 8px;
+  max-width: 300px;
+  min-height: 20px;
+  position: relative;
+  text-decoration: none;
+  z-index: 0;
+  padding: 10px;
+}
 
+.name-dishes {
+  h4 {
+    @include font(16px, $bold);
+  }
+  p {
+    @include font(14px, $light);
+  }
+}
+
+
+.tags {
+  margin-left: 2px;
+
+  .tag {
+    background-color: $primary;
+    border-radius: 5px;
+    padding: 2px 10px;
+    color: #fff;
+  }
+}
+
+.list-bottom {
+  padding: 6px;
+}
 /* -------------------------
    ----- Categories -----
    ------------------------- */
@@ -443,6 +651,10 @@
     width: 47%;
     z-index: 0;
   }
+  @include respond-to(xs) {
+    width: 95%;
+    z-index: 0;
+  }
 
   img {
     border-radius: 5px;
@@ -458,7 +670,7 @@
     left: 5%;
     
     h4 {
-      font-family: $bebas;
+      font-family: $gobold;
       @include font(20px, $bold);
     }
   }
@@ -475,6 +687,12 @@
     position: absolute;
     right: -5%;
     top: 45%;
+
+    span {
+      @include respond-to(xs) {
+        @include font(18px, $normal);
+      }
+    }
   }
 }
 
@@ -672,7 +890,60 @@
 
 .btn-float {
   position: absolute;
-  bottom: 5%;
+  bottom: 3%;
   right: 4%;
   z-index: 99;
+}
+
+.active-sidebar {
+  right: 14% !important;
+
+  @include respond-to(sm) {
+    top: 14%;
+  }
+  
+  @media (min-width: 0px) and (max-width: 340px){
+    right: 58% !important;
+  }
+
+  @media (min-width: 341px) and (max-width: 350px){
+    right: 53% !important;
+  }
+
+  @media (min-width: 351px) and (max-width: 375px){
+    right: 46% !important;
+  }
+
+  @media (min-width: 376px) and (max-width: 450px){
+    right: 34% !important;
+  }
+  @media (min-width: 451px) and (max-width: 550px){
+    right: 23% !important;
+  }
+
+  @media (min-width: 551px) and (max-width: 650px){
+    right: 16% !important;
+  }
+
+  @media (min-width: 651px) and (max-width: 767px){
+    right: 9% !important;
+  }
+}
+.active-menu {
+  left: 0 !important;
+}
+
+
+
+
+//*** chef **/
+
+.details-table-chef {
+  i {
+    font-size: 25px;
+  }
+
+  p {
+    font-size: 20px;
+  }
 }

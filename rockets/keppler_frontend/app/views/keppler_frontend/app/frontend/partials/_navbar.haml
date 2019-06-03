@@ -1,5 +1,7 @@
 %aside
   %ul.tabs
+    %li.d-lg-none.d-md-none
+      
     %li
       = link_to root_path do
         = image_tag '/assets/app/z', class: 'isologo_white'
@@ -11,12 +13,18 @@
       = link_to app_categories_path do
         .icons
           %i.icofont-restaurant
-    -# %li.tab-link{  }
-    -#   .icons
-    -#     %i.icofont-restaurant
+    %li.tab-link{  }
+      = link_to app_chef_path do
+        .icons
+          %i.icofont-restaurant
   .footer
     %ul
       %li.tab-link{  }
         = link_to app_destroy_session_path do
           .icons
             %i.icofont-power
+
+.menu-movil.d-lg-none.d-md-none
+  %i.icofont-navigation-menu.menu-toggle
+
+

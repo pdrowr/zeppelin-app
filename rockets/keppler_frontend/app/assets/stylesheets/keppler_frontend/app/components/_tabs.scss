@@ -33,6 +33,13 @@
       color: $white;
       @include font(16px, $semibold);
       border-radius: 5px;
+      @include respond-to(xs){
+        @include font(15px, $normal);
+      }
+    }
+
+    @include respond-to(xs){
+      @include font(15px, $normal);
     }
   }
   
