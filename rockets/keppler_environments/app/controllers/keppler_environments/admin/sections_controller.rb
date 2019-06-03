@@ -8,6 +8,7 @@ module KepplerEnvironments
     class SectionsController < ::Admin::AdminController
       layout 'keppler_environments/admin/layouts/application'
       before_action :set_section, only: %i[show edit update destroy]
+      before_action :set_tables, only: %i[new create edit update]
       before_action :index_variables
       include ObjectQuery
 
@@ -86,6 +87,11 @@ module KepplerEnvironments
         @attributes = Section.index_attributes
       end
 
+      def set_tables
+        @tables = KepplerEnvironments::Table.all.map(&:id_consumo)
+        # @tables = KepplerEnvironments::Table.available_tables
+      end
+
       # Use callbacks to share common setup or constraints between actions.
       def set_section
         @section = Section.find(params[:id])
@@ -94,7 +100,7 @@ module KepplerEnvironments
       # Only allow a trusted parameter "white list" through.
       def section_params
         params.require(:section).permit(
-          :name, :cover, :table_ids, :active
+          :name, :cover, :active, table_ids: []
         )
       end
     end

@@ -5,7 +5,7 @@
   %body
     .container-custom
       = render '/keppler_frontend/app/frontend/partials/navbar'
-    
+
       .workspace
         .d-flex
           .workspace-left
@@ -19,9 +19,6 @@
                       .avatar
                         = image_tag '/assets/app/profile'
                       %strong=current_member.alias
-                    // .dropdown-menu{"aria-labelledby" => "out"}
-                    //   = link_to app_destroy_session_path, class: 'dropdown-item' do
-                    //     Cerrar Sesion
 
             .workspace_center
               .container-fluid.p-0
@@ -34,13 +31,14 @@
                     .tab-content-sub{ id: "sub-tab-#{index}", class: ('current' if index.zero?) }
                       .d-flex
                         .grid-wrapper
-                          - (30).times do |index|
-                            .card-wrapper{ "data-tab" => "space_one-#{index}", class: ('disabled' if index.even?)  }
+                          - section.tables.each_with_index do |table, index|
+                            .card-wrapper{ "data-tab" => "space_one-#{index}" }
+                              -# class: ('disabled' if index.even?)
                               .card-content.card-table
                                 %h2= index + 1
                                 .card-icons
                                   %i.icofont-dining-table
-                                  
+
           .workspace-right.sidebar
             .grid-order{ style: "position: fixed;"}
               .order-wrapper
@@ -50,7 +48,7 @@
                 .order-content.order-content--fixed.d-flex.flex-wrap
                   - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anaritza Lopez',products: '3', count: '30', product: "Cerveza", price: '30'}]
                   .order-counts
-                    -counts.each_with_index do |count|
+                    - counts.each_with_index do |count|
                       .card-content.card-counts.mb-4
                         .order-card-counts
                           .description-user.d-flex.justify-content-between
@@ -59,7 +57,7 @@
                           .details-table.mt-4
                             .stat.d-flex.justify-content-center.flex-column.align-items-center
                               %p Mesa
-                              %p 10 
+                              %p 10
                             .stat.d-flex.justify-content-center.flex-column.align-items-center
                               %p Tiempo
                               %p 10 min
@@ -73,37 +71,38 @@
                               .card-price
                                 %span $ #{count[:price]} X
                                 %span.box-quantity= count[:count]
-                            
+
 
             .grid-order
-              - (10).times do |index|
-                .order-wrapper.tab-content{ id: "space_one-#{index}"}
-                  .order-header
-                    %h4 Mesa número #{index+ 1}
-                    %i.icofont-close.icon_custom.icon--medium.close-order
-                  .order-content.order-content--fixed.d-flex
-                    - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
-                    .order-counts
-                      -counts.each_with_index do |count|
-                        .card-content.card-counts.mb-4
-                          .order-card-counts
-                            .description-user.d-flex.justify-content-between
-                              %h4= count[:name]
-                              %p 10 min
-                            .list
-                              %dl
-                                %dt Productos
-                                %dd #{count[:products]}
-                                %dt Cuenta total
-                                %dd $#{count[:count]}
-                  .order-footer.sticky-footer
-                    %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-                      %i.icofont-plus
-                      Agregar cuenta
+              - @sections.each_with_index do |section, index|
+                - section.tables.each_with_index do |table, index|
+                  .order-wrapper.tab-content{ id: "space_one-#{index}"}
+                    .order-header
+                      %h4 Mesa número #{index+ 1}
+                      %i.icofont-close.icon_custom.icon--medium.close-order
+                    .order-content.order-content--fixed.d-flex
+                      -# - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
+                      .order-counts
+                        -# - counts.each_with_index do |count|
+                        -#   .card-content.card-counts.mb-4
+                        -#     .order-card-counts
+                        -#       .description-user.d-flex.justify-content-between
+                        -#         %h4= count[:name]
+                        -#         %p 10 min
+                        -#       .list
+                        -#         %dl
+                        -#           %dt Productos
+                        -#           %dd #{count[:products]}
+                        -#           %dt Cuenta total
+                        -#           %dd $#{count[:count]}
+                    .order-footer.sticky-footer
+                      %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                        %i.icofont-plus
+                        Agregar cuenta
     .btn-float.d-lg-none.d-block
       %button.btn.btn_custom.btn--filled.btn-sidebar
         %i.icofont-plus
-            
+
   -# MODAL CREATE COUNT
   .modal.fade#create_counts{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog" }
     .modal-dialog{role: "document"}
@@ -177,7 +176,7 @@
   $('.close-order').click(function(){
      $('.sidebar').removeClass('active-sidebar');
   })
-  
+
   $('.dropdown-toggle').dropdown()
   $('.modal').on('shown.bs.modal', function () {
     $('body').addClass('overflow')
