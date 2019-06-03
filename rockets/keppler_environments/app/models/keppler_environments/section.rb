@@ -10,6 +10,9 @@ module KepplerEnvironments
     include Sortable
     include Searchable
     mount_uploader :cover, AttachmentUploader
+
+    # has_many :tables, foreign_key: 'id_consumo', class_name: 'KepplerEnvironments::Table'
+
     acts_as_list
     acts_as_paranoid
 
@@ -19,5 +22,10 @@ module KepplerEnvironments
     def self.index_attributes
       %i[name]
     end
+
+    def tables
+      Table.where(id_consumo: table_ids).map(&:id_consumo)
+    end
+
   end
 end

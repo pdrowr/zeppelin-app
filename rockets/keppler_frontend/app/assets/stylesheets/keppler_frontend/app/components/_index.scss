@@ -325,6 +325,10 @@
   &.card-wrapper-products {
     margin: 10px 10px 10px 0px;
   }
+
+  &.card-account {
+    margin: 10px 0px 10px 0px;
+  }
 }
 
 .card-content{
@@ -397,6 +401,11 @@
     @include respond-to(xs) {
       width: 250px;
     }
+  }
+
+  &.card-product-account {
+    width: 100%;
+
   }
 
 
@@ -482,6 +491,7 @@
 
   &.order-wrapper-account {
     width: 100%;
+    min-height: 580px;
   }
 
   @include respond-to(md) {
@@ -541,6 +551,10 @@
     span {
       margin: 0 5px;
     }
+  }
+  &.order-footer-account {
+    height: 20%;
+    background-color: $dark-aside
   }
 }
 
@@ -761,6 +775,10 @@
       height: 100%;
     }
   }
+
+  &.account-product-image{
+    width: 10%;
+  }
 }
 
 .card-product-description{
@@ -772,6 +790,9 @@
       font-family: $quicksand;
 
     }
+  }
+  &.account-product-description {
+    width: 90%;
   }
 }
 

@@ -1,0 +1,16 @@
+menu:
+  keppler_clients:
+    name: Keppler Clients
+    current: ['/admin/clients/clients']
+    url_path: /admin/clients/clients
+    icon: user-group
+    model: KepplerClients::Client
+    environment: all
+    position: 4
+
+      # - new:
+      #     name: + Add new module
+      #     url_path: /url_path
+      #     current: ['/current_path']
+      #     enviroment: development
+      #     model: User

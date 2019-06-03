@@ -157,3 +157,5 @@ gem 'keppler_staff', path: 'rockets/keppler_staff'
 gem 'keppler_environments', path: 'rockets/keppler_environments'
 
 gem 'keppler_menu', path: 'rockets/keppler_menu'
+gem 'keppler_orders', path: 'rockets/keppler_orders'
+gem 'keppler_clients', path: 'rockets/keppler_clients'

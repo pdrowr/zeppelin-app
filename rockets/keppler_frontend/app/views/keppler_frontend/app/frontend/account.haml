@@ -4,8 +4,8 @@
     = render 'app/layouts/head'
   %body
     .container-custom
-      = render '/keppler_frontend/app/frontend/partials/navbar'
-    
+    .workspace-chef
+      = sidebar
       .workspace
         .d-flex
           .workspace-left.workspace-chef
@@ -19,10 +19,6 @@
                       .avatar
                         = image_tag '/assets/app/profile'
                       %strong=current_member.alias
-                    // .dropdown-menu{"aria-labelledby" => "out"}
-                    //   = link_to app_destroy_session_path, class: 'dropdown-item' do
-                    //     Cerrar Sesion
-
             .workspace_center.workspace-center-chef
               .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
                 %h1 Cuenta
@@ -54,18 +50,18 @@
                               %h4 Mis ordenes mesa 
                               %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                             .order-content.order-content--fixed.d-flex.flex-column
-                              .float-right.right-btn-order
+                              .float-right.right-btn-order.d-flex.justify-content-end
                                 %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
                                   Ver ordenes
                               - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
                               .d-flex.flex-column
                                 - products.each_with_index do |product|
-                                  .card-wrapper
-                                    .card-content.card-counts
-                                      .card-product-image
+                                  .card-wrapper.card-account
+                                    .card-content.card-product-account
+                                      .card-product-image.account-product-image
                                         .product-image.product-image-order
                                           %img{ src: "#{product[:image]}"}
-                                      .card-product-description.pl-4
+                                      .card-product-description.pl-4.account-product-description
                                         .card-product-title
                                           %h4.m-0= product[:name]
                                         .card-product-detail.card-detail-order
@@ -74,7 +70,7 @@
                                             %span.box-quantity= product[:quantity]
                                           .card-product-delete
                                             %i.icofont-ui-delete
-                              .order-footer.order-footer-product
+                              .order-footer.order-footer-product.order-footer-account
                                 %span Total:
                                 %span $ 60
                         

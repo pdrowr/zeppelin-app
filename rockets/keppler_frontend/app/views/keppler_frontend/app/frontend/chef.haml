@@ -4,8 +4,7 @@
     = render 'app/layouts/head'
   %body
     .container-custom
-      = render '/keppler_frontend/app/frontend/partials/navbar'
-    
+      = sidebar
       .workspace
         .d-flex
           .workspace-left.workspace-chef
@@ -19,9 +18,6 @@
                       .avatar
                         = image_tag '/assets/app/profile'
                       %strong=current_member.alias
-                    // .dropdown-menu{"aria-labelledby" => "out"}
-                    //   = link_to app_destroy_session_path, class: 'dropdown-item' do
-                    //     Cerrar Sesion
 
             .workspace_center.workspace-center-chef
               .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4

@@ -1,0 +1,32 @@
+.grid-order
+  - sections.each do |section|
+    - section.tables.each_with_index do |table, index|
+      .order-wrapper.tab-content{ id: "space_one-#{index}"}
+        .order-header
+          %h4 Mesa número #{index+ 1}
+          %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
+        .order-content.order-content--fixed.d-flex
+          -# - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
+          -# .order-counts
+          -#   -counts.each_with_index do |count|
+          -#     .card-content.card-counts.mb-4
+          -#       .order-card-counts
+          -#         .description-user.d-flex.justify-content-between
+          -#           %h4= count[:name]
+          -#           %p 10 min
+          -#         .list
+          -#           %dl
+          -#             %dt Productos
+          -#             %dd #{count[:products]}
+          -#             %dt Cuenta total
+          -#             %dd $#{count[:count]}
+        .order-footer.sticky-footer
+          %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+            %i.icofont-plus
+            Agregar cuenta
+
+      = creaate_account_modal(table)
+
+.btn-float.d-lg-none.d-block
+  %button.btn.btn_custom.btn--filled.btn-sidebar
+  %i.icofont-plus
