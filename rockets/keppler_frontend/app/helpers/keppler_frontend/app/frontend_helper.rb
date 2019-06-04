@@ -30,5 +30,9 @@ module KepplerFrontend
       render 'keppler_frontend/app/frontend/partials/create_account_modal', section: section, table: table
     end
 
+    def add_item_modal(dish, index, order)
+      render 'keppler_frontend/app/frontend/partials/add_item_modal', dish: dish, index: index, order: order
+    end
+
   end
 end

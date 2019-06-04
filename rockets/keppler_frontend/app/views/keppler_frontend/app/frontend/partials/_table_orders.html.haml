@@ -8,18 +8,19 @@
           %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
         .order-content.order-content--fixed.d-flex.flex-column
           - table.current_orders.each do |order|
-            .order-counts
-              .card-content.card-counts.mb-4
-                .order-card-counts
-                  .description-user.d-flex.justify-content-between
-                    %h4= order.client.name.truncate(20)
-                    %p= time_ago_in_words(order.created_at)
-                  .list
-                    %dl
-                      %dt Productos
-                      %dd 0
-                      %dt Cuenta total
-                      %dd $ 0
+            = link_to app_account_path(order) do
+              .order-counts
+                .card-content.card-counts.mb-4
+                  .order-card-counts
+                    .description-user.d-flex.justify-content-between
+                      %h4= order.client.name.truncate(20)
+                      %p= time_ago_in_words(order.created_at)
+                    .list
+                      %dl
+                        %dt Productos
+                        %dd 0
+                        %dt Cuenta total
+                        %dd $ 0
         .order-footer.sticky-footer
           %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "##{section.name.split(' ').join()}-#{table.id.split(' ').join('')}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
             %i.icofont-plus

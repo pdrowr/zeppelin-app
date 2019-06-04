@@ -4,13 +4,15 @@ KepplerFrontend::Engine.routes.draw do
   post '/sessions', to: 'app/sessions#create', as: :app_create_session
   get 'login', to: 'app/sessions#new', as: :app_new_session
   get 'logout', to: 'app/sessions#destroy', as: :app_destroy_session
-  get '/categories', to: 'app/frontend#categories', as: :app_categories
+  get '/categories(/:order_id)', to: 'app/frontend#categories', as: :app_categories
   get '/chef', to: 'app/frontend#chef', as: :app_chef
   get '/runner', to: 'app/frontend#runner', as: :app_runner
-  get '/account', to: 'app/frontend#account', as: :app_account
-  get '/category/:category_id/dishes', to: 'app/frontend#dishes', as: :app_category_dishes
+  get '/account/:order_id', to: 'app/frontend#account', as: :app_account
+  get '/category/:category_id/dishes(/:order_id)', to: 'app/frontend#dishes', as: :app_category_dishes
 
   post '/client', to: 'app/frontend#manage_client', as: :app_manage_client
+  post '/add_item/:order_id', to: 'app/frontend#add_item', as: :app_add_item
+
   namespace :admin do
     scope :frontend, as: :frontend do
       resources :themes do

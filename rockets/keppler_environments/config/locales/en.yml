@@ -1,7 +1,7 @@
 en:
   keppler:
     sidebar-menu:
-      keppler-environments: Keppler environments
+      keppler-environments: Environments
       keppler-environments-submenu:
         section: Section
     permissions:
