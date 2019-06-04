@@ -8,17 +8,7 @@
       .workspace
         .d-flex
           .workspace-left
-            .workspace_top
-              .workspace_top-container
-                .workspace_title.d-lg-block.d-sm-block.d-none
-                  %h1 Categorías
-                .workspace_avatar
-                  .avatar-content.dropdown
-                    %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
-                      .avatar
-                        = image_tag '/assets/app/profile'
-                      %strong=current_member.alias
-
+            = top_bar('Categorías')
             .workspace_center
               .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
                 %h1 Categorías
@@ -29,7 +19,7 @@
                   #category-1.category-content.current
                     .grid-wrapper.flex-wrap
                       - @categories.each_with_index do |category|
-                        = link_to app_category_dishes_path(category) do
+                        = link_to app_category_dishes_path(category.id.strip, @order) do
                           .card-category
                             %img{ src: category.picture }
                             .mask
@@ -38,32 +28,32 @@
                                   %h4= category.name
                                 .card-quantity
                                   %span= category.dishes_count
+
           .workspace-right.sidebar
             .grid-order{ style: "position: fixed;"}
               .order-wrapper
                 .order-header
-                  %h4 Mis ordenes mesa 
+                  %h4 Pedidos: #{@order.table.id}
                   %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                 .order-content.order-content--fixed.d-flex.flex-wrap
-                  - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
-                  - products.each_with_index do |product|
+                  - @order.dishes.each do |dish|
                     .card-wrapper
                       .card-content.card-counts
                         .card-product-image
                           .product-image.product-image-order
-                            %img{ src: "#{product[:image]}"}
+                            %img{ src: dish.dish.picture }
                         .card-product-description.pl-4
                           .card-product-title
-                            %h4.m-0= product[:name]
+                            %h4.m-0= dish.dish.name
                           .card-product-detail.card-detail-order
                             .card-price
-                              %span $ #{product[:price]} X
-                              %span.box-quantity= product[:quantity]
+                              %span $ #{dish.price} X
+                              %span.box-quantity= dish.quantity
                             .card-product-delete
                               %i.icofont-ui-delete
                 .order-footer.order-footer-product
                   %span Total:
-                  %span $ 60
+                  %span= number_to_currency(@order.total)
     .btn-float.d-lg-none.d-block
       %button.btn.btn_custom.btn--filled.btn-sidebar
         %i.icofont-plus

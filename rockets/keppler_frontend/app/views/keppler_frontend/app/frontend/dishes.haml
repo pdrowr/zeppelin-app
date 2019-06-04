@@ -8,19 +8,7 @@
       .workspace
         .d-flex
           .workspace-left
-            .workspace_top
-              .workspace_top-container
-                .workspace_title.d-lg-block.d-sm-block.d-none
-                  %h1 Platos
-                .workspace_avatar
-                  .avatar-content.dropdown
-                    %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
-                      .avatar
-                        = image_tag '/assets/app/profile'
-                      %strong=current_member.alias
-                    // .dropdown-menu{"aria-labelledby" => "out"}
-                    //   = link_to app_destroy_session_path, class: 'dropdown-item' do
-                    //     Cerrar Sesion
+            = top_bar('Platos')
 
             .workspace_center
               .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
@@ -28,12 +16,14 @@
               .container-fluid.p-0
                 #tab-3
                   .back
-                    = link_to app_categories_path do
+                    = link_to app_categories_path(@order) do
                       %i.icofont-arrow-left
                       %span Volver
                   .d-flex
                     .grid-wrapper.d-flex.flex-wrap
                       - @dishes.each_with_index do |dish, index|
+                        -# = dish(dish)
+                        = add_item_modal(dish, index, @order)
                         .card-wrapper.card-wrapper-products
                           .card-content.card-product
                             .card-product-image
@@ -44,76 +34,43 @@
                                 %h4.m-0= dish.name
                               .card-product-detail
                                 .card-price
-                                  %span $ #{dish.precio1}
-                                -# .card-product-quantity
-                                  %a.inc.qty-button +
-                                  %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "0", :pattern => "[0-9]*", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1"}/
-                                  %a.dec.qty-button -
+                                  %span $ #{dish.price}
                             .card-product-btn
                               %a{ 'data-target': ".add_product-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false } Agregar
+
           .workspace-right.sidebar
             .grid-order{ style: "position: fixed;"}
               .order-wrapper
                 .order-header
-                  %h4 Mis ordenes
+                  %h4 Pedidos
                   %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                 .order-content.order-content--fixed.d-flex.flex-wrap
-                  - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg", quantity: '2'},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg",quantity: '3'},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg", quantity: '3'}]
-                  - products.each_with_index do |product|
+
+                  - @order.dishes.each do |dish|
                     .card-wrapper
                       .card-content.card-counts
                         .card-product-image
                           .product-image.product-image-order
-                            %img{ src: "#{product[:image]}"}
+                            %img{ src: dish.dish.picture }
                         .card-product-description.pl-4
                           .card-product-title
-                            %h4.m-0= product[:name]
+                            %h4.m-0= dish.dish.name
                           .card-product-detail.card-detail-order
                             .card-price
-                              %span $ #{product[:price]} X
-                              %span.box-quantity= product[:quantity]
+                              %span $ #{dish.price} X
+                              %span.box-quantity= dish.quantity
                             .card-product-delete
                               %i.icofont-ui-delete
                 .order-footer.order-footer-product
                   %span Total:
-                  %span $ 60
+                  %span= number_to_currency(@order.total)
+
+
     .btn-float.d-lg-none.d-block
       %button.btn.btn_custom.btn--filled.btn-sidebar
         %i.icofont-plus
-  -# ADD PRODUCT
-  - products = [{name: 'Cerveza', price: '15',image:"/assets/app/beer.jpg"},{name: 'Cóctel', price:'9',image:"/assets/app/cocktail.jpg"},{name: 'Mojito', price:'9',image:"/assets/app/mojito.jpeg"}]
-  - products.each_with_index do |product,x|
-    .modal.fade{ class: "add_product-#{x}", "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog" }
-      .modal-dialog{role: "document"}
-        .modal-content.p-0
-          .modal-header.p-0.modal-header-details
-            .modal-image
-              %img{ src: "#{product[:image]}"}
-            .mask
-              .modal-product-title
-                %h4= product[:name]
-                %span $ #{product[:price]}
-            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
-              %i.icofont-close.icon_custom.icon--large
-          .modal-body
-            .d-flex
-              .product-detail
-                %p Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias.
-              .product-description
-                .card-product-detail.modal-body-details
-                  .card-price
-                    -# %span $ #{product[:price]}
-                  .card-product-quantity
-                    %a.inc.qty-button +
-                    %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "0", :pattern => "[0-9]*", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1"}/
-                    %a.dec.qty-button -
-            %form.mt-4
-              .form-group
-                %label.label_custom{for:""} Observaciones
-                %textarea.form-control.textarea_custom{ 'data-role'=> "tags-input" }
-              .float-right.mt-2
-                %button.btn.btn_custom.btn--medium.btn--filled
-                  Agregar
+
+
 :javascript
   $('.btn-sidebar').click(function(){
     $('.sidebar').toggleClass('active-sidebar');

@@ -3,14 +3,18 @@ es:
     sidebar-menu:
       keppler-orders: Keppler orders
       keppler-orders-submenu:
+        item: Item
         orders: Orders
     permissions:
     models:
       singularize:
+        item: item
         order: order
       pluralize:
+        items: items
         orders: orders
     modules:
+      admin/item: Item
       admin/orders: Orders
     messages:
     actions:

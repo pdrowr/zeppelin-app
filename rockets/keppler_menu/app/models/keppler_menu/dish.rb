@@ -29,6 +29,10 @@ module KepplerMenu
       self.id.strip
     end
 
+    def price
+      self.precio1
+    end
+
     def self.index_attributes
       %i[]
     end

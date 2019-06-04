@@ -8,6 +8,13 @@ menu:
     environment: all
     position: 4
     submenu:
+      - item:
+          name: item
+          url_path: /admin/orders/items
+          icon: layers
+          current: ['/admin/orders/items']
+          model: KepplerOrders::Item
+
       - order:
           name: orders
           url_path: /admin/orders/orders

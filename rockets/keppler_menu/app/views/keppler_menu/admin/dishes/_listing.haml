@@ -14,7 +14,7 @@
       = link_to({ action: :show, id: object.dish_id, search: @query }, { class: 'show-row' }) do
         %span.badge.keppler-badge
           %i.bx.bx-dollar
-          = object.precio1
+          = object.price
 
     %td.dropdown{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{object.dish_id}", 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown' }

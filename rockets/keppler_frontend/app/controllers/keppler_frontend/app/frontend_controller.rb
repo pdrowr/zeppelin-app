@@ -3,6 +3,7 @@ require_dependency "keppler_frontend/application_controller"
 module KepplerFrontend
   class App::FrontendController < App::AppController
     before_action :authenticate_member
+    before_action :set_order, only: %i[categories dishes add_item]
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
 
@@ -28,24 +29,20 @@ module KepplerFrontend
     def dishes
       @category = KepplerMenu::Category.find(params[:category_id])
       @dishes = @category.dishes
+      @item = KepplerOrders::Item.new
     end
 
-    def chef
-      # @sections = KepplerEnvironments::Section.all
-      @categories = KepplerMenu::Category.all
-      @dishes = KepplerMenu::Dish.all
-    end
+    def chef; end
 
-    def runner
-      @sections = KepplerEnvironments::Section.all
-      @categories = KepplerMenu::Category.all
-      @dishes = KepplerMenu::Dish.all
-    end
+    def runner; end
 
     def account
-      @sections = KepplerEnvironments::Section.all
-      @categories = KepplerMenu::Category.all
-      @dishes = KepplerMenu::Dish.all
+      @order = KepplerOrders::Order.find(params[:order_id])
+    end
+
+    def add_item
+      @order.dishes.create(dish_params)
+      redirect_back(fallback_location: root_path)
     end
 
     private
@@ -53,5 +50,21 @@ module KepplerFrontend
     def client_params
       params.require(:client).permit(:name, :email, :identification, :address)
     end
+
+    def dish_params
+      params.require(:dish).permit(
+        :order_id,
+        :dish_id,
+        :price,
+        :quantity,
+        :observation
+      )
+    end
+
+    def set_order
+      @order = KepplerOrders::Order.find_by_id(params[:order_id])
+    end
+
+
   end
 end
