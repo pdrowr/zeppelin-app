@@ -44,7 +44,7 @@
                   .col-xs-12
                     = f.input :member_code, as: :string, label: 'Código'
                   .col-xs-12
-                    = f.input :type, collection: [['Mesero', 'KepplerStaff::Waiter'], ['Cocinero', 'KepplerStaff::Chef']], include_blank: 'Selecciona el tipo de Personal'
+                    = f.input :type, collection: [['Mesero', 'KepplerStaff::Waiter'], ['Cocinero', 'KepplerStaff::Chef'], ['Runner', 'KepplerStaff::Runner']], include_blank: 'Selecciona el tipo de Personal'
                   .col-xs-12
                     .pull-right
                       = f.button :submit, t('keppler.actions.save'), name: '_save', class: 'btn-primary'

@@ -34,6 +34,8 @@ module KepplerFrontend
       case current_member.member_type
       when 'chef'
         app_chef_path
+      when 'runner'
+        app_runner_path
       when 'waiter'
         root_path
       end

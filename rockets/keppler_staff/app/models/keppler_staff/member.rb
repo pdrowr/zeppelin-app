@@ -25,7 +25,7 @@ module KepplerStaff
     end
 
     def member_type
-      type.split('::').last.downcase
+      type&.split('::')&.last&.downcase || ''
     end
 
     def is_a?(type)
