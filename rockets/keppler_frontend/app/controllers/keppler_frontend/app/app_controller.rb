@@ -50,7 +50,7 @@ module KepplerFrontend
     end
 
     def set_default_locale
-      I18n.default_locale = KepplerLanguages::Language.where(active: true).first.try(:name)&.to_sym || :en
+      I18n.default_locale = KepplerLanguages::Language.where(active: true).first.try(:name)&.to_sym || :es
     end
 
     def set_locale
