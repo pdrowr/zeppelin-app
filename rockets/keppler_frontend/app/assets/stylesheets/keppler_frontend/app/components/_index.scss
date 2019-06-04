@@ -543,7 +543,7 @@
 
   &.order-footer-product{
     color: $white;
-    @include font(16px, $bold);
+    @include font(16px, $semibold);
     display: flex;
     justify-content: center;
     width: 100%;
@@ -553,8 +553,10 @@
     }
   }
   &.order-footer-account {
+    flex-direction: column;
     height: 20%;
-    background-color: $dark-aside
+    background-color: $dark-aside;
+    justify-content: flex-end;
   }
 }
 
@@ -1019,7 +1021,7 @@
 .data-account {
   width: 40%;
   background-color: $dark-cards;
-  padding: 25px 15px;
+  padding: 25px;
   border-radius: 5px;
   margin-right: 20px;
 }
@@ -1045,7 +1047,7 @@
   font-family: $quicksand;
   margin: 20px 0;
   p {
-    margin: 0;
+    margin: 5px 0;
     @include font(16px, $bold);
   }
 }
