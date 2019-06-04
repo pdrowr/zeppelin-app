@@ -1,5 +1,5 @@
 .list {
-  width: 80%;
+  width: 70%;
   margin-top: 3px;
 }
 
@@ -19,7 +19,7 @@ dd {
   color: $white;
   margin-left: 100% !important;
   margin-bottom: 0px;
-  @include font(16px, $bold);
+  @include font(14px, $bold);
 }
 
 dd::after {

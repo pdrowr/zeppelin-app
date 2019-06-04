@@ -14,8 +14,12 @@
                 %h1 Categorías
               .container-fluid.p-0
                 #tab-2
+                  .back
+                    = link_to app_account_path(@order) do
+                      %i.icofont-arrow-left
+                      %span Volver
                   %ul.sub-tabs#categories
-                    %li.tab-link.current{ 'data-tab' => 'category-1' } Comida
+                    // %li.tab-link.current{ 'data-tab' => 'category-1' } Comida
                   #category-1.category-content.current
                     .grid-wrapper.flex-wrap
                       - @categories.each_with_index do |category|

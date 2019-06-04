@@ -485,7 +485,7 @@
   background-color: $dark-aside;
   border-radius: 5px;
   width: 100%;
-  min-height: 490px;
+  min-height: 520px;
   width: 360px;
   position: relative;
 
@@ -547,6 +547,8 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    align-items: center;
+    height: 7%;
 
     span {
       margin: 0 5px;
@@ -557,6 +559,7 @@
     height: 20%;
     background-color: $dark-aside;
     justify-content: flex-end;
+    align-items: flex-end;
   }
 }
 

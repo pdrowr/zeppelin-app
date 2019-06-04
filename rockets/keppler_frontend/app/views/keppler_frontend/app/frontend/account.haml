@@ -48,13 +48,17 @@
                           .order-wrapper.order-wrapper-account
                             .order-header
                               %h4 Pedidos
-                              %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
-                            .order-content.order-content--fixed.d-flex.flex-column
                               .float-right.right-btn-order.d-flex.justify-content-end
                                 = link_to app_categories_path(@order) do
-                                  %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
+                                  %button.btn.btn_custom.btn--medium.btn--defaul.js-btn-order.mr-2
+                                    Cerrar cuenta
+                                = link_to app_categories_path(@order) do
+                                  %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
                                     Añadir Platos
 
+                              %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
+                            .order-content.order-content--fixed.d-flex.flex-column
+                              
                               .d-flex.flex-column
                                 - @order.dishes.each do |dish|
                                   .card-wrapper.card-account
