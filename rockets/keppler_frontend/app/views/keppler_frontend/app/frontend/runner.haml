@@ -39,6 +39,9 @@
                               %p Mesa 10
                             .time
                               %p 10 min
+                          .content-progress
+                            .progress
+                              .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "25", :role => "progressbar", :style => "width: 25%;"} 25%
                           - counts =[{name: 'Pizza Margarita',products: '3', count: '30'}, {name: 'Hamburguesas',products: '1',count: '10'},{name: 'Hamburguesas',products: '1',count: '10'}, {name: 'Cafe',products: '1',count: '10'}]
                           .list-cards
                             -counts.each_with_index do |count|
@@ -91,6 +94,9 @@
                               %p Mesa 10
                             .time
                               %p 10 min
+                          .content-progress
+                            .progress
+                              .progress-bar.progress-bar-finish{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "100", :role => "progressbar", :style => "width: 100%;"} 100%
                           - counts =[{name: 'Pizza Margarita',products: '3', count: '30'}, {name: 'Hamburguesas',products: '1',count: '10'},{name: 'Hamburguesas',products: '1',count: '10'}, {name: 'Cafe',products: '1',count: '10'}]
                           .list-cards
                             -counts.each_with_index do |count|
