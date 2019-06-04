@@ -7,9 +7,8 @@
       = sidebar
       .workspace
         .d-flex
-          .workspace-left
+          .workspace-left{ class: ('full-width' unless @order.present?) }
             = top_bar('Platos')
-
             .workspace_center
               .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
                 %h1 Platos
@@ -22,8 +21,8 @@
                   .d-flex
                     .grid-wrapper.d-flex.flex-wrap
                       - @dishes.each_with_index do |dish, index|
-                        -# = dish(dish)
-                        = add_item_modal(dish, index, @order)
+                        - unless @order.nil?
+                          = add_item_modal(dish, index, @order)
                         .card-wrapper.card-wrapper-products
                           .card-content.card-product
                             .card-product-image
@@ -38,7 +37,7 @@
                             .card-product-btn
                               %a{ 'data-target': ".add_product-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false } Agregar
 
-          .workspace-right.sidebar
+          .workspace-right.sidebar{ class: ('sidebar-disabled' unless @order.present?) }
             .grid-order{ style: "position: fixed;"}
               .order-wrapper
                 .order-header
@@ -46,7 +45,7 @@
                   %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                 .order-content.order-content--fixed.d-flex.flex-wrap
 
-                  - @order.dishes.each do |dish|
+                  - @order&.dishes&.each do |dish|
                     .card-wrapper
                       .card-content.card-counts
                         .card-product-image
@@ -63,7 +62,7 @@
                               %i.icofont-ui-delete
                 .order-footer.order-footer-product
                   %span Total:
-                  %span= number_to_currency(@order.total)
+                  %span= number_to_currency(@order&.total)
     .btn-float.d-lg-none.d-block
       %button.btn.btn_custom.btn--filled.btn-sidebar
         %i.icofont-plus

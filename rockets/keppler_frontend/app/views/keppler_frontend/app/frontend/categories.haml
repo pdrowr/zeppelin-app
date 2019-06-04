@@ -7,7 +7,7 @@
       = sidebar
       .workspace
         .d-flex
-          .workspace-left
+          .workspace-left{ class: ('full-width' unless @order.present?) }
             = top_bar('Categorías')
             .workspace_center
               .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
@@ -15,7 +15,7 @@
               .container-fluid.p-0
                 #tab-2
                   .back
-                    = link_to app_account_path(@order) do
+                    %a{ href:"#"}
                       %i.icofont-arrow-left
                       %span Volver
                   %ul.sub-tabs#categories
@@ -33,7 +33,7 @@
                                 .card-quantity
                                   %span= category.dishes_count
 
-          .workspace-right.sidebar
+          .workspace-right.sidebar{ class: ('sidebar-disabled' unless @order.present?) }
             .grid-order{ style: "position: fixed;"}
               .order-wrapper
                 .order-header

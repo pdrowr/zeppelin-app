@@ -4,7 +4,7 @@
       %li
         = link_to root_path do
           = image_tag '/assets/app/z', class: 'isologo_white'
-    - if current_member.is_a?('waiter')    
+    - if current_member.is_a?('waiter')
       %li.tab-link.current
         = link_to root_path do
           .icons
@@ -18,10 +18,11 @@
         = link_to app_chef_path do
           .icons
             %i.icofont-list
-    -# %li.tab-link{  }
-    -#   = link_to app_runner_path do
-    -#     .icons
-    -#       %i.icofont-listing-number
+    - if current_member.is_a?('runner')            
+      %li.tab-link{  }
+        = link_to app_runner_path do
+          .icons
+            %i.icofont-listing-number
   .footer
     %ul
       %li.tab-link{  }
