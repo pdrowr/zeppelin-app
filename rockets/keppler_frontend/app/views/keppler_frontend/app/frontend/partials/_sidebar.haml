@@ -1,26 +1,27 @@
 %aside
   %ul.tabs
     %li.d-lg-none.d-md-none
-
-    %li
-      = link_to root_path do
-        = image_tag '/assets/app/z', class: 'isologo_white'
-    %li.tab-link.current
-      = link_to root_path do
-        .icons
-          %i.icofont-dining-table
-    %li.tab-link{  }
-      = link_to app_categories_path do
-        .icons
-          %i.icofont-restaurant
-    %li.tab-link{  }
-      = link_to app_chef_path do
-        .icons
-          %i.icofont-list
-    %li.tab-link{  }
-      = link_to app_runner_path do
-        .icons
-          %i.icofont-listing-number
+      %li
+        = link_to root_path do
+          = image_tag '/assets/app/z', class: 'isologo_white'
+    - if current_member.is_a?('waiter')    
+      %li.tab-link.current
+        = link_to root_path do
+          .icons
+            %i.icofont-dining-table
+      %li.tab-link{  }
+        = link_to app_categories_path do
+          .icons
+            %i.icofont-restaurant
+    - if current_member.is_a?('chef')
+      %li.tab-link{  }
+        = link_to app_chef_path do
+          .icons
+            %i.icofont-list
+    -# %li.tab-link{  }
+    -#   = link_to app_runner_path do
+    -#     .icons
+    -#       %i.icofont-listing-number
   .footer
     %ul
       %li.tab-link{  }

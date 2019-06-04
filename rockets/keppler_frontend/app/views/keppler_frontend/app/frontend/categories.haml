@@ -34,10 +34,10 @@
             .grid-order{ style: "position: fixed;"}
               .order-wrapper
                 .order-header
-                  %h4 Pedidos: #{@order.table.id}
+                  %h4 Pedidos #{@order&.table&.id}
                   %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                 .order-content.order-content--fixed.d-flex.flex-wrap
-                  - @order.dishes.each do |dish|
+                  - @order&.dishes&.each do |dish|
                     .card-wrapper
                       .card-content.card-counts
                         .card-product-image
@@ -54,7 +54,7 @@
                               %i.icofont-ui-delete
                 .order-footer.order-footer-product
                   %span Total:
-                  %span= number_to_currency(@order.total)
+                  %span= number_to_currency(@order&.total)
     .btn-float.d-lg-none.d-block
       %button.btn.btn_custom.btn--filled.btn-sidebar
         %i.icofont-plus

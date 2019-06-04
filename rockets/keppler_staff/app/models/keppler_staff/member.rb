@@ -28,5 +28,9 @@ module KepplerStaff
       type.split('::').last.downcase
     end
 
+    def is_a?(type)
+      member_type.eql?(type)
+    end
+
   end
 end

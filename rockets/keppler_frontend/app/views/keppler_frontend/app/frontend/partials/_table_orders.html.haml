@@ -18,9 +18,9 @@
                     .list
                       %dl
                         %dt Productos
-                        %dd 0
+                        %dd= order.dishes.count
                         %dt Cuenta total
-                        %dd $ 0
+                        %dd= number_to_currency(order.total)
         .order-footer.sticky-footer
           %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "##{section.name.split(' ').join()}-#{table.id.split(' ').join('')}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
             %i.icofont-plus
