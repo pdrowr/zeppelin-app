@@ -1,0 +1,16 @@
+.progress {
+  display: flex;
+  align-items: center;
+  height: 16px !important;
+  margin-bottom: 10px !important;
+}
+.progress-bar{
+  background-color: $primary !important;
+}
+
+.progress-bar{
+  &.progress-bar-finish {
+    background-color: green !important;
+  }
+}
+
