@@ -88,7 +88,7 @@ module KepplerEnvironments
       end
 
       def set_tables
-        @tables = KepplerEnvironments::Table.all.map(&:id_consumo)
+        @tables = KepplerEnvironments::Table.all.map(&:id)
         # @tables = KepplerEnvironments::Table.available_tables
       end
 

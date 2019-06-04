@@ -3,11 +3,15 @@ en:
     sidebar-menu:
       keppler-orders: Keppler orders
       keppler-orders-submenu:
+        orders: Orders
     permissions:
     models:
       singularize:
+        order: order
       pluralize:
+        orders: orders
     modules:
+      admin/orders: Orders
     messages:
     actions:
   activerecord:

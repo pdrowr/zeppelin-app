@@ -1,4 +1,4 @@
-= simple_form_for [:admin, :staff, @member] do |f|
+= simple_form_for @member, url: admin_staff_members_path, method: :post do |f|
   .container
     .row
       .col-lg-2

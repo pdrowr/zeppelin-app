@@ -31,7 +31,7 @@
                       %label.control-label.select.optional{ for: 'office_ubication_id' } Mesas
                       %select.form-control.select.optional.select2#patient-select{ name: 'section[table_ids][]', multiple: 'multiple' }
                         - @tables.each do |table|
-                          %option{ value: table, selected: ((@section.table_ids.include?(table))) }= table
+                          %option{ value: table, selected: ((@section&.table_ids&.include?(table))) }= table
                   .col-xs-12
                     = f.input :active, as: :keppler_boolean, as: :hidden
                   .col-xs-12

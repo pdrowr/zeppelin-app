@@ -26,8 +26,8 @@ module KepplerFrontend
       render 'keppler_frontend/app/frontend/partials/table_orders', sections: sections
     end
 
-    def creaate_account_modal(table)
-      render 'keppler_frontend/app/frontend/partials/create_account_modal', table: table
+    def creaate_account_modal(section, table)
+      render 'keppler_frontend/app/frontend/partials/create_account_modal', section: section, table: table
     end
 
   end

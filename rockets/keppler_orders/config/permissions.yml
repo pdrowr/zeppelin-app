@@ -1,1 +1,7 @@
 modules:
+  orders:
+    name: Order
+    model: KepplerOrdersOrder
+    actions: [
+      'index', 'create', 'update', 'destroy', 'download', 'upload', 'clone'
+    ]

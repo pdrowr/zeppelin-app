@@ -1,31 +1,30 @@
 .grid-order
   - sections.each do |section|
     - section.tables.each_with_index do |table, index|
-      .order-wrapper.tab-content{ id: "space_one-#{index}"}
+      = creaate_account_modal(section, table.id)
+      .order-wrapper.tab-content{ id: "space_one-#{index}", class: ('current' if params[:table].eql?(table.id)) }
         .order-header
           %h4 Mesa número #{index+ 1}
           %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
-        .order-content.order-content--fixed.d-flex
-          -# - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
-          -# .order-counts
-          -#   -counts.each_with_index do |count|
-          -#     .card-content.card-counts.mb-4
-          -#       .order-card-counts
-          -#         .description-user.d-flex.justify-content-between
-          -#           %h4= count[:name]
-          -#           %p 10 min
-          -#         .list
-          -#           %dl
-          -#             %dt Productos
-          -#             %dd #{count[:products]}
-          -#             %dt Cuenta total
-          -#             %dd $#{count[:count]}
+        .order-content.order-content--fixed.d-flex.flex-column
+          - table.current_orders.each do |order|
+            .order-counts
+              .card-content.card-counts.mb-4
+                .order-card-counts
+                  .description-user.d-flex.justify-content-between
+                    %h4= order.client.name.truncate(20)
+                    %p= time_ago_in_words(order.created_at)
+                  .list
+                    %dl
+                      %dt Productos
+                      %dd 0
+                      %dt Cuenta total
+                      %dd $ 0
         .order-footer.sticky-footer
-          %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+          %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "##{section.name.split(' ').join()}-#{table.id.split(' ').join('')}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
             %i.icofont-plus
             Agregar cuenta
 
-      = creaate_account_modal(table)
 
 .btn-float.d-lg-none.d-block
   %button.btn.btn_custom.btn--filled.btn-sidebar
