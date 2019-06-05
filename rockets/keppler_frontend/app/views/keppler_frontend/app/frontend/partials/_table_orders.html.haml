@@ -15,12 +15,14 @@
                     .description-user.d-flex.justify-content-between
                       %h4= order.client.name.truncate(20)
                       %p= time_ago_in_words(order.created_at)
-                    .list
-                      %dl
-                        %dt Productos
-                        %dd= order.dishes.count
-                        %dt Cuenta total
-                        %dd= number_to_currency(order.total) || 'BsF. 0,00'
+                    .content-info-account.d-flex.flex-column
+                      .content-info.d-flex.justify-content-between
+                        %p Productos
+                        %span= order.dishes.count
+                      .content-info.d-flex.justify-content-between
+                        %p Cuenta todal
+                        %span= number_to_currency(order.total) || 'BsF. 0,00'
+
 
         .order-footer.sticky-footer
           %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "##{section.name.split(' ').join()}-#{table.id.split(' ').join('')}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }

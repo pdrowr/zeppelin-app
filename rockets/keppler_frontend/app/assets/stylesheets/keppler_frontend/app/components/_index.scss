@@ -622,6 +622,24 @@
   }
 }
 
+
+.content-info-account {
+  margin-top: 3px;;
+}
+.content-info  {
+  p {
+    @include font(15px, $normal);
+    color: $white;
+    font-family: $quicksand;
+    margin: 3px 0;
+  }
+  span {
+    @include font(15px, $bold);
+    color: $white;
+    font-family: $quicksand;
+  }
+}
+
 /* -------------------------
    ----- List card -----
    ------------------------- */
