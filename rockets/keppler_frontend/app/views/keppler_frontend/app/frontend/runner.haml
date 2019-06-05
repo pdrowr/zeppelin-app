@@ -46,10 +46,14 @@
                           .list-cards
                             -counts.each_with_index do |count|
                               .list-card
+                                .form-group.d-flex.justify-content-end.content-switch
+                                  %span.switch.switch-sm
+                                    %input#switch-sm.switch{:type => "checkbox"}/
+                                    %label{:for => "switch-sm"}
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= count[:name]
                                   -# %p 10 min
-                                .list
+                                .list.list-card-command
                                   %dl
                                     %dt Cantidad de platos
                                     %dd #{count[:products]}
@@ -101,10 +105,14 @@
                           .list-cards
                             -counts.each_with_index do |count|
                               .list-card
+                                .form-group.d-flex.justify-content-end.content-switch
+                                  %span.switch.switch-sm
+                                    %input#switch-sm.switch{:type => "checkbox"}/
+                                    %label{:for => "switch-sm"}
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= count[:name]
                                   -# %p 10 min
-                                .list
+                                .list.list-card-command
                                   %dl
                                     %dt Cantidad de platos
                                     %dd #{count[:products]}

@@ -37,9 +37,6 @@
                           .list-cards
                             -counts.each_with_index do |count|
                               .list-card
-                                // .custom-control.custom-switch
-                                //   %input#customSwitch1.custom-control-input{:type => "checkbox"}/
-                                //   %label.custom-control-label{:for => "customSwitch1"}
                                 .form-group.d-flex.justify-content-end.content-switch
                                   %span.switch.switch-sm
                                     %input#switch-sm.switch{:type => "checkbox"}/
@@ -48,7 +45,7 @@
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= count[:name]
                                   -# %p 10 min
-                                .list
+                                .list.list-card-command
                                   %dl
                                     %dt Cantidad de platos
                                     %dd #{count[:products]}
