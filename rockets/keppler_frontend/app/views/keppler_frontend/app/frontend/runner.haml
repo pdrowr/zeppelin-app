@@ -32,7 +32,7 @@
                         .order-card-counts.list-content
                           .description-user.d-flex.justify-content-between.list-header
                             .data
-                              %h4= order.client.name
+                              %h4= order.waiter.name
                               %p= order.table.id
                             .time
                               %p= time_ago_in_words(order.created_at)
@@ -43,21 +43,19 @@
                           .list-cards
                             - order.dishes.order(id: :desc).each_with_index do |dish, index|
                               .list-card
-                                .form-group.d-flex.justify-content-end.content-switch
-                                  %span.switch.switch-sm
-                                    %input#switch-sm.switch{:type => "checkbox"}/
-                                    %label{:for => "switch-sm"}
+                                .content-checkmark-list
+                                  %i.icofont-check-alt
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= dish.dish.name
-                                .list
-                                  %dl
-                                    %dt Cantidad de platos
-                                    %dd= dish.quantity
-                                    .div.observations
-                                      %p Observaciones:
+                                .content-info-account.d-flex.flex-column
+                                  .content-info.d-flex.justify-content-between
+                                    %p Cantidad
+                                    %span= order.dishes.count
+                                  .div.observations
+                                    %p Observaciones:
+                                    .tags
                                       - dish.observation.split(';').each do |observation|
-                                        .tags
-                                          %span.tag{ class: ('listo' if dish.completed?) }= observation
+                                        %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
                           .list-bottom
 
           .workspace-right.sidebar.workspace-right-runner
@@ -84,9 +82,10 @@
                         .order-card-counts.list-content
                           .description-user.d-flex.justify-content-between.list-header
                             .data
-                              %h4= order.client.name
+                              %h4= order.waiter.name
                               %p= order.table.id
-                            .time
+                            .time.d-flex.flex-column
+                              %p aqui va el switch
                               %p= time_ago_in_words(order.created_at)
                           .content-progress
                             .progress
@@ -95,14 +94,20 @@
                           .list-cards
                             - order.dishes.order(id: :desc).each_with_index do |dish, index|
                               .list-card
-                                .form-group.d-flex.justify-content-end.content-switch
-                                  %span.switch.switch-sm
-                                    %input#switch-sm.switch{:type => "checkbox"}/
-                                    %label{:for => "switch-sm"}
+                               
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= dish.dish.name
                                   -# %p 10 min
-                                .list.list-card-command
+                                .content-info-account.d-flex.flex-column
+                                  .content-info.d-flex.justify-content-between
+                                    %p Cantidad
+                                    %span= order.dishes.count
+                                  .div.observations
+                                    %p Observaciones:
+                                    .tags
+                                      - dish.observation.split(';').each do |observation|
+                                        %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
+                                -#.list.list-card-command
                                   %dl
                                     %dt Cantidad de platos
                                     %dd= dish.quantity

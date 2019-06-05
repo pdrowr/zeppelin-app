@@ -1057,6 +1057,37 @@
   padding: 0 10px;
 }
 
+.content-checkmark-list {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  height: 25px;
+  align-items: flex-start;
+
+  i {
+    font-size: 25px;
+    color: #666666;
+  }
+}
+// .checkmark {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   height: 25px;
+//   width: 25px;
+//   background-color: #eee;
+
+//   &:before {
+//     left: 9px;
+//     top: 5px;
+//     width: 5px;
+//     height: 10px;
+//     border-width: 0 3px 3px 0;
+//     -webkit-transform: rotate(45deg);
+//     -ms-transform: rotate(45deg);
+//     transform: rotate(45deg);
+//   }
+// }
 /** account*/
 .data-account {
   width: 40%;

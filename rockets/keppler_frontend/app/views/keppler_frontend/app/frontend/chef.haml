@@ -29,7 +29,7 @@
                       .card-content.card-counts.mb-4.card-chef
                         .order-card-counts.list-content
                           .description-user.d-flex.justify-content-between.list-header
-                            %h4= order.client.name
+                            %h4= order.waiter.name
                             %p= order.table.id
                           .list-cards
                             - order.dishes.order(id: :desc).each_with_index do |dish, index|
@@ -37,15 +37,15 @@
                                 = html_switch(order, dish, index)
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= dish.dish.name
-                                .list
-                                  %dl
-                                    %dt Cantidad
-                                    %dd= dish.quantity
-                                    .div.observations
-                                      %p Observaciones:
+                                .content-info-account.d-flex.flex-column
+                                  .content-info.d-flex.justify-content-between
+                                    %p Cantidad
+                                    %span= order.dishes.count
+                                  .div.observations
+                                    %p Observaciones:
+                                    .tags
                                       - dish.observation.split(';').each do |observation|
-                                        .tags
-                                          %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
+                                        %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
                           .list-bottom
 :javascript
   $('.btn-sidebar').click(function(){
