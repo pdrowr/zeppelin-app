@@ -9,7 +9,7 @@
           .mask
             .modal-product-title
               %h4= dish.name
-              %span $ #{dish.price}
+              %span= number_to_currency(dish.price) 
           %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
             %i.icofont-close.icon_custom.icon--large
         .modal-body
