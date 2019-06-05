@@ -13,5 +13,4 @@
 //= require jquery-ui
 //= require jquery.slick
 //= requiere popper
-//= requiere bootstrap
 //= require_tree .
