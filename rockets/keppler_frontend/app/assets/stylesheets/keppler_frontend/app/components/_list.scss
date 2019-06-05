@@ -1,6 +1,10 @@
 .list {
   width: 70%;
   margin-top: 3px;
+
+  &.list-card-command {
+    width: 90%;
+  }
 }
 
 dl {

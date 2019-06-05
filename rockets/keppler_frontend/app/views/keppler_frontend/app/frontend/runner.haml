@@ -43,6 +43,10 @@
                           .list-cards
                             - order.dishes.each do |dish|
                               .list-card
+                                .form-group.d-flex.justify-content-end.content-switch
+                                  %span.switch.switch-sm
+                                    %input#switch-sm.switch{:type => "checkbox"}/
+                                    %label{:for => "switch-sm"}
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= dish.dish.name
                                 .list
@@ -91,10 +95,14 @@
                           .list-cards
                             - order.dishes.each do |dish|
                               .list-card
+                                .form-group.d-flex.justify-content-end.content-switch
+                                  %span.switch.switch-sm
+                                    %input#switch-sm.switch{:type => "checkbox"}/
+                                    %label{:for => "switch-sm"}
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= dish.dish.name
                                   -# %p 10 min
-                                .list
+                                .list.list-card-command
                                   %dl
                                     %dt Cantidad de platos
                                     %dd= dish.quantity

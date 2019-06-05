@@ -35,7 +35,6 @@
                             - order.dishes.each_with_index do |dish, index|
                               .list-card
                                 = html_switch(order, dish, index)
-
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= dish.dish.name
                                 .list
