@@ -1,23 +1,15 @@
-
 = simple_form_for dish, url: app_toggle_dish_status_path(order, dish), method: :post do |f|
   .form-group.d-flex.justify-content-end.content-switch
     = f.input :completed, as: :keppler_boolean, label: false
-    -# %span.switch.switch-sm.active
-    -#   %input{:type => "checkbox", id: "switch-#{dish.id}-#{index}"}/
-    -#   %label{:for => "switch-#{dish.id}-#{index}"}
 
 :javascript
-  $('.switch').click(function() {
-    $(this).parent().parent().submit()
-  })
-
   $('.keppler-switch').click(function(event) {
     event.preventDefault()
   	$(this).find('input')
   		.toggleClass('active')
   		.attr('checked', $(this).find('input').hasClass('active'))
   		.val($(this).find('input').hasClass('active'))
-  		$('.simple_form').submit()
+  		$(this).parent().parent().parent().submit()
   })
 
   $('.inline-label').remove()

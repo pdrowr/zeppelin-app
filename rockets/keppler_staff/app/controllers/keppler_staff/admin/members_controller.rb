@@ -81,7 +81,7 @@ module KepplerStaff
       def index_variables
         @q = Member.ransack(params[:q])
         @members = @q.result(distinct: true)
-        @objects = @members.page(@current_page).order(position: :asc)
+        @objects = @members.page(@current_page).order(id: :desc)
         @total = @members.size
         @attributes = Member.index_attributes
       end

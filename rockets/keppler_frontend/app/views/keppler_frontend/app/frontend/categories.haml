@@ -14,10 +14,11 @@
                 %h1 Categorías
               .container-fluid.p-0
                 #tab-2
-                  .back
-                    = link_to app_account_path(@order) do
-                      %i.icofont-arrow-left
-                      %span Volver
+                  - if @order.present?
+                    .back
+                      = link_to app_account_path(@order) do
+                        %i.icofont-arrow-left
+                        %span Volver
                   %ul.sub-tabs#categories
 
                   #category-1.category-content.current

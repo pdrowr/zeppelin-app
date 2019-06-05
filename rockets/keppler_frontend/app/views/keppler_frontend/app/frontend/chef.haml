@@ -32,7 +32,7 @@
                             %h4= order.client.name
                             %p= order.table.id
                           .list-cards
-                            - order.dishes.each_with_index do |dish, index|
+                            - order.dishes.order(id: :desc).each_with_index do |dish, index|
                               .list-card
                                 = html_switch(order, dish, index)
                                 .description-user.d-flex.justify-content-between.name-dishes

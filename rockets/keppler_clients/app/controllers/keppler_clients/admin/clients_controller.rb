@@ -81,7 +81,7 @@ module KepplerClients
       def index_variables
         @q = Client.ransack(params[:q])
         @clients = @q.result(distinct: true)
-        @objects = @clients.page(@current_page).order(position: :asc)
+        @objects = @clients.page(@current_page).order(id: :desc)
         @total = @clients.size
         @attributes = Client.index_attributes
       end

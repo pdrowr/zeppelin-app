@@ -48,13 +48,13 @@ module KepplerOrders
     def self.completed_orders
       orders_in_kitchen.select do |order|
         order.dishes.where(completed: true).count.eql?(order.dishes.count)
-      end
+      end.reverse
     end
 
     def self.incompleted_orders
       orders_in_kitchen.where(status: 'IN_KITCHEN').select do |order|
         !order.dishes.where(completed: true).count.eql?(order.dishes.count)
-      end
+      end.reverse
     end
 
     def percentage

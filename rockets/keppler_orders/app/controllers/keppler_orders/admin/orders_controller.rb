@@ -81,7 +81,7 @@ module KepplerOrders
       def index_variables
         @q = Order.ransack(params[:q])
         @orders = @q.result(distinct: true)
-        @objects = @orders.page(@current_page).order(position: :asc)
+        @objects = @orders.page(@current_page).order(id: :desc)
         @total = @orders.size
         @attributes = Order.index_attributes
       end
