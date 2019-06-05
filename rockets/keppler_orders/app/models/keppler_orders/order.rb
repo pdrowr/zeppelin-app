@@ -37,18 +37,22 @@ module KepplerOrders
                   .order(id: :asc)
     end
 
+    def self.orders_in_kitchen
+      today_orders.where(status: 'IN_KITCHEN').order(id: :asc)
+    end
+
     def self.today
       Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
     end
 
     def self.completed_orders
-      current_orders.select do |order|
+      orders_in_kitchen.select do |order|
         order.dishes.where(completed: true).count.eql?(order.dishes.count)
       end
     end
 
     def self.incompleted_orders
-      current_orders.where(status: 'IN_KITCHEN').select do |order|
+      orders_in_kitchen.where(status: 'IN_KITCHEN').select do |order|
         !order.dishes.where(completed: true).count.eql?(order.dishes.count)
       end
     end

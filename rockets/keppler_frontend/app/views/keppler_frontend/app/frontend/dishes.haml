@@ -8,7 +8,17 @@
       .workspace
         .d-flex
           .workspace-left{ class: ('full-width' unless @order.present?) }
-            = top_bar('Platos')
+            .workspace_top
+              .workspace_top-container
+                .workspace_title.d-lg-block.d-sm-block.d-none
+                  %h1 #{@category.name.titleize} > Platos
+                .workspace_avatar
+                  .avatar-content.dropdown
+                    %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
+                      .avatar
+                        = image_tag '/assets/app/profile'
+                      %strong=current_member.alias
+
             .workspace_center
               .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
                 %h1 Platos
