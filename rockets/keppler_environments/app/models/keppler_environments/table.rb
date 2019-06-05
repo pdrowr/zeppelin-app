@@ -15,11 +15,14 @@ module KepplerEnvironments
       KepplerOrders::Order.where(table_id: id_consumo)
     end
 
+    def today_orders
+      orders.where(created_at: today)
+    end
+
     def current_orders
-      orders.where(
-        created_at: today,
-        status: 'ACTIVE'
-      ).order(id: :desc)
+      today_orders.select do |ord|
+        ord.status.eql?('ACTIVE') || ord.status.eql?('IN_KITCHEN')
+      end
     end
 
     private

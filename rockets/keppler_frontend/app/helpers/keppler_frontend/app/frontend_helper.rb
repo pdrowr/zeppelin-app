@@ -34,5 +34,17 @@ module KepplerFrontend
       render 'keppler_frontend/app/frontend/partials/add_item_modal', dish: dish, index: index, order: order
     end
 
+    def orders(order)
+      render 'keppler_frontend/app/frontend/partials/orders', order: order
+    end
+
+    def dish(dish, index)
+      render 'keppler_frontend/app/frontend/partials/dish', dish: dish, index: index
+    end
+
+    def html_switch(order, dish, index)
+      render 'keppler_frontend/app/frontend/partials/switch', order: order, dish: dish, index: index
+    end
+
   end
 end

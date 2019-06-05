@@ -1,30 +1,9 @@
 menu:
   keppler_orders:
     name: Keppler Orders
-    current: ['/']
-    url_path: /
+    current: ['/admin/orders/orders']
+    url_path: /admin/orders/orders
     icon: rocket
-    model: User
+    model: KepplerOrders::Order
     environment: all
     position: 4
-    submenu:
-      - item:
-          name: item
-          url_path: /admin/orders/items
-          icon: layers
-          current: ['/admin/orders/items']
-          model: KepplerOrders::Item
-
-      - order:
-          name: orders
-          url_path: /admin/orders/orders
-          icon: layers
-          current: ['/admin/orders/orders']
-          model: KepplerOrders::Order
-
-      # - new:
-      #     name: + Add new module
-      #     url_path: /url_path
-      #     current: ['/current_path']
-      #     enviroment: development
-      #     model: User

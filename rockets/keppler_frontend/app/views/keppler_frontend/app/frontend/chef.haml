@@ -25,108 +25,29 @@
               .container-fluid.p-0
                 #tab-4
                   .grid-wrapper.grid-wrapper-chef
-                    - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Pedro Guerra',products: '3', count: '30', product: "Cerveza", price: '30'}, {name: 'Paola Vargas',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anyelo Petit',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Patricia Álvarez',products: '3', count: '30', product: "Cerveza", price: '30'}]
-                  
-                    -counts.each_with_index do |count|
+                    - @orders.each do |order|
                       .card-content.card-counts.mb-4.card-chef
                         .order-card-counts.list-content
                           .description-user.d-flex.justify-content-between.list-header
-                            %h4= count[:name]
-                            %p Mesa 10
-                          - counts =[{name: 'Pizza Margarita',products: '3', count: '30'}, {name: 'Hamburguesas',products: '1',count: '10'},{name: 'Hamburguesas',products: '1',count: '10'}, {name: 'Cafe',products: '1',count: '10'}]
+                            %h4= order.client.name
+                            %p= order.table.id
                           .list-cards
-                            -counts.each_with_index do |count|
+                            - order.dishes.each_with_index do |dish, index|
                               .list-card
-                                // .custom-control.custom-switch
-                                //   %input#customSwitch1.custom-control-input{:type => "checkbox"}/
-                                //   %label.custom-control-label{:for => "customSwitch1"}
-                                .form-group.d-flex.justify-content-end.content-switch
-                                  %span.switch.switch-sm
-                                    %input#switch-sm.switch{:type => "checkbox"}/
-                                    %label{:for => "switch-sm"}
+                                = html_switch(order, dish, index)
 
                                 .description-user.d-flex.justify-content-between.name-dishes
-                                  %h4= count[:name]
-                                  -# %p 10 min
+                                  %h4= dish.dish.name
                                 .list
                                   %dl
-                                    %dt Cantidad de platos
-                                    %dd #{count[:products]}
+                                    %dt Cantidad
+                                    %dd= dish.quantity
                                     .div.observations
                                       %p Observaciones:
-                                      .tags
-                                        %span.tag Queso
-                                        %span.tag Vegetales
-                                        %span.tag Amor
+                                      - dish.observation.split(';').each do |observation|
+                                        .tags
+                                          %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
                           .list-bottom
-
-
-
-    -#       .workspace-right.sidebar
-    -#         .grid-order{ style: "position: fixed;"}
-    -#           .order-wrapper
-    -#             .order-header
-    -#               %h4 Mis ordenes
-    -#               %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
-    -#             .order-content.order-content--fixed.d-flex.flex-wrap
-    -#               - counts =[{name: 'Gladibeth Franco',products: '3', count: '30', product: "Cerveza", price: '30'},{name: 'Anaritza Lopez',products: '3', count: '30', product: "Cerveza", price: '30'}]
-    -#               .order-counts
-    -#                 -counts.each_with_index do |count|
-    -#                   .card-content.card-counts.mb-4
-    -#                     .order-card-counts
-    -#                       .description-user.d-flex.justify-content-between
-    -#                         %h4= count[:name]
-    -#                         %p.notification
-    -#                       .details-table.mt-4
-    -#                         .stat.d-flex.justify-content-center.flex-column.align-items-center
-    -#                           %p Mesa
-    -#                           %p 10 
-    -#                         .stat.d-flex.justify-content-center.flex-column.align-items-center
-    -#                           %p Tiempo
-    -#                           %p 10 min
-    -#                         .stat.d-flex.justify-content-center.flex-column.align-items-center
-    -#                           %p N° de orden
-    -#                           %p 37
-    -#                       .list-product.d-flex.justify-content-between.align-items-baseline
-    -#                         .card-product-title
-    -#                           %p.m-0= count[:product]
-    -#                         .card-product-detail.card-detail-order
-    -#                           .card-price
-    -#                             %span $ #{count[:price]} X
-    -#                             %span.box-quantity= count[:count]
-                            
-
-    -#         .grid-order
-    -#           - (10).times do |index|
-    -#             .order-wrapper.tab-content{ id: "space_one-#{index}"}
-    -#               .order-header
-    -#                 %h4 Mesa número #{index+ 1}
-    -#                 %i.icofont-close.icon_custom.icon--medium.close-order
-    -#               .order-content.order-content--fixed.d-flex
-    -#                 - counts =[{name: 'Gladibeth Franco',products: '3', count: '30'}, {name: 'Anaritza Lopez',products: '1',count: '10'}]
-    -#                 .order-counts
-    -#                   -counts.each_with_index do |count|
-    -#                     .card-content.card-counts.mb-4
-    -#                       .order-card-counts
-    -#                         .description-user.d-flex.justify-content-between
-    -#                           %h4= count[:name]
-    -#                           %p 10 min
-    -#                         .list
-    -#                           %dl
-    -#                             %dt Productos
-    -#                             %dd #{count[:products]}
-    -#                             %dt Cuenta total
-    -#                             %dd $#{count[:count]}
-    -#               .order-footer.sticky-footer
-    -#                 %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#create_counts", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-    -#                   %i.icofont-plus
-    -#                   Agregar cuenta
-    -# .btn-float.d-lg-none.d-block
-    -#   %button.btn.btn_custom.btn--filled.btn-sidebar
-    -#     %i.icofont-plus
-            
-
-
 :javascript
   $('.btn-sidebar').click(function(){
     $('.sidebar').toggleClass('active-sidebar');
@@ -138,7 +59,7 @@
   $('.close-order').click(function(){
      $('.sidebar').removeClass('active-sidebar');
   })
-  
+
   $('.dropdown-toggle').dropdown()
   $('.modal').on('shown.bs.modal', function () {
     $('body').addClass('overflow')
