@@ -27,8 +27,7 @@
                 #tab-5.tab-content.current
                   %h2.status-runner.pending Pendientes
                   .grid-wrapper.grid-wrapper-chef.mt-3.grid-wrapper-runner
-                    .message
-                      %h1 No hay comandas actualmente
+                    -#- if @order.present?
                     - @incompleted_orders.each do |order|
                       .card-content.card-counts.mb-4.card-chef
                         .order-card-counts.list-content
@@ -46,7 +45,7 @@
                             - order.dishes.order(id: :desc).each_with_index do |dish, index|
                               .list-card
                                 .content-checkmark-list
-                                  %i.icofont-check-alt
+                                  %i.icofont-check-alt.check-list
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= dish.dish.name
                                 .content-info-account.d-flex.flex-column
@@ -59,6 +58,9 @@
                                       - dish.observation.split(';').each do |observation|
                                         %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
                           .list-bottom
+                    -# - else
+                    -#   .message
+                    -#     %h2 No hay comandas
 
           .workspace-right.sidebar.workspace-right-runner
             .workspace_top.workspace_top-runner
@@ -87,7 +89,7 @@
                               %h4= order.waiter.name
                               %p= order.table.id
                             .time.d-flex.flex-column
-                              %p aqui va el switch
+                              -# %p aqui va el switch
                               %p= time_ago_in_words(order.created_at)
                           .content-progress
                             .progress
