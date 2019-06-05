@@ -6,8 +6,8 @@ module KepplerEnvironments
 
     has_many :orders, class_name: 'KepplerOrders::Order'
 
-    def self.available_tables
-      busy_tables       = Section.all.map(&:tables).flatten.compact
+    def self.available_tables(section_id)
+      busy_tables       = Section.where.not(id: section_id).map(&:tables).flatten.compact
       available_tables  = where.not(id_consumo: busy_tables).map(&:id_consumo)
     end
 
@@ -30,6 +30,5 @@ module KepplerEnvironments
     def today
       Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
     end
-
   end
 end
