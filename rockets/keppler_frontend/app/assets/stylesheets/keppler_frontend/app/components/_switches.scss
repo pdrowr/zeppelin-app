@@ -1,142 +1,285 @@
-$font-size-base: 1rem;
-$font-size-sm: ($font-size-base * .875);
-$input-height: 2.375rem;
-$input-height-sm: 1.9375rem;
-$input-btn-focus-width: .2rem;
-$custom-control-indicator-bg: #333333;
-$custom-control-indicator-disabled-bg: #e9ecef;
-$custom-control-description-disabled-color: #868e96;
-$white: white;
-$theme-colors: (
-  'primary': #82171c
-);
-
-
-$switch-height: calc(#{$input-height} * .8) !default;
-$switch-height-sm: calc(#{$input-height-sm} * .8) !default;
-$switch-border-radius: $switch-height !default;
-$switch-bg: $custom-control-indicator-bg !default;
-$switch-checked-bg: map-get($theme-colors, 'primary') !default;
-$switch-disabled-bg: $custom-control-indicator-disabled-bg !default;
-$switch-disabled-color: $custom-control-description-disabled-color !default;
-$switch-thumb-bg: $white !default;
-$switch-thumb-border-radius: 50% !default;
-$switch-thumb-padding: 2px !default;
-$switch-focus-box-shadow: 0 0 0 $input-btn-focus-width rgba(map-get($theme-colors, 'primary'), .25);
-$switch-transition: .2s all !default;
-
-.content-switch {
-  margin-bottom: 0px !important;
-}
-.switch {
-  font-size: $font-size-base;
-  position: relative;
-
-  input {
-    position: absolute;
-    height: 1px;
-    width: 1px;
-    background: none;
-    border: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    overflow: hidden;
-    padding: 0;
-
-    + label {
-      position: relative;
-      min-width: calc(#{$switch-height} * 2);
-      border-radius: $switch-border-radius;
-      height: $switch-height;
-      line-height: $switch-height;
-      display: inline-block;
-      cursor: pointer;
-      outline: none;
-      user-select: none;
-      vertical-align: middle;
-      text-indent: calc(calc(#{$switch-height} * 2) + .5rem);
-    }
-
-    + label::before,
-    + label::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: calc(#{$switch-height} * 2);
-      bottom: 0;
-      display: block;
-    }
-
-    + label::before {
-      right: 0;
-      background-color: $switch-bg;
-      border-radius: $switch-border-radius;
-      transition: $switch-transition;
-    }
-
-    + label::after {
-      top: $switch-thumb-padding;
-      left: $switch-thumb-padding;
-      width: calc(#{$switch-height} - calc(#{$switch-thumb-padding} * 2));
-      height: calc(#{$switch-height} - calc(#{$switch-thumb-padding} * 2));
-      border-radius: $switch-thumb-border-radius;
-      background-color: $switch-thumb-bg;
-      transition: $switch-transition;
-    }
-
-    &:checked + label::before {
-      background-color: $switch-checked-bg;
-    }
-
-    &:checked + label::after {
-      margin-left: $switch-height;
-    }
-
-    &:focus + label::before {
-      outline: none;
-      // box-shadow: $switch-focus-box-shadow;
-    }
-
-    &:disabled + label {
-      color: $switch-disabled-color;
-      cursor: not-allowed;
-    }
-
-    &:disabled + label::before {
-      background-color: $switch-disabled-bg;
-    }
-  }
-
-  // Small variation
-  &.switch-sm {
-    font-size: $font-size-sm;
+// $font-size-base: 1rem;
+// $font-size-sm: ($font-size-base * .875);
+// $input-height: 2.375rem;
+// $input-height-sm: 1.9375rem;
+// $input-btn-focus-width: .2rem;
+// $custom-control-indicator-bg: #333333;
+// $custom-control-indicator-disabled-bg: #e9ecef;
+// $custom-control-description-disabled-color: #868e96;
+// $white: white;
+// $theme-colors: (
+//   'primary': #82171c
+// );
+//
+//
+// $switch-height: calc(#{$input-height} * .8) !default;
+// $switch-height-sm: calc(#{$input-height-sm} * .8) !default;
+// $switch-border-radius: $switch-height !default;
+// $switch-bg: $custom-control-indicator-bg !default;
+// $switch-checked-bg: map-get($theme-colors, 'primary') !default;
+// $switch-disabled-bg: $custom-control-indicator-disabled-bg !default;
+// $switch-disabled-color: $custom-control-description-disabled-color !default;
+// $switch-thumb-bg: $white !default;
+// $switch-thumb-border-radius: 50% !default;
+// $switch-thumb-padding: 2px !default;
+// $switch-focus-box-shadow: 0 0 0 $input-btn-focus-width rgba(map-get($theme-colors, 'primary'), .25);
+// $switch-transition: .2s all !default;
+//
+// .content-switch {
+//   margin-bottom: 0px !important;
+// }
+// .switch {
+//   font-size: $font-size-base;
+//   position: relative;
+//
+//   input {
+//     position: absolute;
+//     height: 1px;
+//     width: 1px;
+//     background: none;
+//     border: 0;
+//     clip: rect(0 0 0 0);
+//     clip-path: inset(50%);
+//     overflow: hidden;
+//     padding: 0;
+//
+//     + label {
+//       position: relative;
+//       min-width: calc(#{$switch-height} * 2);
+//       border-radius: $switch-border-radius;
+//       height: $switch-height;
+//       line-height: $switch-height;
+//       display: inline-block;
+//       cursor: pointer;
+//       outline: none;
+//       user-select: none;
+//       vertical-align: middle;
+//       text-indent: calc(calc(#{$switch-height} * 2) + .5rem);
+//     }
+//
+//     + label::before,
+//     + label::after {
+//       content: '';
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       width: calc(#{$switch-height} * 2);
+//       bottom: 0;
+//       display: block;
+//     }
+//
+//     + label::before {
+//       right: 0;
+//       background-color: $switch-bg;
+//       border-radius: $switch-border-radius;
+//       transition: $switch-transition;
+//     }
+//
+//     + label::after {
+//       top: $switch-thumb-padding;
+//       left: $switch-thumb-padding;
+//       width: calc(#{$switch-height} - calc(#{$switch-thumb-padding} * 2));
+//       height: calc(#{$switch-height} - calc(#{$switch-thumb-padding} * 2));
+//       border-radius: $switch-thumb-border-radius;
+//       background-color: $switch-thumb-bg;
+//       transition: $switch-transition;
+//     }
+//
+//     &:checked + label::before {
+//       background-color: $switch-checked-bg;
+//     }
+//
+//     &:checked + label::after {
+//       margin-left: $switch-height;
+//     }
+//
+//     &:focus + label::before {
+//       outline: none;
+//       // box-shadow: $switch-focus-box-shadow;
+//     }
+//
+//     &:disabled + label {
+//       color: $switch-disabled-color;
+//       cursor: not-allowed;
+//     }
+//
+//     &:disabled + label::before {
+//       background-color: $switch-disabled-bg;
+//     }
+//   }
+//
+//   // Small variation
+//   &.switch-sm {
+//     font-size: $font-size-sm;
+//
+//     input {
+//       + label {
+//         min-width: calc(#{$switch-height-sm} * 2);
+//         height: $switch-height-sm;
+//         line-height: $switch-height-sm;
+//         text-indent: calc(calc(#{$switch-height-sm} * 2) + .5rem);
+//       }
+//
+//       + label::before {
+//         width: calc(#{$switch-height-sm} * 2);
+//       }
+//
+//       + label::after {
+//         width: calc(#{$switch-height-sm} - calc(#{$switch-thumb-padding} * 2));
+//         height: calc(#{$switch-height-sm} - calc(#{$switch-thumb-padding} * 2));
+//       }
+//
+//       &:checked + label::after {
+//         margin-left: $switch-height-sm;
+//       }
+//     }
+//   }
+//
+//
+//   + .switch {
+//     margin-left: 1rem;
+//   }
+// }
+.keppler-switch {
+  display: block;
+    height: 24px;
+    margin-bottom: 0;
+    position: relative;
+    width: 40px;
 
     input {
-      + label {
-        min-width: calc(#{$switch-height-sm} * 2);
-        height: $switch-height-sm;
-        line-height: $switch-height-sm;
-        text-indent: calc(calc(#{$switch-height-sm} * 2) + .5rem);
-      }
+     display: none;
 
-      + label::before {
-        width: calc(#{$switch-height-sm} * 2);
-      }
+     &.active + .slider {
+       background-color: $primary;
+       box-shadow: 0 0 1px $primary;
 
-      + label::after {
-        width: calc(#{$switch-height-sm} - calc(#{$switch-thumb-padding} * 2));
-        height: calc(#{$switch-height-sm} - calc(#{$switch-thumb-padding} * 2));
-      }
-
-      &:checked + label::after {
-        margin-left: $switch-height-sm;
-      }
+       // &::before {
+       //   transform: translateX(16px);
+       // }
+     }
     }
-  }
 
+    .slider {
+     background-color: #ccc;
+     bottom: 0;
+     cursor: pointer;
+     left: 0;
+     position: absolute;
+     right: 0;
+     top: 0;
+     transition: .4s;
 
-  + .switch {
-    margin-left: 1rem;
+     &::before {
+       background-color: #fff;
+       bottom: 4px;
+       content: '';
+       height: 16px;
+       left: 4px;
+       position: absolute;
+       transition: .4s;
+       width: 16px;
+     }
+
+     &.round {
+       border-radius: 34px;
+     }
+
+     &.round::before {
+       border-radius: 50%;
+     }
+    }
+
+    .inline-label {
+     margin-left: 50px;
+     opacity: .5;
+     transition: opacity .3s;
+
+     &.active {
+       opacity: 1;
+       transition: opacity .3s;
+     }
+    }
+
+    a {
+     text-decoration: none;
+    }
+
+    .active + .slider {
+     background-color: $primary;
+     box-shadow: 0 0 1px $primary;
+
+     &::before {
+       transform: translateX(16px);
+     }
+    }
+    }
+
+    .switch-box {
+    margin-bottom: 0;
+    }
+
+    .switch {
+    display: inline-block;
+    height: 20px;
+    margin-bottom: 0;
+    position: relative;
+    width: 35px;
+
+    input {
+     display: none;
+    }
+
+    .slider {
+     background-color: #ccc;
+     bottom: 0;
+     cursor: pointer;
+     left: 0;
+     position: absolute;
+     right: 0;
+     top: 0;
+     transition: .4s;
+
+     &::before {
+       background-color: #fff;
+       bottom: 4px;
+       content: '';
+       height: 12px;
+       left: 4px;
+       position: absolute;
+       transition: .4s;
+       width: 12px;
+     }
+
+     &.round {
+       border-radius: 34px;
+     }
+
+     &.round::before {
+       border-radius: 50%;
+     }
+    }
+
+    .active + .slider {
+     background-color: $primary;
+     box-shadow: 0 0 1px $primary;
+
+     &::before {
+       transform: translateX(16px);
+     }
+    }
+
+    a {
+     text-decoration: none;
+    }
+
+    .no-visible {
+     display: none;
+    }
+
+    .row-selectable:hover {
+     background-color: #fff;
+     cursor: pointer;
+     transition: all ease .3s;
   }
 }
