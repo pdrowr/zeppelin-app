@@ -66,5 +66,9 @@ module KepplerOrders
       ((completed * 100) / all)
     end
 
+    def in_kitchen?
+      status.eql?('IN_KITCHEN')
+    end
+
   end
 end

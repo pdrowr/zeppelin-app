@@ -49,13 +49,17 @@
                             .order-header
                               %h4 Pedidos
                               .float-right.right-btn-order.d-flex.justify-content-end
-                                - unless @order.dishes
-                                  = link_to app_send_to_kitchen_path(@order), method: :post do
-                                    %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2
-                                      Enviar A Cocina
-                                = link_to app_categories_path(@order) do
+                                - if @order.in_kitchen?
                                   %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
-                                    Añadir Platos
+                                    Cerrar Cuenta
+                                - else
+                                  - unless @order.dishes.blank?
+                                    = link_to app_send_to_kitchen_path(@order), method: :post do
+                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2
+                                        Enviar A Cocina
+                                  = link_to app_categories_path(@order) do
+                                    %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
+                                      Añadir Platos
 
                               %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                             .order-content.order-content--fixed.d-flex.flex-column

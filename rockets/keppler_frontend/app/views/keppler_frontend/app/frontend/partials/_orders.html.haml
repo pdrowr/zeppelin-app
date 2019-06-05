@@ -18,8 +18,9 @@
                   .card-price
                     %span $ #{dish.price} X
                     %span.box-quantity= dish.quantity
-                  .card-product-delete
-                    %i.icofont-ui-delete
+                  = link_to app_remove_item_path(@order, dish), method: :delete, data: { confirm: '¿Estás seguro?' } do
+                    .card-product-delete
+                      %i.icofont-ui-delete
       .order-footer.order-footer-product
         %span Total:
         %span= number_to_currency(order&.total) || 'BsF. 0,00'

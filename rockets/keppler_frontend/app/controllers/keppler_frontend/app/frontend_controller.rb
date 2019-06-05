@@ -56,6 +56,7 @@ module KepplerFrontend
 
     def send_to_kitchen
       @order.send_to_kitchen
+      redirect_back(fallback_location: root_path)
     end
 
     def toggle_dish_status
