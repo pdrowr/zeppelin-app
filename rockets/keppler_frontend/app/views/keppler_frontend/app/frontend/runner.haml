@@ -27,6 +27,8 @@
                 #tab-5.tab-content.current
                   %h2.status-runner.pending Pendientes
                   .grid-wrapper.grid-wrapper-chef.mt-3.grid-wrapper-runner
+                    .message
+                      %h1 No hay comandas actualmente
                     - @incompleted_orders.each do |order|
                       .card-content.card-counts.mb-4.card-chef
                         .order-card-counts.list-content
@@ -94,7 +96,8 @@
                           .list-cards
                             - order.dishes.order(id: :desc).each_with_index do |dish, index|
                               .list-card
-                               
+                                .content-checkmark-list
+                                  %i.icofont-check-alt
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= dish.dish.name
                                   -# %p 10 min
