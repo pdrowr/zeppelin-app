@@ -1,0 +1,30 @@
+.workspace-right.sidebar{ class: ('sidebar-disabled' unless @order.present?) }
+  .grid-order{ style: "position: fixed;"}
+    .order-wrapper
+      .order-header
+        %h4 Pedidos #{order&.table&.id}
+        %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
+      .order-content.order-content--fixed.d-flex.flex-wrap
+        - order&.dishes&.each do |dish|
+          .card-wrapper
+            .card-content.card-counts
+              .card-product-image
+                .product-image.product-image-order
+                  %img{ src: dish.dish.picture }
+              .card-product-description.pl-4
+                .card-product-title
+                  %h4.m-0= dish.dish.name
+                .card-product-detail.card-detail-order
+                  .card-price
+                    %span $ #{dish.price} X
+                    %span.box-quantity= dish.quantity
+                  = link_to app_remove_item_path(@order, dish), method: :delete, data: { confirm: '¿Estás seguro?' } do
+                    .card-product-delete
+                      %i.icofont-ui-delete
+      .order-footer.order-footer-product
+        %span Total:
+        %span= number_to_currency(order&.total) || 'BsF. 0,00'
+
+  .btn-float.d-lg-none.d-block
+    %button.btn.btn_custom.btn--filled.btn-sidebar
+      %i.icofont-plus

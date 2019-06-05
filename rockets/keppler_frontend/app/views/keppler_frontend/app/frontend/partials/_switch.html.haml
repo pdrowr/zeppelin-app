@@ -1,0 +1,10 @@
+= simple_form_for dish, url: app_toggle_dish_status_path(order, dish), method: :post do
+  .form-group.d-flex.justify-content-end.content-switch
+    %span.switch.switch-sm.active
+      %input{:type => "checkbox", id: "switch-#{dish.id}-#{index}"}/
+      %label{:for => "switch-#{dish.id}-#{index}"}
+
+:javascript
+  $('.switch').click(function() {
+    $(this).parent().parent().submit()
+  })

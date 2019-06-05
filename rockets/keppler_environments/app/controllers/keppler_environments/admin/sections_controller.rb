@@ -7,7 +7,7 @@ module KepplerEnvironments
     # SectionsController
     class SectionsController < ::Admin::AdminController
       layout 'keppler_environments/admin/layouts/application'
-      before_action :set_section, only: %i[show edit update destroy]
+      before_action :set_section, only: %i[show edit update destroy set_tables]
       before_action :set_tables, only: %i[new create edit update]
       before_action :index_variables
       include ObjectQuery
@@ -88,8 +88,7 @@ module KepplerEnvironments
       end
 
       def set_tables
-        @tables = KepplerEnvironments::Table.all.map(&:id)
-        # @tables = KepplerEnvironments::Table.available_tables
+        @tables = KepplerEnvironments::Table.available_tables(@section)
       end
 
       # Use callbacks to share common setup or constraints between actions.

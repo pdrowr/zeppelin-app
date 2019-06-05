@@ -1,21 +1,21 @@
 es:
   keppler:
     sidebar-menu:
-      keppler-orders: Keppler orders
+      keppler-orders: Ordenes
       keppler-orders-submenu:
         item: Item
-        orders: Orders
+        orders: Ordenes
     permissions:
     models:
       singularize:
         item: item
-        order: order
+        order: ordenes
       pluralize:
         items: items
-        orders: orders
+        orders: ordenes
     modules:
       admin/item: Item
-      admin/orders: Orders
+      admin/orders: Ordenes
     messages:
     actions:
   activerecord:
