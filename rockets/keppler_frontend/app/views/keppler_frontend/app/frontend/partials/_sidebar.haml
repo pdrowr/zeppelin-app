@@ -1,5 +1,5 @@
 %aside
-  %ul.tabs.d-flex.flex-column.align-item-center
+  %ul.tabs.d-flex.flex-column.align-items-center
     %li.d-lg-none.d-md-none
       %li
         = link_to root_path do
@@ -18,7 +18,7 @@
         = link_to app_chef_path do
           .icons
             %i.icofont-list
-    - if current_member.is_a?('runner')            
+    - if current_member.is_a?('runner')
       %li.tab-link{  }
         = link_to app_runner_path do
           .icons
