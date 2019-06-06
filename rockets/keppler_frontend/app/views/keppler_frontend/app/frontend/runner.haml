@@ -44,8 +44,9 @@
                           .list-cards
                             - order.dishes.order(id: :desc).each_with_index do |dish, index|
                               .list-card
-                                .content-checkmark-list
-                                  %i.icofont-check-alt.check-list
+                                - if dish.completed?
+                                  .content-checkmark-list
+                                    %i.icofont-check-alt.check-list
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= dish.dish.name
                                 .content-info-account.d-flex.flex-column

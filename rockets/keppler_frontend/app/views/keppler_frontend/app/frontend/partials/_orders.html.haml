@@ -1,8 +1,9 @@
 .workspace-right.sidebar{ class: ('sidebar-disabled' unless @order.present?) }
   .float-right.right-btn-order
-    = link_to app_account_path do
-      %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
-        Ver Cuenta
+    - if @order.present?
+      = link_to app_account_path do
+        %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
+          Ver Cuenta
   .grid-order{ style: "position: fixed;"}
     .order-wrapper
       .order-header

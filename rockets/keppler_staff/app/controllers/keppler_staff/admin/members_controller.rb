@@ -7,7 +7,7 @@ module KepplerStaff
     # MembersController
     class MembersController < ::Admin::AdminController
       layout 'keppler_staff/admin/layouts/application'
-      before_action :set_member, only: %i[show edit update destroy]
+      before_action :set_member, only: %i[show edit update destroy member_params]
       before_action :index_variables
       include ObjectQuery
 
@@ -30,7 +30,7 @@ module KepplerStaff
 
       # POST /staffs
       def create
-        @member = Member.new(member_params)
+        @member = Member.new(member_params('member'))
 
         if @member.save
           redirect(@member, params)
@@ -41,7 +41,7 @@ module KepplerStaff
 
       # PATCH/PUT /staffs/1
       def update
-        if @member.update(member_params)
+        if @member.update(member_params(@member.class.name.split('::').last.downcase))
           redirect(@member, params)
         else
           render :edit
@@ -92,8 +92,8 @@ module KepplerStaff
       end
 
       # Only allow a trusted parameter "white list" through.
-      def member_params
-        params.require(:member).permit(
+      def member_params(model_type)
+        params.require(model_type.to_sym).permit(
           :picture, :name, :alias, :email, :member_code, :type
         )
       end
