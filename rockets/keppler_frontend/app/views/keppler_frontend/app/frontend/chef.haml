@@ -25,9 +25,10 @@
               .container-fluid.p-0
                 #tab-4
                   .grid-wrapper.grid-wrapper-chef
-                    - @orders.each do |order|
+                    - @orders.each_with_index do |order,index|
                       .card-content.card-counts.mb-4.card-chef
-                        .order-card-counts.list-content
+                        .order-card-counts.list-content{ class: "status-#{index}"}
+                          -# { class: ('disabled' if index.even?) }
                           .description-user.d-flex.justify-content-between.list-header
                             %h4= order.waiter.name
                             %p= order.table.id
@@ -47,7 +48,14 @@
                                       - dish.observation.split(';').each do |observation|
                                         %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
                           .list-bottom
+                            .crono_wrapper
+                              %h2#crono 00:00:00
+                              %input.start{:onclick => "empezarDetener(this);", type:'button', style: 'width:1px; height:1px;background-color:transparent !important;border: transparent;'}/
+
+
 :javascript
+  $('.start').click()
+  
   $('.btn-sidebar').click(function(){
     $('.sidebar').toggleClass('active-sidebar');
   })
@@ -67,3 +75,5 @@
       $('.modal').removeClass('in')
     })
   });
+ 
+	

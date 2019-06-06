@@ -437,7 +437,7 @@
 }
 
 .disabled{
-  cursor: not-allowed;
+  cursor: not-allowed !important;
   opacity: 0.4;
 
   .card-content {
@@ -654,7 +654,20 @@
   // max-height: 470px;
   position: relative;
   white-space: normal;
+
+
 }
+
+$status: #333333 #e25f23 #9b111e;
+$i: 1;
+@each $color in $status {
+  .status-#{$i} {
+    background-color: $color !important;
+  }
+  $i: $i + 1;
+}
+
+
 .list-header {
   flex: 0 0 auto;
   padding: 10px 8px 8px;
@@ -714,7 +727,9 @@
 }
 
 .list-bottom {
-  padding: 6px;
+  padding: 35px;
+  display: flex;
+  justify-content: center;
 }
 /* -------------------------
    ----- Categories -----
