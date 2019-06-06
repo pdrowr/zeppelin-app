@@ -1,0 +1,22 @@
+en:
+  keppler:
+    sidebar-menu:
+      keppler-periods: Periods
+      keppler-periods-submenu:
+        period: Period
+    permissions:
+    models:
+      singularize:
+        period: period
+      pluralize:
+        periods: periods
+    modules:
+      admin/period: Period
+    messages:
+    actions:
+  activerecord:
+    attributes:
+    errors:
+      messages:
+  errors:
+  helpers:

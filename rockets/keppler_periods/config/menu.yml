@@ -1,0 +1,9 @@
+menu:
+  keppler_periods:
+    name: Keppler Periods
+    url_path: /admin/periods/periods
+    current: ['/admin/periods/periods']
+    icon: time
+    model: KepplerPeriods::Period
+    environment: all
+    position: 4

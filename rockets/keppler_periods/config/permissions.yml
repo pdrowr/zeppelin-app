@@ -1,0 +1,7 @@
+modules:
+  periods:
+    name: Period
+    model: KepplerPeriodsPeriod
+    actions: [
+      'index', 'create', 'update', 'destroy', 'download', 'upload', 'clone'
+    ]

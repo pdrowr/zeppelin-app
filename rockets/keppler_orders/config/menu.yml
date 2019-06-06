@@ -3,7 +3,7 @@ menu:
     name: Keppler Orders
     current: ['/admin/orders/orders']
     url_path: /admin/orders/orders
-    icon: rocket
+    icon: spreadsheet
     model: KepplerOrders::Order
     environment: all
     position: 4

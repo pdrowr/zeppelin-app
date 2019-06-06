@@ -70,6 +70,15 @@ PATH
       simple_form
 
 PATH
+  remote: rockets/keppler_periods
+  specs:
+    keppler_periods (0.1.0)
+      haml_rails
+      pundit
+      rails (= 5.2.0)
+      simple_form
+
+PATH
   remote: rockets/keppler_staff
   specs:
     keppler_staff (0.1.0)
@@ -654,6 +663,7 @@ DEPENDENCIES
   keppler_languages!
   keppler_menu!
   keppler_orders!
+  keppler_periods!
   keppler_staff!
   loofah (>= 2.2.3)
   mini_magick (= 4.8.0)
