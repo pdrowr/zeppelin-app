@@ -27,8 +27,8 @@
                   .grid-wrapper.grid-wrapper-chef
                     - @orders.each_with_index do |order,index|
                       .card-content.card-counts.mb-4.card-chef
-                        .order-card-counts.list-content.status-normal
-                          -# { class: ('disabled' if index.even?) }
+                        .order-card-counts.list-content{ class: "status-#{order.order_status}"}
+
                           .description-user.d-flex.justify-content-between.list-header
                             .data
                               %h4= order.waiter.name

@@ -30,7 +30,7 @@
                     -#- if @order.present?
                     - @incompleted_orders.each_with_index do |order, index|
                       .card-content.card-counts.mb-4.card-chef
-                        .order-card-counts.list-content
+                        .order-card-counts.list-content{ class: "status-#{order.order_status}"}
                           -# { class: ('disabled' if index.even?) }
                           .description-user.d-flex.justify-content-between.list-header
                             .data
@@ -86,7 +86,7 @@
                   .grid-wrapper.grid-wrapper-chef.mt-3.grid-wrapper-runner
                     - @completed_orders.each do |order|
                       .card-content.card-counts.mb-4.card-chef
-                        .order-card-counts.list-content.status-normal
+                        .order-card-counts.list-content{ class: "status-#{order.order_status}"}
                           .description-user.d-flex.justify-content-between.list-header
                             .data
                               %h4= order.waiter.name
