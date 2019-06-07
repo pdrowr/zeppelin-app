@@ -42,6 +42,11 @@
                           .data-client
                             %p Dirección
                             %span= @order.client.address
+                          .data-client
+                            %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#check", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                              %i.icofont-trash
+                              eliminar
+                          
                       .listing
 
                         .grid-order.grid-order-account
@@ -84,7 +89,25 @@
                               .order-footer.order-footer-product.order-footer-account
                                 %span Total:
                                 -# %span $ 60
+-# = render 'app/frontend/partials/check_modal'
+.modal.fade{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "check" }
+  .modal-dialog{role: "document"}
+    .modal-content
+      .modal-header
+        %h2.m-0 Esta seguro de eliminar
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+          %i.icofont-close.icon_custom.icon--large
+      .modal-body
+        %form
+          .form-group
+            %label.label_custom Código
+            %input.form-control.input_custom{ name: 'codigo' }
 
+          .float-right.mt-2
+            %button.btn.btn_custom.btn--medium.btn--filled{ type: 'submit' }
+              Cerrar
+
+              
 :javascript
   $('.btn-sidebar').click(function(){
     $('.sidebar').toggleClass('active-sidebar');
