@@ -2,43 +2,41 @@ require_dependency "keppler_frontend/application_controller"
 
 module KepplerFrontend
   class App::FrontendController < App::AppController
+    before_action :set_index_variables, only: %i[index]
     before_action :authenticate_member, :set_period
     before_action :set_order, only: %i[categories dishes account add_item remove_item send_to_kitchen toggle_dish_status]
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
 
-    def index
-      @sections   = KepplerEnvironments::Section.order(position: :asc)
-      @categories = KepplerMenu::Category.all
-      @dishes     = KepplerMenu::Dish.all
-      @client     = KepplerClients::Client.new
-    end
+    def index; end
 
     def manage_client
-      @client = KepplerClients::Client.where(email: params[:client][:email])
-                                      .first_or_create(client_params)
-
+      @client = rocket('clients', 'client').set_client(params[:client][:email], client_params)
       @client.create_order(params[:table], current_member.id, @period.id)
       redirect_to root_path(section: params[:section], table: params[:table])
     end
 
     def categories
-      @categories = KepplerMenu::Category.all
+      begin
+        # @categories = rocket('menu', 'category').all
+      rescue StandarError => e
+        print e
+      end
     end
 
     def dishes
-      @category = KepplerMenu::Category.find(params[:category_id])
+      @category = rocket('menu', 'category').find(params[:category_id])
       @dishes   = @category.dishes
-      @item     = KepplerOrders::Item.new
+      @item     = rocket('orders', 'item').new
     end
 
     def chef
-      @orders = KepplerOrders::Order.incompleted_orders
+      @orders = rocket('orders', 'order').incompleted_orders
     end
 
     def runner
-      @completed_orders   = KepplerOrders::Order.completed_orders
-      @incompleted_orders = KepplerOrders::Order.incompleted_orders
+      @completed_orders   = rocket('orders', 'order').completed_orders
+      @incompleted_orders = rocket('orders', 'order').incompleted_orders
     end
 
     def account; end
@@ -66,6 +64,11 @@ module KepplerFrontend
     end
 
     private
+
+    def set_index_variables
+      @sections   = rocket('environments', 'section').order(position: :asc)
+      @client     = KepplerClients::Client.new
+    end
 
     def client_params
       params.require(:client).permit(:name, :email, :identification, :address)

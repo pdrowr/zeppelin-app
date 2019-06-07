@@ -5,21 +5,21 @@
         = link_to root_path do
           = image_tag '/assets/app/z', class: 'isologo_white'
     - if current_member.is_a?('waiter')
-      %li.tab-link.current
+      %li.tab-link{ class: ('current' if action_name.eql?('index')) }
         = link_to root_path do
           .icons
             %i.icofont-dining-table
-      %li.tab-link{  }
+      %li.tab-link{ class: ('current' if action_name.eql?('categories')) }
         = link_to app_categories_path do
           .icons
             %i.icofont-restaurant
     - if current_member.is_a?('chef')
-      %li.tab-link{  }
+      %li.tab-link{ class: ('current' if action_name.eql?('chef')) }
         = link_to app_chef_path do
           .icons
             %i.icofont-list
     - if current_member.is_a?('runner')
-      %li.tab-link{  }
+      %li.tab-link{ class: ('current' if action_name.eql?('runner')) }
         = link_to app_runner_path do
           .icons
             %i.icofont-listing-number

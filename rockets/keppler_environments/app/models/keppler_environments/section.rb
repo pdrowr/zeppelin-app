@@ -29,8 +29,6 @@ module KepplerEnvironments
       rescue Exception => e
         print e
       end
-
     end
-
   end
 end

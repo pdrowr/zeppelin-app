@@ -25,5 +25,10 @@ module KepplerClients
         period_id: period_id
       )
     end
+
+    def set_client(email, client_params)
+      where(email: email).first_or_create(client_params)
+    end
+
   end
 end

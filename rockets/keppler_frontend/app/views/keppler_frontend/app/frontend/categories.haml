@@ -23,7 +23,7 @@
 
                   #category-1.category-content.current
                     .grid-wrapper.flex-wrap
-                      - @categories.each_with_index do |category|
+                      - @categories&.each_with_index do |category|
                         = link_to app_category_dishes_path(category.id.strip, @order) do
                           .card-category
                             %img{ src: category.picture }
