@@ -2,15 +2,15 @@ require_dependency "keppler_frontend/application_controller"
 
 module KepplerFrontend
   class App::FrontendController < App::AppController
-    before_action :authenticate_member
+    before_action :authenticate_member, :set_period
     before_action :set_order, only: %i[categories dishes account add_item remove_item send_to_kitchen toggle_dish_status]
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
 
     def index
       @sections   = KepplerEnvironments::Section.order(position: :asc)
-      # @categories = KepplerMenu::Category.all
-      # @dishes     = KepplerMenu::Dish.all
+      @categories = KepplerMenu::Category.all
+      @dishes     = KepplerMenu::Dish.all
       @client     = KepplerClients::Client.new
     end
 
@@ -18,7 +18,7 @@ module KepplerFrontend
       @client = KepplerClients::Client.where(email: params[:client][:email])
                                       .first_or_create(client_params)
 
-      @client.create_order(params[:table], current_member.id)
+      @client.create_order(params[:table], current_member.id, @period.id)
       redirect_to root_path(section: params[:section], table: params[:table])
     end
 
@@ -79,6 +79,10 @@ module KepplerFrontend
 
     def set_order
       @order = KepplerOrders::Order.find_by_id(params[:order_id])
+    end
+
+    def set_period
+      KepplerPeriods::Period.current_period
     end
   end
 end

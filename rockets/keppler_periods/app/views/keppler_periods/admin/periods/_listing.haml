@@ -28,6 +28,8 @@
           = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
             %span= object.try(attribute).try(:truncate_words, 4)
       %td
+        = object.date
+      %td
         - if object.open?
           = render 'switch', object: object
         - else

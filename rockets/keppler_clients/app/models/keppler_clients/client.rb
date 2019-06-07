@@ -17,11 +17,12 @@ module KepplerClients
       %i[name identification email address code]
     end
 
-    def create_order(table_id, waiter_id)
-      orders.create!(
+    def create_order(table_id, waiter_id, period_id)
+      orders.create(
         table_id: table_id,
         waiter_id: waiter_id,
-        status: 'ACTIVE'
+        status: 'ACTIVE',
+        period_id: period_id
       )
     end
   end

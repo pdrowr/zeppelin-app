@@ -15,6 +15,10 @@ module KepplerPeriods
     validates_presence_of :name, :date
     has_many :orders, class_name: 'KepplerOrders::Order'
 
+    def self.current_period
+      where(open: true)&.first || nil
+    end
+
     def self.index_attributes
       %i[name]
     end

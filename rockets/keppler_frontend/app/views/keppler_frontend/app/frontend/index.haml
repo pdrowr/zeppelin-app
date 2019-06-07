@@ -23,7 +23,7 @@
                     .tab-content-sub{ id: "sub-tab-#{index}", class: ('current' if params[:section].eql?(section.name) || index.zero?) }
                       .d-flex
                         .grid-wrapper
-                          - section.tables.each_with_index do |table, index|
+                          - section&.tables&.each_with_index do |table, index|
                             = table(index)
 
           .workspace-right.sidebar

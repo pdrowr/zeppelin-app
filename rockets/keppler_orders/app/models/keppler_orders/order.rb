@@ -41,10 +41,6 @@ module KepplerOrders
       today_orders.where(status: 'IN_KITCHEN').order(id: :asc)
     end
 
-    def self.today
-      Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
-    end
-
     def self.completed_orders
       orders_in_kitchen.select do |order|
         order.dishes.where(completed: true).count.eql?(order.dishes.count)
@@ -60,9 +56,7 @@ module KepplerOrders
     def percentage
       all = dishes.count
       completed = dishes.where(completed: true).count
-
       return 0 if completed.zero?
-
       ((completed * 100) / all)
     end
 
@@ -70,5 +64,8 @@ module KepplerOrders
       status.eql?('IN_KITCHEN')
     end
 
+    def self.today
+      Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
+    end
   end
 end

@@ -1,6 +1,6 @@
 .grid-order
   - sections.each do |section|
-    - section.tables.each_with_index do |table, index|
+    - section&.tables&.each_with_index do |table, index|
       = creaate_account_modal(section, table.id)
       .order-wrapper.tab-content{ id: "space_one-#{index}", class: ('current' if params[:table].eql?(table.id)) }
         .order-header
@@ -25,9 +25,10 @@
 
 
         .order-footer.sticky-footer
-          %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "##{section.name.split(' ').join()}-#{table.id.split(' ').join('')}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-            %i.icofont-plus
-            Agregar cuenta
+          - unless @period.nil?
+            %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "##{section.name.split(' ').join()}-#{table.id.split(' ').join('')}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+              %i.icofont-plus
+              Agregar cuenta
 
 
 .btn-float.d-lg-none.d-block

@@ -24,7 +24,12 @@ module KepplerEnvironments
     end
 
     def tables
-      Table.where(id_consumo: table_ids)
+      begin
+        Table.where(id_consumo: table_ids)
+      rescue Exception => e
+        print e
+      end
+
     end
 
   end
