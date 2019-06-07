@@ -42,11 +42,7 @@
                           .data-client
                             %p Dirección
                             %span= @order.client.address
-                          .data-client
-                            %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "#check", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-                              %i.icofont-trash
-                              eliminar
-                          
+
                       .listing
 
                         .grid-order.grid-order-account
@@ -55,9 +51,11 @@
                               %h4 Pedidos
                               .float-right.right-btn-order.d-flex.justify-content-end
                                 - if @order.in_kitchen?
-                                  = link_to app_cancel_order_path(@order), method: :post do
-                                    %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
-                                      Cancelar Orden
+                                  = confirmation_modal(@order, nil, @order.id, :order)
+
+                                  -# = link_to app_cancel_order_path(@order), method: :post do
+                                  .btn.btn_custom.btn--medium.btn--white.js-btn-order{'data-target': "#confirmation-order-#{@order.id}-#{@order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                    Cancelar Orden
 
                                   %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
                                     Cerrar Cuenta
@@ -74,7 +72,10 @@
                             .order-content.order-content--fixed.d-flex.flex-column
 
                               .d-flex.flex-column
-                                - @order.dishes.order(id: :asc).each do |dish|
+                                - @order.dishes.order(id: :asc).each_with_index do |dish, index|
+
+                                  = confirmation_modal(@order, dish, index, :dish)
+
                                   .card-wrapper.card-account{ class: ('disabled' if @order.cancelled? || dish.cancelled?) }
                                     .card-content.card-product-account
                                       .card-product-image.account-product-image
@@ -88,35 +89,18 @@
                                             %span $ #{dish.price} X
                                             %span.box-quantity= dish.quantity
                                           - if @order.in_kitchen?
-                                            = link_to app_cancel_dish_path(@order, dish), method: :post do
-                                              .card-product-delete
-                                                %i.icofont-ui-delete
+                                            .card-product-delete{'data-target': "#confirmation-#{dish.id}-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                              %i.icofont-ui-delete
                                           - else
                                             = link_to app_remove_dish_path(@order, dish), method: :delete, data: { confirm: '¿Estás seguro?' } do
                                               .card-product-delete
                                                 %i.icofont-ui-delete
+
                               .order-footer.order-footer-product.order-footer-account
-                                %span Total:
-                                -# %span $ 60
--# = render 'app/frontend/partials/check_modal'
-.modal.fade{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "check" }
-  .modal-dialog{role: "document"}
-    .modal-content
-      .modal-header
-        %h2.m-0 Esta seguro de eliminar
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
-          %i.icofont-close.icon_custom.icon--large
-      .modal-body
-        %form
-          .form-group
-            %label.label_custom Código
-            %input.form-control.input_custom{ name: 'codigo' }
+                                %span
+                                  Total:
+                                  = number_to_currency(@order.total)
 
-          .float-right.mt-2
-            %button.btn.btn_custom.btn--medium.btn--filled{ type: 'submit' }
-              Cerrar
-
-              
 :javascript
   $('.btn-sidebar').click(function(){
     $('.sidebar').toggleClass('active-sidebar');
