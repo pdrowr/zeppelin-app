@@ -37,14 +37,14 @@
                               %h4= order.waiter.name
                               %p= order.table.id
                             .time
-                              %p= time_ago_in_words(order.created_at)
+                              %p.badge= order.created_time
                           .content-progress
                             .progress
                               .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "100", :role => "progressbar", :style => "width: #{order.percentage}%;"} #{order.percentage}%
 
                           .list-cards
                             - order.dishes.order(id: :asc).each_with_index do |dish, index|
-                              .list-card{ class: ('disabled' if index.even?) }
+                              .list-card{ class: ('disabled' if order.cancelled? || dish.cancelled?) }
                                 - if dish.completed?
                                   .content-checkmark-list
                                     %i.icofont-check-alt.check-list
@@ -53,7 +53,7 @@
                                 .content-info-account.d-flex.flex-column
                                   .content-info.d-flex.justify-content-between
                                     %p Cantidad
-                                    %span= order.quantity
+                                    %span= dish.quantity
                                   .div.observations
                                     %p Observaciones:
                                     .tags
@@ -61,11 +61,9 @@
                                         %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
                           .list-bottom
                             .crono_wrapper
-                              %h2#crono 00:00:00
-                              %input.start{:onclick => "empezarDetener(this);", type:'button', style: 'width:1px; height:1px;background-color:transparent !important;border: transparent;'}/
-                    -# - else
-                    -#   .message
-                    -#     %h2 No hay comandas
+                              %h2#crono= time_ago_in_words(order.created_at)
+
+
 
           .workspace-right.sidebar.workspace-right-runner
             .workspace_top.workspace_top-runner
@@ -112,7 +110,7 @@
                                 .content-info-account.d-flex.flex-column
                                   .content-info.d-flex.justify-content-between
                                     %p Cantidad
-                                    %span= order.quantity
+                                    %span= dish.quantity
                                   .div.observations
                                     %p Observaciones:
                                     .tags

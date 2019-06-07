@@ -25,19 +25,18 @@
               .container-fluid.p-0
                 #tab-4
                   .grid-wrapper.grid-wrapper-chef
-                    - @orders.each_with_index do |order,index|
-                      .card-content.card-counts.mb-4.card-chef
+                    - @orders.each_with_index do |order, index|
+                      .card-content.card-counts.mb-4.card-chef{ class: ('disabled' if order.cancelled?) }
                         .order-card-counts.list-content{ class: "status-#{index}"}
-                          -# { class: ('disabled' if index.even?) }
                           .description-user.d-flex.justify-content-between.list-header
                             .data
                               %h4= order.waiter.name
                               %p= order.table.id
                             .time.d-flex.flex-column
-                              %p= time_ago_in_words(order.created_at)
+                              %p.badge= order.created_time
                           .list-cards
                             - order.dishes.order(id: :asc).each_with_index do |dish, index|
-                              .list-card
+                              .list-card{ class: ('disabled' if dish.cancelled?) }
                                 = html_switch(order, dish, index)
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= dish.dish.name
@@ -51,11 +50,10 @@
                                       - dish.observation.split(';').each do |observation|
                                         %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
                           .list-bottom
-                            .crono_wrapper
-                              %h2#crono
-                                = time_ago_in_words(order.created_at)
-                              -# %input.start{:onclick => "empezarDetener(this);", type:'button', style: 'width:1px; height:1px;background-color:transparent !important;border: transparent;'}/
-
+                            - unless order.cancelled?
+                              .crono_wrapper
+                                %h2#crono
+                                  = time_ago_in_words(order.created_at)
 
 :javascript
   $('.start').click()

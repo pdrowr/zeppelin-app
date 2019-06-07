@@ -76,5 +76,27 @@ module KepplerOrders
       return unless dishes.where(completed: true).count.eql?(dishes.count)
       dishes.pluck(:completed_at).compact.max.strftime("%I:%M %p")
     end
+
+    def cancel
+      toggle!(:cancelled)
+      dishes.update_all(cancelled: true)
+    end
+
+    def get_minutes
+      seconds = (Time.now - created_at).to_i
+      minuts = (seconds / 60)
+    end
+
+    def order_status
+      return 'normal' if get_minutes <= 15
+
+      if (get_minutes <= 16 && get_minutes <= 25)
+        return 'alert'
+      else
+        return 'danger'
+      end
+    end
+
+
   end
 end
