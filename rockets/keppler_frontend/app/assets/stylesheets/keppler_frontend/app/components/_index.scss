@@ -644,7 +644,6 @@
    ----- List card -----
    ------------------------- */
 .list-content{
-  background-color: $dark-cards;
   border-radius: 3px;
   box-sizing: border-box;
   display: flex;
@@ -655,17 +654,19 @@
   position: relative;
   white-space: normal;
 
-
-}
-
-$status: #333333 #e25f23 #9b111e;
-$i: 1;
-@each $color in $status {
-  .status-#{$i} {
-    background-color: $color !important;
+  &.status-normal {
+    background-color: $dark-cards;
   }
-  $i: $i + 1;
+  &.status-alert {
+    background-color: #e25f23;
+  }
+  &.status-danger {
+    background-color: #9b111e;
+  }
+
+
 }
+
 
 
 .list-header {

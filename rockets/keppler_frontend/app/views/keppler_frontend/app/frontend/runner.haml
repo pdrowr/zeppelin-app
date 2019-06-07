@@ -87,7 +87,7 @@
                   .grid-wrapper.grid-wrapper-chef.mt-3.grid-wrapper-runner
                     - @completed_orders.each do |order|
                       .card-content.card-counts.mb-4.card-chef
-                        .order-card-counts.list-content
+                        .order-card-counts.list-content.status-normal
                           .description-user.d-flex.justify-content-between.list-header
                             .data
                               %h4= order.waiter.name
