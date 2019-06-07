@@ -92,9 +92,7 @@
                               %h4= order.waiter.name
                               %p= order.table.id
                             .time.d-flex.flex-column
-                              -# %p aqui va el switch
-                              %p Hora que termino
-                              -# %p= time_ago_in_words(order.created_at)
+                              %p.badge= order.completed_time
                           .content-progress
                             .progress
                               .progress-bar.progress-bar-finish{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "25", :role => "progressbar", :style => "width: #{order.percentage}%;"} #{order.percentage}%
