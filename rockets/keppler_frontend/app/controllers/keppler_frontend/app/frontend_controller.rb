@@ -4,30 +4,26 @@ module KepplerFrontend
   class App::FrontendController < App::AppController
     before_action :set_index_variables, only: %i[index]
     before_action :authenticate_member, :set_period
-    before_action :set_order, only: %i[categories dishes account add_item remove_item send_to_kitchen toggle_dish_status]
+    before_action :set_order, only: %i[categories dishes account add_dish remove_dish send_to_kitchen toggle_dish_status]
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
 
     def index; end
 
     def manage_client
-      @client = rocket('clients', 'client').set_client(params[:client][:email], client_params)
+      @client = rocket('clients', 'client').set_client(client_params)
       @client.create_order(params[:table], current_member.id, @period.id)
-      redirect_to root_path(section: params[:section], table: params[:table])
+      redirect_back(fallback_location: root_path)
     end
 
     def categories
-      begin
-        # @categories = rocket('menu', 'category').all
-      rescue StandarError => e
-        print e
-      end
+      @categories = rocket('menu', 'category').all
     end
 
     def dishes
       @category = rocket('menu', 'category').find(params[:category_id])
       @dishes   = @category.dishes
-      @item     = rocket('orders', 'item').new
+      @dish     = rocket('orders', 'item').new
     end
 
     def chef
@@ -41,12 +37,12 @@ module KepplerFrontend
 
     def account; end
 
-    def add_item
+    def add_dish
       @order.dishes.create(dish_params)
       redirect_back(fallback_location: root_path)
     end
 
-    def remove_item
+    def remove_dish
       item = @order.dishes.find(params[:item_id])
       item.destroy
       redirect_back(fallback_location: root_path)
@@ -59,7 +55,7 @@ module KepplerFrontend
 
     def toggle_dish_status
       @dish = @order.dishes.find(params[:dish_id])
-      @dish.toggle!(:completed)
+      @dish.toggle
       redirect_back(fallback_location: root_path)
     end
 
@@ -67,7 +63,7 @@ module KepplerFrontend
 
     def set_index_variables
       @sections   = rocket('environments', 'section').order(position: :asc)
-      @client     = KepplerClients::Client.new
+      @client     = rocket('clients', 'client').new
     end
 
     def client_params
@@ -81,11 +77,11 @@ module KepplerFrontend
     end
 
     def set_order
-      @order = KepplerOrders::Order.find_by_id(params[:order_id])
+      @order = rocket('orders', 'order').find_by_id(params[:order_id])
     end
 
     def set_period
-      KepplerPeriods::Period.current_period
+      @period = rocket('periods', 'period').current_period
     end
   end
 end

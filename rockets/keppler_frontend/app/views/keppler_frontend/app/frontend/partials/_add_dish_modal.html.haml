@@ -9,11 +9,11 @@
           .mask
             .modal-product-title
               %h4= dish.name
-              %span= number_to_currency(dish.price) 
+              %span= number_to_currency(dish.price)
           %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
             %i.icofont-close.icon_custom.icon--large
         .modal-body
-          = simple_form_for @item, url: app_add_item_path(order), method: :post, class: 'mt-4' do
+          = simple_form_for @dish, url: app_add_dish_path(order), method: :post, class: 'mt-4' do
             .d-flex
               .product-detail
                 %p Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias.

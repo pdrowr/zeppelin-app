@@ -32,7 +32,7 @@
                   .d-flex
                     .grid-wrapper.d-flex.flex-wrap
                       - @dishes.each_with_index do |dish, index|
-                        = add_item_modal(dish, index, @order)
+                        = add_dish_modal(dish, index, @order)
                         = dish(dish, index)
 
           = orders(@order)

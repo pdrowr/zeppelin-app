@@ -18,7 +18,7 @@
                 .details-table.mt-4
                   .stat.d-flex.justify-content-center.flex-column.align-items-center
                     %p Mesa
-                    %p= order.table.id
+                    %p= order.table.id.titleize
                   .stat.d-flex.justify-content-center.flex-column.align-items-center
                     %p Tiempo
                     %p= time_ago_in_words(order.created_at)

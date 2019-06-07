@@ -12,8 +12,8 @@ KepplerFrontend::Engine.routes.draw do
   post '/send_to_kitchen/:order_id', to: 'app/frontend#send_to_kitchen', as: :app_send_to_kitchen
 
   post '/client', to: 'app/frontend#manage_client', as: :app_manage_client
-  post '/add_item/:order_id', to: 'app/frontend#add_item', as: :app_add_item
-  delete '/remove_item/:order_id/:item_id', to: 'app/frontend#remove_item', as: :app_remove_item
+  post '/add_item/:order_id', to: 'app/frontend#add_dish', as: :app_add_dish
+  delete '/remove_item/:order_id/:item_id', to: 'app/frontend#remove_item', as: :app_remove_dish
   post '/toggle_dish_status/:order_id/:dish_id', to: 'app/frontend#toggle_dish_status', as: :app_toggle_dish_status
 
   namespace :admin do

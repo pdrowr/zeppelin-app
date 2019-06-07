@@ -4,7 +4,7 @@
       = creaate_account_modal(section, table.id)
       .order-wrapper.tab-content{ id: "space_one-#{index}", class: ('current' if params[:table].eql?(table.id)) }
         .order-header
-          %h4 Mesa número #{index+ 1}
+          %h4= table.id.titleize
           %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
         .order-content.order-content--fixed.d-flex.flex-column
           - table.current_orders.each do |order|
@@ -20,7 +20,7 @@
                         %p Productos
                         %span= order.dishes.count
                       .content-info.d-flex.justify-content-between
-                        %p Cuenta todal
+                        %p Total
                         %span= number_to_currency(order.total) || 'BsF. 0,00'
 
 

@@ -22,8 +22,6 @@
             %table.table.table-bordered
               %tbody
                 .form-padding
-                  -# .col-xs-12
-                  -#   = f.input :cover, as: :keppler_file, label: 'Imágen de Portada' # , max_size: 225
                   .col-xs-12
                     = f.input :name, as: :string
                   .col-xs-12
@@ -41,18 +39,10 @@
 
 :javascript
   $(document).ready(function() {
-    initalizeSelect2()
-  })
-
-  $(document).on('turbolinks:load', function() {
-    initalizeSelect2()
-  })
-
-  function initalizeSelect2() {
     $('.select2').select2({
       multiple: true,
       placeholder: 'Select an option',
       allowClear: true,
       closeOnSelect: false
     })
-  }
+  })

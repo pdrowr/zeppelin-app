@@ -6,10 +6,7 @@ module KepplerStaff
     has_many :orders, class_name: 'KepplerOrders::Order'
 
     def current_orders
-      orders.where(
-        created_at: today,
-        status: 'ACTIVE'
-      ).order(id: :desc)
+      orders.current_orders
     end
 
     private

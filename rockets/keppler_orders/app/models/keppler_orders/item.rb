@@ -20,5 +20,10 @@ module KepplerOrders
       KepplerMenu::Dish.find(dish_id)
     end
 
+    def toggle_item
+      toggle!(:completed)
+      update(completed_at: DateTime.new)
+    end
+
   end
 end

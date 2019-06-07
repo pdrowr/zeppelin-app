@@ -12,7 +12,7 @@ module KepplerPeriods
     acts_as_list
     acts_as_paranoid
 
-    validates_presence_of :name, :date
+    validates_presence_of :date
     has_many :orders, class_name: 'KepplerOrders::Order'
 
     def self.current_period
