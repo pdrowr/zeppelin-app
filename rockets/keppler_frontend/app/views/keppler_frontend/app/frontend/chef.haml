@@ -53,7 +53,7 @@
                           .list-bottom
                             - unless order.cancelled?
                               .crono_wrapper
-                                %h2#crono
+                                %h2#crono.crono
                                   = time_ago_in_words(order.created_at)
 
 :javascript
