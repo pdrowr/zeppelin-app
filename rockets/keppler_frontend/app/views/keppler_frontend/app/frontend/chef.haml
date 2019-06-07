@@ -34,31 +34,31 @@
                               %h4= order.waiter.name
                               %p= order.table.id
                             .time.d-flex.flex-column
-                              %p= time_ago_in_words(order.created_at)
+                              %p.badge= order.created_time
                           .list-cards
-                            - order.dishes.order(id: :desc).each_with_index do |dish, index|
-                              .list-card
+                            - order.dishes.order(id: :asc).each_with_index do |dish, index|
+                              .list-card{ class: ('disabled' if dish.cancelled?) }
                                 = html_switch(order, dish, index)
                                 .description-user.d-flex.justify-content-between.name-dishes
                                   %h4= dish.dish.name
                                 .content-info-account.d-flex.flex-column
                                   .content-info.d-flex.justify-content-between
                                     %p Cantidad
-                                    %span= order.dishes.count
+                                    %span= dish.quantity
                                   .div.observations
                                     %p Observaciones:
                                     .tags
                                       - dish.observation.split(';').each do |observation|
                                         %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
                           .list-bottom
-                            .crono_wrapper
-                              %h2#crono 00:00:00
-                              %input.start{:onclick => "empezarDetener(this);", type:'button', style: 'width:1px; height:1px;background-color:transparent !important;border: transparent;'}/
-
+                            - unless order.cancelled?
+                              .crono_wrapper
+                                %h2#crono
+                                  = time_ago_in_words(order.created_at)
 
 :javascript
   $('.start').click()
-  
+
   $('.btn-sidebar').click(function(){
     $('.sidebar').toggleClass('active-sidebar');
   })
@@ -78,5 +78,3 @@
       $('.modal').removeClass('in')
     })
   });
- 
-	

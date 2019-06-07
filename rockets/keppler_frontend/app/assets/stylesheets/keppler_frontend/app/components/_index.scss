@@ -63,7 +63,7 @@
 
 .workspace-right {
   width: 30%;
-  
+
   .right-btn-order {
     padding: 45px 25px;
   }
@@ -334,7 +334,7 @@
   @include respond-to(xs){
     margin: 5px 12px 10px 0px;
   }
-  
+
 
 
   &.card-wrapper-products {
@@ -667,8 +667,6 @@
 
 }
 
-
-
 .list-header {
   flex: 0 0 auto;
   padding: 10px 8px 8px;
@@ -768,7 +766,7 @@
     bottom: 5%;
     position: absolute;
     left: 5%;
-    
+
     h4 {
       font-family: $gobold;
       @include font(20px, $bold);
@@ -1009,7 +1007,7 @@
   @include respond-to(sm) {
     top: 14%;
   }
-  
+
   @media (min-width: 0px) and (max-width: 340px){
     right: 58% !important;
   }

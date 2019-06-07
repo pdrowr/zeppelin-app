@@ -4,7 +4,7 @@ module KepplerFrontend
   class App::FrontendController < App::AppController
     before_action :set_index_variables, only: %i[index]
     before_action :authenticate_member, :set_period
-    before_action :set_order, only: %i[categories dishes account add_dish remove_dish send_to_kitchen toggle_dish_status]
+    before_action :set_order, only: %i[categories dishes account add_dish remove_dish send_to_kitchen toggle_dish_status cancel_order cancel_dish]
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
 
@@ -54,8 +54,19 @@ module KepplerFrontend
     end
 
     def toggle_dish_status
-      @dish = @order.dishes.find(params[:dish_id])
-      @dish.toggle
+      dish = @order.dishes.find(params[:dish_id])
+      dish.toggle_item
+      redirect_back(fallback_location: root_path)
+    end
+
+    def cancel_order
+      @order.cancel
+      redirect_back(fallback_location: root_path)
+    end
+
+    def cancel_dish
+      dish = @order.dishes.find(params[:dish_id])
+      dish.toggle!(:cancelled)
       redirect_back(fallback_location: root_path)
     end
 

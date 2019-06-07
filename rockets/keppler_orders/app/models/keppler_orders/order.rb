@@ -15,6 +15,7 @@ module KepplerOrders
     belongs_to :client, class_name: 'KepplerClients::Client'
     belongs_to :waiter, class_name: 'KepplerStaff::Waiter'
     belongs_to :table, class_name: 'KepplerEnvironments::Table'
+    belongs_to :period, class_name: 'KepplerPeriods::Period'
     has_many :dishes, class_name: 'KepplerOrders::Item'
 
     scope :today_orders, -> { where(created_at: today) }
@@ -70,6 +71,32 @@ module KepplerOrders
     def created_time
       created_at.time.strftime("%I:%M %p")
     end
+
+    def completed_time
+      return unless dishes.where(completed: true).count.eql?(dishes.count)
+      dishes.pluck(:completed_at).compact.max.strftime("%I:%M %p")
+    end
+
+    def cancel
+      toggle!(:cancelled)
+      dishes.update_all(cancelled: true)
+    end
+
+    def get_minutes
+      seconds = (Time.now - created_at).to_i
+      minuts = (seconds / 60)
+    end
+
+    def order_status
+      return 'normal' if get_minutes <= 15
+
+      if (get_minutes <= 16 && get_minutes <= 25)
+        return 'alert'
+      else
+        return 'danger'
+      end
+    end
+
 
   end
 end
