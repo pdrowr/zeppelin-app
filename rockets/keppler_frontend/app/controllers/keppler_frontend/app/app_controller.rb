@@ -50,15 +50,11 @@ module KepplerFrontend
     end
 
     def set_default_locale
-      I18n.default_locale = KepplerLanguages::Language.where(active: true).first.try(:name)&.to_sym || :es
+      I18n.default_locale = :es
     end
 
     def set_locale
-      if params[:locale]
-        @locale = I18n.locale = params[:locale]
-      elsif request.env['HTTP_ACCEPT_LANGUAGE']
-        @locale = I18n.locale = I18n.default_locale
-      end
+      @locale = I18n.locale = :es
     end
 
     def default_url_options(options = {})

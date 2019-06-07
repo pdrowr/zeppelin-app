@@ -21,8 +21,8 @@ module KepplerOrders
     end
 
     def toggle_item
+      update(completed_at: DateTime.now)
       toggle!(:completed)
-      update(completed_at: DateTime.new)
     end
 
   end

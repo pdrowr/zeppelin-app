@@ -15,6 +15,7 @@ module KepplerOrders
     belongs_to :client, class_name: 'KepplerClients::Client'
     belongs_to :waiter, class_name: 'KepplerStaff::Waiter'
     belongs_to :table, class_name: 'KepplerEnvironments::Table'
+    belongs_to :period, class_name: 'KepplerPeriods::Period'
     has_many :dishes, class_name: 'KepplerOrders::Item'
 
     scope :today_orders, -> { where(created_at: today) }
@@ -71,5 +72,9 @@ module KepplerOrders
       created_at.time.strftime("%I:%M %p")
     end
 
+    def completed_time
+      return unless dishes.where(completed: true).count.eql?(dishes.count)
+      dishes.pluck(:completed_at).compact.max.strftime("%I:%M %p")
+    end
   end
 end

@@ -55,7 +55,7 @@ module KepplerFrontend
 
     def toggle_dish_status
       @dish = @order.dishes.find(params[:dish_id])
-      @dish.toggle
+      @dish.toggle_item
       redirect_back(fallback_location: root_path)
     end
 
