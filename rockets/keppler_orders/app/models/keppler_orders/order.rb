@@ -88,11 +88,13 @@ module KepplerOrders
     end
 
     def order_status
-      return 'normal' if get_minutes <= 15
+      # return 'normal' if get_minutes <= 15
 
-      if (get_minutes <= 16 && get_minutes <= 25)
+      if (get_minutes < 15)
+        return 'normal'
+      elsif (get_minutes >= 15 && get_minutes <= 24)
         return 'alert'
-      else
+      elsif (get_minutes >= 25)
         return 'danger'
       end
     end
