@@ -11,7 +11,11 @@ module KepplerClients
     include Searchable
     acts_as_list
     acts_as_paranoid
+
     has_many :orders, class_name: 'KepplerOrders::Order'
+
+    validates_presence_of :name, :email, :identification
+    validates_uniqueness_of :email, :identification
 
     def self.index_attributes
       %i[name identification email address code]

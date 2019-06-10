@@ -6,10 +6,10 @@
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
           %i.icofont-close.icon_custom.icon--large
       .modal-body
-        = simple_form_for @client, url: app_manage_client_path, method: :post do |f|
+        = simple_form_for @client, url: app_manage_client_path, method: :post, html: { class: "form-#{table.downcase}" } do |f|
           .form-group
             %label.label_custom Cédula
-            %input.form-control.input_custom.identification{ type:'number', name: 'client[identification]', onkeyup: "makeRequest()" }
+            %input.form-control.input_custom{ type:'number', name: 'client[identification]', onkeyup: "makeRequest()", class: "identification-#{table.downcase}" }
           .form-group
             %label.label_custom Nombres y apellidos
             %input.form-control.input_custom.name{ name: 'client[name]', disabled: 'true' }
@@ -28,6 +28,7 @@
 
 :javascript
   var time = ''
+  var table = "#{table.downcase}"
 
   function makeRequest() {
     clearTimeout(time);
@@ -35,7 +36,7 @@
   }
 
   function request() {
-    var identification = $('.identification').val()
+    var identification = $(".identification-"+table).val()
 
     $.ajax({
       url: "/get_client",
@@ -63,5 +64,5 @@
   }
 
   $('.submit-btn').click(function() {
-    $('#new_client').submit()
+    $('.form-'+table).submit()
   })

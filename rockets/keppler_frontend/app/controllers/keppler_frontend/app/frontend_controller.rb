@@ -11,6 +11,7 @@ module KepplerFrontend
     def index; end
 
     def manage_client
+      byebug
       @client = rocket('clients', 'client').set_client(client_params)
       @client.create_order(params[:table], current_member.id, @period.id)
       redirect_to root_path(section: params[:section], table: params[:table])
@@ -78,6 +79,8 @@ module KepplerFrontend
     end
 
     def get_client
+      return if params[:identification].blank?
+
       identification = params[:identification]
       @client = rocket('clients', 'client').find_by_identification(identification)
 
