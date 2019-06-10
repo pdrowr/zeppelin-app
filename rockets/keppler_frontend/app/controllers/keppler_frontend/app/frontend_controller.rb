@@ -13,7 +13,7 @@ module KepplerFrontend
     def manage_client
       @client = rocket('clients', 'client').set_client(client_params)
       @client.create_order(params[:table], current_member.id, @period.id)
-      redirect_back(fallback_location: root_path)
+      redirect_to root_path(section: params[:section], table: params[:table])
     end
 
     def categories
@@ -75,6 +75,15 @@ module KepplerFrontend
       dish = @order.dishes.find(params[:dish_id])
       dish.toggle!(:cancelled)
       redirect_back(fallback_location: root_path)
+    end
+
+    def get_client
+      identification = params[:identification]
+      @client = rocket('clients', 'client').find_by_identification(identification)
+
+      respond_to do |format|
+        format.js { render json: @client, status: 202 }
+      end
     end
 
     private
