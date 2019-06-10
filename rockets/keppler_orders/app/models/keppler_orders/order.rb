@@ -25,8 +25,8 @@ module KepplerOrders
     end
 
     def total
-      price = dishes.map { |dish| dish.price.to_i * dish.quantity.to_i }
-      price.reduce(:+)
+      prices = dishes.map { |dish| dish.price.to_i * dish.quantity.to_i }
+      prices.reduce(:+)
     end
 
     def send_to_kitchen
@@ -38,18 +38,38 @@ module KepplerOrders
                   .order(id: :asc)
     end
 
-    def self.orders_in_kitchen
+    def self.foods_in_kitchen
       today_orders.where(status: 'IN_KITCHEN').order(id: :asc)
     end
 
+    def self.drinks_in_bar
+      today_orders.where(status: 'IN_KITCHEN').select do |order|
+        order.dishes.select { |dish| !dish.dish.is_drink? }
+      end
+    end
+
+    def foods
+      dishes.select { |dish| !dish.dish.is_drink? }
+    end
+
+    def drinks
+      dishes.select { |dish| dish.dish.is_drink? }
+    end
+
     def self.completed_orders
-      orders_in_kitchen.select do |order|
+      foods_in_kitchen.select do |order|
         order.dishes.where(completed: true).count.eql?(order.dishes.count)
       end.reverse
     end
 
     def self.incompleted_orders
-      orders_in_kitchen.where(status: 'IN_KITCHEN').select do |order|
+      foods_in_kitchen.select do |order|
+        !order.dishes.where(completed: true).count.eql?(order.dishes.count)
+      end
+    end
+
+    def self.incompleted_drinks
+      drinks_in_bar.select do |order|
         !order.dishes.where(completed: true).count.eql?(order.dishes.count)
       end
     end
@@ -57,7 +77,7 @@ module KepplerOrders
     def percentage
       completed = dishes.where(completed: true).count
       return 0 if completed.zero?
-      ((completed * 100) / dishes.count)
+      ((completed * 100) / foods.count)
     end
 
     def in_kitchen?
@@ -85,14 +105,6 @@ module KepplerOrders
     def get_minutes
       seconds = (Time.now - created_at).to_i
       minuts = (seconds / 60)
-    end
-
-    def foods
-      dishes.select { |dish| !dish.dish.is_drink? }
-    end
-
-    def drinks
-      dishes.select { |dish| dish.dish.is_drink? }
     end
 
     def have_drinks?

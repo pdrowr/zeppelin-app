@@ -36,7 +36,7 @@
                             .time.d-flex.flex-column
                               %p.badge= order.created_time
                           .list-cards
-                            - order.dishes.order(id: :asc).each_with_index do |dish, index|
+                            - order.drinks.each_with_index do |dish, index|
                               .list-card{ class: ('disabled' if dish.cancelled?) }
                                 = html_switch(order, dish, index)
                                 .description-user.d-flex.justify-content-between.name-dishes

@@ -43,7 +43,7 @@
                               .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "100", :role => "progressbar", :style => "width: #{order.percentage}%;"} #{order.percentage}%
 
                           .list-cards
-                            - order.dishes.each_with_index do |dish, index|
+                            - order.foods.each_with_index do |dish, index|
                               .list-card{ class: ('disabled' if order.cancelled? || dish.cancelled?) }
                                 - if dish.completed?
                                   .content-checkmark-list

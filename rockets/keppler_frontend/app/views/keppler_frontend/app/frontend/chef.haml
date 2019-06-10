@@ -25,7 +25,7 @@
               .container-fluid.p-0
                 #tab-4
                   .grid-wrapper.grid-wrapper-chef
-                    - @orders.each_with_index do |order,index|
+                    - @orders.each_with_index do |order, index|
                       .card-content.card-counts.mb-4.card-chef
                         .order-card-counts.list-content{ class: "status-#{order.order_status}"}
 
@@ -36,7 +36,7 @@
                             .time.d-flex.flex-column
                               %p.badge= order.created_time
                           .list-cards
-                            - order.dishes.each_with_index do |dish, index|
+                            - order.foods.each_with_index do |dish, index|
                               .list-card{ class: ('disabled' if dish.cancelled?) }
                                 = html_switch(order, dish, index)
                                 .description-user.d-flex.justify-content-between.name-dishes

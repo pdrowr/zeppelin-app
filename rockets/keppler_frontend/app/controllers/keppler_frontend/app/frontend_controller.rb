@@ -11,7 +11,6 @@ module KepplerFrontend
     def index; end
 
     def manage_client
-      byebug
       @client = rocket('clients', 'client').set_client(client_params)
       @client.create_order(params[:table], current_member.id, @period.id)
       redirect_to root_path(section: params[:section], table: params[:table])
@@ -32,7 +31,7 @@ module KepplerFrontend
     end
 
     def bar
-      @orders = rocket('orders', 'order').incompleted_orders
+      @orders = rocket('orders', 'order').incompleted_drinks
     end
 
     def runner
@@ -92,8 +91,8 @@ module KepplerFrontend
     private
 
     def set_index_variables
-      @sections   = rocket('environments', 'section').order(position: :asc)
-      @client     = rocket('clients', 'client').new
+      @sections = rocket('environments', 'section').order(position: :asc)
+      @client   = rocket('clients', 'client').new
     end
 
     def client_params
