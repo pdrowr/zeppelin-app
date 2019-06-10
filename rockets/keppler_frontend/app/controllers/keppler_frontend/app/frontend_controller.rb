@@ -17,12 +17,12 @@ module KepplerFrontend
     end
 
     def categories
-      @categories = rocket('menu', 'category').all
+      @categories = rocket('menu', 'category').all.includes(:pictures, :dishes)
     end
 
     def dishes
       @category = rocket('menu', 'category').find(params[:category_id])
-      @dishes   = @category.dishes
+      @dishes   = @category.dishes.select(:codigo, :nombre, :precio1)
       @dish     = rocket('orders', 'item').new
     end
 
