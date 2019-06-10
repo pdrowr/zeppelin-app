@@ -9,7 +9,7 @@
         = simple_form_for @client, url: app_manage_client_path, method: :post, html: { class: "form-#{table.downcase}" } do |f|
           .form-group
             %label.label_custom Cédula
-            %input.form-control.input_custom{ type:'number', name: 'client[identification]', onkeyup: "makeRequest()", class: "identification-#{table.downcase}" }
+            %input.form-control.input_custom{ type:'number', name: 'client[identification]', onkeyup: "makeRequest('#{table.downcase}')", class: "identification-#{table.downcase}" }
           .form-group
             %label.label_custom Nombres y apellidos
             %input.form-control.input_custom.name{ name: 'client[name]', disabled: 'true' }
@@ -23,31 +23,30 @@
             %input{ type: 'hidden', name: 'table', value: table }
             %input{ type: 'hidden', name: 'section', value: section.name }
         .float-right.mt-2
-          %button.btn.btn_custom.btn--medium.btn--filled.submit-btn{ type: 'submit' }
+          %button.btn.btn_custom.btn--medium.btn--filled.submit-btn{ type: 'submit', onclick: "submit('table.downcase')" }
             SIGUIENTE
 
 :javascript
   var time = ''
-  var table = "#{table.downcase}"
 
-  function makeRequest() {
+  function makeRequest(table) {
     clearTimeout(time);
-    time = setTimeout(request, 2000);
+    time = setTimeout(function() {
+      var identification = $(".identification-"+table).val()
+
+      $.ajax({
+        url: "/get_client",
+        type: "POST",
+        data: { identification: identification },
+        dataType: "JSON",
+        success: function(data) {
+          displayData(data);
+        }
+      });
+    }, 2000);
   }
 
-  function request() {
-    var identification = $(".identification-"+table).val()
 
-    $.ajax({
-      url: "/get_client",
-      type: "POST",
-      data: { identification: identification },
-      dataType: "JSON",
-      success: function(data) {
-        displayData(data);
-      }
-    });
-  }
 
   function displayData(data) {
     $('.form-control').removeAttr('disabled')
@@ -63,6 +62,6 @@
     }
   }
 
-  $('.submit-btn').click(function() {
+  function submit(table) {
     $('.form-'+table).submit()
-  })
+  }
