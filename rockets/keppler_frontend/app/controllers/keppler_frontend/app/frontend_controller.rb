@@ -64,27 +64,17 @@ module KepplerFrontend
     end
 
     def cancel_order
-      if params[:code].eql?('12345')
-        @order.cancel
-      end
+      return unless valid_code?
 
+      @order.cancel
       redirect_back(fallback_location: root_path)
     end
 
     def cancel_dish
-      if params[:code].eql?('12345')
-        dish = @order.dishes.find(params[:dish_id])
-        dish.toggle!(:cancelled)
-      end
+      return unless valid_code?
+      dish = @order.dishes.find(params[:dish_id])
+      dish.toggle!(:cancelled)
       redirect_back(fallback_location: root_path)
-    end
-
-    def get_client
-      @client = rocket('clients', 'client').find_by_identification(params[:identification])
-
-      respond_to do |format|
-        format.js
-      end
     end
 
     private
@@ -110,6 +100,10 @@ module KepplerFrontend
 
     def set_period
       @period = rocket('periods', 'period').current_period
+    end
+
+    def valid_code?
+      params[:code].eql?('12345')
     end
   end
 end

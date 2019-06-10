@@ -16,8 +16,8 @@ module KepplerOrders
     belongs_to :waiter, class_name: 'KepplerStaff::Waiter'
     belongs_to :table, class_name: 'KepplerEnvironments::Table'
     belongs_to :period, class_name: 'KepplerPeriods::Period'
-    has_many :dishes, -> { order(id: :asc) }, class_name: 'KepplerOrders::Item'
 
+    has_many :dishes, -> { order(id: :asc) }, class_name: 'KepplerOrders::Item'
     scope :today_orders, -> { where(period_id: current_period_id) }
 
     def self.index_attributes
@@ -65,7 +65,7 @@ module KepplerOrders
     end
 
     def self.current_period_id
-      KepplerPeriods::Period.current_period.id
+      KepplerPeriods::Period&.current_period&.id
     end
 
     def created_time
@@ -93,6 +93,10 @@ module KepplerOrders
 
     def drinks
       dishes.select { |dish| dish.dish.is_drink? }
+    end
+
+    def have_drinks?
+      !drinks.blank?
     end
 
     def order_status
