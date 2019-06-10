@@ -60,13 +60,18 @@ module KepplerFrontend
     end
 
     def cancel_order
-      @order.cancel
+      if params[:code].eql?('12345')
+        @order.cancel
+      end
+
       redirect_back(fallback_location: root_path)
     end
 
     def cancel_dish
-      dish = @order.dishes.find(params[:dish_id])
-      dish.toggle!(:cancelled)
+      if params[:code].eql?('12345')
+        dish = @order.dishes.find(params[:dish_id])
+        dish.toggle!(:cancelled)
+      end  
       redirect_back(fallback_location: root_path)
     end
 

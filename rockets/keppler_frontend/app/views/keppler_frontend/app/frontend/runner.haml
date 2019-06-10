@@ -86,15 +86,13 @@
                   .grid-wrapper.grid-wrapper-chef.mt-3.grid-wrapper-runner
                     - @completed_orders.each do |order|
                       .card-content.card-counts.mb-4.card-chef
-                        .order-card-counts.list-content{ class: "status-#{order.order_status}"}
+                        .order-card-counts.list-content.status-normal
                           .description-user.d-flex.justify-content-between.list-header
                             .data
                               %h4= order.waiter.name
                               %p= order.table.id
                             .time.d-flex.flex-column
-                              -# %p aqui va el switch
-                              %p Hora que termino
-                              -# %p= time_ago_in_words(order.created_at)
+                              %p.badge= order.completed_time
                           .content-progress
                             .progress
                               .progress-bar.progress-bar-finish{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "25", :role => "progressbar", :style => "width: #{order.percentage}%;"} #{order.percentage}%
@@ -116,15 +114,7 @@
                                     .tags
                                       - dish.observation.split(';').each do |observation|
                                         %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
-                                -#.list.list-card-command
-                                  %dl
-                                    %dt Cantidad de platos
-                                    %dd= dish.quantity
-                                    .div.observations
-                                      %p Observaciones:
-                                      - dish.observation.split(';').each do |observation|
-                                        .tags
-                                          %span.tag.listo= observation
+
                           .list-bottom
     .btn-float.d-lg-none.d-block
       %button.btn.btn_custom.btn--filled.btn-sidebar

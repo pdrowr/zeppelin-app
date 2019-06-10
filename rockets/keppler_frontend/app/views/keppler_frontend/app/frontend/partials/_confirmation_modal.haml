@@ -1,0 +1,36 @@
+- if type.eql?(:dish)
+  = simple_form_for dish, url: app_cancel_dish_path(order, dish), method: :post do |f|
+    .modal.fade{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "confirmation-#{dish.id}-#{index}" }
+      .modal-dialog{role: "document"}
+        .modal-content
+          .modal-header
+            %h2.m-0 Esta seguro de eliminar #{dish.dish.name.titleize}
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+              %i.icofont-close.icon_custom.icon--large
+          .modal-body
+            %form
+              .form-group
+                %label.label_custom Código
+                %input.form-control.input_custom{ name: 'code', type: 'password', autocomplete: 'off' }
+
+              .float-right.mt-2
+                %button.btn.btn_custom.btn--medium.btn--filled{ type: 'submit' }
+                  Cancelar Pedido
+- else
+  = simple_form_for order, url: app_cancel_order_path(order, dish), method: :post do |f|
+    .modal.fade{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "confirmation-order-#{order.id}-#{index}" }
+      .modal-dialog{role: "document"}
+        .modal-content
+          .modal-header
+            %h2.m-0 ¿Esta seguro de eliminar la orden?
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+              %i.icofont-close.icon_custom.icon--large
+          .modal-body
+            %form
+              .form-group
+                %label.label_custom Código
+                %input.form-control.input_custom{ name: 'code', type: 'password', autocomplete: 'off' }
+
+              .float-right.mt-2
+                %button.btn.btn_custom.btn--medium.btn--filled{ type: 'submit' }
+                  Cancelar Orden

@@ -46,5 +46,8 @@ module KepplerFrontend
       render 'keppler_frontend/app/frontend/partials/switch', order: order, dish: dish, index: index
     end
 
+    def confirmation_modal(order, dish, index, type)
+      render 'keppler_frontend/app/frontend/partials/confirmation_modal', order: order, dish: dish, index: index, type: type
+    end
   end
 end
