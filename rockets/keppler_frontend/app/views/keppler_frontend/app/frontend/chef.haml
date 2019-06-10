@@ -49,7 +49,7 @@
                                     %p Observaciones:
                                     .tags
                                       - dish.observation.split(';').each do |observation|
-                                        %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
+                                        %span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
                           .list-bottom
                             - unless order.cancelled?
                               .crono_wrapper
