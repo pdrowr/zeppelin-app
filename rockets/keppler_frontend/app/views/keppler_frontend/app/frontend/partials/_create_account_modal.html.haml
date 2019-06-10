@@ -6,22 +6,30 @@
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
           %i.icofont-close.icon_custom.icon--large
       .modal-body
-        = simple_form_for @client, url: app_manage_client_path do |f|
-          .form-group
-            %label.label_custom Nombres y apellidos
-            %input.form-control.input_custom{ name: 'client[name]' }
-          .form-group
-            %label.label_custom Email
-            %input.form-control.input_custom{ name: 'client[email]' }
+        = simple_form_for @client, url: app_manage_client_path, remote: true do |f|
           .form-group
             %label.label_custom Cédula
-            %input.form-control.input_custom{ type:'number', name: 'client[identification]' }
-          .form-group
-            %label.label_custom Dirección
-            %input.form-control.input_custom{ type: 'text', name: 'client[address]' }
-          .form-group
-            %input{ type: 'hidden', name: 'table', value: table }
-            %input{ type: 'hidden', name: 'section', value: section.name }
+            %input.form-control.input_custom.identification{ type:'number', name: 'client[identification]' }
+          .hidden.hidden-fields
+            .form-group
+              %label.label_custom Nombres y apellidos
+              %input.form-control.input_custom{ name: 'client[name]' }
+            .form-group
+              %label.label_custom Email
+              %input.form-control.input_custom{ name: 'client[email]' }
+            .form-group
+              %label.label_custom Dirección
+              %input.form-control.input_custom{ type: 'text', name: 'client[address]' }
+            .form-group
+              %input{ type: 'hidden', name: 'table', value: table }
+              %input{ type: 'hidden', name: 'section', value: section.name }
           .float-right.mt-2
-            %button.btn.btn_custom.btn--medium.btn--filled{ type: 'submit' }
+            %button.btn.btn_custom.btn--medium.btn--filled.submit-btn{ type: 'submit' }
+              BUSCAR
+            -#
               Guardar
+
+:scss
+  .hidden {
+    display: none;
+  }

@@ -16,9 +16,9 @@ module KepplerOrders
     belongs_to :waiter, class_name: 'KepplerStaff::Waiter'
     belongs_to :table, class_name: 'KepplerEnvironments::Table'
     belongs_to :period, class_name: 'KepplerPeriods::Period'
-    has_many :dishes, class_name: 'KepplerOrders::Item'
+    has_many :dishes, -> { order(id: :asc) }, class_name: 'KepplerOrders::Item'
 
-    scope :today_orders, -> { where(created_at: today) }
+    scope :today_orders, -> { where(period_id: current_period_id) }
 
     def self.index_attributes
       %i[client_id waiter_id table_id status]
@@ -64,8 +64,8 @@ module KepplerOrders
       status.eql?('IN_KITCHEN')
     end
 
-    def self.today
-      Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
+    def self.current_period_id
+      KepplerPeriods::Period.current_period.id
     end
 
     def created_time
@@ -87,9 +87,15 @@ module KepplerOrders
       minuts = (seconds / 60)
     end
 
-    def order_status
-      # return 'normal' if get_minutes <= 15
+    def foods
+      dishes.select { |dish| !dish.dish.is_drink? }
+    end
 
+    def drinks
+      dishes.select { |dish| dish.dish.is_drink? }
+    end
+
+    def order_status
       if (get_minutes < 15)
         return 'normal'
       elsif (get_minutes >= 15 && get_minutes <= 24)
@@ -98,7 +104,5 @@ module KepplerOrders
         return 'danger'
       end
     end
-
-
   end
 end

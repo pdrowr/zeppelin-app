@@ -27,7 +27,7 @@ module KepplerClients
     end
 
     def self.set_client(client_params)
-      where(email: client_params[:email]).first_or_create(client_params)
+      where(identification: client_params[:identification]).first_or_create(client_params)
     end
 
   end

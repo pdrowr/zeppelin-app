@@ -30,6 +30,10 @@ module KepplerFrontend
       @orders = rocket('orders', 'order').incompleted_orders
     end
 
+    def bar
+      @orders = rocket('orders', 'order').incompleted_orders
+    end
+
     def runner
       @completed_orders   = rocket('orders', 'order').completed_orders
       @incompleted_orders = rocket('orders', 'order').incompleted_orders
@@ -71,8 +75,16 @@ module KepplerFrontend
       if params[:code].eql?('12345')
         dish = @order.dishes.find(params[:dish_id])
         dish.toggle!(:cancelled)
-      end  
+      end
       redirect_back(fallback_location: root_path)
+    end
+
+    def get_client
+      @client = rocket('clients', 'client').find_by_identification(params[:identification])
+
+      respond_to do |format|
+        format.js
+      end
     end
 
     private

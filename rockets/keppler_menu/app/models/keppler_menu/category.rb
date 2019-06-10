@@ -39,5 +39,14 @@ module KepplerMenu
     def picture
       pictures.first.present? ? pictures.first.picture.url : '/assets/app/category'
     end
+
+    def drinks
+      ["tragos", "bebidas sin alcohol", "cafe", "promos bebida"]
+    end
+
+    def is_drink?
+      drinks.include?(name.downcase)
+    end
+
   end
 end
