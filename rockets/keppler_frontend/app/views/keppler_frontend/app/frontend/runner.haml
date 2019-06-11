@@ -58,10 +58,10 @@
                                     %p Observaciones:
                                     .tags
                                       - dish.observation.split(';').each do |observation|
-                                        %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
+                                        %span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
                           .list-bottom
                             .crono_wrapper
-                              %h2#crono= time_ago_in_words(order.created_at)
+                              %h2#crono.crono= time_ago_in_words(order.created_at)
 
 
 
