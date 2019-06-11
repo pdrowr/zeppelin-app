@@ -18,8 +18,8 @@ module KepplerFrontend
       render 'keppler_frontend/app/frontend/partials/all_orders'
     end
 
-    def table(index)
-      render 'keppler_frontend/app/frontend/partials/table', index: index
+    def table(index, section)
+      render 'keppler_frontend/app/frontend/partials/table', index: index, section: section
     end
 
     def table_orders(sections)

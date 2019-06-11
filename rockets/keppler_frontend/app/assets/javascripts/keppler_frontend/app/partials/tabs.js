@@ -14,7 +14,6 @@ $(document).ready(function () {
   /** Spaces **/
   $('ul#sub-tabs li').click(function () {
     var sub_tab_id = $(this).attr('data-tab');
-
     $('ul#sub-tabs li').removeClass('current');
     $('.tab-content-sub').removeClass('current');
 

@@ -16,14 +16,14 @@
                 #tab-1.tab-content.current
                   %ul.sub-tabs#sub-tabs
                     - @sections.each_with_index do |section, index|
-                      %li.tab-link{ 'data-tab': "sub-tab-#{index}", class: ( 'current' if params[:section].eql?(section.name) || index.zero?) }= section.name.capitalize
+                      %li.tab-link{ 'data-tab': "sub-tab-#{index}-#{section.name}", class: ( 'current' if params[:section].eql?(section.name) || index.zero?) }= section.name.capitalize
 
                   - @sections.each_with_index do |section, index|
-                    .tab-content-sub{ id: "sub-tab-#{index}", class: ('current' if params[:section].eql?(section.name) || index.zero?) }
+                    .tab-content-sub{ id: "sub-tab-#{index}-#{section.name}", class: ('current' if params[:section].eql?(section.name) || index.zero?) }
                       .d-flex
                         .grid-wrapper
                           - section&.tables&.each_with_index do |table, index|
-                            = table(index)
+                            = table(index, section)
 
           .workspace-right.sidebar
             = all_orders
