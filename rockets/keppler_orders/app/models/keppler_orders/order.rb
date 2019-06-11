@@ -16,8 +16,8 @@ module KepplerOrders
     belongs_to :waiter, class_name: 'KepplerStaff::Waiter'
     belongs_to :table, class_name: 'KepplerEnvironments::Table'
     belongs_to :period, class_name: 'KepplerPeriods::Period'
-
     has_many :dishes, -> { order(id: :asc) }, class_name: 'KepplerOrders::Item'
+
     scope :today_orders, -> { where(period_id: current_period_id) }
 
     def self.index_attributes
@@ -44,16 +44,18 @@ module KepplerOrders
 
     def self.drinks_in_bar
       today_orders.where(status: 'IN_KITCHEN').select do |order|
-        order.dishes.select { |dish| !dish.dish.is_drink? }
+        order.dishes.select { |dish| !dish.is_drink? }
       end
     end
 
     def foods
-      dishes.select { |dish| !dish.dish.is_drink? }
+      dishes.select { |dish| !dish.is_drink? }
+      # includes(items: [dishes: :category]).where(keppler_orders_items: { keppler_menu_dishes: { keppler_menu_category: [is_drink: true] }})
     end
 
-    def drinks
-      dishes.select { |dish| dish.dish.is_drink? }
+    def self.drinks
+      # dishes.select { |dish| dish.is_drink? }
+      includes(dishes: :category).where(keppler_orders_items: { keppler_menu_dishes: { keppler_menu_category: [is_drink: true] }})
     end
 
     def self.completed_orders
@@ -69,15 +71,17 @@ module KepplerOrders
     end
 
     def self.incompleted_drinks
-      drinks_in_bar.select do |order|
-        !order.dishes.where(completed: true).count.eql?(order.dishes.count)
+      foods_in_kitchen.select do |order|
+        ids = order.drinks.map(&:id)
+        completed_drinks = order.dishes.where(id: ids, completed: true).count
+        order if !completed_drinks.eql?(order.drinks.count)
       end
     end
 
     def percentage
       completed = dishes.where(completed: true).count
       return 0 if completed.zero?
-      ((completed * 100) / foods.count)
+      (((completed * 100) / foods.count) / 2)
     end
 
     def in_kitchen?

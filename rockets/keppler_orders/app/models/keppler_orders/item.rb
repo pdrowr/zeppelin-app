@@ -12,6 +12,7 @@ module KepplerOrders
     acts_as_list
     acts_as_paranoid
 
+
     def self.index_attributes
       %i[order_id dish_id price]
     end
@@ -25,5 +26,8 @@ module KepplerOrders
       toggle!(:completed)
     end
 
+    def is_drink?
+      dish.is_drink?
+    end
   end
 end

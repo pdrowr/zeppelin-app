@@ -12,7 +12,12 @@ module KepplerFrontend
 
     def manage_client
       @client = rocket('clients', 'client').set_client(client_params)
-      @client.create_order(params[:table], current_member.id, @period.id)
+
+      byebug
+      unless @client.nil?
+        @client.create_order(params[:table], current_member.id, @period.id)
+      end
+
       redirect_to root_path(section: params[:section], table: params[:table])
     end
 
