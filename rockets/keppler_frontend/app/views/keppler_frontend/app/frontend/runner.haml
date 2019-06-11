@@ -44,7 +44,7 @@
 
                           .list-cards
                             - order.foods.each_with_index do |dish, index|
-                              .list-card{ class: ('disabled' if order.cancelled? || dish.cancelled?) }
+                              .list-card{ class: ('disabled-dishes' if order.cancelled? || dish.cancelled?) }
                                 - if dish.completed?
                                   .content-checkmark-list
                                     %i.icofont-check-alt.check-list
