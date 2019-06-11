@@ -10,18 +10,23 @@
           .form-group
             %label.label_custom Cédula
             %input.form-control.input_custom{ type:'number', name: 'client[identification]', onkeyup: "makeRequest('#{table.downcase}')", class: "identification-#{table.downcase}" }
-          .form-group
-            %label.label_custom Nombres y apellidos
-            %input.form-control.input_custom.name{ name: 'client[name]', disabled: 'true' }
-          .form-group
-            %label.label_custom Email
-            %input.form-control.input_custom.email{ name: 'client[email]', disabled: 'true' }
-          .form-group
-            %label.label_custom Dirección
-            %input.form-control.input_custom.address{ type: 'text', name: 'client[address]', disabled: 'true' }
-          .form-group
-            %input{ type: 'hidden', name: 'table', value: table }
-            %input{ type: 'hidden', name: 'section', value: section.name }
+          .content-spinner
+            .spinner-border{:role => "status"}
+              %span.sr-only Loading...
+
+          .hidden
+            .form-group
+              %label.label_custom Nombres y apellidos
+              %input.form-control.input_custom.name{ name: 'client[name]', disabled: 'true' }
+            .form-group
+              %label.label_custom Email
+              %input.form-control.input_custom.email{ name: 'client[email]', disabled: 'true' }
+            .form-group
+              %label.label_custom Dirección
+              %input.form-control.input_custom.address{ type: 'text', name: 'client[address]', disabled: 'true' }
+            .form-group
+              %input{ type: 'hidden', name: 'table', value: table }
+              %input{ type: 'hidden', name: 'section', value: section.name }
         .float-right.mt-2
           %button.btn.btn_custom.btn--medium.btn--filled.submit-btn{ type: 'submit', onclick: "submit('#{table.downcase}')" }
             SIGUIENTE
@@ -53,7 +58,7 @@
     if (data) {
       $('.name').val(data.name)
       $('.email').val(data.email)
-      $('.address').val(data.email)
+      $('.address').val(data.address)
     } else {
       alert('el usuario no ha sido registrado')
       $('.name').val('')

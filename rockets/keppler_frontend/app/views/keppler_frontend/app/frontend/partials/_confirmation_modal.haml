@@ -18,6 +18,10 @@
               .float-right.mt-2
                 %button.btn.btn_custom.btn--medium.btn--filled{ type: 'submit' }
                   Cancelar Pedido
+            .spinner-border{:role => "status"}
+              %span.sr-only Loading...
+
+          
 - else
   = simple_form_for order, url: app_cancel_order_path(order, dish), method: :post do |f|
     .modal.fade{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "confirmation-order-#{order.id}-#{index}" }
