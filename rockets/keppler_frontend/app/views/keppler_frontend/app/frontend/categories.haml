@@ -22,7 +22,7 @@
                   %ul.sub-tabs#categories
 
                   #category-1.category-content.current
-                    .grid-wrapper.flex-wrap
+                    .grid-wrapper.flex-wrap.grid-wrapper-categories
                       - @categories&.each_with_index do |category|
                         = link_to app_category_dishes_path(category.id.strip, @order) do
                           .card-category
