@@ -2,7 +2,7 @@
   - sections.each do |section|
     - section&.tables&.each_with_index do |table, index|
       = creaate_account_modal(section, table.id)
-      .order-wrapper.tab-content{ id: "space_one-#{index}", class: ('current' if params[:table].eql?(table.id)) }
+      .order-wrapper.tab-content{ id: "space_one-#{index}-#{section.name}", class: ('current' if params[:table].eql?(table.id)) }
         .order-header
           %h4= table.id.titleize
           %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
