@@ -6,6 +6,7 @@ KepplerFrontend::Engine.routes.draw do
   get 'logout', to: 'app/sessions#destroy', as: :app_destroy_session
   get '/categories(/:order_id)', to: 'app/frontend#categories', as: :app_categories
   get '/chef', to: 'app/frontend#chef', as: :app_chef
+  get '/bar', to: 'app/frontend#bar', as: :app_bar
   get '/runner', to: 'app/frontend#runner', as: :app_runner
   get '/account/:order_id', to: 'app/frontend#account', as: :app_account
   get '/category/:category_id/dishes(/:order_id)', to: 'app/frontend#dishes', as: :app_category_dishes
@@ -17,6 +18,8 @@ KepplerFrontend::Engine.routes.draw do
   post '/cancel_dish/:order_id/:dish_id', to: 'app/frontend#cancel_dish', as: :app_cancel_dish
   delete '/remove_item/:order_id/:item_id', to: 'app/frontend#remove_item', as: :app_remove_dish
   post '/toggle_dish_status/:order_id/:dish_id', to: 'app/frontend#toggle_dish_status', as: :app_toggle_dish_status
+
+  post '/get_client', to: 'app/frontend#get_client'
 
   namespace :admin do
     scope :frontend, as: :frontend do

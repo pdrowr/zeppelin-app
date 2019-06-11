@@ -36,6 +36,8 @@ module KepplerFrontend
         app_chef_path
       when 'runner'
         app_runner_path
+      when 'bartender'
+        app_bar_path
       when 'waiter'
         root_path
       end

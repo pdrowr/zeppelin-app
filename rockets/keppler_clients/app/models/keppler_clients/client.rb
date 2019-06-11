@@ -11,7 +11,11 @@ module KepplerClients
     include Searchable
     acts_as_list
     acts_as_paranoid
+
     has_many :orders, class_name: 'KepplerOrders::Order'
+
+    validates_presence_of :name, :email, :identification
+    validates_uniqueness_of :email, :identification
 
     def self.index_attributes
       %i[name identification email address code]
@@ -27,7 +31,7 @@ module KepplerClients
     end
 
     def self.set_client(client_params)
-      where(email: client_params[:email]).first_or_create(client_params)
+      where(identification: client_params[:identification]).first_or_create(client_params)
     end
 
   end

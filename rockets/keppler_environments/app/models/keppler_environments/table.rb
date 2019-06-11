@@ -12,23 +12,22 @@ module KepplerEnvironments
     end
 
     def orders
-      KepplerOrders::Order.where(table_id: id_consumo)
+      KepplerOrders::Order.where(table_id: id_consumo).includes(:dishes)
     end
 
     def today_orders
-      orders.where(created_at: today)
+      orders.where(period_id: current_period_id)
     end
 
     def current_orders
-      today_orders.select do |ord|
-        ord.status.eql?('ACTIVE') || ord.status.eql?('IN_KITCHEN')
-      end
+      today_orders.where("status = 'ACTIVE' or status = 'IN_KITCHEN'")
+                  .includes(:dishes)
     end
 
     private
 
-    def today
-      Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
+    def current_period_id
+      KepplerPeriods::Period&.current_period&.id
     end
   end
 end

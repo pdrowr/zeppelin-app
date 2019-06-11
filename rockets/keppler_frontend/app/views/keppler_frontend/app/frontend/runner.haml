@@ -43,7 +43,7 @@
                               .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "100", :role => "progressbar", :style => "width: #{order.percentage}%;"} #{order.percentage}%
 
                           .list-cards
-                            - order.dishes.order(id: :asc).each_with_index do |dish, index|
+                            - order.foods.each_with_index do |dish, index|
                               .list-card{ class: ('disabled' if order.cancelled? || dish.cancelled?) }
                                 - if dish.completed?
                                   .content-checkmark-list
@@ -98,7 +98,7 @@
                               .progress-bar.progress-bar-finish{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "25", :role => "progressbar", :style => "width: #{order.percentage}%;"} #{order.percentage}%
 
                           .list-cards
-                            - order.dishes.order(id: :asc).each_with_index do |dish, index|
+                            - order.dishes.each_with_index do |dish, index|
                               .list-card
                                 .content-checkmark-list
                                   %i.icofont-check-alt

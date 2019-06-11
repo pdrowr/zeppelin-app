@@ -11,7 +11,7 @@
             .workspace_top.workspace_top-chef
               .workspace_top-container
                 .workspace_title.d-lg-block.d-sm-block.d-none
-                  %h1 Cocina
+                  %h1 Bar
                 .workspace_avatar
                   .avatar-content.dropdown
                     %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
@@ -21,11 +21,11 @@
 
             .workspace_center.workspace-center-chef
               .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
-                %h1 Cocina
+                %h1 Bar
               .container-fluid.p-0
                 #tab-4
                   .grid-wrapper.grid-wrapper-chef
-                    - @orders.each_with_index do |order, index|
+                    - @orders.each_with_index do |order,index|
                       .card-content.card-counts.mb-4.card-chef
                         .order-card-counts.list-content{ class: "status-#{order.order_status}"}
 
@@ -36,7 +36,7 @@
                             .time.d-flex.flex-column
                               %p.badge= order.created_time
                           .list-cards
-                            - order.foods.each_with_index do |dish, index|
+                            - order.drinks.each_with_index do |dish, index|
                               .list-card{ class: ('disabled' if dish.cancelled?) }
                                 = html_switch(order, dish, index)
                                 .description-user.d-flex.justify-content-between.name-dishes
@@ -49,11 +49,11 @@
                                     %p Observaciones:
                                     .tags
                                       - dish.observation.split(';').each do |observation|
-                                        %span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
+                                        %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
                           .list-bottom
                             - unless order.cancelled?
                               .crono_wrapper
-                                %h2#crono.crono
+                                %h2#crono
                                   = time_ago_in_words(order.created_at)
 
 :javascript

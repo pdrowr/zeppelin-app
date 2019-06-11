@@ -14,6 +14,7 @@ module KepplerMenu
 
     establish_connection :premium_database_development
     self.table_name = 'articulo'
+
     belongs_to :category, foreign_key: 'grupo', class_name: 'KepplerMenu::Category'
     has_many :pictures, as: :picturable
 
@@ -35,6 +36,10 @@ module KepplerMenu
 
     def self.index_attributes
       %i[]
+    end
+
+    def is_drink?
+      category.is_drink?
     end
 
     def picture

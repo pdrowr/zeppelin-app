@@ -13,21 +13,25 @@ module KepplerFrontend
     def manage_client
       @client = rocket('clients', 'client').set_client(client_params)
       @client.create_order(params[:table], current_member.id, @period.id)
-      redirect_back(fallback_location: root_path)
+      redirect_to root_path(section: params[:section], table: params[:table])
     end
 
     def categories
-      @categories = rocket('menu', 'category').all
+      @categories = rocket('menu', 'category').all.includes(:pictures, :dishes)
     end
 
     def dishes
       @category = rocket('menu', 'category').find(params[:category_id])
-      @dishes   = @category.dishes
+      @dishes   = @category.dishes.select(:codigo, :nombre, :precio1)
       @dish     = rocket('orders', 'item').new
     end
 
     def chef
       @orders = rocket('orders', 'order').incompleted_orders
+    end
+
+    def bar
+      @orders = rocket('orders', 'order').incompleted_drinks
     end
 
     def runner
@@ -60,26 +64,35 @@ module KepplerFrontend
     end
 
     def cancel_order
-      if params[:code].eql?('12345')
-        @order.cancel
-      end
+      return unless valid_code?
 
+      @order.cancel
       redirect_back(fallback_location: root_path)
     end
 
     def cancel_dish
-      if params[:code].eql?('12345')
-        dish = @order.dishes.find(params[:dish_id])
-        dish.toggle!(:cancelled)
-      end  
+      return unless valid_code?
+      dish = @order.dishes.find(params[:dish_id])
+      dish.toggle!(:cancelled)
       redirect_back(fallback_location: root_path)
+    end
+
+    def get_client
+      return if params[:identification].blank?
+
+      identification = params[:identification]
+      @client = rocket('clients', 'client').find_by_identification(identification)
+
+      respond_to do |format|
+        format.js { render json: @client, status: 202 }
+      end
     end
 
     private
 
     def set_index_variables
-      @sections   = rocket('environments', 'section').order(position: :asc)
-      @client     = rocket('clients', 'client').new
+      @sections = rocket('environments', 'section').order(position: :asc)
+      @client   = rocket('clients', 'client').new
     end
 
     def client_params
@@ -98,6 +111,10 @@ module KepplerFrontend
 
     def set_period
       @period = rocket('periods', 'period').current_period
+    end
+
+    def valid_code?
+      params[:code].eql?('12345')
     end
   end
 end

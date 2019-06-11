@@ -16,17 +16,17 @@ module KepplerOrders
     belongs_to :waiter, class_name: 'KepplerStaff::Waiter'
     belongs_to :table, class_name: 'KepplerEnvironments::Table'
     belongs_to :period, class_name: 'KepplerPeriods::Period'
-    has_many :dishes, class_name: 'KepplerOrders::Item'
 
-    scope :today_orders, -> { where(created_at: today) }
+    has_many :dishes, -> { order(id: :asc) }, class_name: 'KepplerOrders::Item'
+    scope :today_orders, -> { where(period_id: current_period_id) }
 
     def self.index_attributes
       %i[client_id waiter_id table_id status]
     end
 
     def total
-      price = dishes.map { |dish| dish.price.to_i * dish.quantity.to_i }
-      price.reduce(:+)
+      prices = dishes.map { |dish| dish.price.to_i * dish.quantity.to_i }
+      prices.reduce(:+)
     end
 
     def send_to_kitchen
@@ -38,18 +38,38 @@ module KepplerOrders
                   .order(id: :asc)
     end
 
-    def self.orders_in_kitchen
+    def self.foods_in_kitchen
       today_orders.where(status: 'IN_KITCHEN').order(id: :asc)
     end
 
+    def self.drinks_in_bar
+      today_orders.where(status: 'IN_KITCHEN').select do |order|
+        order.dishes.select { |dish| !dish.dish.is_drink? }
+      end
+    end
+
+    def foods
+      dishes.select { |dish| !dish.dish.is_drink? }
+    end
+
+    def drinks
+      dishes.select { |dish| dish.dish.is_drink? }
+    end
+
     def self.completed_orders
-      orders_in_kitchen.select do |order|
+      foods_in_kitchen.select do |order|
         order.dishes.where(completed: true).count.eql?(order.dishes.count)
       end.reverse
     end
 
     def self.incompleted_orders
-      orders_in_kitchen.where(status: 'IN_KITCHEN').select do |order|
+      foods_in_kitchen.select do |order|
+        !order.dishes.where(completed: true).count.eql?(order.dishes.count)
+      end
+    end
+
+    def self.incompleted_drinks
+      drinks_in_bar.select do |order|
         !order.dishes.where(completed: true).count.eql?(order.dishes.count)
       end
     end
@@ -57,15 +77,15 @@ module KepplerOrders
     def percentage
       completed = dishes.where(completed: true).count
       return 0 if completed.zero?
-      ((completed * 100) / dishes.count)
+      ((completed * 100) / foods.count)
     end
 
     def in_kitchen?
       status.eql?('IN_KITCHEN')
     end
 
-    def self.today
-      Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
+    def self.current_period_id
+      KepplerPeriods::Period&.current_period&.id
     end
 
     def created_time
@@ -87,9 +107,11 @@ module KepplerOrders
       minuts = (seconds / 60)
     end
 
-    def order_status
-      # return 'normal' if get_minutes <= 15
+    def have_drinks?
+      !drinks.blank?
+    end
 
+    def order_status
       if (get_minutes < 15)
         return 'normal'
       elsif (get_minutes >= 15 && get_minutes <= 24)
@@ -98,7 +120,5 @@ module KepplerOrders
         return 'danger'
       end
     end
-
-
   end
 end
