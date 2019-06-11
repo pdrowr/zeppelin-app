@@ -16,7 +16,7 @@ KepplerFrontend::Engine.routes.draw do
   post '/add_item/:order_id', to: 'app/frontend#add_dish', as: :app_add_dish
   post '/cancel_order/:order_id', to: 'app/frontend#cancel_order', as: :app_cancel_order
   post '/cancel_dish/:order_id/:dish_id', to: 'app/frontend#cancel_dish', as: :app_cancel_dish
-  delete '/remove_item/:order_id/:item_id', to: 'app/frontend#remove_item', as: :app_remove_dish
+  delete '/remove_item/:order_id/:item_id', to: 'app/frontend#remove_dish', as: :app_remove_dish
   post '/toggle_dish_status/:order_id/:dish_id', to: 'app/frontend#toggle_dish_status', as: :app_toggle_dish_status
 
   post '/get_client', to: 'app/frontend#get_client'
