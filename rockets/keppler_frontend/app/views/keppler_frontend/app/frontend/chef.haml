@@ -54,7 +54,7 @@
                             - unless order.cancelled?
                               .crono_wrapper
                                 %h2#crono.crono
-                                  = time_ago_in_words(order.created_at)
+                                  = time_ago_in_words(order&.send_to_kitchen_at)
 
 :javascript
   $('.start').click()

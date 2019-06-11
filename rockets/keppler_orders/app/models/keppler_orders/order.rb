@@ -31,6 +31,7 @@ module KepplerOrders
 
     def send_to_kitchen
       update(status: 'IN_KITCHEN')
+      update(send_to_kitchen_at: DateTime.now)
     end
 
     def self.current_orders
@@ -93,7 +94,7 @@ module KepplerOrders
     end
 
     def created_time
-      created_at.time.strftime("%I:%M %p")
+      send_to_kitchen_at&.time&.strftime("%I:%M %p")
     end
 
     def completed_time
