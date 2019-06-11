@@ -3,8 +3,10 @@
     .modal.fade{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "confirmation-#{dish.id}-#{index}" }
       .modal-dialog{role: "document"}
         .modal-content
-          .modal-header
-            %h2.m-0 Esta seguro de eliminar #{dish.dish.name.titleize}
+          .modal-header.d-block
+          
+            %h2.m-0 Esta seguro de eliminar 
+            %p #{dish.dish.name.titleize}
             %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
               %i.icofont-close.icon_custom.icon--large
           .modal-body

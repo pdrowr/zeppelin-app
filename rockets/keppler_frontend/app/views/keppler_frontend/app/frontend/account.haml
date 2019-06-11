@@ -48,25 +48,25 @@
                         .grid-order.grid-order-account
                           .order-wrapper.order-wrapper-account
                             .order-header
-                              %h4 Pedidos
+                              %h4 Pedidos 
                               .float-right.right-btn-order.d-flex.justify-content-end
                                 - if @order.in_kitchen?
                                   = confirmation_modal(@order, nil, @order.id, :order)
 
                                   -# = link_to app_cancel_order_path(@order), method: :post do
-                                  .btn.btn_custom.btn--medium.btn--white.js-btn-order{'data-target': "#confirmation-order-#{@order.id}-#{@order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                  .btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2{'data-target': "#confirmation-order-#{@order.id}-#{@order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
                                     Cancelar Orden
 
-                                  %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
+                                  %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2
                                     Cerrar Cuenta
                                 - else
                                   - unless @order.dishes.blank?
                                     = link_to app_send_to_kitchen_path(@order), method: :post do
                                       %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2
                                         Enviar A Cocina
-                                    = link_to app_categories_path(@order) do
-                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
-                                        Añadir Platos
+                                = link_to app_categories_path(@order) do
+                                  %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
+                                    Añadir Platos
 
                               %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                             .order-content.order-content--fixed.d-flex.flex-column
