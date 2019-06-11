@@ -23,7 +23,7 @@
             %input{ type: 'hidden', name: 'table', value: table }
             %input{ type: 'hidden', name: 'section', value: section.name }
         .float-right.mt-2
-          %button.btn.btn_custom.btn--medium.btn--filled.submit-btn{ type: 'submit', onclick: "submit('table.downcase')" }
+          %button.btn.btn_custom.btn--medium.btn--filled.submit-btn{ type: 'submit', onclick: "submit('#{table.downcase}')" }
             SIGUIENTE
 
 :javascript
