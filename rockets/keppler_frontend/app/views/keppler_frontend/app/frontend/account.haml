@@ -71,12 +71,9 @@
 
                               %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                             .order-content.order-content--fixed.d-flex.flex-column
-
                               .d-flex.flex-column
                                 - @order.dishes.order(id: :asc).each_with_index do |dish, index|
-
                                   = confirmation_modal(@order, dish, index, :dish)
-
                                   .card-wrapper.card-account{ class: ('disabled' if @order.cancelled? || dish.cancelled?) }
                                     .card-content.card-product-account
                                       .card-product-image.account-product-image

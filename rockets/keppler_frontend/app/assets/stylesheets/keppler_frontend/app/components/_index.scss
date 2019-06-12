@@ -234,6 +234,14 @@
     margin-top: 60px;
   }
 
+  &.workspace_center-scroll{
+    overflow-y: auto;
+
+    &:hover {
+      overflow-y: scroll;
+    }
+
+  }
   &:hover {
     overflow-y: auto;
     transition: .6s ease-in-out;
@@ -343,6 +351,12 @@
 
   &.card-account {
     margin: 10px 0px 10px 0px;
+
+    &.disabled {
+      .box-quantity {
+        background-color: #887c7d !important;
+      }
+    }
   }
 }
 
@@ -408,6 +422,23 @@
       width: 250px;
       height: 70vh;
     }
+
+    &.disabled-order {
+      .list-content {
+        cursor: not-allowed !important;
+        background-color: $black !important;
+        opacity: 0.4;
+
+        .card-content {
+          .card-icons {
+            i {
+              // color: $gray;
+            }
+          }
+        }
+      }
+    }
+    
   }
 
   &.card-product {
@@ -438,6 +469,20 @@
 
 .disabled{
   cursor: not-allowed !important;
+  opacity: 0.4;
+
+  .card-content {
+    .card-icons {
+      i {
+        // color: $gray;
+      }
+    }
+  }
+}
+
+.disabled-dishes{
+  cursor: not-allowed !important;
+  background-color: $black !important;
   opacity: 0.4;
 
   .card-content {

@@ -26,7 +26,7 @@
                 #tab-4
                   .grid-wrapper.grid-wrapper-chef
                     - @orders.each_with_index do |order, index|
-                      .card-content.card-counts.mb-4.card-chef
+                      .card-content.card-counts.mb-4.card-chef{ class: ('disabled-order' if order.cancelled?) }
                         .order-card-counts.list-content{ class: "status-#{order.order_status}"}
 
                           .description-user.d-flex.justify-content-between.list-header
@@ -51,10 +51,13 @@
                                       - dish.observation.split(';').each do |observation|
                                         %span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
                           .list-bottom
-                            - unless order.cancelled?
-                              .crono_wrapper
-                                %h2#crono.crono
+                            .crono_wrapper
+                              %h2#crono.crono
+                                - if order.cancelled?
+                                  Cancelado
+                                - else
                                   = time_ago_in_words(order&.send_to_kitchen_at)
+
 
 :javascript
   $('.start').click()
