@@ -13,7 +13,6 @@ module KepplerFrontend
     def manage_client
       @client = rocket('clients', 'client').set_client(client_params)
 
-      byebug
       if @client
         @client.create_order(params[:table], current_member.id, @period.id)
       end
