@@ -66,6 +66,7 @@
   }
 
   function displayValues(data) {
+    $('.fields').find('.form-control').attr('disabled', 'disabled')
     $('.preloader').addClass('hidden');
     $('.fields').removeClass('hidden');
     $('.name').val(data.name)
