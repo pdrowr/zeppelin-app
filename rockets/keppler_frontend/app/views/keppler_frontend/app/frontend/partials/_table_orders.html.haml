@@ -8,7 +8,7 @@
           %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
         .order-content.order-content--fixed.d-flex.flex-column
           - table.current_orders.each do |order|
-            = link_to app_account_path(order) do
+            = link_to app_account_path(order, locale: nil) do
               .order-counts
                 .card-content.card-counts.mb-4
                   .order-card-counts

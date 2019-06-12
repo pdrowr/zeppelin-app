@@ -9,7 +9,7 @@
     .order-content.order-content--fixed.d-flex.flex-wrap
       .order-counts
         - current_member.current_orders.each do |order|
-          = link_to app_account_path(order) do
+          = link_to app_account_path(order, locale: nil) do
             .card-content.card-counts.mb-4
               .order-card-counts
                 .description-user.d-flex.justify-content-between

@@ -1,7 +1,7 @@
 .workspace-right.sidebar{ class: ('sidebar-disabled' unless @order.present?) }
   .float-right.right-btn-order
     - if @order.present?
-      = link_to app_account_path do
+      = link_to app_account_path(locale: nil) do
         %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
           Ver Cuenta
   .grid-order{ style: "position: fixed;"}
@@ -23,7 +23,7 @@
                   .card-price
                     %span $ #{dish.price} X
                     %span.box-quantity= dish.quantity
-                  = link_to app_remove_dish_path(@order, dish), method: :delete, data: { confirm: '¿Estás seguro?' } do
+                  = link_to app_remove_dish_path(@order, dish, locale: nil), method: :delete, data: { confirm: '¿Estás seguro?' } do
                     .card-product-delete
                       %i.icofont-ui-delete
       .order-footer.order-footer-product

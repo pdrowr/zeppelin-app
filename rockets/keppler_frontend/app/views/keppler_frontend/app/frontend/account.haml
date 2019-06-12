@@ -62,10 +62,10 @@
                                       Cerrar Cuenta
                                   - else
                                     - unless @order.dishes.blank?
-                                      = link_to app_send_to_kitchen_path(@order), method: :post do
+                                      = link_to app_send_to_kitchen_path(@order, locale: nil), method: :post do
                                         %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2
                                           Enviar A Cocina
-                                  = link_to app_categories_path(@order) do
+                                  = link_to app_categories_path(@order, locale: nil) do
                                     %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
                                       Añadir Platos
 
@@ -90,7 +90,7 @@
                                             .card-product-delete{'data-target': "#confirmation-#{dish.id}-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
                                               %i.icofont-ui-delete
                                           - else
-                                            = link_to app_remove_dish_path(@order, dish), method: :delete, data: { confirm: '¿Estás seguro?' } do
+                                            = link_to app_remove_dish_path(@order, dish, locale: nil), method: :delete, data: { confirm: '¿Estás seguro?' } do
                                               .card-product-delete
                                                 %i.icofont-ui-delete
 
