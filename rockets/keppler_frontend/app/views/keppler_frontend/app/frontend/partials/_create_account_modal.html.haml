@@ -1,4 +1,4 @@
-.modal.fade{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "#{section.name.split(' ').join()}-#{table.split(' ').join('')}" }
+.modal.fade.account-modal{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "#{section.name.split(' ').join()}-#{table.split(' ').join('')}" }
   .modal-dialog{role: "document"}
     .modal-content
       .modal-header
@@ -89,3 +89,8 @@
   function submit(table) {
     $('.form-'+table).submit()
   }
+
+  $('.account-modal').on('hidden.bs.modal', function () {
+    $('.fields').find('.form-control').attr('disabled', 'disabled')
+    $('.fields').addClass('hidden');
+  })
