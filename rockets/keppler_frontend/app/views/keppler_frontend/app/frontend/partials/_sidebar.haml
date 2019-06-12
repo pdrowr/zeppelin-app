@@ -2,8 +2,19 @@
   %ul.tabs.d-flex.flex-column.align-items-center
     %li.d-lg-none.d-md-none
       %li
-        = link_to root_path do
-          = image_tag '/assets/app/z', class: 'isologo_white'
+        - if current_member.member_type.eql?('waiter')
+          = link_to root_path do
+            = image_tag '/assets/app/z', class: 'isologo_white'
+        - elsif current_member.member_type.eql?('chef')
+          = link_to app_chef_path do
+            = image_tag '/assets/app/z', class: 'isologo_white'
+        - elsif current_member.member_type.eql?('runner')
+          = link_to app_runner_path do
+            = image_tag '/assets/app/z', class: 'isologo_white'
+        - elsif current_member.member_type.eql?('bartender')
+          = link_to app_bar_path do
+            = image_tag '/assets/app/z', class: 'isologo_white'
+
     - if current_member.is_a?('waiter')
       %li.tab-link{ class: ('current' if action_name.eql?('index')) }
         = link_to root_path do
@@ -21,6 +32,11 @@
     - if current_member.is_a?('runner')
       %li.tab-link{ class: ('current' if action_name.eql?('runner')) }
         = link_to app_runner_path do
+          .icons
+            %i.icofont-listing-number
+    - if current_member.is_a?('bartender')
+      %li.tab-link{ class: ('current' if action_name.eql?('bar')) }
+        = link_to app_bar_path do
           .icons
             %i.icofont-listing-number
   .footer
