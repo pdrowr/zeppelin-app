@@ -32,5 +32,18 @@ module KepplerStaff
       member_type.eql?(type)
     end
 
+    def redirection_path
+      case member_type
+      when 'chef'
+        app_chef_path
+      when 'runner'
+        app_runner_path
+      when 'bartender'
+        app_bar_path
+      when 'waiter'
+        root_path
+      end
+    end
+    
   end
 end

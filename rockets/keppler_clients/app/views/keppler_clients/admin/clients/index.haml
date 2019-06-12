@@ -53,10 +53,21 @@
                               %input{ type: 'checkbox', id: 'checkbox-all', '@click': 'selectAll()' }
                               %span.cr
                                 %i.cr-icon.glyphicon.glyphicon-ok
-                    - @attributes.each do |attribute|
-                      %th
-                        = sort_link(@q, attribute) do
-                          = t("activerecord.attributes.#{attribute.to_s}")
+                    %th
+                      = sort_link(@q, :name) do
+                        = t("activerecord.attributes.name")
+                    %th
+                      = sort_link(@q, :identification) do
+                        = t("activerecord.attributes.identification")
+                    %th
+                      = sort_link(@q, :email) do
+                        = t("activerecord.attributes.email")
+                    %th
+                      = sort_link(@q, :address) do
+                        = t("activerecord.attributes.address")
+                    %th
+                      = sort_link(@q, :phone) do
+                        = t("activerecord.attributes.phone")
                     %th
                     %th
 

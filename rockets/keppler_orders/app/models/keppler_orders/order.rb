@@ -54,9 +54,9 @@ module KepplerOrders
       # includes(items: [dishes: :category]).where(keppler_orders_items: { keppler_menu_dishes: { keppler_menu_category: [is_drink: true] }})
     end
 
-    def self.drinks
-      # dishes.select { |dish| dish.is_drink? }
-      includes(dishes: :category).where(keppler_orders_items: { keppler_menu_dishes: { keppler_menu_category: [is_drink: true] }})
+    def drinks
+      dishes.select { |dish| dish.is_drink? }
+      # includes(dishes: :category).where(keppler_orders_items: { keppler_menu_dishes: { keppler_menu_category: [is_drink: true] }})
     end
 
     def self.completed_orders

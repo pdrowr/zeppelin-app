@@ -69,22 +69,23 @@ module KepplerFrontend
     end
 
     def cancel_order
-      return unless valid_code?
+      if valid_code?
+        @order.cancel
+      end
 
-      @order.cancel
       redirect_back(fallback_location: root_path)
     end
 
     def cancel_dish
-      return unless valid_code?
-      dish = @order.dishes.find(params[:dish_id])
-      dish.toggle!(:cancelled)
+      if valid_code?
+        dish = @order.dishes.find(params[:dish_id])
+        dish.toggle!(:cancelled)
+      end
       redirect_back(fallback_location: root_path)
     end
 
     def get_client
       return if params[:identification].blank?
-
       identification = params[:identification]
       @client = rocket('clients', 'client').find_by_identification(identification)
 
@@ -101,7 +102,9 @@ module KepplerFrontend
     end
 
     def client_params
-      params.require(:client).permit(:name, :email, :identification, :address)
+      params.require(:client).permit(
+        :name, :email, :identification, :address, :phone
+      )
     end
 
     def dish_params
