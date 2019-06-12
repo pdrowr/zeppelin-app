@@ -30,7 +30,8 @@ module KepplerStaff
 
       # POST /staffs
       def create
-        @member = Member.new(member_params('member'))
+        type = params.keys.third
+        @member = Member.new(member_params(type))
 
         if @member.save
           redirect(@member, params)
