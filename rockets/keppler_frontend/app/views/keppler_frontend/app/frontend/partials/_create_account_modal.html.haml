@@ -61,7 +61,6 @@
   }
 
   function handleData(data) {
-    $('.form-control').removeAttr('disabled')
     $('.submit-btn').removeAttr('disabled')
     data ? displayValues(data) : clearValues()
   }
@@ -76,13 +75,14 @@
   }
 
   function clearValues() {
-    alert('el usuario no ha sido registrado')
+    $('.form-control').removeAttr('disabled')
     $('.preloader').addClass('hidden');
     $('.fields').removeClass('hidden');
     $('.name').val('')
     $('.email').val('')
     $('.address').val('')
     $('.phone').val('')
+    alert('el usuario no ha sido registrado')
   }
 
   function submit(table) {

@@ -81,7 +81,7 @@ module KepplerOrders
 
     def percentage
       completed = dishes.where(completed: true).count
-      return 0 if completed.zero?
+      return 0 if completed.zero? || foods.count.zero?
       ((completed * 100) / foods.count)
     end
 

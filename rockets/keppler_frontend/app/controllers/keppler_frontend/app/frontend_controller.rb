@@ -13,7 +13,8 @@ module KepplerFrontend
     def manage_client
       @client = rocket('clients', 'client').set_client(client_params)
 
-      unless @client.nil?
+      byebug
+      if @client
         @client.create_order(params[:table], current_member.id, @period.id)
       end
 
@@ -21,8 +22,7 @@ module KepplerFrontend
     end
 
     def categories
-      @categories = rocket('menu', 'category').all
-      # .includes(:pictures, :dishes)
+      @categories = rocket('menu', 'category').all.includes(:pictures, :dishes)
     end
 
     def dishes
