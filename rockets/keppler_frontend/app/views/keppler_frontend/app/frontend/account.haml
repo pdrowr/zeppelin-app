@@ -3,6 +3,10 @@
   %header
     = render 'app/layouts/head'
   %body
+    -# = preloader
+    #preloader
+      .spinner-border{:role => "status"}
+        %span.sr-only Loading...
     .container-custom
     .workspace-chef
       = sidebar

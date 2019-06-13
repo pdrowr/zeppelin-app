@@ -1,3 +1,4 @@
+%script{ src: '/assets/js/jquery-validate.js' }
 .modal.fade.account-modal{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "#{section.name.split(' ').join()}-#{table.split(' ').join('')}" }
   .modal-dialog{role: "document"}
     .modal-content
@@ -6,35 +7,51 @@
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
           %i.icofont-close.icon_custom.icon--large
       .modal-body
-        = simple_form_for @client, url: app_manage_client_path, method: :post, html: { class: "form-#{table.downcase}" } do |f|
+        = simple_form_for @client, url: app_manage_client_path, html: { class: "form-#{table.downcase} " } do |f|
           .form-group
             %label.label_custom Cédula
-            %input.form-control.input_custom{ type:'number', name: 'client[identification]', onkeyup: "makeRequest('#{table.downcase}')", class: "identification-#{table.downcase}", min: 0 }
+            %input.form-control.input_custom{ :required => "", type:'number', name: 'client[identification]', onkeyup: "makeRequest('#{table.downcase}')", class: "identification-#{table.downcase}", min: 0 }
           .hidden.preloader
             .content-spinner
               .spinner-border{:role => "status"}
                 %span.sr-only Loading...
-          .hidden.fields
+          .fields.hidden-field
+            -# .hidden
             .form-group
               %label.label_custom Nombres y apellidos
-              %input.form-control.input_custom.name{ name: 'client[name]', disabled: 'true' }
+              %input.form-control.input_custom.name{ name: 'client[name]', :required => "", :autocomplete => "off" }
             .form-group
               %label.label_custom Email
-              %input.form-control.input_custom.email{ name: 'client[email]', disabled: 'true' }
+              %input.form-control.input_custom.email{ name: 'client[email]', :required => "", :autocomplete => "off" }
             .form-group
               %label.label_custom Dirección
-              %input.form-control.input_custom.address{ type: 'text', name: 'client[address]', disabled: 'true' }
+              %input.form-control.input_custom.address{ type: 'text', name: 'client[address]', :required => "", :autocomplete => "off" }
             .form-group
               %label.label_custom Teléfono
-              %input.form-control.input_custom.phone{ type: 'tel', name: 'client[phone]', disabled: 'true', min: 0 }
+              %input.form-control.input_custom.phone{ type: 'tel', name: 'client[phone]', min: 0, :required => "", :autocomplete => "off" }
             .form-group
               %input{ type: 'hidden', name: 'table', value: table }
               %input{ type: 'hidden', name: 'section', value: section.name }
-        .float-right.mt-2
-          %button.btn.btn_custom.btn--medium.btn--filled.submit-btn{ type: 'submit', onclick: "submit('#{table.downcase}')", disabled: 'disabled' }
-            SIGUIENTE
+          .float-right.mt-2
+            = f.submit 'SIGUIENTE', class: 'btn btn_custom btn--medium btn--filled submit-btn'
+          -# %button{ type: 'submit'}
+          -#   SIGUIENTE
 
 :scss
+  .hidden-field {
+    opacity: 0;
+    height:0;
+  }
+  input {
+    margin-bottom: 5px;
+  }
+  .error {
+    color: rgba(250,0,0,0.73);
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.4)
+  }
   input[type=number]::-webkit-inner-spin-button,
   input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -44,8 +61,82 @@
   input[type=number] {
     -moz-appearance:textfield;
   }
-  
+
+
+  .alertify-notifier .ajs-message.ajs-success{
+    color: #fff !important;
+    background: #02c03c;
+    text-shadow: #02c03c !important;
+    border-radius: 5px !important;
+    display: flex;
+    justify-content: center;
+    font-family: "Quicksand", sans-serif;
+  }
+
+  .alertify-notifier .ajs-message.ajs-error{
+    color: #fff !important;
+    background: #9b111e;
+    text-shadow: #9b111e !important;
+    border-radius: 5px !important;
+    display: flex;
+    justify-content: center;
+    font-family: "Quicksand", sans-serif;
+  }
 :javascript
+  $(document).ready(function() {
+    alertify.notify('Listo', 'success');
+    alertify.notify('Ocurrió un error', 'error');
+  })
+  $.validator.addMethod("phoneno", function(phone_number, element) {
+    phone_number = phone_number.replace(/\s+/g, "");
+    return this.optional(element) || phone_number.length > 9 &&
+    phone_number.match(/^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/);
+  }, "Por favor introduzca sólo números");
+
+  $(function($) {
+    var validator = $('#new_client').validate({
+      rules: {
+        'client[identification]': {
+          required: true
+        },
+        'client[name]': {
+          required: true
+        },
+        'client[email]': {
+          required: true,
+          email: true
+        },
+        'client[address]': {
+          required: true,
+          email: true
+        },
+        'client[phone]': {
+          phoneno: true,
+          required: true
+        }
+      },
+      messages: {
+        'client[identification]': {
+          required: "Campo obligatorio"
+        },
+        'client[name]': {
+          required: "Campo obligarotio"
+        },
+        'client[email]': {
+          email:"El email no es valido",
+          required: "Campo obligatorio"
+        },
+        'client[phone]': {
+          required: "Campo obligatorio"
+        },
+        'client[address]': {
+          required: "Campo obligatorio"
+        }
+      },
+
+    });
+  });
+
   var time = ''
 
   function makeRequest(table) {
@@ -78,8 +169,8 @@
 
   function displayValues(data) {
     $('.fields').find('.form-control').attr('disabled', 'disabled')
-    $('.preloader').addClass('hidden');
-    $('.fields').removeClass('hidden');
+    $('.preloader').addClass('hidden-field');
+    $('.fields').removeClass('hidden-field');
     $('.name').val(data.name)
     $('.email').val(data.email)
     $('.address').val(data.address)
@@ -88,8 +179,8 @@
 
   function clearValues() {
     $('.form-control').removeAttr('disabled')
-    $('.preloader').addClass('hidden');
-    $('.fields').removeClass('hidden');
+    $('.preloader').addClass('hidden-field');
+    $('.fields').removeClass('hidden-field');
     $('.name').val('')
     $('.email').val('')
     $('.address').val('')
@@ -103,5 +194,7 @@
 
   $('.account-modal').on('hidden.bs.modal', function () {
     $('.fields').find('.form-control').attr('disabled', 'disabled')
-    $('.fields').addClass('hidden');
+    $('.fields').addClass('hidden-field');
   })
+
+  
