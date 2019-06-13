@@ -49,5 +49,9 @@ module KepplerFrontend
     def confirmation_modal(order, dish, index, type)
       render 'keppler_frontend/app/frontend/partials/confirmation_modal', order: order, dish: dish, index: index, type: type
     end
+
+    def flash_messages
+      render 'keppler_frontend/app/frontend/partials/messages'
+    end
   end
 end

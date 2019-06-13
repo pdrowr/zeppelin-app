@@ -2,6 +2,7 @@
 <html id="keppler-html">
   <head>
     <%= set_head %>
+    <%= render 'keppler_frontend/app/frontend/partials/messages' %>
   </head>
   <body id="keppler-editor">
     <keppler-header>
@@ -9,10 +10,9 @@
     </keppler-header>
 
     <%= yield %>
-    
+
     <keppler-footer>
       <!-- Keppler Footer -->
     </keppler-footer>
   </body>
 </html>
-

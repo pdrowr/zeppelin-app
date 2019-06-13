@@ -22,12 +22,12 @@ module KepplerFrontend
 
     def login_success(member)
       session[:member_id] = member.id
-      redirect_to handle_route_redirection, notice: "Logged in!"
+      flash[:notice] = 'Logged Out'
+      redirect_to handle_route_redirection, notice: "Bienvenido #{current_member.name}"
     end
 
     def login_error
-      flash.now[:alert] = 'Invalid Code.'
-      redirect_to frontend.app_new_session_path
+      redirect_to frontend.app_new_session_path, notice: 'Código inválido'
     end
 
     def handle_route_redirection

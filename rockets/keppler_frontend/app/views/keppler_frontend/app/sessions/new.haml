@@ -10,7 +10,6 @@
             = image_tag '/assets/app/logo_white'
           = form_tag app_create_session_path, class: 'new_user', method: :post do |f|
             .form-group
-              -# %label.label_custom{for:""} Código
               %input.form-control.input_custom{ placeholder: 'CÓDIGO', style: 'text-align:center;', name: 'member_code', autocomplete: 'off' }
             .login_button.d-flex.justify-content-center
               %button.btn.btn_custom.btn--medium.btn--filled.btn-text-upper

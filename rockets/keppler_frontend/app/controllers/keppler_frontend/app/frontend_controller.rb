@@ -17,7 +17,7 @@ module KepplerFrontend
         @client.create_order(params[:table], current_member.id, @period.id)
       end
 
-      redirect_to root_path(section: params[:section], table: params[:table])
+      redirect_to root_path(section: params[:section], table: params[:table]), notice: 'Cuenta Creada Exitosamente'
     end
 
     def categories
@@ -48,18 +48,18 @@ module KepplerFrontend
 
     def add_dish
       @order.dishes.create(dish_params)
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path, notice: 'Plato añadido a la orden exitosamente')
     end
 
     def remove_dish
       item = @order.dishes.find(params[:item_id])
       item.destroy
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path, notice: 'Plato removido de la orden exitosamente')
     end
 
     def send_to_kitchen
       @order.send_to_kitchen
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path, notice: 'La orden ha sido enviada a cocina')
     end
 
     def toggle_dish_status
@@ -71,17 +71,24 @@ module KepplerFrontend
     def cancel_order
       if valid_code?
         @order.cancel
+        notice = 'La orden ha sido cancelada exitosamente'
+      else
+        notice = 'Código Inválido'
       end
 
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: root_path, notice: notice)
     end
 
     def cancel_dish
       if valid_code?
         dish = @order.dishes.find(params[:dish_id])
         dish.toggle!(:cancelled)
+        notice = 'El plato ha sido cancelado exitosamente'
+      else
+        notice = 'Código Inválido'
       end
-      redirect_back(fallback_location: root_path)
+
+      redirect_back(fallback_location: root_path, notice: notice)
     end
 
     def get_client

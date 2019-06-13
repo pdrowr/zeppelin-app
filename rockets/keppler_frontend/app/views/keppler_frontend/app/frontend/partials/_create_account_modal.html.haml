@@ -83,10 +83,6 @@
     font-family: "Quicksand", sans-serif;
   }
 :javascript
-  $(document).ready(function() {
-    alertify.notify('Listo', 'success');
-    alertify.notify('Ocurrió un error', 'error');
-  })
   $.validator.addMethod("phoneno", function(phone_number, element) {
     phone_number = phone_number.replace(/\s+/g, "");
     return this.optional(element) || phone_number.length > 9 &&
@@ -185,7 +181,7 @@
     $('.email').val('')
     $('.address').val('')
     $('.phone').val('')
-    alert('el usuario no ha sido registrado')
+    alertify.notify('El usuario no ha sido registrado', 'error');
   }
 
   function submit(table) {
@@ -196,5 +192,3 @@
     $('.fields').find('.form-control').attr('disabled', 'disabled')
     $('.fields').addClass('hidden-field');
   })
-
-  
