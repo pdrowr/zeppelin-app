@@ -1,5 +1,5 @@
 html {
-  
+
 }
 body {
   width: 100%;
@@ -7,7 +7,7 @@ body {
   margin: 0 !important;
   overflow: auto;
   position: relative;
-  
+
   &.overflow {
     overflow: hidden;
   }
@@ -61,4 +61,24 @@ button{
     width: 5rem !important;
     height: 5rem !important;
   }
+}
+
+.alertify-notifier .ajs-message.ajs-success{
+  color: #fff !important;
+  background: #02c03c;
+  text-shadow: #02c03c !important;
+  border-radius: 5px !important;
+  display: flex;
+  justify-content: center;
+  font-family: "Quicksand", sans-serif;
+}
+
+.alertify-notifier .ajs-message.ajs-error{
+  color: #fff !important;
+  background: #9b111e;
+  text-shadow: #9b111e !important;
+  border-radius: 5px !important;
+  display: flex;
+  justify-content: center;
+  font-family: "Quicksand", sans-serif;
 }

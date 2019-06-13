@@ -2,5 +2,6 @@
   :javascript
     var notice = "#{notice}"
     $(document).ready(function() {
-      alertify.notify(notice, 'success');
+      alertify.set('notifier','position', 'top-right');
+      alertify.notify(notice, 'success','top-right');
     })

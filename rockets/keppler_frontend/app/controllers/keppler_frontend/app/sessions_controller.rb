@@ -23,7 +23,7 @@ module KepplerFrontend
     def login_success(member)
       session[:member_id] = member.id
       flash[:notice] = 'Logged Out'
-      redirect_to handle_route_redirection, notice: "Bienvenido #{current_member.name}"
+      redirect_to handle_route_redirection, notice: "Bienvenido, #{current_member.name}"
     end
 
     def login_error
