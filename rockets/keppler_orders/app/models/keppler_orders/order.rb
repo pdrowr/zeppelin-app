@@ -17,7 +17,6 @@ module KepplerOrders
     belongs_to :table, class_name: 'KepplerEnvironments::Table'
     belongs_to :period, class_name: 'KepplerPeriods::Period'
     has_many :dishes, -> { order(id: :asc) }, class_name: 'KepplerOrders::Item'
-
     scope :today_orders, -> { where(period_id: current_period_id) }
 
     def self.index_attributes
