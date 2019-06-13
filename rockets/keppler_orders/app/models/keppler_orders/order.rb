@@ -61,14 +61,16 @@ module KepplerOrders
 
     def self.completed_orders
       foods_in_kitchen.select do |order|
-        order.dishes.where(completed: true).count.eql?(order.dishes.count)
+        completed_foods = order.foods.map { |f| f if f.completed? }.compact.count
+        order.foods.count.eql?(completed_foods)
       end.reverse
     end
 
     def self.incompleted_orders
       foods_in_kitchen.select do |order|
-        !order.dishes.where(completed: true).count.eql?(order.dishes.count)
-      end
+        completed_foods = order.foods.map { |f| f if f.completed? }.compact.count
+        !order.foods.count.eql?(completed_foods)
+      end.reverse
     end
 
     def self.incompleted_drinks
@@ -80,7 +82,7 @@ module KepplerOrders
     end
 
     def percentage
-      completed = dishes.where(completed: true).count
+      completed = foods.map { |f| f if f.completed? }.compact.count
       return 0 if completed.zero? || foods.count.zero?
       ((completed * 100) / foods.count)
     end

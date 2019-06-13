@@ -21,6 +21,7 @@ module KepplerFrontend
     private
 
     def login_success(member)
+      session[:member_id] = nil
       session[:member_id] = member.id
       redirect_to handle_route_redirection, notice: "Logged in!"
     end
