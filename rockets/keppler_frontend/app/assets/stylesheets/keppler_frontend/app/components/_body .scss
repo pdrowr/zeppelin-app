@@ -6,6 +6,7 @@ body {
   padding: 0 !important;
   margin: 0 !important;
   overflow: auto;
+  position: relative;
   
   &.overflow {
     overflow: hidden;
@@ -39,4 +40,25 @@ button{
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background: #d2d2d2;
+}
+
+
+#preloader {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #252525;
+  z-index: 9999999999;
+
+  .spinner-border {
+    border: .25em solid $primary !important;
+    border-right-color: transparent !important;
+    width: 5rem !important;
+    height: 5rem !important;
+  }
 }

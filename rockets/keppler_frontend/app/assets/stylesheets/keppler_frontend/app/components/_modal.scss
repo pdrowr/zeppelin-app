@@ -38,7 +38,7 @@
   h2 {
     color: $white;
     font-family: $quicksand;
-    font-size: 20px;
+    font-size: 20px !important;
   }
 
   p{
@@ -54,8 +54,17 @@
     position: absolute;
     right: 10px !important;
     top: 18px !important;
-    opacity: .75;
-    
+    opacity: 0.75;
+
+    &.close-dishes {
+      opacity: 1;
+      background-color: rgba(0,0,0,.6);
+      border-radius: 5px;
+      padding: 4px !important;
+    }
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
