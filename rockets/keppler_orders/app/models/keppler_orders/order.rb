@@ -108,7 +108,7 @@ module KepplerOrders
     end
 
     def get_minutes
-      seconds = (Time.now - created_at).to_i
+      seconds = (Time.now - send_to_kitchen_at).to_i
       minuts = (seconds / 60)
     end
 
