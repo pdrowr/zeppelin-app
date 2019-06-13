@@ -34,6 +34,17 @@
           %button.btn.btn_custom.btn--medium.btn--filled.submit-btn{ type: 'submit', onclick: "submit('#{table.downcase}')", disabled: 'disabled' }
             SIGUIENTE
 
+:scss
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type=number] {
+    -moz-appearance:textfield;
+  }
+  
 :javascript
   var time = ''
 
