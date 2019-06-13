@@ -54,7 +54,7 @@
                             - unless order.cancelled?
                               .crono_wrapper
                                 %h2#crono
-                                  = time_ago_in_words(order.created_at)
+                                  = time_ago_in_words(order.send_to_kitchen_at)
 
 :javascript
   $('.start').click()
@@ -79,22 +79,22 @@
     })
   });
 
-  var idleTime = 0;
-  $(document).ready(function () {
-    var idleInterval = setInterval(timerIncrement, 700); // 1 minute
-
-    $(this).mousemove(function (e) {
-      idleTime = 0;
-    });
-
-    $(this).keypress(function (e) {
-      idleTime = 0;
-    });
-  });
-
-  function timerIncrement() {
-    idleTime = idleTime + 1;
-    if (idleTime > 15) {
-      window.location.reload();
-    }
-  }
+  // var idleTime = 0;
+  // $(document).ready(function () {
+  //   var idleInterval = setInterval(timerIncrement, 700); // 1 minute
+  //
+  //   $(this).mousemove(function (e) {
+  //     idleTime = 0;
+  //   });
+  //
+  //   $(this).keypress(function (e) {
+  //     idleTime = 0;
+  //   });
+  // });
+  //
+  // function timerIncrement() {
+  //   idleTime = idleTime + 1;
+  //   if (idleTime > 15) {
+  //     window.location.reload();
+  //   }
+  // }
