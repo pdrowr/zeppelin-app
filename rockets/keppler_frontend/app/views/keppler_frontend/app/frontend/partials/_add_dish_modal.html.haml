@@ -22,7 +22,7 @@
                   .card-price
                   .card-product-quantity
                     %a.inc.qty-button +
-                    %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "0", :pattern => "[0-9]*", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1", name: 'dish[quantity]'}/
+                    %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "1", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1", name: 'dish[quantity]'}
                     %a.dec.qty-button -
             .mt-4
               .form-group

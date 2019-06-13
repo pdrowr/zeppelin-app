@@ -33844,8 +33844,8 @@ $(document).ready(function () {
       $that.after(tagsContainerElem);
       $that.attr('hidden', TRUE);
       $that.attr(ATTR_RENDERED, TRUE);
-      
-      
+
+
     });
 
     /** Register events */
@@ -33860,7 +33860,7 @@ $(document).ready(function () {
     });
 
     const activeTagTemplate = tagTemplate(false);
-    $('.tags-container').not('disabled').children('input').keydown(function (e) {  
+    $('.tags-container').not('disabled').children('input').keydown(function (e) {
       if (e.key === 'Enter' || e.key === ';') {
         e.preventDefault();
         const input = $(e.currentTarget);
@@ -34008,11 +34008,10 @@ $(document).ready(function () {
     if ($button.text() == "+") {
       var newVal = parseFloat(oldValue) + 1;
     } else {
-      // Don't allow decrementing below zero
-      if (oldValue > 0) {
+      if (oldValue >= 1) {
         var newVal = parseFloat(oldValue) - 1;
       } else {
-        newVal = 0;
+        newVal = 1;
       }
     }
 
