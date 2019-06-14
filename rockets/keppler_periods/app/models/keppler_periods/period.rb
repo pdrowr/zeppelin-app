@@ -22,5 +22,10 @@ module KepplerPeriods
     def self.index_attributes
       %i[name]
     end
+
+    def total
+      totals = orders.map { |o| o.total }.compact.reduce(:+)
+    end
+
   end
 end
