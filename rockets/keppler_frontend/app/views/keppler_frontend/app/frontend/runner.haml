@@ -39,8 +39,8 @@
                             -# { class: ('disabled' if index.even?) }
                             .description-user.d-flex.justify-content-between.list-header
                               .data
-                                %h4= order.waiter.name
-                                %p= order.table.id
+                                %h4= order.account.waiter.name
+                                %p= order.account.table.id
                               .time
                                 %p.badge= order.created_time
                             .content-progress
@@ -99,8 +99,8 @@
                         .order-card-counts.list-content.status-normal
                           .description-user.d-flex.justify-content-between.list-header
                             .data
-                              %h4= order.waiter.name
-                              %p= order.table.id
+                              %h4= order.account.waiter.name
+                              %p= order.account.table.id
                             .time.d-flex.flex-column
                               %p.badge= order.completed_time
                           .content-progress

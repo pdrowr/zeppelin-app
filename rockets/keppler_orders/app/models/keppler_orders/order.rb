@@ -12,12 +12,9 @@ module KepplerOrders
     acts_as_list
     acts_as_paranoid
 
-    belongs_to :client, class_name: 'KepplerClients::Client'
-    belongs_to :waiter, class_name: 'KepplerStaff::Waiter'
-    belongs_to :table, class_name: 'KepplerEnvironments::Table'
-    belongs_to :period, class_name: 'KepplerPeriods::Period'
-    has_many :dishes, -> { order(id: :asc) }, class_name: 'KepplerOrders::Item'
-    scope :today_orders, -> { where(period_id: current_period_id) }
+    belongs_to :account
+    has_many   :dishes,       -> { order(id: :asc) }, class_name: 'KepplerOrders::Item'
+    scope      :today_orders, -> { where(period_id: current_period_id) }
 
     def self.index_attributes
       %i[client_id waiter_id table_id status]
@@ -35,11 +32,10 @@ module KepplerOrders
 
     def self.current_orders
       today_orders.where("status = 'ACTIVE' or status = 'IN_KITCHEN'")
-                  .order(id: :asc)
     end
 
     def self.foods_in_kitchen
-      today_orders.where(status: 'IN_KITCHEN').order(id: :asc)
+      today_orders.where(status: 'IN_KITCHEN').reverse
     end
 
     def self.drinks_in_bar
@@ -50,12 +46,10 @@ module KepplerOrders
 
     def foods
       dishes.select { |dish| !dish.is_drink? }
-      # includes(items: [dishes: :category]).where(keppler_orders_items: { keppler_menu_dishes: { keppler_menu_category: [is_drink: true] }})
     end
 
     def drinks
       dishes.select { |dish| dish.is_drink? }
-      # includes(dishes: :category).where(keppler_orders_items: { keppler_menu_dishes: { keppler_menu_category: [is_drink: true] }})
     end
 
     def self.completed_orders
@@ -77,7 +71,7 @@ module KepplerOrders
         ids = order.drinks.map(&:id)
         completed_drinks = order.dishes.where(id: ids, completed: true).count
         order if !completed_drinks.eql?(order.drinks.count)
-      end
+      end.reverse
     end
 
     def percentage
@@ -111,10 +105,6 @@ module KepplerOrders
     def get_minutes
       seconds = (Time.now - send_to_kitchen_at).to_i
       minuts = (seconds / 60)
-    end
-
-    def have_drinks?
-      !drinks.blank?
     end
 
     def order_status

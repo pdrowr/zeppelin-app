@@ -4,7 +4,8 @@ module KepplerFrontend
   class App::FrontendController < App::AppController
     before_action :set_index_variables, only: %i[index]
     before_action :authenticate_member, :set_period
-    before_action :set_order, only: %i[categories dishes account add_dish remove_dish send_to_kitchen toggle_dish_status cancel_order cancel_dish]
+    before_action :set_order, only: %i[categories dishes dishes account add_dish remove_dish send_to_kitchen toggle_dish_status cancel_order cancel_dish]
+    before_action :set_account, only: %i[account create_order]
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
 
@@ -14,7 +15,7 @@ module KepplerFrontend
       @client = rocket('clients', 'client').set_client(client_params)
 
       if @client
-        @client.create_order(params[:table], current_member.id, @period.id)
+        @client.create_account(params[:table], current_member.id, @period.id)
       end
 
       redirect_to root_path(section: params[:section], table: params[:table]), notice: 'Cuenta Creada Exitosamente'
@@ -101,6 +102,15 @@ module KepplerFrontend
       end
     end
 
+    def create_order
+      @account.orders.create(
+        status: 'ACTIVE',
+        period_id: @account.period_id
+      )
+
+      redirect_back(fallback_location: root_path, notice: 'Orden Creada Exitosamente')
+    end
+
     private
 
     def set_index_variables
@@ -122,6 +132,10 @@ module KepplerFrontend
 
     def set_order
       @order = rocket('orders', 'order').find_by_id(params[:order_id])
+    end
+
+    def set_account
+      @account = rocket('orders', 'account').find_by_id(params[:account_id])
     end
 
     def set_period

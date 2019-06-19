@@ -34,18 +34,18 @@
                         .avatar-client
                           = image_tag '/assets/app/profile'
                         .name-client
-                          %h2= @order.client.name
+                          %h2= @account.client.name
                         .description-client
                           %h2 Información de contacto
                           .data-client
                             %p Email
-                            %span= @order.client.email
+                            %span= @account.client.email
                           .data-client
                             %p Teléfono
-                            %span= @order.client.phone
+                            %span= @account.client.phone
                           .data-client
                             %p Dirección
-                            %span= @order.client.address
+                            %span= @account.client.address
 
                       .listing
 
@@ -54,54 +54,57 @@
                             .order-header
                               %h4 Pedidos
                               .float-right.right-btn-order.d-flex.justify-content-end
-                                - unless @order.cancelled?
-                                  - if @order.in_kitchen?
-                                    = confirmation_modal(@order, nil, @order.id, :order)
-
-
-                                    .btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2{'data-target': "#confirmation-order-#{@order.id}-#{@order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-                                      Cancelar Orden
-
-                                    %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2
-                                      Cerrar Cuenta
-                                  - else
-                                    - unless @order.dishes.blank?
-                                      = link_to app_send_to_kitchen_path(@order, locale: nil), method: :post do
-                                        %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2
-                                          Enviar A Cocina
-                                = link_to app_categories_path(@order, locale: nil) do
-                                  %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
-                                    Añadir Platos
+                                - unless @account.cancelled?
+                                  - if @account.have_active_orders
+                                    = link_to app_account_create_order_path(@account, locale: nil) do
+                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
+                                        Crear Nuevo Pedido
 
                               %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                             .order-content.order-content--fixed.d-flex.flex-column
                               .d-flex.flex-column
-                                - @order.dishes.order(id: :asc).each_with_index do |dish, index|
-                                  = confirmation_modal(@order, dish, index, :dish)
-                                  .card-wrapper.card-account{ class: ('disabled' if @order.cancelled? || dish.cancelled?) }
-                                    .card-content.card-product-account
-                                      .card-product-image.account-product-image
-                                        .product-image.product-image-order
-                                          %img{ src: dish.dish.picture }
-                                      .card-product-description.pl-4.account-product-description
-                                        .card-product-title
-                                          %h4.m-0= dish.dish.name
-                                        .card-product-detail.card-detail-order
-                                          .card-price
-                                            %span $ #{dish.price} X
-                                            %span.box-quantity= dish.quantity
-                                          - if @order.in_kitchen?
-                                            .card-product-delete{'data-target': "#confirmation-#{dish.id}-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-                                              %i.icofont-ui-delete
-                                          - else
-                                            = link_to app_remove_dish_path(@order, dish, locale: nil), method: :delete, data: { confirm: '¿Estás seguro?' } do
-                                              .card-product-delete
+                                - @account.orders.each_with_index do |order, index|
+                                  %h4{ style: 'color: #fff' } Orden #{index + 1}
+                                  - if !order.in_kitchen?
+                                    = link_to app_categories_path(order, locale: nil) do
+                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
+                                        Añadir Platos
+
+                                  - if !order.dishes.blank? && !order.in_kitchen?
+                                    = link_to app_send_to_kitchen_path(order, locale: nil), method: :post do
+                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2
+                                        Enviar A Cocina
+
+                                  - if order.in_kitchen?
+                                    = confirmation_modal(order, nil, order.id, :order)
+                                    %button.btn.btn_custom.btn--medium.btn--white.js-btn-order{'data-target': "#confirmation-order-#{order.id}-#{order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                      Cancelar Orden
+                                  - order.dishes.each_with_index do |dish, index|
+                                    = confirmation_modal(order, dish, index, :dish)
+                                    .card-wrapper.card-account{ class: ('disabled' if @account.cancelled? || dish.cancelled?) }
+                                      .card-content.card-product-account
+                                        .card-product-image.account-product-image
+                                          .product-image.product-image-order
+                                            %img{ src: dish.dish.picture }
+                                        .card-product-description.pl-4.account-product-description
+                                          .card-product-title
+                                            %h4.m-0= dish.dish.name
+                                          .card-product-detail.card-detail-order
+                                            .card-price
+                                              %span $ #{dish.price} X
+                                              %span.box-quantity= dish.quantity
+                                            - if order.in_kitchen?
+                                              .card-product-delete{'data-target': "#confirmation-#{dish.id}-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
                                                 %i.icofont-ui-delete
+                                            - else
+                                              = link_to app_remove_dish_path(order, dish, locale: nil), method: :delete, data: { confirm: '¿Estás seguro?' } do
+                                                .card-product-delete
+                                                  %i.icofont-ui-delete
 
                               .order-footer.order-footer-product.order-footer-account
                                 %span
                                   Total:
-                                  = number_to_currency(@order.total)
+                                  = number_to_currency(@account.total)
 
 :javascript
   $('.btn-sidebar').click(function(){
@@ -123,3 +126,8 @@
       $('.modal').removeClass('in')
     })
   });
+
+  $('#myTabs a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })

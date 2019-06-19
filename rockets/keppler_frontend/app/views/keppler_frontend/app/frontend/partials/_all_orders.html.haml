@@ -8,7 +8,7 @@
       %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
     .order-content.order-content--fixed.d-flex.flex-wrap
       .order-counts
-        - current_member.current_orders.each do |order|
+        - current_member.current_accounts.each do |order|
           = link_to app_account_path(order, locale: nil) do
             .card-content.card-counts.mb-4
               .order-card-counts
@@ -27,8 +27,7 @@
                     %p= order.id
                 .list-product.d-flex.justify-content-between.align-items-baseline
                   .card-product-title
-                    %p.m-0= order&.dishes&.count || 0
+                    -# %p.m-0= order&.dishes&.count || 0
                   .card-product-detail.card-detail-order
                     .card-price
-                      %span= number_to_currency(order.total) || 'BsF. 0,00'
-                      -# %span.box-quantity= count[:count]
+                      -# %span= number_to_currency(order.total) || 'BsF. 0,00'

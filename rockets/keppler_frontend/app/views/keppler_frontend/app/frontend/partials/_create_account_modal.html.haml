@@ -10,7 +10,7 @@
         = simple_form_for @client, url: app_manage_client_path, html: { class: "form-#{table.downcase} " } do |f|
           .form-group
             %label.label_custom Cédula
-            %input.form-control.input_custom{ :required => "", type:'number', name: 'client[identification]', onkeyup: "makeRequest('#{table.downcase}')", class: "identification-#{table.downcase}", min: 0 }
+            %input.form-control.input_custom{ :required => "", type:'number', name: 'client[identification]', onkeyup: "makeRequest('#{table.downcase}')", class: "identification-#{table.downcase}", min: 0, autofocus: true }
           .hidden.preloader
             .content-spinner
               .spinner-border{:role => "status"}
