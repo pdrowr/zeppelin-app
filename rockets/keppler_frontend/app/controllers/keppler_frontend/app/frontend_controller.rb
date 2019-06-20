@@ -101,7 +101,7 @@ module KepplerFrontend
       return if params[:identification].blank?
       identification = params[:identification]
       @client = rocket('clients', 'client').find_by_identification(identification)
-
+      
       respond_to do |format|
         format.js { render json: @client, status: 202 }
       end

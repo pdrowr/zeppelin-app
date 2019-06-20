@@ -13,7 +13,7 @@ module KepplerPeriods
     acts_as_paranoid
 
     validates_presence_of :date
-    has_many :orders, class_name: 'KepplerOrders::Order'
+    has_many :accounts, class_name: 'KepplerOrders::Account'
 
     def self.current_period
       where(open: true)&.first || nil
@@ -24,8 +24,8 @@ module KepplerPeriods
     end
 
     def total
-      totals = orders.map { |o| o.total }.compact.reduce(:+)
+      orders_total = accounts.map { |a| a.orders.map(&:total).compact.sum }
+      total = orders_total.sum
     end
-
   end
 end

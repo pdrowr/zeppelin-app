@@ -15,16 +15,16 @@
         %span= object.waiter.name
     %td
       = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
-        -# %span= object.table.id
+        %span= object.table.id
     %td
       = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
-        %span= object.dishes.count
-    %td
-      = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
-        %span.badge.keppler-badge= object.cancelled? ? 'Cancelada' : 'Completada'
+        %span= object.dishes_count
     %td
       = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
         %span.badge.keppler-badge= number_to_currency(object.total) || 'Bsf. 0,00'
+    %td
+      = link_to({ action: :show, id: object.id, search: @query }, { class: 'show-row' }) do
+        %span.badge.keppler-badge= object.cancelled? ? 'Cancelada' : 'Completada'    
 
     %td.dropdown{ style: 'width: 15px;padding-right:15px;' }
       %a.action-btn.pull-right{:id => "menu-#{object.id}", 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown' }

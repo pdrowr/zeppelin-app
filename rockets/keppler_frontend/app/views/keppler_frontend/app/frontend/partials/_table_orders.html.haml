@@ -18,10 +18,10 @@
                     .content-info-account.d-flex.flex-column
                       .content-info.d-flex.justify-content-between
                         %p Productos
-                        -# %span= order.dishes.count
+                        %span= order.dishes_count
                       .content-info.d-flex.justify-content-between
                         %p Total
-                        -# %span= number_to_currency(order.total) || 'BsF. 0,00'
+                        %span= number_to_currency(order.total) || 'BsF. 0,00'
 
 
         .order-footer.sticky-footer

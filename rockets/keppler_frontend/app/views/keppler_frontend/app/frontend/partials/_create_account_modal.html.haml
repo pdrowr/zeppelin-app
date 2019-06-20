@@ -130,7 +130,7 @@
           handleData(data);
         },
         error: function() {
-          alert('Error')
+          alertify.notify('Revise su conexión a internet', 'error');
         }
       });
     }, 2000);

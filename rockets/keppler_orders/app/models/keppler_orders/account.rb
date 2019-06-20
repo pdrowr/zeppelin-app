@@ -21,6 +21,10 @@ module KepplerOrders
       orders.map(&:cancel)
     end
 
+    def dishes_count
+      orders.map(&:dishes).flatten.size
+    end
+
     private
 
     def create_first_order
