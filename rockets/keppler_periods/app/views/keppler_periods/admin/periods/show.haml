@@ -46,20 +46,21 @@
           - @period.accounts.each do |account|
             .panel.box
               .box-header.with-border
-                %h4.box-title
+                %h4.box-title{ style:"width: 100%;"}
                   %a.collapsed{"aria-expanded" => "false", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "##{account.id}"}
-                    .float-left
-                      %strong Cliente:
-                      = account.client.name
-                    .float-right
-                      %strong Mesero:
-                      = account.waiter.name
+                    .d-flex{ style: "display: flex;justify-content: space-between;"}
+                      .float-left
+                        %strong Cliente:
+                        = account.client.name
+                      .float-right.badge.keppler-badge
+                        = number_to_currency(account.total)
+                        
                     .float-right
                       %strong Mesa:
                       = account.table.id.capitalize
                     .float-right
-                      %strong Total:
-                      (#{number_to_currency(account.total)})
+                      %strong Mesero:
+                      = account.waiter.name
 
               .panel-collapse.collapse{"aria-expanded" => "false", :style => "height: 0px;", id: account.id}
                 .box-body
@@ -152,3 +153,7 @@
     -#
     -#   .listing-show
     -#     = render 'description', activities: @activities
+:scss
+  a:active, a:focus  {
+    color: #000;
+  }
