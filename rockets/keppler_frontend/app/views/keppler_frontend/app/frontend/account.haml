@@ -23,12 +23,12 @@
                       .avatar
                         = image_tag '/assets/app/profile'
                       %strong=current_member.alias
-            .workspace_center.workspace-center-chef
+            .workspace_center.workspace-center-chef.workspace-center-account
               .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
                 %h1 Cuenta
               .container-fluid.p-0
                 #tab-4
-                  .grid-wrapper.grid-wrapper-chef
+                  .grid-wrapper
                     .content-account.d-flex
                       .data-account
                         .avatar-client
@@ -48,7 +48,6 @@
                             %span= @order.client.address
 
                       .listing
-
                         .grid-order.grid-order-account
                           .order-wrapper.order-wrapper-account
                             .order-header
@@ -57,23 +56,26 @@
                                 - unless @order.cancelled?
                                   - if @order.in_kitchen?
                                     = confirmation_modal(@order, nil, @order.id, :order)
-
-
-                                    .btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2{'data-target': "#confirmation-order-#{@order.id}-#{@order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                    .btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2.d-none.d-lg-inline{'data-target': "#confirmation-order-#{@order.id}-#{@order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
                                       Cancelar Orden
-
-                                    %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2
+                                    .btn.btn_custom.btn--white.js-btn-order.mr-2.d-lg-none{'data-target': "#confirmation-order-#{@order.id}-#{@order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                      %i.icofont-ui-delete.icon_custom.icon--medium.icon-gray
+                                    %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2.d-none.d-lg-inline
                                       Cerrar Cuenta
+                                    %button.btn.btn_custom.btn--white.js-btn-order.mr-2.d-lg-none
+                                      %i.icofont-close.icon_custom.icon--medium.icon-gray
                                   - else
                                     - unless @order.dishes.blank?
                                       = link_to app_send_to_kitchen_path(@order, locale: nil), method: :post do
                                         %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2
                                           Enviar A Cocina
                                 = link_to app_categories_path(@order, locale: nil) do
-                                  %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
+                                  %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.d-none.d-lg-inline
                                     Añadir Platos
+                                  %button.btn.btn_custom.btn--white.js-btn-order.d-lg-none
+                                    %i.icofont-plus.icon_custom.icon--medium.icon-gray
 
-                              %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
+                              -# %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                             .order-content.order-content--fixed.d-flex.flex-column
                               .d-flex.flex-column
                                 - @order.dishes.order(id: :asc).each_with_index do |dish, index|
