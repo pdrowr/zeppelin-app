@@ -63,8 +63,8 @@
                               %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                             .order-content.order-content--fixed.d-flex.flex-column
                               .d-flex.flex-column
-                                - @account.orders.each_with_index do |order, index|
-                                  %h4{ style: 'color: #fff' } Orden #{index + 1}
+                                - @account.orders.order(id: :desc).each_with_index do |order, index|
+                                  %h4{ style: 'color: #fff' } Orden #{index + 1} (#{number_to_currency(order.total) || 'Bsf. 0,00'})
                                   - if !order.in_kitchen?
                                     = link_to app_categories_path(order, locale: nil) do
                                       %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
@@ -102,9 +102,9 @@
                                                   %i.icofont-ui-delete
 
                               .order-footer.order-footer-product.order-footer-account
-                                %span
+                                %h1
                                   Total:
-                                  = number_to_currency(@account.total)
+                                  = number_to_currency(@account.total) || 'Bsf. 0,00'
 
 :javascript
   $('.btn-sidebar').click(function(){
@@ -126,8 +126,3 @@
       $('.modal').removeClass('in')
     })
   });
-
-  $('#myTabs a').click(function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-  })

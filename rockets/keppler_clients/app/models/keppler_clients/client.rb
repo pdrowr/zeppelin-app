@@ -30,8 +30,18 @@ module KepplerClients
       )
     end
 
+    def have_active_account?(table)
+      !accounts.where(period_id: current_period_id, table_id: table).first.blank?
+    end
+
     def self.set_client(client_params)
       where(identification: client_params[:identification]).first_or_create(client_params)
+    end
+
+    private
+
+    def current_period_id
+      KepplerPeriods::Period&.current_period&.id
     end
 
   end

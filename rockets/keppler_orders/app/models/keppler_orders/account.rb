@@ -10,7 +10,7 @@ module KepplerOrders
     scope :today_orders, -> { orders.where(period_id: current_period_id) }
 
     def total
-      0
+      orders.map(&:total).compact.sum
     end
 
     def have_active_orders

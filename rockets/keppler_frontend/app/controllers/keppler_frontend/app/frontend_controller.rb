@@ -15,10 +15,15 @@ module KepplerFrontend
       @client = rocket('clients', 'client').set_client(client_params)
 
       if @client
-        @client.create_account(params[:table], current_member.id, @period.id)
+        if @client.have_active_account?(params[:table])
+          notice = 'El cliente ya posee una cuenta abierta en ésta mesa'
+        else
+          @client.create_account(params[:table], current_member.id, @period.id)
+          notice = 'Cuenta Creada Exitosamente'
+        end
       end
 
-      redirect_to root_path(section: params[:section], table: params[:table]), notice: 'Cuenta Creada Exitosamente'
+      redirect_to root_path(section: params[:section], table: params[:table]), notice: notice
     end
 
     def categories

@@ -35,7 +35,7 @@ module KepplerOrders
     end
 
     def self.foods_in_kitchen
-      today_orders.where(status: 'IN_KITCHEN').reverse
+      today_orders.where(status: 'IN_KITCHEN').order(id: :asc)
     end
 
     def self.drinks_in_bar
@@ -56,14 +56,14 @@ module KepplerOrders
       foods_in_kitchen.select do |order|
         completed_foods = order.foods.map { |f| f if f.completed? }.compact.count
         order.foods.count.eql?(completed_foods)
-      end.reverse
+      end
     end
 
     def self.incompleted_orders
       foods_in_kitchen.select do |order|
         completed_foods = order.foods.map { |f| f if f.completed? }.compact.count
         !order.foods.count.eql?(completed_foods)
-      end.reverse
+      end
     end
 
     def self.incompleted_drinks
