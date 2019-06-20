@@ -8,7 +8,6 @@
       .spinner-border{:role => "status"}
         %span.sr-only Loading...
     .container-custom
-    .workspace-chef
       = sidebar
       .workspace
         .d-flex
@@ -23,12 +22,12 @@
                       .avatar
                         = image_tag '/assets/app/profile'
                       %strong=current_member.alias
-            .workspace_center.workspace-center-chef
+            .workspace_center.workspace-center-chef.workspace-center-account
               .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
                 %h1 Cuenta
               .container-fluid.p-0
                 #tab-4
-                  .grid-wrapper.grid-wrapper-chef
+                  .grid-wrapper
                     .content-account.d-flex
                       .data-account
                         .avatar-client
@@ -48,7 +47,6 @@
                             %span= @account.client.address
 
                       .listing
-
                         .grid-order.grid-order-account
                           .order-wrapper.order-wrapper-account
                             .order-header
@@ -60,25 +58,52 @@
                                       %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
                                         Crear Nuevo Pedido
 
-                              %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
                             .order-content.order-content--fixed.d-flex.flex-column
                               .d-flex.flex-column
                                 - @account.orders.order(id: :desc).each_with_index do |order, index|
-                                  %h4{ style: 'color: #fff' } Orden #{index + 1} (#{number_to_currency(order.total) || 'Bsf. 0,00'})
-                                  - if !order.in_kitchen?
-                                    = link_to app_categories_path(order, locale: nil) do
-                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
-                                        Añadir Platos
+                                  .title-new-order.d-none.d-sm-flex
+                                    %h4{ style: 'color: #fff' } Orden #{index + 1} (#{number_to_currency(order.total) || 'Bsf. 0,00'})
+                                    .d-flex
+                                      - if !order.in_kitchen?
+                                        = link_to app_categories_path(order, locale: nil) do
+                                          %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2.d-none.d-sm-block
+                                            Añadir Platos
+                                          %button.btn.btn_custom.btn--white.js-btn-order.mr-2.d-sm-none
+                                            %i.icofont-plus
 
-                                  - if !order.dishes.blank? && !order.in_kitchen?
-                                    = link_to app_send_to_kitchen_path(order, locale: nil), method: :post do
-                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2
-                                        Enviar A Cocina
+                                      - if !order.dishes.blank? && !order.in_kitchen?
+                                        = link_to app_send_to_kitchen_path(order, locale: nil), method: :post do
+                                          %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.mr-2.d-none.d-sm-block
+                                            Enviar A Cocina
+                                          %button.btn.btn_custom.btn--white.js-btn-order.mr-2.d-sm-none
+                                            %i.icofont-paper-plane
+                                  .second.d-sm-none
+                                    .float-left
+                                      %h4{ style: 'color: #fff' } Orden #{index + 1} (#{number_to_currency(order.total) || 'Bsf. 0,00'})
+                                    .float-right
+                                      .d-flex
+                                        - if !order.in_kitchen?
+                                          = link_to app_categories_path(order, locale: nil) do
+                                            %button.btn.btn_custom.btn--white.js-btn-order.mr-2.d-sm-none
+                                              %i.icofont-plus
 
-                                  - if order.in_kitchen?
-                                    = confirmation_modal(order, nil, order.id, :order)
-                                    %button.btn.btn_custom.btn--medium.btn--white.js-btn-order{'data-target': "#confirmation-order-#{order.id}-#{order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-                                      Cancelar Orden
+                                        - if !order.dishes.blank? && !order.in_kitchen?
+                                          = link_to app_send_to_kitchen_path(order, locale: nil), method: :post do
+                                            %button.btn.btn_custom.btn--white.js-btn-order.mr-2.d-sm-none
+                                              %i.icofont-paper-plane
+                                  .title-new-order.mt-2.d-none.d-sm-flex
+                                    - if order.in_kitchen?
+                                      = confirmation_modal(order, nil, order.id, :order)
+                                      %button.btn.btn_custom.btn--medium.btn--white.d-none.d-sm-block{ style: 'height: 32px;margin-top: -20px;', 'data-target': "#confirmation-order-#{order.id}-#{order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                        Cancelar Orden
+                                      %button.btn.btn_custom.btn--white.d-sm-none{ style: 'height: 40px;margin-top: -32px;width: 40px;', 'data-target': "#confirmation-order-#{order.id}-#{order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                        %i.icofont-close
+                                  .second.mt-2.d-sm-none.pt-4.mt-3
+                                    .float-right
+                                      - if order.in_kitchen?
+                                        = confirmation_modal(order, nil, order.id, :order)
+                                        %button.btn.btn_custom.btn--white.d-sm-none{ style: 'height: 35px;margin-top: -32px;width: 40px;', 'data-target': "#confirmation-order-#{order.id}-#{order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                          %i.icofont-close
                                   - order.dishes.each_with_index do |dish, index|
                                     = confirmation_modal(order, dish, index, :dish)
                                     .card-wrapper.card-account{ class: ('disabled' if @account.cancelled? || dish.cancelled?) }
@@ -102,7 +127,7 @@
                                                   %i.icofont-ui-delete
 
                               .order-footer.order-footer-product.order-footer-account
-                                %h1
+                                %h4
                                   Total:
                                   = number_to_currency(@account.total) || 'Bsf. 0,00'
 

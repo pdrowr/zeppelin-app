@@ -51,6 +51,14 @@
   }
   &.workspace-left-runner{
     width: 70%;
+
+    @include respond-to(sm) {
+      width: 100%;
+    }
+
+    @include respond-to(xs) {
+      width: 100%;
+    }
   }
 
   &.full-width {
@@ -73,7 +81,7 @@
     @include respond-to(sm) {
       position: absolute;
       right: -30%;
-      top: 22%;
+      top: 15%;
     }
     @include respond-to(xs) {
       position: absolute;
@@ -142,6 +150,14 @@
 
   &.workspace_top-runner {
     width: 42%;
+
+    @include respond-to(sm){
+      width: 85%;
+    }
+
+    @include respond-to(xs){
+      width: 85%;
+    }
   }
 
   &.workspace_top-full {
@@ -254,6 +270,10 @@
     }
   }
 
+  &.workspace-center-account {
+    overflow-y: auto;
+  }
+
   &.workspace_center-runner {
     margin-top: 40px;
     max-height: 90vh;
@@ -326,6 +346,14 @@
 
 }
 
+.content-account {
+  @include respond-to(sm) {
+    flex-wrap: wrap;
+  }
+  @include respond-to(xs) {
+    flex-wrap: wrap;
+  }
+}
 .card-wrapper{
   float:left;
   margin: 10px 25px 10px 0px;
@@ -534,6 +562,11 @@
 .grid-order {
   width: 30%;
   margin-top: 125px;
+
+  @include respond-to(sm) {
+    margin-top: 40px;
+  }
+
   &.grid-order-account {
     margin-top: 0px;
     width: 100%;
@@ -545,13 +578,13 @@
   background-color: $dark-aside;
   border-radius: 5px;
   width: 100%;
-  min-height: 520px;
+  min-height: 490px;
   width: 360px;
   position: relative;
 
   &.order-wrapper-account {
     width: 100%;
-    min-height: 580px;
+    min-height: 500px;
   }
 
   @include respond-to(md) {
@@ -616,7 +649,7 @@
   }
   &.order-footer-account {
     flex-direction: column;
-    height: 20%;
+    height: 15%;
     background-color: $dark-aside;
     justify-content: flex-end;
     align-items: flex-end;
@@ -627,7 +660,7 @@
   padding: 20px;
 
   &.order-content--fixed {
-    max-height: 420px;
+    max-height: 350px;
     overflow-x: hidden;
     overflow-y: hidden;
     transition: all .6s ease-in-out;
@@ -774,6 +807,8 @@
   padding: 35px;
   display: flex;
   justify-content: center;
+  // background-color: $dark-cards;
+  // border-radius: 0px 0px 5px 5px;
 }
 /* -------------------------
    ----- Categories -----
@@ -876,6 +911,9 @@
   &.account-product-image{
     width: 10%;
   }
+  @include respond-to(xs) {
+    display: none;
+  }
 }
 
 .card-product-description{
@@ -890,6 +928,10 @@
   }
   &.account-product-description {
     width: 90%;
+
+    @include respond-to(xs) {
+      width: 100%;
+    }
   }
 }
 
@@ -1154,6 +1196,15 @@
   padding: 25px;
   border-radius: 5px;
   margin-right: 20px;
+  @include respond-to(sm) {
+    width: 95%;
+    margin-right: 0px;
+  }
+
+  @include respond-to(xs) {
+    width: 95%;
+    margin-right: 0px;
+  }
 }
 .name-client {
   display: flex;
@@ -1165,6 +1216,15 @@
   }
 }
 .description-client {
+
+  @include respond-to(sm) {
+    text-align: center;
+  }
+
+  @include respond-to(xs) {
+    text-align: center;
+  }
+
   h2 {
     color: $white;
     @include font(20px, $light);
@@ -1180,9 +1240,42 @@
     margin: 5px 0;
     @include font(16px, $bold);
   }
+
+  span {
+    font-size: 16px;
+
+    @include respond-to(xs) {
+      font-size: 15px;
+    }
+  }
 }
 
 .listing {
   width: 60%;
-  // background-color: red;
+  
+
+  @include respond-to(sm){
+    width: 95%;
+    margin-top: 20px;
+  }
+  @include respond-to(xs){
+    width: 95%;
+    margin-top: 20px;
+    z-index: 1;
+  }
+  
+}
+
+
+.title-new-order {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  @include respond-to(xs) {
+    flex-direction: column;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    justify-content: space-around;
+  }
 }

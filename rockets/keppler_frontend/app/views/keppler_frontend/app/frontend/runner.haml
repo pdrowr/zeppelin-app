@@ -30,7 +30,12 @@
               .container-fluid.p-0
                 #tab-5.tab-content.current
                   %h2.status-runner.pending Pendientes
-                  .grid-wrapper.grid-wrapper-chef.mt-3.grid-wrapper-runner
+                  -# .tabs-small.d-lg-none
+                  -#   %ul.sub-tabs#tabs-done
+                  -#     %li.tab-link.current{ 'data-tab' => 'tabs-done-1' } Pendientes
+                  -#     %li.tab-link{ 'data-tab' => 'tabs-done-2' } Listos
+
+                  #tabs-done-1.grid-wrapper.grid-wrapper-chef.mt-3.grid-wrapper-runner.tab-content.current
                     -#- if @order.present?
                     - @incompleted_orders.each_with_index do |order, index|
                       - unless order.cancelled?
@@ -65,13 +70,13 @@
                                         - dish.observation.split(';').each do |observation|
                                           %span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
 
-                          .list-bottom
-                            .crono_wrapper
-                              %h2#crono.crono
-                                - if order.cancelled?
-                                  Cancelado
-                                - else
-                                  = time_ago_in_words(order.created_at)
+                            .list-bottom
+                              .crono_wrapper
+                                %h2#crono.crono
+                                  - if order.cancelled?
+                                    Cancelado
+                                  - else
+                                    = time_ago_in_words(order.created_at)
 
 
 
@@ -130,7 +135,21 @@
       %button.btn.btn_custom.btn--filled.btn-sidebar
         %i.icofont-plus
 
-// :javascript
+:javascript
+  $('.js-btn-order').click(function(){
+    $('.order-wrapper').removeClass('current')
+  })
+
+  $('.btn-sidebar').click(function(){
+    $('.sidebar').toggleClass('active-sidebar');
+  })
+
+  $('.menu-toggle').click(function(){
+    $('aside').toggleClass('active-menu');
+  })
+  $('.close-order').click(function(){
+     $('.sidebar').removeClass('active-sidebar');
+  })
 //   var idleTime = 0;
 //   $(document).ready(function () {
 //     var idleInterval = setInterval(timerIncrement, 700); // 1 minute
