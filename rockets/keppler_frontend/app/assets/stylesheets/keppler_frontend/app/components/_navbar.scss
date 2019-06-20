@@ -105,8 +105,8 @@ ul.tabs li{
 
 
 .menu-movil {
-  position: absolute;
-  top: 4%;
+  position: fixed !important;
+  top: 20px;
   left: 5%;
   z-index: 999;
   font-size: 25px;

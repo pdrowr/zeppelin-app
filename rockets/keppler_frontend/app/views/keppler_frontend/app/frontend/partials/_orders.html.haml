@@ -1,13 +1,13 @@
 .workspace-right.sidebar{ class: ('sidebar-disabled' unless @order.present?) }
   .float-right.right-btn-order
     - if @order.present?
-      = link_to app_account_path(locale: nil) do
+      = link_to app_account_path(@order.account.id, locale: nil) do
         %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
           Ver Cuenta
   .grid-order{ style: "position: fixed;"}
     .order-wrapper
       .order-header
-        %h4 Pedidos #{order&.table&.id}
+        %h4 Pedidos #{order&.account&.table&.id}
         %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
       .order-content.order-content--fixed.d-flex.flex-wrap
         - order&.dishes&.each do |dish|

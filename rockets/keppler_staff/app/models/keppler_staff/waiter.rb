@@ -3,16 +3,16 @@
 module KepplerStaff
   # Member Model
   class Waiter < KepplerStaff::Member
-    has_many :orders, class_name: 'KepplerOrders::Order'
+    has_many :accounts, class_name: 'KepplerOrders::Account'
 
-    def current_orders
-      orders.current_orders
+    def current_accounts
+      accounts.where(period_id: current_period_id)
     end
 
     private
 
-    def today
-      Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
+    def current_period_id
+      KepplerPeriods::Period.current_period.id
     end
 
 

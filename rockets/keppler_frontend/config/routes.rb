@@ -8,7 +8,8 @@ KepplerFrontend::Engine.routes.draw do
   get '/chef', to: 'app/frontend#chef', as: :app_chef
   get '/bar', to: 'app/frontend#bar', as: :app_bar
   get '/runner', to: 'app/frontend#runner', as: :app_runner
-  get '/account/:order_id', to: 'app/frontend#account', as: :app_account
+  get '/account/:account_id', to: 'app/frontend#account', as: :app_account
+  get '/account/:account_id/create_order', to: 'app/frontend#create_order', as: :app_account_create_order
   get '/category/:category_id/dishes(/:order_id)', to: 'app/frontend#dishes', as: :app_category_dishes
   post '/send_to_kitchen/:order_id', to: 'app/frontend#send_to_kitchen', as: :app_send_to_kitchen
 

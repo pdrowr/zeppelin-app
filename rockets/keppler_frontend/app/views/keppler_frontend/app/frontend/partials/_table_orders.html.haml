@@ -7,7 +7,7 @@
           %h4= table.id.titleize
           %i.icofont-close.icon_custom.icon--medium.close-order.d-lg-none
         .order-content.order-content--fixed.d-flex.flex-column
-          - table.current_orders.each do |order|
+          - table.current_accounts.each do |order|
             = link_to app_account_path(order, locale: nil) do
               .order-counts
                 .card-content.card-counts.mb-4
@@ -18,10 +18,10 @@
                     .content-info-account.d-flex.flex-column
                       .content-info.d-flex.justify-content-between
                         %p Productos
-                        %span= order.dishes.count
+                        -# %span= order.dishes.count
                       .content-info.d-flex.justify-content-between
                         %p Total
-                        %span= number_to_currency(order.total) || 'BsF. 0,00'
+                        -# %span= number_to_currency(order.total) || 'BsF. 0,00'
 
 
         .order-footer.sticky-footer

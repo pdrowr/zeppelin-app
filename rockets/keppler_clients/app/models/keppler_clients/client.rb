@@ -12,7 +12,7 @@ module KepplerClients
     acts_as_list
     acts_as_paranoid
 
-    has_many :orders, class_name: 'KepplerOrders::Order'
+    has_many :accounts, class_name: 'KepplerOrders::Account'
 
     validates_presence_of :name, :email, :identification
     validates_uniqueness_of :email, :identification
@@ -21,8 +21,8 @@ module KepplerClients
       %i[name identification email address code]
     end
 
-    def create_order(table_id, waiter_id, period_id)
-      orders.create(
+    def create_account(table_id, waiter_id, period_id)
+      account = accounts.create(
         table_id: table_id,
         waiter_id: waiter_id,
         status: 'ACTIVE',
@@ -30,8 +30,18 @@ module KepplerClients
       )
     end
 
+    def have_active_account?(table)
+      !accounts.where(period_id: current_period_id, table_id: table).first.blank?
+    end
+
     def self.set_client(client_params)
       where(identification: client_params[:identification]).first_or_create(client_params)
+    end
+
+    private
+
+    def current_period_id
+      KepplerPeriods::Period&.current_period&.id
     end
 
   end

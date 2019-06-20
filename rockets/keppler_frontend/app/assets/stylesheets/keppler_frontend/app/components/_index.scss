@@ -584,7 +584,7 @@
 
   &.order-wrapper-account {
     width: 100%;
-    min-height: 580px;
+    min-height: 500px;
   }
 
   @include respond-to(md) {
@@ -649,7 +649,7 @@
   }
   &.order-footer-account {
     flex-direction: column;
-    height: 20%;
+    height: 15%;
     background-color: $dark-aside;
     justify-content: flex-end;
     align-items: flex-end;
@@ -660,7 +660,7 @@
   padding: 20px;
 
   &.order-content--fixed {
-    max-height: 420px;
+    max-height: 350px;
     overflow-x: hidden;
     overflow-y: hidden;
     transition: all .6s ease-in-out;
@@ -911,6 +911,9 @@
   &.account-product-image{
     width: 10%;
   }
+  @include respond-to(xs) {
+    display: none;
+  }
 }
 
 .card-product-description{
@@ -925,6 +928,10 @@
   }
   &.account-product-description {
     width: 90%;
+
+    @include respond-to(xs) {
+      width: 100%;
+    }
   }
 }
 
@@ -1235,7 +1242,11 @@
   }
 
   span {
-    font-size: 15px;
+    font-size: 16px;
+
+    @include respond-to(xs) {
+      font-size: 15px;
+    }
   }
 }
 
@@ -1253,4 +1264,18 @@
     z-index: 1;
   }
   
+}
+
+
+.title-new-order {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  @include respond-to(xs) {
+    flex-direction: column;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    justify-content: space-around;
+  }
 }
