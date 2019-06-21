@@ -74,6 +74,10 @@
 
   .right-btn-order {
     padding: 45px 25px;
+
+    @include respond-to(md) {
+      padding: 45px 0px;
+    }
   }
 
   &.sidebar {
@@ -588,6 +592,9 @@
   width: 30%;
   margin-top: 125px;
 
+  @include respond-to(md){
+    margin-top: 100px;
+  }
   @include respond-to(sm) {
     margin-top: 40px;
   }
@@ -608,9 +615,17 @@
   width: 360px;
   position: relative;
 
+  @include respond-to(md) {
+    min-height: 425px;
+  }
+
   &.order-wrapper-account {
     width: 100%;
     min-height: 500px;
+
+    @include respond-to(md) {
+      min-height: 310px;
+    }
   }
 
   @include respond-to(md) {
