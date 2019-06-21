@@ -80,7 +80,7 @@
 
 
 
-          .workspace-right.sidebar.workspace-right-runner
+          .workspace-right.workspace-right-runner
             .workspace_top.workspace_top-runner
               .workspace_top-container
                 .workspace_title.d-lg-block.d-sm-block.d-none
@@ -131,9 +131,9 @@
                                         %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
 
                           .list-bottom
-    .btn-float.d-lg-none.d-block
-      %button.btn.btn_custom.btn--filled.btn-sidebar
-        %i.icofont-plus
+    -# .btn-float.d-lg-none.d-block
+    -#   %button.btn.btn_custom.btn--filled.btn-sidebar
+    -#     %i.icofont-plus
 
 :javascript
   $('.js-btn-order').click(function(){

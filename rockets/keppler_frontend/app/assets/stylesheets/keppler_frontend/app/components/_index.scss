@@ -92,6 +92,10 @@
   &.workspace-right-runner {
     width: 30%;
     padding: 20px 25px 0px 35px;
+
+    @include respond-to(sm) {
+      display: none;
+    }
   }
 
   &.sidebar-disabled {
@@ -1169,6 +1173,10 @@
   color: $white;
   @include font(20px, $light);
   margin-top: 30px;
+  
+  @include respond-to(xs) {
+    margin: 0px;
+  }
 
   &.done {
     color: green;
