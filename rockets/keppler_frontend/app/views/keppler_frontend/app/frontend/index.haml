@@ -49,6 +49,10 @@
 :javascript
   $('.js-btn-order').click(function(){
     $('.order-wrapper').removeClass('current')
+    $('.js-grid-order').addClass('current');
+  })
+  $('.js-card-wrapper').click(function(){
+    $('.js-grid-order').removeClass('current');
   })
 
   $('.btn-sidebar').click(function(){
