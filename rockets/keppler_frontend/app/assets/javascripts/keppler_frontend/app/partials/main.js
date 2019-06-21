@@ -8,5 +8,5 @@ $(window).on("load", function (e) {
       $(this).remove();
     });
     $('.body').css('overflow-y', 'auto');
-  }, 1000);
+  });
 });

@@ -91,8 +91,8 @@
                                           = link_to app_send_to_kitchen_path(order, locale: nil), method: :post do
                                             %button.btn.btn_custom.btn--white.js-btn-order.mr-2.d-sm-none
                                               %i.icofont-paper-plane
-                                  .title-new-order.mt-2.d-none.d-sm-flex
-                                    - if order.in_kitchen?
+                                  - if order.in_kitchen?
+                                    .title-new-order.mt-2.d-none.d-sm-flex
                                       = confirmation_modal(order, nil, order.id, :order)
                                       %button.btn.btn_custom.btn--medium.btn--white.d-none.d-sm-block{ style: 'height: 32px;margin-top: -20px;', 'data-target': "#confirmation-order-#{order.id}-#{order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
                                         Cancelar Orden
