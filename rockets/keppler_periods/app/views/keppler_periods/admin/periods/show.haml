@@ -54,7 +54,7 @@
                         = account.client.name
                       .float-right.badge.keppler-badge
                         = number_to_currency(account.total)
-                        
+
                     .float-right
                       %strong Mesa:
                       = account.table.id.capitalize
@@ -64,95 +64,30 @@
 
               .panel-collapse.collapse{"aria-expanded" => "false", :style => "height: 0px;", id: account.id}
                 .box-body
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3
-                  wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                  eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla
-                  assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                  nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer
-                  farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                  labore sustainable VHS.
+                  - account.orders.each_with_index do |order, index|
+                    - unless order.dishes.blank?
+                      .box
+                        .box-header.with-border
+                          %h3.box-title Orden ##{index + 1}
+                        / /.box-header
+                        .box-body
+                          %table.table.table-bordered
+                            %tbody
+                              %tr
+                                %th{:style => "width: 10px"} #
+                                %th{:style => "width: 45px"} Plato
+                                %th{:style => "width: 45px"} Cantidad
 
-    -# #index-container{ controller: 'orders' }
-    -#   .container
-    -#     .row
-    -#       .listing.col-lg-12.col-xs-12
-    -#         %section.content-header.index-header
-    -#           %h1
-    -#             Ordenes del día
-    -#           -# = entries(@total, @objects)
-    -#         %section.content-actions
-    -#           .toolbar
-    -#             .toolbar-item
-    -#
-    -#           -#   - if can?(model).download?
-    -#           -#     %li.toolbar-item.dropdown
-    -#           -#       %a.dropdown-toggle{ 'data-toggle': 'dropdown', href: '#', title: t('keppler.actions.download_records') }
-    -#           -#         %i.icon-cloud-download
-    -#           -#       %ul.dropdown-menu
-    -#           -#         %li= link_to t('keppler.actions.download.csv'), admin_orders_orders_path(format: :csv), class: 'tool-btn'
-    -#           -#         %li= link_to t('keppler.actions.download.xls'), admin_orders_orders_path(format: :xls), class: 'tool-btn'
-    -#           -#   - if can?(model).upload?
-    -#           -#     .toolbar-item
-    -#           -#       = link_to '#', class: 'tool-btn', title: t('keppler.actions.upload_records'), id: 'upload' do
-    -#           -#         %i.icon-cloud-upload
-    -#           -#   .toolbar-item
-    -#           -#     %a.tool-btn{ 'data-confirm': t('keppler.messages.data_confirm'), 'data-method': 'delete', 'v-bind:href': 'link', rel: 'nofollow', ':class': '{disabled: !checks}' }
-    -#           -#       %i.icon-trash
-    -#           -# - if can?(model).create?
-    -#           -#   .add
-    -#           -#     = link_to new_admin_orders_order_path, class: 'btn-add' do
-    -#           -#       +
-    -#           -#       = t('keppler.actions.add')
-    -#           -# .hide
-    -#           -#   = form_tag admin_orders_order_upload_path(@objects), id: 'upload-form', multipart: true, method: :post do
-    -#           -#     = file_field_tag :file, id: 'upload-file'
-    -#
-    -#         .box.slice-box
-    -#           .box-body.no-padding
-    -#             %table.table
-    -#               %thead
-    -#                 - if @period.accounts.size.zero?
-    -#                   %tr
-    -#                     %th.not-records.center
-    -#                       %h6= t('keppler.messages.not_found_records', model: t('keppler.models.pluralize.orders'))
-    -#
-    -#                 - else
-    -#                   %tr
-    -#                     %th
-    -#                       - if can?(model).destroy_multiple?
-    -#                         .item-check
-    -#                           .checkbox
-    -#                             %label{ for: 'checkbox-all' }
-    -#                               %input{ type: 'checkbox', id: 'checkbox-all', '@click': 'selectAll()' }
-    -#                               %span.cr
-    -#                                 %i.cr-icon.glyphicon.glyphicon-ok
-    -#
-    -#                     %th
-    -#                       = sort_link(@q, :client_id) do
-    -#                         CLiente
-    -#                     %th
-    -#                       = sort_link(@q, :waiter_id) do
-    -#                         Mesero
-    -#                     %th
-    -#                       = sort_link(@q, :table_id) do
-    -#                         Mesa
-    -#                     %th
-    -#                       Cantidad de platos
-    -#                     %th
-    -#                       Total
-    -#                     %th
-    -#                       Estado
-    -#                     %th
-    -#
-    -#               %tbody.objects-container
-    -#                 = render 'admin/layouts/listing_preloader'
-    -#                 = render 'listing_orders', objects: @period.accounts
-    -#
-    -#         %center.paginator-module
-    -#           -# = paginate @period.orders, window: 1
-    -#
-    -#   .listing-show
-    -#     = render 'description', activities: @activities
+                              - order.dishes.each_with_index do |dish, index|
+                                %tr
+                                  %td=  index + 1
+                                  %td= dish.dish.name
+                                  %td= dish.quantity
+
+                        .box-footer.clearfix
+                          %strong Total:
+                          .badge.keppler-badge= number_to_currency(order.total) || 'Bsf. 0,00'
+
 :scss
   a:active, a:focus  {
     color: #000;
