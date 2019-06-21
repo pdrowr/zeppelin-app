@@ -1,10 +1,10 @@
-.workspace-right.sidebar{ class: ('sidebar-disabled' unless @order.present?) }
-  .float-right.right-btn-order
+.workspace-right.sidebar.workspace-right-ordertop{ class: ('sidebar-disabled' unless @order.present?) }
+  .float-right.right-btn-order.workspace-right-btntop
     - if @order.present?
       = link_to app_account_path(@order.account.id, locale: nil) do
         %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
           Ver Cuenta
-  .grid-order{ style: "position: fixed;"}
+  .grid-order.grid-order-dishes{ style: "position: fixed;"}
     .order-wrapper
       .order-header
         %h4 Pedidos #{order&.account&.table&.id}
@@ -29,7 +29,11 @@
       .order-footer.order-footer-product
         %span Total:
         %span= number_to_currency(order&.total) || 'BsF. 0,00'
-
+  .float-right.right-btn-order.workspace-right-btnbottom
+    - if @order.present?
+      = link_to app_account_path(@order.account.id, locale: nil) do
+        %button.btn.btn_custom.btn--medium.btn--filled.js-btn-order
+          Ver Cuenta
   -# .btn-float.d-lg-none.d-block
   -#   %button.btn.btn_custom.btn--filled.btn-sidebar
   -#     %i.icofont-plus

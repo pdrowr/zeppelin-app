@@ -92,10 +92,32 @@
   &.workspace-right-runner {
     width: 30%;
     padding: 20px 25px 0px 35px;
+
+    @include respond-to(sm) {
+      display: none;
+    }
   }
 
   &.sidebar-disabled {
     display: none;
+  }
+
+  &.workspace-right-ordertop{
+    position: relative;
+    .workspace-right-btntop {
+      display: none;
+    }
+    .grid-order-dishes {
+      margin-top: 50px;
+    }
+    .workspace-right-btntop {
+      display: none;
+    }
+    .workspace-right-btnbottom {
+      position: absolute;
+      bottom: -53px;
+      right: 0;
+    }
   }
 }
 
@@ -378,8 +400,11 @@
   }
 
   &.card-account {
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0px;
 
+    // &:nth-child(1){
+    //   margin: 25px 0px 10px 0px;
+    // }
     &.disabled {
       .box-quantity {
         background-color: #887c7d !important;
@@ -571,6 +596,7 @@
     margin-top: 0px;
     width: 100%;
   }
+ 
 
 }
 
@@ -653,6 +679,7 @@
     background-color: $dark-aside;
     justify-content: flex-end;
     align-items: flex-end;
+    padding: 10px;
   }
 }
 
@@ -1146,6 +1173,10 @@
   color: $white;
   @include font(20px, $light);
   margin-top: 30px;
+  
+  @include respond-to(xs) {
+    margin: 0px;
+  }
 
   &.done {
     color: green;
