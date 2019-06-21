@@ -12,7 +12,7 @@ module KepplerStaff
     private
 
     def current_period_id
-      KepplerPeriods::Period.current_period.id
+      KepplerPeriods::Period&.current_period&.id
     end
 
 
