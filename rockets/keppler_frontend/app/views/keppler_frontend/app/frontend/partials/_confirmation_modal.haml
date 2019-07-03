@@ -4,8 +4,8 @@
       .modal-dialog{role: "document"}
         .modal-content
           .modal-header.d-block
-          
-            %h2.m-0 Esta seguro de eliminar 
+
+            %h2.m-0 Esta seguro de eliminar
             %p #{dish.dish.name.titleize}
             %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
               %i.icofont-close.icon_custom.icon--large
@@ -18,9 +18,27 @@
               .float-right.mt-2
                 %button.btn.btn_custom.btn--medium.btn--filled{ type: 'submit' }
                   Cancelar Pedido
-            
 
-          
+- elsif type.eql?(:account)
+  = simple_form_for order, url: app_cancel_account_path(order), method: :post do |f|
+    .modal.fade{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "confirmation-account-#{order.id}-#{index}" }
+      .modal-dialog{role: "document"}
+        .modal-content
+          .modal-header.d-block
+
+            %h2.m-0 ¿Esta seguro de cancelar la cuenta?
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+              %i.icofont-close.icon_custom.icon--large
+          .modal-body
+            %form
+              .form-group
+                %label.label_custom Código
+                %input.form-control.input_custom{ name: 'code', type: 'password', autocomplete: 'off' }
+
+              .float-right.mt-2
+                %button.btn.btn_custom.btn--medium.btn--filled{ type: 'submit' }
+                  Cancelar Cuenta
+
 - else
   = simple_form_for order, url: app_cancel_order_path(order, dish), method: :post do |f|
     .modal.fade{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "confirmation-order-#{order.id}-#{index}" }

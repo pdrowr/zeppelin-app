@@ -5,7 +5,7 @@ module KepplerFrontend
     before_action :set_index_variables, only: %i[index]
     before_action :authenticate_member, :set_period
     before_action :set_order, only: %i[categories dishes dishes account add_dish remove_dish send_to_kitchen toggle_dish_status cancel_order cancel_dish]
-    before_action :set_account, only: %i[account create_order]
+    before_action :set_account, only: %i[account create_order cancel_account]
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
 
@@ -85,6 +85,17 @@ module KepplerFrontend
       redirect_back(fallback_location: root_path, notice: notice)
     end
 
+    def cancel_account
+      if valid_code?
+        @account.cancel
+        notice = 'La cuenta ha sido cancelada exitosamente'
+      else
+        notice = 'Código Inválido'
+      end
+
+      redirect_back(fallback_location: root_path, notice: notice)
+    end
+
     def cancel_dish
       if valid_code?
         dish = @order.dishes.find(params[:dish_id])
@@ -101,7 +112,7 @@ module KepplerFrontend
       return if params[:identification].blank?
       identification = params[:identification]
       @client = rocket('clients', 'client').find_by_identification(identification)
-      
+
       respond_to do |format|
         format.js { render json: @client, status: 202 }
       end

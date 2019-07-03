@@ -54,15 +54,17 @@ module KepplerOrders
 
     def self.completed_orders
       foods_in_kitchen.select do |order|
-        completed_foods = order.foods.map { |f| f if f.completed? }.compact.count
-        order.foods.count.eql?(completed_foods)
+        completed_foods = order.foods.map { |f| f if f.completed? && !f.cancelled? }.compact.count
+        foods_count = order.foods.map { |f| f if !f.cancelled? }.compact.count
+        order if foods_count.eql?(completed_foods)
       end
     end
 
     def self.incompleted_orders
       foods_in_kitchen.select do |order|
-        completed_foods = order.foods.map { |f| f if f.completed? }.compact.count
-        !order.foods.count.eql?(completed_foods)
+        completed_foods = order.foods.map { |f| f if f.completed? && !f.cancelled? }.compact.count
+        foods_count = order.foods.map { |f| f if !f.cancelled? }.compact.count
+        order if !foods_count.eql?(completed_foods)
       end
     end
 
@@ -75,9 +77,10 @@ module KepplerOrders
     end
 
     def percentage
-      completed = foods.map { |f| f if f.completed? }.compact.count
-      return 0 if completed.zero? || foods.count.zero?
-      ((completed * 100) / foods.count)
+      completed = foods.map { |f| f if f.completed? && !f.cancelled? }.compact.count
+      foods_count = foods.map { |f| f if !f.cancelled? }.compact.count
+      return 0 if completed.zero? || foods_count.zero?
+      ((completed * 100) / foods_count)
     end
 
     def in_kitchen?
@@ -100,11 +103,17 @@ module KepplerOrders
     def cancel
       toggle!(:cancelled)
       dishes.update_all(cancelled: true)
+      update(cancelled_at: DateTime.now)
     end
 
     def get_minutes
       seconds = (Time.now - send_to_kitchen_at).to_i
       minuts = (seconds / 60)
+    end
+
+    def cancelled_time
+      seconds = (Time.now - cancelled_at).to_i
+      (seconds / 60)
     end
 
     def order_status

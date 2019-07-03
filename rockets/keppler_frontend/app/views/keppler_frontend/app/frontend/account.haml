@@ -55,8 +55,13 @@
                                 - unless @account.cancelled?
                                   - if @account.have_active_orders
                                     = link_to app_account_create_order_path(@account, locale: nil) do
-                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order
+                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order{ style: 'margin-right: 5px'}
                                         Crear Nuevo Pedido
+
+                                    - unless @account.orders.blank?
+                                      = confirmation_modal(@account, nil, @account.id, :account)
+                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order{ style: 'height: 32px;', 'data-target': "#confirmation-account-#{@account.id}-#{@account.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                        Cancelar Cuenta
 
                             .order-content.order-content--fixed.d-flex.flex-column
                               .d-flex.flex-column
@@ -77,6 +82,7 @@
                                             Enviar A Cocina
                                           %button.btn.btn_custom.btn--white.js-btn-order.mr-2.d-sm-none
                                             %i.icofont-paper-plane
+
                                   .second.d-sm-none
                                     .float-left
                                       %h4{ style: 'color: #fff' } Orden #{index + 1} (#{number_to_currency(order.total) || 'Bsf. 0,00'})
@@ -91,19 +97,22 @@
                                           = link_to app_send_to_kitchen_path(order, locale: nil), method: :post do
                                             %button.btn.btn_custom.btn--white.js-btn-order.mr-2.d-sm-none
                                               %i.icofont-paper-plane
-                                  - if order.in_kitchen?
-                                    .title-new-order.mt-2.d-none.d-sm-flex
-                                      = confirmation_modal(order, nil, order.id, :order)
-                                      %button.btn.btn_custom.btn--medium.btn--white.d-none.d-sm-block{ style: 'height: 32px;margin-top: -20px;', 'data-target': "#confirmation-order-#{order.id}-#{order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-                                        Cancelar Orden
-                                      %button.btn.btn_custom.btn--white.d-sm-none{ style: 'height: 40px;margin-top: -32px;width: 40px;', 'data-target': "#confirmation-order-#{order.id}-#{order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
-                                        %i.icofont-close
+                                  - unless order.cancelled?  
+                                    - if order.in_kitchen?
+                                      .title-new-order.mt-2.d-none.d-sm-flex
+                                        = confirmation_modal(order, nil, order.id, :order)
+                                        %button.btn.btn_custom.btn--medium.btn--white.d-none.d-sm-block{ style: 'height: 32px;margin-top: -20px;', 'data-target': "#confirmation-order-#{order.id}-#{order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                          Cancelar Orden
+                                        %button.btn.btn_custom.btn--white.d-sm-none{ style: 'height: 40px;margin-top: -32px;width: 40px;', 'data-target': "#confirmation-order-#{order.id}-#{order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                          %i.icofont-close
+
                                   .second.mt-2.d-sm-none.pt-4.mt-3
                                     .float-right
                                       - if order.in_kitchen?
                                         = confirmation_modal(order, nil, order.id, :order)
                                         %button.btn.btn_custom.btn--white.d-sm-none{ style: 'height: 35px;margin-top: -32px;width: 40px;', 'data-target': "#confirmation-order-#{order.id}-#{order.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
                                           %i.icofont-close
+
                                   - order.dishes.each_with_index do |dish, index|
                                     = confirmation_modal(order, dish, index, :dish)
                                     .card-wrapper.card-account{ class: ('disabled' if @account.cancelled? || dish.cancelled?) }

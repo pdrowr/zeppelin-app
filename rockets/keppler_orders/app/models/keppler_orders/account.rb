@@ -19,6 +19,8 @@ module KepplerOrders
 
     def cancel
       orders.map(&:cancel)
+      toggle!(:cancelled)
+      update(cancelled_at: DateTime.now)
     end
 
     def dishes_count
