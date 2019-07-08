@@ -1,15 +1,20 @@
-aside{
+aside {
   align-items: center;
-  background:$dark-aside;
+  background: $dark-aside;
   display: flex !important;
   flex-direction: column !important;
   position: fixed;
   height: 100vh;
   width: 6%;
 
+  @include respond-to(xl) {
+    width: 5%;
+  }
+
   @include respond-to(md) {
     width: 7%;
   }
+
   @include respond-to(sm) {
     width: 9%;
   }
@@ -21,21 +26,23 @@ aside{
     left: -26%;
     transition: 0.3s ease-in-out;
   }
-  @media (min-width: 651px) and (max-width: 767px){
+
+  @media (min-width: 651px) and (max-width: 767px) {
     width: 10%;
   }
 
 }
 
-ul{
-  padding:0px;
-  margin:0px;
+ul {
+  padding: 0px;
+  margin: 0px;
   flex: 1 0 auto !important;
+
   li {
-    color:#434343;
-    padding:10px;
+    color: #434343;
+    padding: 10px;
     list-style: none;
-    cursor:pointer;
+    cursor: pointer;
   }
 }
 
@@ -49,17 +56,18 @@ ul{
   }
 }
 
-
-
-ul.tabs li{
+ul.tabs li {
   background: none;
   display: inline-block;
   padding: 10px 15px;
   cursor: pointer;
-  &.current{
+
+  &.current {
     background: transparent;
+
     .icons {
       background: $gradient !important;
+
       i {
         color: $white;
       }
@@ -75,17 +83,18 @@ ul.tabs li{
   padding: 15px;
   transition: .3s ease-in-out;
 
-  @include respond-to(sm){
+  @include respond-to(sm) {
     padding: 10px;
   }
 
-  @include respond-to(xs){
+  @include respond-to(xs) {
     padding: 10px;
   }
 
   &:hover {
     background: $gradient !important;
     transition: .3s ease-in-out;
+
     i {
       color: $white;
     }
@@ -104,16 +113,18 @@ ul.tabs li{
 }
 
 
-.menu-movil {
+.menu-mobile {
   position: fixed !important;
   top: 20px;
   left: 5%;
   z-index: 999;
   font-size: 25px;
+
   i {
     color: #fff;
   }
-  @media (min-width: 651px) and (max-width: 767px){
-   left: 3%;
+
+  @media (min-width: 651px) and (max-width: 767px) {
+    left: 3%;
   }
 }

@@ -1,14 +1,15 @@
 .card-wrapper.card-wrapper-products
-  .card-content.card-product
-    .card-product-image
-      .product-image
-        %img{ src: dish.picture }
-    .card-product-description.pl-4
-      .card-product-title
-        %h4.m-0= dish.name
-      .card-product-detail
-        .card-price
-          %span= number_to_currency(dish.price)
-    - if @order.present?
-      .card-product-btn
-        %a{ 'data-target': ".add_product-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false } Agregar
+  %a.d-flex{ 'data-target': ".add_product-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+    .card-content.card-product
+      .card-product-image
+        .product-image
+          %img{ src: dish.picture }
+      .card-product-description.pl-4
+        .card-product-title
+          %h4.m-0= dish.name
+        .card-product-detail
+          .card-price
+            %span= number_to_currency(dish.price)
+      - if @order.present?
+        .card-product-btn
+          %a{ 'data-target': ".add_product-#{index}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false } Agregar

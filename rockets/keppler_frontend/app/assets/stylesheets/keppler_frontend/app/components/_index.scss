@@ -1,21 +1,27 @@
-.container-custom{
+.container-custom {
   display: flex;
   position: relative;
-  @include respond-to(sm){
+
+  @include respond-to(sm) {
     overflow: hidden;
   }
-  @include respond-to(xs){
+
+  @include respond-to(xs) {
     overflow: hidden;
   }
 }
 
 .workspace {
-  // width: 94%;
   width: 94%;
   background-color: $dark;
   min-height: 100vh;
   height: auto;
   margin-left: 6%;
+
+  @include respond-to(xl) {
+    margin-left: 5%;
+    width: 95%;
+  }
 
   @include respond-to(md) {
     margin-left: 6%;
@@ -24,6 +30,7 @@
   @include respond-to(sm) {
     margin-left: 8%;
   }
+
   @include respond-to(xs) {
     margin-left: 0%;
     width: 100%;
@@ -35,21 +42,30 @@
   width: 70%;
   padding: 20px 25px 0px 35px;
 
+
+  @include respond-to(xl) {
+    width: 80%;
+  }
+
   @include respond-to(md) {
     width: 65%;
   }
+
   @include respond-to(sm) {
     width: 100%;
     padding: 20px 40px 0px 35px;
   }
+
   @include respond-to(xs) {
     width: 100%;
     padding: 20px 15px 0px 35px;
   }
+
   &.workspace-chef {
     width: 100%;
   }
-  &.workspace-left-runner{
+
+  &.workspace-left-runner {
     width: 70%;
 
     @include respond-to(sm) {
@@ -63,8 +79,9 @@
 
   &.full-width {
     width: 100%;
+
     .workspace_top {
-      width: 89%;
+      width: 85%;
     }
   }
 }
@@ -72,8 +89,16 @@
 .workspace-right {
   width: 30%;
 
+  @include respond-to(xl) {
+    width: 22%;
+  }
+
   .right-btn-order {
     padding: 45px 25px;
+
+    @include respond-to(xl) {
+      padding: 45px 30px;
+    }
 
     @include respond-to(md) {
       padding: 45px 0px;
@@ -82,17 +107,20 @@
 
   &.sidebar {
     transition: 0.3s ease-in-out;
+
     @include respond-to(sm) {
       position: absolute;
       right: -30%;
       top: 15%;
     }
+
     @include respond-to(xs) {
       position: absolute;
       right: -30%;
       top: 15%;
     }
   }
+
   &.workspace-right-runner {
     width: 30%;
     padding: 20px 25px 0px 35px;
@@ -106,17 +134,17 @@
     display: none;
   }
 
-  &.workspace-right-ordertop{
+  &.workspace-right-ordertop {
     position: relative;
+
     .workspace-right-btntop {
       display: none;
     }
+
     .grid-order-dishes {
       margin-top: 50px;
     }
-    .workspace-right-btntop {
-      display: none;
-    }
+
     .workspace-right-btnbottom {
       position: absolute;
       bottom: -53px;
@@ -127,10 +155,8 @@
 
 .workspace_top-container {
   align-items: center;
-  // box-shadow: $primary-shadow;
   display: flex;
   justify-content: space-between;
-  // background-color: #16161d;
   border-radius: 5px;
   padding: 20px 0px;
 
@@ -141,11 +167,13 @@
 
 
 .workspace_top {
-  // padding: 0px 20px 0 20px;
-  // padding-top: 10px;
   position: fixed;
   width: 60%;
   z-index: 2;
+
+  @include respond-to(xl) {
+    width: 70%;
+  }
 
   @include respond-to(md) {
     width: 50%;
@@ -162,12 +190,15 @@
 
   &.workspace_top-chef {
     width: 89%;
+
     @include respond-to(md) {
       width: 85%;
     }
+
     @include respond-to(sm) {
       width: 83%;
     }
+
     @include respond-to(xs) {
       width: 85%;
       padding: 0px;
@@ -177,11 +208,11 @@
   &.workspace_top-runner {
     width: 42%;
 
-    @include respond-to(sm){
+    @include respond-to(sm) {
       width: 85%;
     }
 
-    @include respond-to(xs){
+    @include respond-to(xs) {
       width: 85%;
     }
   }
@@ -202,10 +233,10 @@
 
     @include respond-to(xs) {
       @include font(30px, $bold);
-      // display: none;
     }
   }
 }
+
 .workspace_search {
   width: 40%;
 }
@@ -215,14 +246,12 @@
   display: flex;
   justify-content: flex-end;
 
-  @include respond-to(xs){
-    width: 100%;
+  @include respond-to(xs) {
+    width: 95%;
   }
 }
 
 .avatar-content {
-  // width: 150pxs;
-  // background-color: $gray !important;
   border-radius: 5px;
   height: 35px;
   display: flex;
@@ -234,7 +263,10 @@
     transition: all 0.3s ease-in-out;
     @include font(15px, $normal);
     font-family: $quicksand;
-    &:hover, &:focus, &:link {
+
+    &:hover,
+    &:focus,
+    &:link {
       color: $white;
       text-decoration: none;
     }
@@ -246,6 +278,7 @@
 .dropdown-menu {
   min-width: 150px !important;
 }
+
 .dropdown-item {
   color: $dark !important;
 }
@@ -253,6 +286,7 @@
 .avatar {
   width: 40px;
   padding: 5px;
+
   img {
     border-radius: 50%;
     width: 70%;
@@ -264,9 +298,7 @@
 }
 
 .workspace_center {
-  // margin-top: 100px;
   margin-top: 94px;
-  // padding: 20px;
   max-height: 80vh;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -276,7 +308,7 @@
     margin-top: 60px;
   }
 
-  &.workspace_center-scroll{
+  &.workspace_center-scroll {
     overflow-y: auto;
 
     &:hover {
@@ -284,6 +316,7 @@
     }
 
   }
+
   &:hover {
     overflow-y: auto;
     transition: .6s ease-in-out;
@@ -291,6 +324,7 @@
 
   &.workspace-center-chef {
     max-height: 90%;
+
     &:hover {
       overflow-y: hidden;
     }
@@ -318,6 +352,7 @@
   padding: 10px;
   width: 100px;
   cursor: pointer;
+
   a {
     color: $white;
     text-decoration: none;
@@ -327,6 +362,7 @@
     @include respond-to(xs) {
       @include font(15px, $normal);
     }
+
     &:hover {
       color: $white;
     }
@@ -341,16 +377,15 @@
   }
 }
 
-.grid-wrapper{
+.grid-wrapper {
   margin: 0 auto;
-  width:100%;
+  width: 100%;
+
   &.grid-wrapper-chef {
-    // display: flex;
     user-select: none;
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
-    // padding-bottom: 8px;
     height: 80vh;
 
     @include respond-to(md) {
@@ -366,6 +401,7 @@
     }
 
   }
+
   &.grid-wrapper-runner {
     height: 77vh;
   }
@@ -376,24 +412,26 @@
   @include respond-to(sm) {
     flex-wrap: wrap;
   }
+
   @include respond-to(xs) {
     flex-wrap: wrap;
   }
 }
-.card-wrapper{
-  float:left;
+
+.card-wrapper {
+  float: left;
   margin: 10px 25px 10px 0px;
   cursor: pointer;
 
-  @include respond-to(md){
+  @include respond-to(md) {
     margin: 10px 15px 10px 0px;
   }
 
-  @include respond-to(sm){
+  @include respond-to(sm) {
     margin: 10px 15px 10px 0px;
   }
 
-  @include respond-to(xs){
+  @include respond-to(xs) {
     margin: 5px 12px 10px 0px;
   }
 
@@ -406,9 +444,6 @@
   &.card-account {
     margin: 10px 0px;
 
-    // &:nth-child(1){
-    //   margin: 25px 0px 10px 0px;
-    // }
     &.disabled {
       .box-quantity {
         background-color: #887c7d !important;
@@ -417,7 +452,7 @@
   }
 }
 
-.card-content{
+.card-content {
   background-color: $dark-cards;
   box-shadow: $primary-shadow;
   border: 1px solid $colorlight;
@@ -434,12 +469,12 @@
     padding: 5px 10px;
   }
 
-  &.card-table{
+  &.card-table {
     flex-direction: column;
     align-items: center;
   }
 
-  &.card-counts{
+  &.card-counts {
     flex-direction: row;
     align-items: center;
     width: 320px;
@@ -448,6 +483,7 @@
     @include respond-to(md) {
       width: 255px;
     }
+
     @include respond-to(sm) {
       width: 255px;
     }
@@ -486,21 +522,18 @@
         background-color: $black !important;
         opacity: 0.4;
 
-        .card-content {
-          .card-icons {
-            i {
-              // color: $gray;
-            }
-          }
-        }
       }
     }
-    
   }
 
   &.card-product {
     width: 265px;
     padding: 10px !important;
+
+    @include respond-to(xl) {
+      width: 260px;
+    }
+
     @include respond-to(xs) {
       width: 250px;
     }
@@ -511,12 +544,12 @@
 
   }
 
-
   h2 {
     margin: 0px;
     font-family: $quicksand;
     color: $white;
   }
+
   i {
     font-size: 50px;
     color: $dark-e;
@@ -524,7 +557,7 @@
 
 }
 
-.disabled{
+.disabled {
   cursor: not-allowed !important;
   opacity: 0.4;
 
@@ -537,27 +570,20 @@
   }
 }
 
-.disabled-dishes{
+.disabled-dishes {
   cursor: not-allowed !important;
   background-color: $black !important;
   opacity: 0.4;
-
-  .card-content {
-    .card-icons {
-      i {
-        // color: $gray;
-      }
-    }
-  }
 }
 
 
-.card-check{
+.card-check {
   position: absolute;
   right: 0;
   top: 0;
-  &:before{
-    content:'';
+
+  &:before {
+    content: '';
     -webkit-appearance: none;
     background-color: $dark;
     border-radius: 5px;
@@ -569,7 +595,8 @@
     cursor: pointer;
     margin-right: 5px;
   }
-  &:after{
+
+  &:after {
     border: solid $primary;
     border-width: 0 2px 2px 0;
     content: '';
@@ -583,18 +610,18 @@
   }
 }
 
-
-
 /* -------------------------
    ----- Order -----
    ------------------------- */
+
 .grid-order {
   width: 30%;
   margin-top: 125px;
 
-  @include respond-to(md){
+  @include respond-to(md) {
     margin-top: 100px;
   }
+
   @include respond-to(sm) {
     margin-top: 40px;
   }
@@ -603,8 +630,6 @@
     margin-top: 0px;
     width: 100%;
   }
- 
-
 }
 
 .order-wrapper {
@@ -615,6 +640,10 @@
   width: 360px;
   position: relative;
 
+  @include respond-to(xl) {
+    min-height: 740px;
+  }
+
   @include respond-to(md) {
     min-height: 425px;
   }
@@ -622,6 +651,10 @@
   &.order-wrapper-account {
     width: 100%;
     min-height: 500px;
+
+    @include respond-to(xl) {
+      min-height: 700px;
+    }
 
     @include respond-to(md) {
       min-height: 310px;
@@ -631,11 +664,13 @@
   @include respond-to(md) {
     width: 300px;
   }
+
   @include respond-to(sm) {
     width: 300px;
     min-height: 410px;
     z-index: 99;
   }
+
   @include respond-to(xs) {
     width: 270px;
     min-height: 410px;
@@ -655,11 +690,13 @@
   width: 100%;
   height: 20%;
   padding: 10px;
+
   h4 {
     color: $white;
     font-family: $quicksand;
     text-transform: capitalize;
   }
+
   i {
     cursor: pointer;
   }
@@ -675,7 +712,7 @@
   right: 0;
   font-family: $quicksand;
 
-  &.order-footer-product{
+  &.order-footer-product {
     color: $white;
     @include font(16px, $semibold);
     display: flex;
@@ -688,6 +725,7 @@
       margin: 0 5px;
     }
   }
+
   &.order-footer-account {
     flex-direction: column;
     height: 15%;
@@ -695,33 +733,42 @@
     justify-content: flex-end;
     align-items: flex-end;
     padding: 10px;
+
+    @include respond-to(xl) {
+      height: 10%;
+    }
   }
 }
 
-.order-content{
+.order-content {
   padding: 20px;
 
   &.order-content--fixed {
-    max-height: 350px;
+    max-height: 385px;
     overflow-x: hidden;
     overflow-y: hidden;
     transition: all .6s ease-in-out;
+
+    @include respond-to(xl) {
+      max-height: 580px;
+    }
 
     &:hover {
       overflow-y: auto;
       transition: .6s ease-in-out;
     }
   }
+
   &.order-content-chef {
     padding: 0;
   }
 }
 
-
-
 .order-card-counts {
   width: 100%;
-  h4, p {
+
+  h4,
+  p {
     margin: 0px;
     color: $white;
     font-family: $quicksand;
@@ -732,7 +779,7 @@
     }
   }
 
-  p{
+  p {
     @include font(14px, $normal);
   }
 
@@ -742,17 +789,19 @@
   }
 }
 
-
 .content-info-account {
-  margin-top: 3px;;
+  margin-top: 3px;
+  ;
 }
-.content-info  {
+
+.content-info {
   p {
     @include font(15px, $normal);
     color: $white;
     font-family: $quicksand;
     margin: 3px 0;
   }
+
   span {
     @include font(15px, $bold);
     color: $white;
@@ -763,23 +812,25 @@
 /* -------------------------
    ----- List card -----
    ------------------------- */
-.list-content{
+
+.list-content {
   border-radius: 3px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   min-height: 0;
   max-height: 100%;
-  // max-height: 470px;
   position: relative;
   white-space: normal;
 
   &.status-normal {
     background-color: $dark-cards;
   }
+
   &.status-alert {
     background-color: #e25f23;
   }
+
   &.status-danger {
     background-color: #9b111e;
   }
@@ -793,6 +844,7 @@
   position: relative;
   min-height: 20px;
 }
+
 .list-cards {
   flex: 1 1 auto;
   margin-bottom: 0;
@@ -805,10 +857,11 @@
   margin-top: 10px;
   transition: 0.3s ease-in-out;
 }
+
 .list-card {
   background-color: $dark;
   border-radius: 3px;
-  box-shadow: 0 1px 0 rgba(9,30,66,.25);
+  box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
   cursor: pointer;
   display: block;
   margin-bottom: 8px;
@@ -824,11 +877,11 @@
   h4 {
     @include font(16px, $bold);
   }
+
   p {
     @include font(14px, $light);
   }
 }
-
 
 .tags {
   margin-left: 2px;
@@ -849,12 +902,12 @@
   padding: 35px;
   display: flex;
   justify-content: center;
-  // background-color: $dark-cards;
-  // border-radius: 0px 0px 5px 5px;
 }
+
 /* -------------------------
    ----- Categories -----
    ------------------------- */
+
 .card-category {
   float: left;
   margin: 10px 18px 10px 0px;
@@ -862,6 +915,10 @@
   width: 31%;
   position: relative;
   height: 220px;
+
+  @include respond-to(xl) {
+    width: 400px;
+  }
 
   @include respond-to(md) {
     width: 45%;
@@ -871,6 +928,7 @@
     width: 47%;
     z-index: 0;
   }
+
   @include respond-to(xs) {
     width: 95%;
     z-index: 0;
@@ -908,6 +966,10 @@
     right: -5%;
     top: 45%;
 
+    @include respond-to(xl) {
+      right: -10px;
+    }
+
     span {
       @include respond-to(xs) {
         @include font(18px, $normal);
@@ -935,6 +997,7 @@
 
 .card-product-image {
   width: 30%;
+
   .product-image {
     width: 100%;
     height: 100px;
@@ -942,6 +1005,7 @@
     &.product-image-order {
       height: 60px !important;
     }
+
     img {
       border-radius: 5px;
       object-fit: cover;
@@ -950,15 +1014,16 @@
     }
   }
 
-  &.account-product-image{
+  &.account-product-image {
     width: 10%;
   }
+
   @include respond-to(xs) {
     display: none;
   }
 }
 
-.card-product-description{
+.card-product-description {
   width: 70%;
 
   .card-product-title {
@@ -968,6 +1033,7 @@
 
     }
   }
+
   &.account-product-description {
     width: 90%;
 
@@ -978,7 +1044,7 @@
 }
 
 
-.card-product-detail{
+.card-product-detail {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -991,8 +1057,9 @@
       margin-top: 10px;
 
       span {
-        color:$gray;
+        color: $gray;
       }
+
       .box-quantity {
         background-color: $primary;
         border-radius: 2px;
@@ -1022,7 +1089,7 @@
 .card-product-btn {
   position: absolute;
   padding: 5px 10px;
-  background: $gradient!important;
+  background: $gradient !important;
   bottom: -10%;
   left: 40%;
   border-radius: 5px;
@@ -1032,7 +1099,9 @@
     @include font(14px, $semibold);
     font-family: $quicksand;
 
-    &:hover, &:active, &:link {
+    &:hover,
+    &:active,
+    &:link {
       color: $white;
     }
   }
@@ -1046,7 +1115,6 @@
   display: flex;
   flex-direction: column;
 
-
   .qty-button {
     display: inline-block;
     height: 30px;
@@ -1058,12 +1126,12 @@
     color: #ffffff !important;
     margin-right: 3px;
 
-    &:hover, &:active, &:focus {
+    &:hover,
+    &:active,
+    &:focus {
       color: $white !important;
       cursor: pointer;
     }
-
-
   }
 
   .input_quantity {
@@ -1077,13 +1145,16 @@
     @include font(15px, $light)
   }
 
-  input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
     display: none;
   }
 }
+
 /* -------------------------
    ----- Products Detail Modal -----
    ------------------------- */
+
 
 .modal-product-title {
   color: $white;
@@ -1103,8 +1174,10 @@
   font-family: $quicksand;
 }
 
+/* -------------------------
+   ----- My Orden -----
+   ------------------------- */
 
-/** My Orden **/
 .notification {
   width: 10px;
   height: 10px;
@@ -1121,8 +1194,6 @@
   width: 100%;
 }
 
-
-
 .btn-float {
   position: absolute;
   bottom: 3%;
@@ -1137,41 +1208,43 @@
     top: 14%;
   }
 
-  @media (min-width: 0px) and (max-width: 340px){
+  @media (min-width: 0px) and (max-width: 340px) {
     right: 58% !important;
   }
 
-  @media (min-width: 341px) and (max-width: 350px){
+  @media (min-width: 341px) and (max-width: 350px) {
     right: 53% !important;
   }
 
-  @media (min-width: 351px) and (max-width: 375px){
+  @media (min-width: 351px) and (max-width: 375px) {
     right: 46% !important;
   }
 
-  @media (min-width: 376px) and (max-width: 450px){
+  @media (min-width: 376px) and (max-width: 450px) {
     right: 34% !important;
   }
-  @media (min-width: 451px) and (max-width: 550px){
+
+  @media (min-width: 451px) and (max-width: 550px) {
     right: 23% !important;
   }
 
-  @media (min-width: 551px) and (max-width: 650px){
+  @media (min-width: 551px) and (max-width: 650px) {
     right: 16% !important;
   }
 
-  @media (min-width: 651px) and (max-width: 767px){
+  @media (min-width: 651px) and (max-width: 767px) {
     right: 9% !important;
   }
 }
+
 .active-menu {
   left: 0 !important;
 }
 
+/* -------------------------
+   ----- Chef -----
+   ------------------------- */
 
-
-
-//*** chef **/
 
 .details-table-chef {
   i {
@@ -1183,12 +1256,15 @@
   }
 }
 
-/** runner*/
+/* -------------------------
+   ----- Runner -----
+   ------------------------- */
+
 .status-runner {
   color: $white;
   @include font(20px, $light);
   margin-top: 30px;
-  
+
   @include respond-to(xs) {
     margin: 0px;
   }
@@ -1196,10 +1272,12 @@
   &.done {
     color: green;
   }
+
   &.pending {
     color: $primary;
   }
 }
+
 .content-progress {
   padding: 0 10px;
 }
@@ -1216,32 +1294,18 @@
     color: green;
   }
 }
-// .checkmark {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-//   height: 25px;
-//   width: 25px;
-//   background-color: #eee;
 
-//   &:before {
-//     left: 9px;
-//     top: 5px;
-//     width: 5px;
-//     height: 10px;
-//     border-width: 0 3px 3px 0;
-//     -webkit-transform: rotate(45deg);
-//     -ms-transform: rotate(45deg);
-//     transform: rotate(45deg);
-//   }
-// }
-/** account*/
+/* -------------------------
+   ----- Account -----
+   ------------------------- */
+
 .data-account {
   width: 40%;
   background-color: $dark-cards;
   padding: 25px;
   border-radius: 5px;
   margin-right: 20px;
+
   @include respond-to(sm) {
     width: 95%;
     margin-right: 0px;
@@ -1252,15 +1316,18 @@
     margin-right: 0px;
   }
 }
+
 .name-client {
   display: flex;
   justify-content: center;
+
   h2 {
     color: $white;
     @include font(20px, $light);
     font-family: $quicksand;
   }
 }
+
 .description-client {
 
   @include respond-to(sm) {
@@ -1282,6 +1349,7 @@
   color: $white;
   font-family: $quicksand;
   margin: 20px 0;
+
   p {
     margin: 5px 0;
     @include font(16px, $bold);
@@ -1298,20 +1366,18 @@
 
 .listing {
   width: 60%;
-  
 
-  @include respond-to(sm){
+  @include respond-to(sm) {
     width: 95%;
     margin-top: 20px;
   }
-  @include respond-to(xs){
+
+  @include respond-to(xs) {
     width: 95%;
     margin-top: 20px;
     z-index: 1;
   }
-  
 }
-
 
 .title-new-order {
   display: flex;
