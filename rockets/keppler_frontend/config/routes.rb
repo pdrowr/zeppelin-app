@@ -10,6 +10,7 @@ KepplerFrontend::Engine.routes.draw do
   get '/runner', to: 'app/frontend#runner', as: :app_runner
   get '/account/:account_id', to: 'app/frontend#account', as: :app_account
   get '/account/:account_id/create_order', to: 'app/frontend#create_order', as: :app_account_create_order
+  get '/account/:account_id/billing', to: 'app/frontend#billing', as: :app_billing_account
   get '/category/:category_id/dishes(/:order_id)', to: 'app/frontend#dishes', as: :app_category_dishes
   post '/send_to_kitchen/:order_id', to: 'app/frontend#send_to_kitchen', as: :app_send_to_kitchen
 

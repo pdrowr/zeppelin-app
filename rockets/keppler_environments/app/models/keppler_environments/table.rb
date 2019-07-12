@@ -16,7 +16,7 @@ module KepplerEnvironments
     end
 
     def current_accounts
-      today_accounts.where(period_id: current_period_id)
+      today_accounts.where("status = 'ACTIVE' or status = 'IN_KITCHEN'")
     end
 
     private

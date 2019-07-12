@@ -5,7 +5,7 @@ module KepplerFrontend
     before_action :set_index_variables, only: %i[index]
     before_action :authenticate_member, :set_period
     before_action :set_order, only: %i[categories dishes dishes account add_dish remove_dish send_to_kitchen toggle_dish_status cancel_order cancel_dish]
-    before_action :set_account, only: %i[account create_order cancel_account]
+    before_action :set_account, only: %i[account create_order cancel_account billing]
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
 
@@ -125,6 +125,11 @@ module KepplerFrontend
       )
 
       redirect_back(fallback_location: root_path, notice: 'Orden Creada Exitosamente')
+    end
+
+    def billing
+      @account.close
+      redirect_to root_path(notice: 'Orden Cerrada Exitosamente')
     end
 
     private

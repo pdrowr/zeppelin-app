@@ -100,6 +100,10 @@ module KepplerOrders
       dishes.pluck(:completed_at).compact.max.strftime("%I:%M %p")
     end
 
+    def completed
+      dishes.where(completed: true).count.eql?(dishes.count)
+    end
+
     def cancel
       toggle!(:cancelled)
       dishes.update_all(cancelled: true)

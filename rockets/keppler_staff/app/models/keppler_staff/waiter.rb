@@ -5,8 +5,12 @@ module KepplerStaff
   class Waiter < KepplerStaff::Member
     has_many :accounts, class_name: 'KepplerOrders::Account'
 
-    def current_accounts
+    def today_accounts
       accounts.where(period_id: current_period_id)
+    end
+
+    def current_accounts
+      today_accounts.where("status = 'ACTIVE' or status = 'IN_KITCHEN'")
     end
 
     private
@@ -14,7 +18,5 @@ module KepplerStaff
     def current_period_id
       KepplerPeriods::Period&.current_period&.id
     end
-
-
   end
 end

@@ -17,6 +17,10 @@ module KepplerOrders
       orders.where(status: 'ACTIVE').blank?
     end
 
+    def have_incompleted_orders?
+      !orders.map { |o| o if !o.completed }.compact.blank?
+    end
+
     def cancel
       orders.map(&:cancel)
       toggle!(:cancelled)
@@ -25,6 +29,10 @@ module KepplerOrders
 
     def dishes_count
       orders.map(&:dishes).flatten.size
+    end
+
+    def close
+      update(status: 'COMPLETED')
     end
 
     private
@@ -38,6 +46,10 @@ module KepplerOrders
 
     def current_period_id
       KepplerPeriods::Period&.current_period&.id
+    end
+
+    def completed?
+      dishes_count = orders.map(&:dishes).flatten.size
     end
 
   end
