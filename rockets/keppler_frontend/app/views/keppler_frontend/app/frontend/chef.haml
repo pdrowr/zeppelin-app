@@ -31,7 +31,7 @@
                   .grid-wrapper.grid-wrapper-chef
                     - @orders.each_with_index do |order, index|
                       - unless order.cancelled? && order.cancelled_time >= 5
-                        .card-content.card-counts.mb-4.card-chef{ class: ('disabled-order' if order.cancelled?) }
+                        .card-content.card-counts.mb-4.card-chef.card-chef-full{ class: ('disabled-order' if order.cancelled?) }
                           .order-card-counts.list-content{ class: "status-#{order.order_status}"}
 
                             .description-user.d-flex.justify-content-between.list-header
@@ -40,9 +40,9 @@
                                 %p= order.account.table.id
                               .time.d-flex.flex-column
                                 %p.badge= order.created_time
-                            .list-cards
+                            .list-cards.list-cards-full
                               - order.foods.each_with_index do |dish, index|
-                                .list-card{ class: ('disabled' if dish.cancelled?) }
+                                .list-card.list-card-full{ class: ('disabled' if dish.cancelled?) }
                                   = html_switch(order, dish, index)
                                   .description-user.d-flex.justify-content-between.name-dishes
                                     %h4= dish.dish.name
@@ -62,6 +62,37 @@
                                     Cancelado
                                   - else
                                     = time_ago_in_words(order&.send_to_kitchen_at)
+                        // .card-content.card-counts.mb-4.card-chef{ class: ('disabled-order' if order.cancelled?) }
+                        //   .order-card-counts.list-content{ class: "status-#{order.order_status}"}
+
+                        //     .description-user.d-flex.justify-content-between.list-header
+                        //       .data
+                        //         %h4= order.account.waiter.name
+                        //         %p= order.account.table.id
+                        //       .time.d-flex.flex-column
+                        //         %p.badge= order.created_time
+                        //     .list-cards
+                        //       - order.foods.each_with_index do |dish, index|
+                        //         .list-card{ class: ('disabled' if dish.cancelled?) }
+                        //           = html_switch(order, dish, index)
+                        //           .description-user.d-flex.justify-content-between.name-dishes
+                        //             %h4= dish.dish.name
+                        //           .content-info-account.d-flex.flex-column
+                        //             .content-info.d-flex.justify-content-between
+                        //               %p Cantidad
+                        //               %span= dish.quantity
+                        //             .div.observations
+                        //               %p Observaciones:
+                        //               .tags
+                        //                 - dish.observation.split(';').each do |observation|
+                        //                   %span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
+                        //     .list-bottom
+                        //       .crono_wrapper
+                        //         %h2#crono.crono
+                        //           - if order.cancelled?
+                        //             Cancelado
+                        //           - else
+                        //             = time_ago_in_words(order&.send_to_kitchen_at)
 
 
 :javascript
