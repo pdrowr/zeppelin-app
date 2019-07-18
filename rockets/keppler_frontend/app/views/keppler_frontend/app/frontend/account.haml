@@ -56,17 +56,23 @@
                                   - if @account.have_active_orders
                                     - unless @account.have_incompleted_orders?
                                       = link_to app_billing_account_path(@account, locale: nil) do
-                                        %button.btn.btn_custom.btn--medium.btn--white.js-btn-order{ style: 'margin-right: 5px'}
+                                        %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.d-none.d-sm-block{ style: 'margin-right: 5px'}
                                           Facturar
+                                        %button.btn.btn_custom.btn--white.js-btn-order.d-sm-none{ style: 'margin-right: 5px'}
+                                          %i.icofont-list
 
                                     = link_to app_account_create_order_path(@account, locale: nil) do
-                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order{ style: 'margin-right: 5px'}
+                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.d-none.d-sm-block{ style: 'margin-right: 5px'}
                                         Crear Nuevo Pedido
+                                      %button.btn.btn_custom.btn--white.js-btn-order.d-sm-none{ style: 'margin-right: 5px'}
+                                        %i.icofont-plus
 
                                   - unless @account.orders.blank?
                                     = confirmation_modal(@account, nil, @account.id, :account)
-                                    %button.btn.btn_custom.btn--medium.btn--white.js-btn-order{ style: 'height: 32px;', 'data-target': "#confirmation-account-#{@account.id}-#{@account.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                    %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.d-none.d-sm-block{ style: 'height: 32px;', 'data-target': "#confirmation-account-#{@account.id}-#{@account.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
                                       Cancelar
+                                    %button.btn.btn_custom.btn--white.js-btn-order.d-sm-none{ style: 'height: 32px;', 'data-target': "#confirmation-account-#{@account.id}-#{@account.id}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
+                                      %i.icofont-close
 
                             .order-content.order-content--fixed.d-flex.flex-column
                               .d-flex.flex-column
