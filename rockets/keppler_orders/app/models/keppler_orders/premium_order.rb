@@ -44,7 +44,7 @@ module KepplerOrders
         vence: order.created_at.strftime('%Y-%m-%d'),
         horadocum: order.updated_at.strftime('%I:%M'),
         fechayhora: order.created_at,
-        vendedor: order.user.waiter_code,
+        vendedor: order.waiter_id,
         apa_nc: '0',
         documentolocal: ' ',
         comanda_movil: '1',
@@ -67,32 +67,5 @@ module KepplerOrders
         opemail: ' ',
       )
     end
-
-    # def self.update_order(orders, id)
-    #   @order = Order.find(id)
-    #   orders.update_all(
-    #     totbruto: @order.subtotal, totneto: @order.subtotal,
-    #     totalfinal: @order.subtotal, totimpuest: @order.iva,
-    #     horadocum: @order.updated_at.strftime('%H:%M'),
-    #     impuesto1: @order.iva, impuesto2: @order.iva
-    #   )
-    # end
-    #
-    # def order
-    #   Order.find_by reference: referencia
-    # end
-    #
-    # def items
-    #   PremiumItem.where(tipodoc: 'ESP', documento: documento)
-    # end
-    #
-    # def items_id
-    #   items.map { |x| x.codigo.strip }
-    # end
-    #
-    # def total
-    #   totbruto + totimpuest
-    # end
-
   end
 end

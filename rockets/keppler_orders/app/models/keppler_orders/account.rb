@@ -1,6 +1,6 @@
 module KepplerOrders
   class Account < ApplicationRecord
-    after_create :create_first_order
+    after_create :create_reference, :create_first_order
     belongs_to :client, class_name: 'KepplerClients::Client'
     belongs_to :waiter, class_name: 'KepplerStaff::Waiter'
     belongs_to :table,  class_name: 'KepplerEnvironments::Table', optional: true
@@ -9,8 +9,29 @@ module KepplerOrders
 
     scope :today_orders, -> { orders.where(period_id: current_period_id) }
 
-    def total
+    def subtotal
       orders.map(&:total).compact.sum
+    end
+
+    def iva
+      subtotal * 0.12
+    end
+
+    def total
+      subtotal + iva
+    end
+
+    def doc
+      "E#{table.id_consumo}"
+    end
+
+    def create_reference
+      code = SecureRandom.hex(4)
+      while Account.where(reference: code).any? do
+        code = SecureRandom.hex(4)
+      end
+
+      update(reference: code)
     end
 
     def have_active_orders
@@ -32,7 +53,6 @@ module KepplerOrders
     end
 
     def close
-
       KepplerOrders::PremiumOrder.transaction do
         begin
           order = PremiumOrder.new_order(self)
@@ -43,7 +63,6 @@ module KepplerOrders
                 item = KepplerOrders::PremiumItem.new_order_item(order_article)
                 item.save!
               end
-              order_article.update(to_send: 0)
             end
           end
           update(status: 'COMPLETED')

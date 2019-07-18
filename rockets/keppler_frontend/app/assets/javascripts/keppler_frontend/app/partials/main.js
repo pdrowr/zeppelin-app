@@ -7,7 +7,7 @@ $('.menu-toggle').click(function () {
 
 $(window).on("load", function (e) {
   setTimeout(function () {
-    $('#preloader').fadeOut(500, function () {
+    $('#preloader').fadeOut(250, function () {
       $(this).remove();
     });
     $('.body').css('overflow-y', 'auto');

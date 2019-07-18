@@ -12,6 +12,7 @@ module KepplerOrders
     acts_as_list
     acts_as_paranoid
 
+    belongs_to :order
 
     def self.index_attributes
       %i[order_id dish_id price]
@@ -29,5 +30,11 @@ module KepplerOrders
     def is_drink?
       dish.is_drink?
     end
+
+    def parsed_observations
+      return '' if observation.blank?
+      observation.split(';').join(' ')
+    end
+
   end
 end
