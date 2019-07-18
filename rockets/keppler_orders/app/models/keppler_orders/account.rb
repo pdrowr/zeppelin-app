@@ -32,7 +32,27 @@ module KepplerOrders
     end
 
     def close
-      update(status: 'COMPLETED')
+
+      KepplerOrders::PremiumOrder.transaction do
+        begin
+          order = PremiumOrder.new_order(self)
+          order.save!
+          orders.each do |order|
+            order.dishes.each do |order_article|
+              order_article.quantity.times do
+                item = KepplerOrders::PremiumItem.new_order_item(order_article)
+                item.save!
+              end
+              order_article.update(to_send: 0)
+            end
+          end
+          update(status: 'COMPLETED')
+          return :success
+        rescue StandardError => e
+          puts e
+          return :fail
+        end
+      end
     end
 
     private

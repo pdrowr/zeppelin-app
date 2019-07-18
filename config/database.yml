@@ -26,10 +26,10 @@ production:
 
 premium_database_development:
   adapter: mysql2
-  host: 192.168.88.3
-  username: sliceadmin
+  host: 192.168.88.254
+  username: root
+  password: root
   encoding: utf8
   pool: 5
-  password: +12345678+
-  database: adminguayoy
+  database: adminzeppel
   port: 3306

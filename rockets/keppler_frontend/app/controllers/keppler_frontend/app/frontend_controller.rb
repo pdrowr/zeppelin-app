@@ -27,8 +27,7 @@ module KepplerFrontend
     end
 
     def categories
-      @categories = rocket('menu', 'category').all
-      # .includes(:pictures, :dishes)
+      @categories = rocket('menu', 'category').all.includes(:pictures, :dishes)
     end
 
     def dishes

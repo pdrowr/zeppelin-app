@@ -33,9 +33,7 @@
               %input{ type: 'hidden', name: 'table', value: table }
               %input{ type: 'hidden', name: 'section', value: section.name }
           .float-right.mt-2
-            = f.submit 'SIGUIENTE', class: 'btn btn_custom btn--medium btn--filled submit-btn'
-          -# %button{ type: 'submit'}
-          -#   SIGUIENTE
+            = f.submit 'SIGUIENTE', class: 'btn btn_custom btn--medium btn--filled submit-btn', disabled: 'disabled'
 
 :scss
   .hidden-field {
