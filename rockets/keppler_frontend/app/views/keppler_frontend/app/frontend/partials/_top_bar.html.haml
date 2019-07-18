@@ -7,4 +7,4 @@
         %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
           .avatar
             = image_tag '/assets/app/profile'
-          %strong=current_member.alias
+          %strong=current_member.alias.nil? ? current_member.alias : current_member.name
