@@ -15,12 +15,12 @@ $(window).on("load", function (e) {
 });
 
 
-$(function () {
-  if ((window).width() <= 767) {
-    $('.js-card-wrapper').click(function () {
-      $('.sidebar').toggleClass('active-sidebar');
-    })
-  } else {
+// $(function () {
+//   if ((window).width() <= 767) {
+//     $('.js-card-wrapper').click(function () {
+//       $('.sidebar').toggleClass('active-sidebar');
+//     })
+//   } else {
 
-  }
-});
+//   }
+// });
