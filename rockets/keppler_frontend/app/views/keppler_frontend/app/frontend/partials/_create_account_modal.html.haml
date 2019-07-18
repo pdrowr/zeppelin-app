@@ -12,7 +12,7 @@
             %label.label_custom Cédula
             %input.form-control.input_custom{ :required => "", type:'number', name: 'client[identification]', onkeyup: "makeRequest('#{table.downcase}')", class: "identification-#{table.downcase}", min: 0, autofocus: true }
             .hidden.preloader
-              .content-spinner{ style: 'z-index: -1;'}
+              .content-spinner.spinner-create{ style: 'z-index: -1;'}
                 .spinner-border{:role => "status"}
                   %span.sr-only Loading...
           .fields.hidden-field

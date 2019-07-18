@@ -27,14 +27,14 @@ button {
   }
 }
 
-body::-webkit-scrollbar,
+::-webkit-scrollbar,
 .list-cards::-webkit-scrollbar {
   width: 8px;
   height: 8px;
   background-color: $dark;
 }
 
-body::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb,
 .list-cards::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background: #d2d2d2;

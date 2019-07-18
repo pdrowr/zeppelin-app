@@ -55,11 +55,11 @@
                                 - unless @account.cancelled?
                                   - if @account.have_active_orders
                                     - unless @account.have_incompleted_orders?
-                                      = link_to app_billing_account_path(@account, locale: nil) do
-                                        %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.d-none.d-sm-block{ style: 'margin-right: 5px'}
-                                          Facturar
-                                        %button.btn.btn_custom.btn--white.js-btn-order.d-sm-none{ style: 'margin-right: 5px'}
-                                          %i.icofont-list
+                                      %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.d-none.d-sm-block{'data-target': "#facturar", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false,style: 'margin-right: 5px' }
+                                        Facturar
+                                      %button.btn.btn_custom.btn--white.js-btn-order.d-sm-none{ style: 'margin-right: 5px'}
+                                        %i.icofont-list
+                                      -# = link_to app_billing_account_path(@account, locale: nil) do
 
                                     = link_to app_account_create_order_path(@account, locale: nil) do
                                       %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.d-none.d-sm-block{ style: 'margin-right: 5px'}
@@ -150,7 +150,18 @@
                                 %h4
                                   Total:
                                   = number_to_currency(@account.total) || 'Bsf. 0,00'
-
+    .modal.fade{ "aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", id: "facturar" }
+      .modal-dialog{role: "document"}
+        .modal-content
+          .modal-header
+            %h2.m-0 ¿ Está seguro que desea facturar ?
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+              %i.icofont-close.icon_custom.icon--large
+          .modal-body
+            .float-right.mt-2
+              = link_to app_billing_account_path(@account, locale: nil) do
+                %button.btn.btn_custom.btn--medium.btn--white.js-btn-order{style: 'margin-right: 5px' }
+                  Confirmar
 :javascript
   $('.btn-sidebar').click(function(){
     $('.sidebar').toggleClass('active-sidebar');
