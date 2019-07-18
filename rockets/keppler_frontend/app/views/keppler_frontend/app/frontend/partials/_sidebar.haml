@@ -20,7 +20,7 @@
         = link_to root_path(locale: nil) do
           .icons
             %i.icofont-dining-table
-      %li.tab-link{ class: ('current' if action_name.eql?('categories')) }
+      %li.tab-link{ class: ('current' if action_name.eql?('categories') || action_name.eql?('dishes')) }
         = link_to app_categories_path(locale: nil) do
           .icons
             %i.icofont-restaurant
