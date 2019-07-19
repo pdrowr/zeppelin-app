@@ -631,6 +631,10 @@
         margin-top: 40px;
     }
 
+    @include respond-to(xs) {
+        margin-top: 10px;
+    }
+
     &.grid-order-account {
         margin-top: 0px;
         width: 100%;

@@ -42,9 +42,9 @@
           .workspace-right.sidebar
             = all_orders
             = table_orders(@sections)
-    .btn-float.d-lg-none.d-block
-      %button.btn.btn_custom.btn--filled.btn-sidebar
-        %i.icofont-plus
+    -# .btn-float.d-lg-none.d-block
+    -#   %button.btn.btn_custom.btn--filled.btn-sidebar
+    -#     %i.icofont-plus
 
 :javascript
   
@@ -57,7 +57,7 @@
   })
 
   $('.btn-sidebar').click(function(){
-    $('.sidebar').toggleClass('active-sidebar');
+    $('.sidebar').addClass('active-sidebar');
   })
 
   $('.menu-toggle').click(function(){
