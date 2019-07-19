@@ -44,7 +44,7 @@ module KepplerOrders
         vence: order.created_at.strftime('%Y-%m-%d'),
         horadocum: order.updated_at.strftime('%I:%M'),
         fechayhora: order.created_at,
-        vendedor: order.waiter_id,
+        vendedor: order.waiter.member_code,
         apa_nc: '0',
         documentolocal: ' ',
         comanda_movil: '1',
