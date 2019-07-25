@@ -22,7 +22,7 @@ module KepplerOrders
     end
 
     def doc
-      "E#{table.id_consumo}"
+      "E#{table.id_consumo.strip}00#{id}"
     end
 
     def create_reference
