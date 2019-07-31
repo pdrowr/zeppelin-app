@@ -3,7 +3,6 @@ module KepplerFrontend
     protect_from_forgery with: :exception
     before_action :user_signed_in?
     before_action :set_admin_locale
-
     def user_signed_in?
       return if current_user
       redirect_to '/alert/403'

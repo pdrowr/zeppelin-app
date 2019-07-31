@@ -165,12 +165,13 @@ Rails.application.routes.draw do
         post '/lang/:locale', to: 'settings#change_locale', as: :change_locale
         get '/:config', to: 'settings#edit', as: ''
         put '/:config', to: 'settings#update', as: 'update'
+        put '/manager_code', to: 'settings#manager_code', as: 'manager_code'
         put '/:config/appearance_default', to: 'settings#appearance_default', as: 'appearance_default'
       end
     end
   end
 
-  scope ":admin_code" do 
+  scope ":admin_code" do
     devise_scope :user do
       get '/sign_in', to: 'devise/keppler_sessions#new'
       post '/sign_in', to: 'devise/keppler_sessions#create'
@@ -215,5 +216,5 @@ Rails.application.routes.draw do
   mount KepplerEnvironments::Engine, at: '/', as: 'environments'
 
   # Staff routes engine
-  mount KepplerStaff::Engine, at: '/', as: 'staff' 
+  mount KepplerStaff::Engine, at: '/', as: 'staff'
 end

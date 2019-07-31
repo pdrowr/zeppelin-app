@@ -163,7 +163,7 @@ module KepplerFrontend
     end
 
     def valid_code?
-      params[:code].eql?('12345')
+      params[:code].eql?(@setting.manager_code)
     end
   end
 end

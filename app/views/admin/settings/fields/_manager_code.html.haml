@@ -1,0 +1,13 @@
+.col-lg-12
+  .box.slice-box.p-15
+    .box-header.with-border
+      %h3.box-title
+        Código del gerente
+    .box-body.pure-input
+      .container
+        .row
+          .col-lg-12
+            = f.input :manager_code, label: 'Código'
+          .col-lg-12
+            .pull-right
+              = f.button :submit, t('keppler.actions.apply'), class: 'btn-primary'

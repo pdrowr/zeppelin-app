@@ -88,7 +88,7 @@ module Admin
     # Only allow a trusted parameter 'white list' through.
     def setting_params
       params.require(:setting).permit(
-        :name, :description, :email, :phone, :mobile, :logo,
+        :name, :description, :email, :phone, :mobile, :logo, :manager_code,
         :favicon, :logo_cache, :favicon_cache,
         smtp_setting_attributes: smpt_setting_permit_attributes,
         google_analytics_setting_attributes: ga_setting_permit_attributes,
