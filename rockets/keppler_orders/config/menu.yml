@@ -5,5 +5,5 @@ menu:
     url_path: /admin/orders/orders
     icon: spreadsheet
     model: KepplerOrders::Order
-    environment: all
+    environment: test
     position: 4

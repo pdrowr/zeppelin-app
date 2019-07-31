@@ -30,6 +30,10 @@ module KepplerClients
       )
     end
 
+    def current_accounts
+      accounts.where("status = 'ACTIVE' or status = 'IN_KITCHEN'")
+    end
+
     def have_active_account?(table)
       !accounts.where(period_id: current_period_id, table_id: table).first.blank?
     end

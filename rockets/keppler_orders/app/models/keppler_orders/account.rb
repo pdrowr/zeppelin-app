@@ -74,6 +74,29 @@ module KepplerOrders
       end
     end
 
+    def premium_order
+      KepplerOrders::PremiumOrder.where(tipodoc: 'ESP', referencia: reference).first
+    end
+
+    def fac_premium_order
+      KepplerOrders::PremiumOrder.where(tipodoc: 'FAC', referencia: reference).first
+    end
+
+    def status
+      order = self.premium_order
+      order_fac = self.fac_premium_order
+      status = if order
+                 if order.documento.strip != "E#{table}"
+                   order.documento.strip.split('E').last
+                 end
+                 'activo'
+               elsif order_fac
+                 'facturado'
+               elsif order.nil? && order_fac.nil?
+                 'cancelado'
+               end
+    end
+
     private
 
     def create_first_order
