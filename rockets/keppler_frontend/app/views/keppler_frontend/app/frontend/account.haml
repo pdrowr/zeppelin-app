@@ -57,7 +57,7 @@
                                     - if @account.have_active_orders
                                       - unless @account.have_incompleted_orders?
                                         %button.btn.btn_custom.btn--medium.btn--white.js-btn-order.d-none.d-sm-block{'data-target': "#facturar", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false,style: 'margin-right: 5px' }
-                                          Facturar
+                                          Enviar a Facturar
                                         %button.btn.btn_custom.btn--white.js-btn-order.d-sm-none{ style: 'margin-right: 5px'}
                                           %i.icofont-list
                                         -# = link_to app_billing_account_path(@account, locale: nil) do

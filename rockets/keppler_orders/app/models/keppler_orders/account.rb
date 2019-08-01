@@ -75,26 +75,39 @@ module KepplerOrders
     end
 
     def premium_order
-      KepplerOrders::PremiumOrder.where(tipodoc: 'ESP', referencia: reference).first
+      KepplerOrders::PremiumOrder.where(documento: doc).first
     end
 
     def fac_premium_order
-      KepplerOrders::PremiumOrder.where(tipodoc: 'FAC', referencia: reference).first
+      KepplerOrders::PremiumOrder.where(ordentrab: doc).first
     end
 
-    def status
+    def fac_status
       order = self.premium_order
-      order_fac = self.fac_premium_order
-      status = if order
-                 if order.documento.strip != "E#{table}"
-                   order.documento.strip.split('E').last
-                 end
-                 'activo'
-               elsif order_fac
-                 'facturado'
-               elsif order.nil? && order_fac.nil?
-                 'cancelado'
-               end
+      fac   = self.fac_premium_order
+
+      if self.cancelled?
+        'Cancelada'
+      else
+        if fac.nil? && order.nil?
+          'Anulada'
+        elsif fac&.ordentrab&.strip&.eql?(self.doc.strip) && fac&.tipodoc&.eql?('FAC')
+          'Facturada'
+        else
+          'Activa'
+        end
+      end
+      # if self.status.eql?('COMPLETED') && fac.nil?
+      #   'Por Facturar'
+      # elsif fac.nil? && order.nil?
+      #   'Activa'
+      # elsif fac.nil? && oder.nil?
+      #   'Borrada'
+      # elsif fac&.ordentrab&.strip&.eql?(self.doc.strip) && fac&.tipodoc&.eql?('FAC')
+      #   'Facturada'
+      # else
+      #   'Activa'
+      # end
     end
 
     private
