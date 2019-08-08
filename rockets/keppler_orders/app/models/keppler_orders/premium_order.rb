@@ -34,7 +34,7 @@ module KepplerOrders
         totbruto: order.subtotal,
         totneto: order.subtotal,
         totalfinal: order.subtotal,
-        documento: order.doc,
+        documento: order.doc.strip,
         referencia: order.reference,
         ordentrab: "E#{order.table.id_consumo}",
         ampm: order.created_at.strftime('%p').eql?('AM') ? 1 : 2,
