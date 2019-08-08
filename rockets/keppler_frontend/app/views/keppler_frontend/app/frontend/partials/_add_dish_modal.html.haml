@@ -14,12 +14,11 @@
             %i.icofont-close.icon_custom.icon--large
         .modal-body
           = simple_form_for @dish, url: app_add_dish_path(order), method: :post, class: 'mt-4' do
-            .d-flex
+            .d-flex.justify-content-end
               -# .product-detail
               -#   %p Lorem Ipsum es un texto de marcador de posición comúnmente utilizado en las industrias.
               .product-description
                 .card-product-detail.modal-body-details
-                  .card-price
                   .card-product-quantity
                     %a.inc.qty-button +
                     %input.input_custom.input_quantity.qty{:inputmode => "numeric", :max => "", :min => "1", :size => "4", :step => "1", :title => "Qty", :type => "price", :value => "1", name: 'dish[quantity]'}

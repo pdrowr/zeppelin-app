@@ -75,6 +75,14 @@ ul.tabs li {
   }
 }
 
+
+.current_active {
+  .card-table {
+    border: 1px solid #931a20;
+    border-radius: 5px;
+  }
+}
+
 .icons {
   background: $colorlight !important;
   border-radius: 5px;
