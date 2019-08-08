@@ -14,8 +14,10 @@ module KepplerOrders
     end
 
     def iva
+      return 0 if subtotal.nil?
       subtotal * 0.12
     end
+
 
     def total
       subtotal + iva
@@ -45,7 +47,7 @@ module KepplerOrders
     def cancel
       orders.map(&:cancel)
       toggle!(:cancelled)
-      update(cancelled_at: DateTime.now)
+      update(cancelled_at: DateTime.now, status: 'CANCELLED')
     end
 
     def dishes_count
@@ -89,7 +91,9 @@ module KepplerOrders
       if self.cancelled?
         'Cancelada'
       else
-        if fac.nil? && order.nil?
+        if status.eql?('ACTIVE')
+          'Activa'
+        elsif fac.nil? && order.nil?
           'Anulada'
         elsif fac&.ordentrab&.strip&.eql?(self.doc.strip) && fac&.tipodoc&.eql?('FAC')
           'Facturada'
@@ -97,17 +101,6 @@ module KepplerOrders
           'Activa'
         end
       end
-      # if self.status.eql?('COMPLETED') && fac.nil?
-      #   'Por Facturar'
-      # elsif fac.nil? && order.nil?
-      #   'Activa'
-      # elsif fac.nil? && oder.nil?
-      #   'Borrada'
-      # elsif fac&.ordentrab&.strip&.eql?(self.doc.strip) && fac&.tipodoc&.eql?('FAC')
-      #   'Facturada'
-      # else
-      #   'Activa'
-      # end
     end
 
     private

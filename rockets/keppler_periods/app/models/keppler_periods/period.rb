@@ -23,9 +23,19 @@ module KepplerPeriods
       %i[name]
     end
 
-    def total
+    def subtotal
       orders_total = accounts.map { |a| a.orders.map(&:total).compact.sum }
       total = orders_total.sum
+    end
+
+    def iva
+      return 0 if subtotal.nil?
+      subtotal * 0.12
+    end
+
+    def total
+      return 0 if subtotal.nil?
+      subtotal + iva
     end
   end
 end

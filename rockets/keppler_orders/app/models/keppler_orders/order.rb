@@ -19,7 +19,7 @@ module KepplerOrders
     def self.index_attributes
       %i[client_id waiter_id table_id status]
     end
-
+    
     def total
       prices = dishes.map { |dish| dish.price.to_i * dish.quantity.to_i }
       prices.reduce(:+)

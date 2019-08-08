@@ -18,7 +18,7 @@ module Admin
       if current_user
         redirect_to dashboard_path
       else
-        redirect_to frontend_path
+        redirect_to sign_in_path('admin')
       end
     end
 
