@@ -26,7 +26,7 @@ production:
 
 premium_database_development:
   adapter: mysql2
-  host: 192.168.88.254
+  host: 192.168.0.100
   username: root
   password: root
   encoding: utf8

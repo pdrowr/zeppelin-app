@@ -10,7 +10,6 @@ module KepplerFrontend
     layout 'layouts/keppler_frontend/app/layouts/application'
 
     def index; end
-
     def manage_client
       @client = rocket('clients', 'client').set_client(client_params)
 
