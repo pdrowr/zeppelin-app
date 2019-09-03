@@ -19,7 +19,7 @@ module KepplerOrders
     def self.index_attributes
       %i[client_id waiter_id table_id status]
     end
-    
+
     def total
       prices = dishes.map { |dish| dish.price.to_i * dish.quantity.to_i }
       prices.reduce(:+)
@@ -121,11 +121,11 @@ module KepplerOrders
     end
 
     def order_status
-      if (get_minutes < 15)
+      if (get_minutes < 11)
         return 'normal'
-      elsif (get_minutes >= 15 && get_minutes <= 24)
+      elsif (get_minutes >= 12 && get_minutes <= 17)
         return 'alert'
-      elsif (get_minutes >= 25)
+      elsif (get_minutes >= 18)
         return 'danger'
       end
     end

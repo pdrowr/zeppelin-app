@@ -150,22 +150,23 @@
 	$('.close-order').click(function(){
 		 $('.sidebar').removeClass('active-sidebar');
 	})
- 	var idleTime = 0;
-	$(document).ready(function () {
-		var idleInterval = setInterval(timerIncrement, 700);
 
-		 $(this).mousemove(function (e) {
-			 idleTime = 0;
-		 });
-
-		 $(this).keypress(function (e) {
-			 idleTime = 0;
-		 });
-	 });
-
-	 function timerIncrement() {
-		 idleTime = idleTime + 1;
-		 if (idleTime > 15) {
-			 window.location.reload();
-		 }
-	 }
+	// var idleTime = 0;
+	// $(document).ready(function () {
+	// 	var idleInterval = setInterval(timerIncrement, 700);
+	//
+	// 	 $(this).mousemove(function (e) {
+	// 		 idleTime = 0;
+	// 	 });
+	//
+	// 	 $(this).keypress(function (e) {
+	// 		 idleTime = 0;
+	// 	 });
+	//  });
+	//
+	//  function timerIncrement() {
+	// 	 idleTime = idleTime + 1;
+	// 	 if (idleTime > 15) {
+	// 		 window.location.reload();
+	// 	 }
+	//  }
