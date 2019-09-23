@@ -10,8 +10,6 @@ module App
 
     def set_metas
       @theme_color = nil
-      # @post = KepplerBlog::Post.find(params[:id])
-      # @product = Product.find(params[:id])
       @setting = Setting.first
       @meta = MetaTag.get_by_url(request.url)
       @social = SocialAccount.last
