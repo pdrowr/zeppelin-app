@@ -11,7 +11,6 @@ module KepplerFrontend
 
     def index; end
 
-
     def manage_client
       @client = rocket('clients', 'client').set_client(client_params)
 
