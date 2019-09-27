@@ -27,7 +27,7 @@ module KepplerFrontend
     end
 
     def categories
-      @host = Rails.configuration.database_configuration["premium_database_development"]["host"]
+      # @host = Rails.configuration.database_configuration["premium_database_development"]["host"]
       @categories = rocket('menu', 'category').all.includes(:pictures, :dishes)
     end
 
