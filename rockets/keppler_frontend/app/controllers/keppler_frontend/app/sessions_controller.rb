@@ -5,8 +5,7 @@ module KepplerFrontend
     include FrontsHelper
     layout 'layouts/keppler_frontend/app/layouts/application'
 
-    def new
-    end
+    def new; end
 
     def create
       member = KepplerStaff::Member.find_by(member_code: params[:member_code])

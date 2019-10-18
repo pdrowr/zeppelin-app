@@ -1,171 +1,172 @@
 !!!
 %html
-  %header
-    = render 'app/layouts/head'
-  %body
-    -# = preloader
-    #preloader
-      .spinner-border{:role => "status"}
-        %span.sr-only Loading...
-    .container-custom
-      = sidebar
-      .workspace
-        .d-flex
-          .workspace-left.workspace-left-runner
-            .workspace_top.workspace_top-runner
-              .workspace_top-container
-                .workspace_title.d-lg-block.d-sm-block.d-none
-                  %h1 Comandas
-                .workspace_avatar.d-lg-none
-                  .avatar-content.dropdown
-                    %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
-                      .avatar
-                        = image_tag '/assets/app/profile'
-                      %strong= current_member.alias
+	%header
+		= render 'app/layouts/head'
+	%body
+		-# = preloader
+		#preloader
+			.spinner-border{:role => "status"}
+				%span.sr-only Loading...
+		.container-custom
+			= sidebar
+			.workspace
+				.d-flex
+					.workspace-left.workspace-left-runner
+						.workspace_top.workspace_top-runner
+							.workspace_top-container
+								.workspace_title.d-lg-block.d-sm-block.d-none
+									%h1 Comandas
+								.workspace_avatar.d-lg-none
+									.avatar-content.dropdown
+										%a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
+											.avatar
+												= image_tag '/assets/app/profile'
+											%strong= current_member.alias
 
 
-            .workspace_center.workspace_center-runner
-              .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
-                %h1 Comandas
-              .container-fluid.p-0
-                #tab-5.tab-content.current
-                  %h2.status-runner.pending Pendientes
-                  -# .tabs-small.d-lg-none
-                  -#   %ul.sub-tabs#tabs-done
-                  -#     %li.tab-link.current{ 'data-tab' => 'tabs-done-1' } Pendientes
-                  -#     %li.tab-link{ 'data-tab' => 'tabs-done-2' } Listos
+						.workspace_center.workspace_center-runner
+							.workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
+								%h1 Comandas
+							.container-fluid.p-0
+								#tab-5.tab-content.current
+									%h2.status-runner.pending Pendientes
+									-# .tabs-small.d-lg-none
+									-#   %ul.sub-tabs#tabs-done
+									-#     %li.tab-link.current{ 'data-tab' => 'tabs-done-1' } Pendientes
+									-#     %li.tab-link{ 'data-tab' => 'tabs-done-2' } Listos
 
-                  #tabs-done-1.grid-wrapper.grid-wrapper-chef.mt-3.grid-wrapper-runner.tab-content.current
-                    -#- if @order.present?
-                    - @incompleted_orders.each_with_index do |order, index|
-                      - unless order.cancelled?
-                        .card-content.card-counts.mb-4.card-chef{ class: ('disabled-order' if order.cancelled?) }
-                          .order-card-counts.list-content{ class: "status-#{order.order_status}"}
-                            -# { class: ('disabled' if index.even?) }
-                            .description-user.d-flex.justify-content-between.list-header
-                              .data
-                                %h4= order.account.waiter.name
-                                %p= order.account.table.id
-                              .time
-                                %p.badge= order.created_time
-                            .content-progress
-                              .progress
-                                .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "100", :role => "progressbar", :style => "width: #{order.percentage}%;"} #{order.percentage}%
+									#tabs-done-1.grid-wrapper.grid-wrapper-chef.mt-3.grid-wrapper-runner.tab-content.current
+										-#- if @order.present?
+										- @incompleted_orders.each_with_index do |order, index|
+											- unless order.cancelled?
+												.card-content.card-counts.mb-4.card-chef{ class: ('disabled-order' if order.cancelled?) }
+													.order-card-counts.list-content{ class: "status-#{order.order_status}"}
+														-# { class: ('disabled' if index.even?) }
+														.description-user.d-flex.justify-content-between.list-header
+															.data
+																%h4= order.account.waiter.name
+																%p= order.account.table.id
+															.time
+																%p.badge= order.created_time
+														.content-progress
+															.progress
+																.progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "100", :role => "progressbar", :style => "width: #{order.percentage}%;"} #{order.percentage}%
 
-                            .list-cards
-                              - order.foods.each_with_index do |dish, index|
-                                .list-card{ class: ('disabled-dishes' if order.cancelled? || dish.cancelled?) }
-                                  - if dish.completed?
-                                    .content-checkmark-list
-                                      %i.icofont-check-alt.check-list
-                                  .description-user.d-flex.justify-content-between.name-dishes
-                                    %h4= dish.dish.name
-                                  .content-info-account.d-flex.flex-column
-                                    .content-info.d-flex.justify-content-between
-                                      %p Cantidad
-                                      %span= dish.quantity
-                                    .div.observations
-                                      %p Observaciones:
-                                      .tags
-                                        - dish.observation.split(';').each do |observation|
-                                          %span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
+														.list-cards
+															- order.foods.each_with_index do |dish, index|
+																.list-card{ class: ('disabled-dishes' if order.cancelled? || dish.cancelled?) }
+																	- if dish.completed?
+																		.content-checkmark-list
+																			%i.icofont-check-alt.check-list
+																	.description-user.d-flex.justify-content-between.name-dishes
+																		%h4= dish.dish.name
+																	.content-info-account.d-flex.flex-column
+																		.content-info.d-flex.justify-content-between
+																			%p Cantidad
+																			%span= dish.quantity
+																		.div.observations
+																			%p Observaciones:
+																			.tags
+																				- dish.observation.split(';').each do |observation|
+																					%span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
 
-                            .list-bottom
-                              .crono_wrapper
-                                %h2#crono.crono
-                                  - if order.cancelled?
-                                    Cancelado
-                                  - else
-                                    = time_ago_in_words(order.created_at)
+														.list-bottom
+															.crono_wrapper
+																%h2#crono.crono
+																	- if order.cancelled?
+																		Cancelado
+																	- else
+																		= time_ago_in_words(order.created_at)
 
 
 
-          .workspace-right.workspace-right-runner
-            .workspace_top.workspace_top-runner
-              .workspace_top-container
-                .workspace_title.d-lg-block.d-sm-block.d-none
-                  %h1.d-lg-none Runner
-                .workspace_avatar
-                  .avatar-content.dropdown
-                    %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
-                      .avatar
-                        = image_tag '/assets/app/profile'
-                      %strong= current_member.alias
+					.workspace-right.workspace-right-runner
+						.workspace_top.workspace_top-runner
+							.workspace_top-container
+								.workspace_title.d-lg-block.d-sm-block.d-none
+									%h1.d-lg-none Runner
+								.workspace_avatar
+									.avatar-content.dropdown
+										%a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
+											.avatar
+												= image_tag '/assets/app/profile'
+											%strong= current_member.alias
 
-            .workspace_center.workspace_center-runner
-              .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
-                %h1 Comandas
-              .container-fluid.p-0
-                #tab-5.tab-content.current
-                  %h2.status-runner.listo Entregados
-                  .grid-wrapper.grid-wrapper-chef.mt-3.grid-wrapper-runner
-                    - @completed_orders.each do |order|
-                      .card-content.card-counts.mb-4.card-chef
-                        .order-card-counts.list-content.status-normal
-                          .description-user.d-flex.justify-content-between.list-header
-                            .data
-                              %h4= order.account.waiter.name
-                              %p= order.account.table.id
-                            .time.d-flex.flex-column
-                              %p.badge= order.completed_time
-                          .content-progress
-                            .progress
-                              .progress-bar.progress-bar-finish{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "25", :role => "progressbar", :style => "width: #{order.percentage}%;"} #{order.percentage}%
+						.workspace_center.workspace_center-runner
+							.workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
+								%h1 Comandas
+							.container-fluid.p-0
+								#tab-5.tab-content.current
+									%h2.status-runner.listo Entregados
+									.grid-wrapper.grid-wrapper-chef.mt-3.grid-wrapper-runner
+										- @completed_orders.each do |order|
+											.card-content.card-counts.mb-4.card-chef
+												.order-card-counts.list-content.status-normal
+													.description-user.d-flex.justify-content-between.list-header
+														.data
+															%h4= order.account.waiter.name
+															%p= order.account.table.id
+														.time.d-flex.flex-column
+															%p.badge= order.completed_time
+													.content-progress
+														.progress
+															.progress-bar.progress-bar-finish{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "25", :role => "progressbar", :style => "width: #{order.percentage}%;"} #{order.percentage}%
 
-                          .list-cards
-                            - order.dishes.each_with_index do |dish, index|
-                              .list-card
-                                .content-checkmark-list
-                                  %i.icofont-check-alt
-                                .description-user.d-flex.justify-content-between.name-dishes
-                                  %h4= dish.dish.name
-                                  -# %p 10 min
-                                .content-info-account.d-flex.flex-column
-                                  .content-info.d-flex.justify-content-between
-                                    %p Cantidad
-                                    %span= dish.quantity
-                                  .div.observations
-                                    %p Observaciones:
-                                    .tags
-                                      - dish.observation.split(';').each do |observation|
-                                        %span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
+													.list-cards
+														- order.dishes.each_with_index do |dish, index|
+															.list-card
+																.content-checkmark-list
+																	%i.icofont-check-alt
+																.description-user.d-flex.justify-content-between.name-dishes
+																	%h4= dish.dish.name
+																	-# %p 10 min
+																.content-info-account.d-flex.flex-column
+																	.content-info.d-flex.justify-content-between
+																		%p Cantidad
+																		%span= dish.quantity
+																	.div.observations
+																		%p Observaciones:
+																		.tags
+																			- dish.observation.split(';').each do |observation|
+																				%span.tag{ class: (dish.completed? ? 'listo' : 'pending') }= observation
 
-                          .list-bottom
-    -# .btn-float.d-lg-none.d-block
-    -#   %button.btn.btn_custom.btn--filled.btn-sidebar
-    -#     %i.icofont-plus
+													.list-bottom
+		-# .btn-float.d-lg-none.d-block
+		-#   %button.btn.btn_custom.btn--filled.btn-sidebar
+		-#     %i.icofont-plus
 
 :javascript
-  $('.js-btn-order').click(function(){
-    $('.order-wrapper').removeClass('current')
-  })
+	$('.js-btn-order').click(function(){
+		$('.order-wrapper').removeClass('current')
+	})
 
-  $('.btn-sidebar').click(function(){
-    $('.sidebar').toggleClass('active-sidebar');
-  })
+	$('.btn-sidebar').click(function(){
+		$('.sidebar').toggleClass('active-sidebar');
+	})
 
-  $('.menu-toggle').click(function(){
-    $('aside').toggleClass('active-menu');
-  })
-  $('.close-order').click(function(){
-     $('.sidebar').removeClass('active-sidebar');
-  })
-//   var idleTime = 0;
-//   $(document).ready(function () {
-//     var idleInterval = setInterval(timerIncrement, 700); // 1 minute
-//
-//     $(this).mousemove(function (e) {
-//       idleTime = 0;
-//     });
-//
-//     $(this).keypress(function (e) {
-//       idleTime = 0;
-//     });
-//   });
-//
-//   function timerIncrement() {
-//     idleTime = idleTime + 1;
-//     if (idleTime > 15) {
-//       window.location.reload();
-//     }
-//   }
+	$('.menu-toggle').click(function(){
+		$('aside').toggleClass('active-menu');
+	})
+	$('.close-order').click(function(){
+		 $('.sidebar').removeClass('active-sidebar');
+	})
+
+	// var idleTime = 0;
+	// $(document).ready(function () {
+	// 	var idleInterval = setInterval(timerIncrement, 700);
+	//
+	// 	 $(this).mousemove(function (e) {
+	// 		 idleTime = 0;
+	// 	 });
+	//
+	// 	 $(this).keypress(function (e) {
+	// 		 idleTime = 0;
+	// 	 });
+	//  });
+	//
+	//  function timerIncrement() {
+	// 	 idleTime = idleTime + 1;
+	// 	 if (idleTime > 15) {
+	// 		 window.location.reload();
+	// 	 }
+	//  }

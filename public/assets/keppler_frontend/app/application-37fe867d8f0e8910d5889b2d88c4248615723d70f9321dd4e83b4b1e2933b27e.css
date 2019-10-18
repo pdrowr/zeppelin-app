@@ -327,11 +327,11 @@
   color: black;
 }
 
-/*! 
-* @package IcoFont 
-* @version 1.0.1 
-* @author IcoFont https://icofont.com 
-* @copyright Copyright (c) 2015 - 2018 IcoFont 
+/*!
+* @package IcoFont
+* @version 1.0.1
+* @author IcoFont https://icofont.com
+* @copyright Copyright (c) 2015 - 2018 IcoFont
 * @license - https://icofont.com/license/
 */
 @font-face {
@@ -11101,7 +11101,7 @@ body {
 /**
  * alertifyjs 1.11.3 http://alertifyjs.com
  * AlertifyJS is a javascript framework for developing pretty browser dialogs and notifications.
- * Copyright 2019 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com) 
+ * Copyright 2019 Mohammad Younes <Mohammad@alertifyjs.com> (http://alertifyjs.com)
  * Licensed under GPL 3 <https://opensource.org/licenses/gpl-3.0>*/
 /* line 6, /home/pdrowr/Development/zeppelin-a/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/app/plugins/alertify.min.scss */
 .alertify .ajs-dimmer {
@@ -13477,7 +13477,7 @@ button:hover, button:focus {
 }
 /* line 830, /home/pdrowr/Development/zeppelin-a/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/app/components/_index.scss */
 .list-content.status-alert {
-  background-color: #e25f23;
+  background-color: #e2dc23;
 }
 /* line 834, /home/pdrowr/Development/zeppelin-a/rockets/keppler_frontend/app/assets/stylesheets/keppler_frontend/app/components/_index.scss */
 .list-content.status-danger {
