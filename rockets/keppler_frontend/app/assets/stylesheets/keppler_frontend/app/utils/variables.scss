@@ -1,6 +1,5 @@
 // Medias querys
-$breakpoints: (
-  'xs': "(min-width: 0px) and (max-width: 767px)",
+$breakpoints: ('xs': "(min-width: 0px) and (max-width: 767px)",
   'sm': "(min-width: 768px) and (max-width: 991px)",
   'md': "(min-width: 992px) and (max-width: 1199px)",
   'lg': "(min-width: 1200px) and (max-width: 1600px)",
@@ -8,8 +7,10 @@ $breakpoints: (
 ) !default;
 
 // Fonts
-$putua: 'Patua One', cursive;
-$raleway: 'Raleway', sans-serif;
+$putua: 'Patua One',
+cursive;
+$raleway: 'Raleway',
+sans-serif;
 
 // Fonts size
 $base-font-size: 10px;
@@ -22,8 +23,18 @@ $base-font-size: 10px;
   font-style: normal;
 }
 
-$quicksand: 'Quicksand', sans-serif;
-$gobold: 'Gobold Bold', sans-serif;
+@font-face {
+  font-family: 'Patua One';
+  src: url('../app/PatuaOne-Regular.woff2') format('woff2'),
+    url('../app/PatuaOne-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$quicksand: 'Quicksand',
+sans-serif;
+$gobold: 'Gobold Bold',
+sans-serif;
 $light: 300;
 $normal: 400;
 $semibold: 500;
@@ -56,4 +67,6 @@ $colorlight: #202020;
 $dark-cards: #333333;
 $dark-e:#666666;
 // Shadow
-$primary-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0), 0px 7px 10px 1px rgba(0, 0, 0, 0), 0px 2px 16px 1px rgba(0, 0, 0, 0.12);
+$primary-shadow: 0px 4px 5px -2px rgba(0, 0, 0, 0),
+0px 7px 10px 1px rgba(0, 0, 0, 0),
+0px 2px 16px 1px rgba(0, 0, 0, 0.12);
