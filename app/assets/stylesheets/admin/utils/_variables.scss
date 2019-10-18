@@ -22,8 +22,12 @@ $ededed: #ededed;
 $transparent-black-14: rgba(0, 0, 0, .14);
 $transparent-black-12: rgba(0, 0, 0, .12);
 $transparent-black-2: rgba(0, 0, 0, .2);
-$btn-float-shadow: 0 2px 2px 0 $transparent-black-14, 0 1px 5px 0 $transparent-black-12, 0 3px 1px -2px $transparent-black-2;
-$btn-float-shadow-hover: 0 4px 5px 0 $transparent-black-14, 0 1px 10px 0 $transparent-black-12, 0 2px 4px -1px $transparent-black-2;
+$btn-float-shadow: 0 2px 2px 0 $transparent-black-14,
+0 1px 5px 0 $transparent-black-12,
+0 3px 1px -2px $transparent-black-2;
+$btn-float-shadow-hover: 0 4px 5px 0 $transparent-black-14,
+0 1px 10px 0 $transparent-black-12,
+0 2px 4px -1px $transparent-black-2;
 $preview-box-shadow: 4px 4px 3px rgba(103, 115, 130, 1);
 $box-shadow-collapse: 0 2px 12px rgba(0, 0, 0, .175);
 $coco-grey: #c0c0c0;
@@ -85,17 +89,17 @@ $brown-darken: #5d4037;
 $brown-accent: #4caf50;
 
 // Medias querys
-$breakpoints: (
-  'xs': "(max-width: 767px)",
+$breakpoints: ('xs': "(max-width: 767px)",
   'sm': "(max-width: 991px)",
   'md': "(max-width: 1199px)",
   'lg': "(max-width: 1600px)",
   'xl': "(max-width: 2048px)",
 ) !default;
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+// @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
 
-$font-primary: 'Source Sans Pro', sans-serif;
+$font-primary: 'Source Sans Pro',
+sans-serif;
 
 $font-size: 10px;
 $color-primary: #ff5300; // Orange primary

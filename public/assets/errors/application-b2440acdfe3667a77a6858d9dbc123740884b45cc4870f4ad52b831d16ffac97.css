@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Patua+One");
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+/* @import url("https://fonts.googleapis.com/css?family=Patua+One");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro"); */
 /* line 3, /home/slice-d5/Proyectos/keppler_lab/keppler_core/app/assets/stylesheets/errors/errors.scss */
 body {
   margin: 0;
@@ -41,6 +41,7 @@ a {
   flex-direction: column;
   height: 100%;
 }
+
 /* line 36, /home/slice-d5/Proyectos/keppler_lab/keppler_core/app/assets/stylesheets/errors/errors.scss */
 .denied__wrapper h1 {
   text-align: center;
@@ -51,6 +52,7 @@ a {
   font-weight: 800;
   margin-top: 0px;
 }
+
 /* line 45, /home/slice-d5/Proyectos/keppler_lab/keppler_core/app/assets/stylesheets/errors/errors.scss */
 .denied__wrapper h3 {
   text-align: center;
@@ -62,12 +64,14 @@ a {
   font-weight: 600;
   font-family: 'Source Sans Pro', sans-serif;
 }
+
 /* line 54, /home/slice-d5/Proyectos/keppler_lab/keppler_core/app/assets/stylesheets/errors/errors.scss */
 .denied__wrapper h3 span {
   position: relative;
   width: 65px;
   display: inline-block;
 }
+
 /* line 58, /home/slice-d5/Proyectos/keppler_lab/keppler_core/app/assets/stylesheets/errors/errors.scss */
 .denied__wrapper h3 span:after {
   content: '';
@@ -95,6 +99,7 @@ a {
   font-family: 'Source Sans Pro', sans-serif;
   transition: all ease-in-out .5s;
 }
+
 /* line 85, /home/slice-d5/Proyectos/keppler_lab/keppler_core/app/assets/stylesheets/errors/errors.scss */
 .denied__link:hover {
   color: #fff;
@@ -115,6 +120,7 @@ a {
 }
 
 @media (max-width: 600px) {
+
   /* line 102, /home/slice-d5/Proyectos/keppler_lab/keppler_core/app/assets/stylesheets/errors/errors.scss */
   .permission_denied h1 {
     font-size: 75px;
@@ -133,9 +139,13 @@ a {
     width: 60px;
   }
 }
+
 @media only screen and (min-width: 991px) and (max-width: 2000px) {
+
   /* line 116, /home/slice-d5/Proyectos/keppler_lab/keppler_core/app/assets/stylesheets/errors/errors.scss */
-  .saturn, .saturn-2, .hover {
+  .saturn,
+  .saturn-2,
+  .hover {
     animation: hover 2s infinite ease-in-out alternate;
   }
 }
@@ -144,10 +154,12 @@ a {
   0% {
     transform: translateY(3px);
   }
+
   100% {
     transform: translateY(-3px);
   }
 }
+
 /* line 131, /home/slice-d5/Proyectos/keppler_lab/keppler_core/app/assets/stylesheets/errors/errors.scss */
 #astronaut {
   width: 50px;
@@ -156,13 +168,17 @@ a {
   left: 60%;
   top: 60%;
 }
+
 @media only screen and (min-width: 991px) and (max-width: 2000px) {
+
   /* line 131, /home/slice-d5/Proyectos/keppler_lab/keppler_core/app/assets/stylesheets/errors/errors.scss */
   #astronaut {
     animation: spin 6.5s infinite linear;
   }
 }
+
 @media only screen and (max-width: 991px) and (min-width: 0px) {
+
   /* line 131, /home/slice-d5/Proyectos/keppler_lab/keppler_core/app/assets/stylesheets/errors/errors.scss */
   #astronaut {
     display: none;
@@ -181,6 +197,7 @@ a {
   0% {
     transform: rotateZ(0deg);
   }
+
   100% {
     transform: rotateZ(360deg);
   }
