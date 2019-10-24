@@ -1,5 +1,5 @@
 .grid-order.js-grid-order
-  - sections.each do |section|
+  - sections&.each do |section|
     - section&.tables&.each_with_index do |table, index|
       = creaate_account_modal(section, table.id)
       .order-wrapper.tab-content{ id: "space_one-#{index}-#{section.name}", class: ('current' if params[:table].eql?(table.id)) }
@@ -29,4 +29,3 @@
             %button.btn.btn_custom.btn--medium.btn--filled{'data-target': "##{section.name.split(' ').join()}-#{table.id.split(' ').join('')}", 'data-toggle': 'modal', 'data-backdrop': 'static', 'data-keyboard': false }
               %i.icofont-plus
               Agregar cuenta
-

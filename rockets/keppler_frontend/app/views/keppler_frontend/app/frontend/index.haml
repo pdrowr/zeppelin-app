@@ -19,13 +19,13 @@
               .container-fluid.p-0
                 #tab-1.tab-content.current
                   %ul.sub-tabs#sub-tabs
-                    - @sections.each_with_index do |section, index|
+                    - @sections&.each_with_index do |section, index|
                       - if params[:section]
                         %li.tab-link{ 'data-tab': "sub-tab-#{index}-#{section.name}", class: ( 'current' if params[:section].eql?(section.name))  }= section.name.capitalize
                       - else
                         %li.tab-link{ 'data-tab': "sub-tab-#{index}-#{section.name}", class: ( 'current' if index.zero?) }= section.name.capitalize
 
-                  - @sections.each_with_index do |section, index|
+                  - @sections&.each_with_index do |section, index|
                     - if params[:section]
                       .tab-content-sub{ id: "sub-tab-#{index}-#{section.name}", class: ('current' if params[:section].eql?(section.name)) }
                         .d-flex
@@ -40,14 +40,14 @@
                               = table(index, section)
 
           .workspace-right.sidebar
-            = all_orders
+            -# = all_orders
             = table_orders(@sections)
     -# .btn-float.d-lg-none.d-block
     -#   %button.btn.btn_custom.btn--filled.btn-sidebar
     -#     %i.icofont-plus
 
 :javascript
-  
+
   $('.js-btn-order').click(function(){
     $('.order-wrapper').removeClass('current')
     $('.js-grid-order').addClass('current');
