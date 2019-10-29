@@ -135,8 +135,10 @@ module KepplerFrontend
     private
 
     def set_index_variables
-      @sections = rocket('environments', 'section').order(position: :asc)
-      @client   = rocket('clients', 'client').new
+      @sections = nil
+      @client = nil
+      # @client   = rocket('clients', 'client').new
+      # @client   = rocket('clients', 'client').new
     end
 
     def client_params
