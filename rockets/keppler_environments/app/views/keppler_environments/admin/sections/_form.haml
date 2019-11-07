@@ -1,5 +1,4 @@
--# %link{href: "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css", rel: "stylesheet"}/
--# %script{src: "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"}
+%script{src: asset_path('admin/select2.min.js') }
 
 = simple_form_for [:admin, :environments, @section] do |f|
   .container
@@ -28,7 +27,7 @@
                     .keppler-custom-field.form-group.select.optional.office_ubication_id
                       %label.control-label.select.optional{ for: 'office_ubication_id' } Mesas
                       %select.form-control.select.optional.select2#patient-select{ name: 'section[table_ids][]', multiple: 'multiple' }
-                        - @tables.each do |table|
+                        - @tables&.each do |table|
                           %option{ value: table, selected: ((@section&.table_ids&.include?(table))) }= table
                   .col-xs-12
                     = f.input :active, as: :keppler_boolean, as: :hidden
