@@ -1,138 +1,137 @@
 !!!
 %html
-  %header
-    = render 'app/layouts/head'
-  %body
-    -# = preloader
-    #preloader
-      .spinner-border{:role => "status"}
-        %span.sr-only Loading...
-    .container-custom
-      = sidebar
-      .workspace
-        .d-flex
-          .workspace-left.workspace-chef
-            .workspace_top.workspace_top-chef
-              .workspace_top-container
-                .workspace_title.d-lg-block.d-sm-block.d-none
-                  %h1 Cocina
-                .workspace_avatar
-                  .avatar-content.dropdown
-                    %a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
-                      .avatar
-                        = image_tag '/assets/app/profile'
-                      %strong=current_member.alias
+	%header
+		= render 'app/layouts/head'
+	%body
+		-# = preloader
+		#preloader
+			.spinner-border{:role => "status"}
+				%span.sr-only Loading...
+		.container-custom
+			= sidebar
+			.workspace
+				.d-flex
+					.workspace-left.workspace-chef
+						.workspace_top.workspace_top-chef
+							.workspace_top-container
+								.workspace_title.d-lg-block.d-sm-block.d-none
+									%h1 Cocina
+								.workspace_avatar
+									.avatar-content.dropdown
+										%a#out.d-flex.align-items-center{ "aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button" }
+											.avatar
+												= image_tag '/assets/app/profile'
+											%strong=current_member.alias
 
-            .workspace_center.workspace-center-chef
-              .workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
-                %h1 Cocina
-              .container-fluid.p-0
-                #tab-4
-                  .grid-wrapper.grid-wrapper-chef
-                    - @orders.each_with_index do |order, index|
-                      - unless order.cancelled? && order.cancelled_time >= 5
-                        .card-content.card-counts.mb-4.card-chef.card-chef-full{ class: ('disabled-order' if order.cancelled?) }
-                          .order-card-counts.list-content{ class: "status-#{order.order_status}"}
+						.workspace_center.workspace-center-chef
+							.workspace_title.d-lg-none.d-sm-none.d-xs-block.mb-4
+								%h1 Cocina
+							.container-fluid.p-0
+								#tab-4
+									.grid-wrapper.grid-wrapper-chef
+										- @orders&.each_with_index do |order, index|
+											- unless order.cancelled? && order.cancelled_time >= 5
+												.card-content.card-counts.mb-4.card-chef.card-chef-full{ class: ('disabled-order' if order.cancelled?) }
+													.order-card-counts.list-content{ class: "status-#{order.order_status}"}
 
-                            .description-user.d-flex.justify-content-between.list-header
-                              .data
-                                %h4= order.account.waiter.name
-                                %p= order.account.table.id
-                              .time.d-flex.flex-column
-                                %p.badge= order.created_time
-                            .list-cards.list-cards-full
-                              - order.foods.each_with_index do |dish, index|
-                                .list-card.list-card-full{ class: ('disabled' if dish.cancelled?) }
-                                  = html_switch(order, dish, index)
-                                  .description-user.d-flex.justify-content-between.name-dishes
-                                    %h4= dish.dish.name
-                                  .content-info-account.d-flex.flex-column
-                                    .content-info.d-flex.justify-content-between
-                                      %p Cantidad
-                                      %span= dish.quantity
-                                    .div.observations
-                                      %p Observaciones:
-                                      .tags
-                                        - dish.observation.split(';').each do |observation|
-                                          %span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
-                            .list-bottom
-                              .crono_wrapper
-                                %h2#crono.crono
-                                  - if order.cancelled?
-                                    Cancelado
-                                  - else
-                                    = time_ago_in_words(order&.send_to_kitchen_at)
-                        // .card-content.card-counts.mb-4.card-chef{ class: ('disabled-order' if order.cancelled?) }
-                        //   .order-card-counts.list-content{ class: "status-#{order.order_status}"}
+														.description-user.d-flex.justify-content-between.list-header
+															.data
+																%h4= order.account.waiter.name
+																%p= order.account.table.id
+															.time.d-flex.flex-column
+																%p.badge= order.created_time
+														.list-cards.list-cards-full
+															- order.foods.each_with_index do |dish, index|
+																.list-card.list-card-full{ class: ('disabled' if dish.cancelled?) }
+																	= html_switch(order, dish, index)
+																	.description-user.d-flex.justify-content-between.name-dishes
+																		%h4= dish.dish.name
+																	.content-info-account.d-flex.flex-column
+																		.content-info.d-flex.justify-content-between
+																			%p Cantidad
+																			%span= dish.quantity
+																		.div.observations
+																			%p Observaciones:
+																			.tags
+																				- dish.observation.split(';').each do |observation|
+																					%span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
+														.list-bottom
+															.crono_wrapper
+																%h2#crono.crono
+																	- if order.cancelled?
+																		Cancelado
+																	- else
+																		= time_ago_in_words(order&.send_to_kitchen_at)
+									-# 			// .card-content.card-counts.mb-4.card-chef{ class: ('disabled-order' if order.cancelled?) }
+									-# 			//   .order-card-counts.list-content{ class: "status-#{order.order_status}"}
+									-#
+									-# 			//     .description-user.d-flex.justify-content-between.list-header
+									-# 			//       .data
+									-# 			//         %h4= order.account.waiter.name
+									-# 			//         %p= order.account.table.id
+									-# 			//       .time.d-flex.flex-column
+									-# 			//         %p.badge= order.created_time
+									-# 			//     .list-cards
+									-# 			//       - order.foods.each_with_index do |dish, index|
+									-# 			//         .list-card{ class: ('disabled' if dish.cancelled?) }
+									-# 			//           = html_switch(order, dish, index)
+									-# 			//           .description-user.d-flex.justify-content-between.name-dishes
+									-# 			//             %h4= dish.dish.name
+									-# 			//           .content-info-account.d-flex.flex-column
+									-# 			//             .content-info.d-flex.justify-content-between
+									-# 			//               %p Cantidad
+									-# 			//               %span= dish.quantity
+									-# 			//             .div.observations
+									-# 			//               %p Observaciones:
+									-# 			//               .tags
+									-# 			//                 - dish.observation.split(';').each do |observation|
+									-# 			//                   %span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
+									-# 			//     .list-bottom
+									-# 			//       .crono_wrapper
+									-# 			//         %h2#crono.crono
+									-# 			//           - if order.cancelled?
+									-# 			//             Cancelado
+									-# 			//           - else
+									-# 			//             = time_ago_in_words(order&.send_to_kitchen_at)
 
-                        //     .description-user.d-flex.justify-content-between.list-header
-                        //       .data
-                        //         %h4= order.account.waiter.name
-                        //         %p= order.account.table.id
-                        //       .time.d-flex.flex-column
-                        //         %p.badge= order.created_time
-                        //     .list-cards
-                        //       - order.foods.each_with_index do |dish, index|
-                        //         .list-card{ class: ('disabled' if dish.cancelled?) }
-                        //           = html_switch(order, dish, index)
-                        //           .description-user.d-flex.justify-content-between.name-dishes
-                        //             %h4= dish.dish.name
-                        //           .content-info-account.d-flex.flex-column
-                        //             .content-info.d-flex.justify-content-between
-                        //               %p Cantidad
-                        //               %span= dish.quantity
-                        //             .div.observations
-                        //               %p Observaciones:
-                        //               .tags
-                        //                 - dish.observation.split(';').each do |observation|
-                        //                   %span.tag{ class: (dish.completed? ? 'done' : 'pending') }= observation
-                        //     .list-bottom
-                        //       .crono_wrapper
-                        //         %h2#crono.crono
-                        //           - if order.cancelled?
-                        //             Cancelado
-                        //           - else
-                        //             = time_ago_in_words(order&.send_to_kitchen_at)
 
+:javascript
+	$('.btn-sidebar').click(function(){
+		$('.sidebar').toggleClass('active-sidebar');
+	})
+	$('.menu-toggle').click(function(){
+		$('aside').toggleClass('active-menu');
+	})
 
- :javascript
-   $('.btn-sidebar').click(function(){
-     $('.sidebar').toggleClass('active-sidebar');
-   })
+	$('.close-order').click(function(){
+		$('.sidebar').removeClass('active-sidebar');
+	})
 
-   $('.menu-toggle').click(function(){
-     $('aside').toggleClass('active-menu');
-   })
+	$('.dropdown-toggle').dropdown()
+	$('.modal').on('shown.bs.modal', function () {
+		$('body').addClass('overflow')
+		$('.close').click(function(){
+			$('body').removeClass('overflow')
+			$('.modal').removeClass('in')
+		})
+	});
 
-   $('.close-order').click(function(){
-      $('.sidebar').removeClass('active-sidebar');
-   })
+	var idleTime = 0;
+	$(document).ready(function () {
+		var idleInterval = setInterval(timerIncrement, 700); // 1 minute
 
-   $('.dropdown-toggle').dropdown()
-   $('.modal').on('shown.bs.modal', function () {
-     $('body').addClass('overflow')
-     $('.close').click(function(){
-       $('body').removeClass('overflow')
-       $('.modal').removeClass('in')
-     })
-   });
+		$(this).mousemove(function (e) {
+			idleTime = 0;
+		});
 
-   var idleTime = 0;
-   $(document).ready(function () {
-     var idleInterval = setInterval(timerIncrement, 700); // 1 minute
+	 	$(this).keypress(function (e) {
+			idleTime = 0;
+	 	});
+	});
 
-     $(this).mousemove(function (e) {
-       idleTime = 0;
-     });
-
-     $(this).keypress(function (e) {
-       idleTime = 0;
-     });
-   });
-
-   function timerIncrement() {
-     idleTime = idleTime + 1;
-     if (idleTime > 15) {
-       window.location.reload();
-     }
-   }
+	function timerIncrement() {
+		idleTime = idleTime + 1;
+		if (idleTime > 15) {
+			window.location.reload();
+		}
+	}

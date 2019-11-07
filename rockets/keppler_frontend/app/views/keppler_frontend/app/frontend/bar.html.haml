@@ -29,7 +29,7 @@
               .container-fluid.p-0
                 #tab-4
                   .grid-wrapper.grid-wrapper-chef
-                    - @orders.each_with_index do |order,index|
+                    - @orders&.each_with_index do |order,index|
                       .card-content.card-counts.mb-4.card-chef
                         .order-card-counts.list-content{ class: "status-#{order.order_status}"}
 
