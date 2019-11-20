@@ -21,7 +21,7 @@ module KepplerOrders
     end
 
     def total
-      prices = dishes.map { |dish| dish.price.to_i * dish.quantity.to_i }
+      prices = dishes.map { |dish| dish.price.to_i * dish.quantity.to_i unless dish.cancelled }
       prices.reduce(:+)
     end
 
@@ -121,7 +121,7 @@ module KepplerOrders
     end
 
     def order_status
-      if (get_minutes < 11)
+      if (get_minutes <= 11)
         return 'normal'
       elsif (get_minutes >= 12 && get_minutes <= 17)
         return 'alert'

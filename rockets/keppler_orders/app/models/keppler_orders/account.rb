@@ -10,7 +10,7 @@ module KepplerOrders
     scope :today_orders, -> { orders.where(period_id: current_period_id) }
 
     def subtotal
-      orders.map(&:total).compact.sum
+      orders.map { |o| o if !o.completed || !o.cancelled }.compact.map(&:total).compact.sum
     end
 
     def iva
@@ -41,7 +41,7 @@ module KepplerOrders
     end
 
     def have_incompleted_orders?
-      !orders.map { |o| o if !o.completed }.compact.blank?
+      !orders.where(cancelled: false).map { |o| o if !o.completed }.compact.blank?
     end
 
     def cancel
@@ -59,8 +59,8 @@ module KepplerOrders
         begin
           order = PremiumOrder.new_order(self)
           order.save!
-          orders.each do |order|
-            order.dishes.each do |order_article|
+          orders.where(cancelled: false).each do |order|
+            order.dishes.where(cancelled: false).each do |order_article|
               order_article.quantity.times do
                 item = KepplerOrders::PremiumItem.new_order_item(order_article)
                 item.save!
