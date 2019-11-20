@@ -14,8 +14,7 @@ module KepplerClients
 
     has_many :accounts, class_name: 'KepplerOrders::Account'
 
-    validates_presence_of :name, :email, :identification
-    validates_uniqueness_of :email, :identification
+    validates_presence_of :name, :identification
 
     def self.index_attributes
       %i[name identification email address code]

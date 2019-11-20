@@ -22,13 +22,13 @@
               %input.form-control.input_custom.name{ name: 'client[name]', :required => "", :autocomplete => "off" }
             .form-group
               %label.label_custom Email
-              %input.form-control.input_custom.email{ name: 'client[email]', :required => "", :autocomplete => "off" }
+              %input.form-control.input_custom.email{ name: 'client[email]', :autocomplete => "off" }
             .form-group
               %label.label_custom Dirección
-              %input.form-control.input_custom.address{ type: 'text', name: 'client[address]', :required => "", :autocomplete => "off" }
+              %input.form-control.input_custom.address{ type: 'text', name: 'client[address]', :autocomplete => "off" }
             .form-group
               %label.label_custom Teléfono
-              %input.form-control.input_custom.phone{ type: 'tel', name: 'client[phone]', min: 0, :required => "", :autocomplete => "off" }
+              %input.form-control.input_custom.phone{ type: 'tel', name: 'client[phone]', min: 0, :autocomplete => "off" }
             .form-group
               %input{ type: 'hidden', name: 'table', value: table }
               %input{ type: 'hidden', name: 'section', value: section.name }
@@ -76,15 +76,10 @@
           required: true
         },
         'client[email]': {
-          required: true,
           email: true
-        },
-        'client[address]': {
-          required: true,
         },
         'client[phone]': {
           phoneno: true,
-          required: true
         }
       },
       messages: {
@@ -96,10 +91,6 @@
         },
         'client[email]': {
           email:"El email no es valido",
-          required: "Campo obligatorio"
-        },
-        'client[phone]': {
-          required: "Campo obligatorio"
         },
         'client[address]': {
           required: "Campo obligatorio"
