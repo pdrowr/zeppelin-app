@@ -38,7 +38,7 @@ production:
 # GUAYOYO
 premium_database_development:
   adapter: mysql2
-  host: 192.168.88.3
+  host: 192.168.88.254
   username: sliceadmin
   encoding: utf8
   pool: 5
