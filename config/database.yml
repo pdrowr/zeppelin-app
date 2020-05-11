@@ -24,7 +24,7 @@ test:
 production:
   <<: *default
 
-#ZEPPELIN
+#ZEPPELINN
 # premium_database_development:
 #   adapter: mysql2
 #   host: 192.168.0.10
